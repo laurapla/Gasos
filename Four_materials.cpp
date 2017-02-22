@@ -1,4 +1,5 @@
 #include<iostream>
+#include<fstream>
 
 using namespace std;
 
@@ -9,29 +10,35 @@ float p[3][2] = {
 {0.50,0.40},
 {0.50,0.70},
 {1.10,0.80}
-}; //m
+}; // [m]
 
 // Physical properties
-float rhod[4] = {1500.00,1600.00,1900.00,2500.00}; //kg/m^3
-float cpd[4] = {750.00,770.00,810.00,930.00}; //J/(kgK)
-float lamd[4] = {170.00,140.00,200.00,140.00}; //W/(mK)
+float rhod[4] = {1500.00,1600.00,1900.00,2500.00}; // [kg/m^3]
+float cpd[4] = {750.00,770.00,810.00,930.00}; // [J/(kgK)]
+float lamd[4] = {170.00,140.00,200.00,140.00}; // [W/(mK)]
 
 // Boundary conditions
-float Tbottom = 23.00; //ºC
-float Qtop = 60.00; //W/m
-float Tgleft = 33.00; //ºC
-float alpha = 9.00; //W/(m^2K)
-float Tright = 8.00; //ºC
-float T0 = 8.00; //ºC Initial temperature
+float Tbottom = 23.00; // [ºC]
+float Qtop = 60.00; // [W/m]
+float Tgleft = 33.00; // [ºC]
+float alpha = 9.00; // [W/(m^2K)]
+float Tright = 8.00; // [ºC]
+float T0 = 8.00; // Initial temperature [ºC]
 
 // Mathematical properties
-const int M = 10; // Vertical discretization
-const int N = 10; // Horizontal discretization
+const int M = 110; // Vertical discretization
+const int N = 80; // Horizontal discretization
 const int L = 10001; // Time discretization
 float beta = 0.5;
 float tfinal = 10000; // Time of the simulation
 float delta = 0.001; // Precision of the simulation
-float fr = 1.2; // Relaxation factor
+float fr = 1.2; // Relaxation 
+
+// Results (coordinates)
+float point[2][2] = {
+{0.65,0.56},
+{0.74,0.72}
+}; // [m]
 
 
 float deltax, deltay, dt; // Increments of space and time
@@ -49,10 +56,6 @@ float t = 0.00; // First time increment
 double resta;
 double MAX;
 int k = 0;
-float point[2][2] = {
-{0.65,0.56},
-{0.74,0.72}
-};
 int ipoint1, jpoint1, ipoint2, jpoint2;
 
 
@@ -374,9 +377,9 @@ int main(){
 	
 	// SCREEN ! ! ! ! ! ! ! ! :D
 	// showing the matrix on the screen
-    for(int j=0;j<M;j++)  // loop 3 times for three lines
+    for(int j=0;j<M;j++)
     {
-        for(int i=0;i<N;i++)  // loop for the three elements on the line
+        for(int i=0;i<N;i++)
         {
             cout<<T[L][j][i]<<"	";  // display the current element out of the array
         }
@@ -436,29 +439,18 @@ int main(){
 		}
 	}
     
-    // SCREEN ! ! ! ! ! ! ! ! :D
-	// showing the matrix on the screen
-    for(int j=0;j<1;j++)  // loop 3 times for three lines
-    {
-        for(int i=0;i<N;i++)  // loop for the three elements on the line
-        {
-            cout<<x[i]<<"	";  // display the current element out of the array
-        }
-		cout<<endl;  // when the inner loop is done, go to a new line
-    }
-    // SCREEN ! ! ! ! ! ! ! ! :D
-	// showing the matrix on the screen
-    for(int j=0;j<1;j++)  // loop 3 times for three lines
-    {
-        for(int i=0;i<M;i++)  // loop for the three elements on the line
-        {
-            cout<<y[i]<<"	";  // display the current element out of the array
-        }
-		cout<<endl;  // when the inner loop is done, go to a new line
-    }
-    
     cout<<"\n"<<x[ipoint1]<<","<<y[jpoint1]<<"\n"<<x[ipoint2]<<","<<y[jpoint2];
     cout<<"\nFighting!~ ^w^";
+    
+    ofstream results;
+    results.open("Resultats.txt");
+    t = 0;
+    for(int k = 0; k<L; k++)
+    {
+    	results<<t<<"	"<<T[k][jpoint1][ipoint1]<<"	"<<T[k][jpoint2][ipoint2]<<"\n";
+    	t = t+dt;
+	}
+    results.close();
     
 }
 
