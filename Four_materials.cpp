@@ -29,10 +29,10 @@ const float T0 = 8.00; // Initial temperature [ºC]
 const float qv = 0; // Internal heat [W/m^3]
 
 // Mathematical properties
-const int M1 = 20;
-const int M2 = 40;
-const int M3 = 20;
-const int N1 = 40;
+const int M1 = 40;
+const int M2 = 30;
+const int M3 = 10;
+const int N1 = 50;
 const int N2 = 60;
 const int Time = 10001; // Time discretization
 const float beta = 0.5;
@@ -428,7 +428,7 @@ int main(){
     }
     
     
-    // Points
+    // Searching for the points (0.65, 0.56) and (0.74, 0.72)
     for(int i = 0; i<N1+N2-1; i++)
     {
     	if(x[i]<=point[0][0] && x[i+1]>point[0][0])
@@ -485,7 +485,7 @@ int main(){
     // Output file
     cout<<"Creating file..."<<endl;
     ofstream results;
-    results.open("Resultats.txt");
+    results.open("Resultats.dat");
     t = 0;
     for(int k = 0; k<Time; k++)
     {
