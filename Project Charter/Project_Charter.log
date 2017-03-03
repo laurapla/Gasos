@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.9.28)  3 MAR 2017 01:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  3 MAR 2017 04:57
 entering extended mode
 **./Project_Charter.tex
 (Project_Charter.tex
@@ -482,25 +482,45 @@ Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
 ("C:\Apps\MiKTeX 2.9\tex\latex\lastpage\lastpage.sty"
 Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
 )
+("C:\Apps\MiKTeX 2.9\tex\latex\tools\longtable.sty"
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip67
+\LTright=\skip68
+\LTpre=\skip69
+\LTpost=\skip70
+\LTchunksize=\count89
+\LTcapwidth=\dimen105
+\LT@head=\box28
+\LT@firsthead=\box29
+\LT@foot=\box30
+\LT@lastfoot=\box31
+\LT@cols=\count90
+\LT@rows=\count91
+\c@LT@tables=\count92
+\c@LT@chunks=\count93
+\LT@p@ftn=\toks19
+)
+Class scrartcl Info: longtable captions redefined on input line 16.
+
 ("C:\Apps\MiKTeX 2.9\tex\latex\booktabs\booktabs.sty"
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
-\heavyrulewidth=\dimen105
-\lightrulewidth=\dimen106
-\cmidrulewidth=\dimen107
-\belowrulesep=\dimen108
-\belowbottomsep=\dimen109
-\aboverulesep=\dimen110
-\abovetopsep=\dimen111
-\cmidrulesep=\dimen112
-\cmidrulekern=\dimen113
-\defaultaddspace=\dimen114
-\@cmidla=\count89
-\@cmidlb=\count90
-\@aboverulesep=\dimen115
-\@belowrulesep=\dimen116
-\@thisruleclass=\count91
-\@lastruleclass=\count92
-\@thisrulewidth=\dimen117
+\heavyrulewidth=\dimen106
+\lightrulewidth=\dimen107
+\cmidrulewidth=\dimen108
+\belowrulesep=\dimen109
+\belowbottomsep=\dimen110
+\aboverulesep=\dimen111
+\abovetopsep=\dimen112
+\cmidrulesep=\dimen113
+\cmidrulekern=\dimen114
+\defaultaddspace=\dimen115
+\@cmidla=\count94
+\@cmidlb=\count95
+\@aboverulesep=\dimen116
+\@belowrulesep=\dimen117
+\@thisruleclass=\count96
+\@lastruleclass=\count97
+\@thisrulewidth=\dimen118
 )
 ("C:\Apps\MiKTeX 2.9\tex\latex\pdfpages\pdfpages.sty"
 Package: pdfpages 2016/04/19 v0.5f Insert pages of external PDF documents (AM)
@@ -510,16 +530,16 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
 ("C:\Apps\MiKTeX 2.9\tex\latex\tools\calc.sty"
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count93
-\calc@Bcount=\count94
-\calc@Adimen=\dimen118
-\calc@Bdimen=\dimen119
-\calc@Askip=\skip67
-\calc@Bskip=\skip68
+\calc@Acount=\count98
+\calc@Bcount=\count99
+\calc@Adimen=\dimen119
+\calc@Bdimen=\dimen120
+\calc@Askip=\skip71
+\calc@Bskip=\skip72
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count95
-\calc@Cskip=\skip69
+\calc@Ccount=\count100
+\calc@Cskip=\skip73
 )
 ("C:\Apps\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.sty"
 Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
@@ -544,20 +564,20 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 )
-\Gin@req@height=\dimen120
-\Gin@req@width=\dimen121
+\Gin@req@height=\dimen121
+\Gin@req@width=\dimen122
 )
-\AM@pagewidth=\dimen122
-\AM@pageheight=\dimen123
+\AM@pagewidth=\dimen123
+\AM@pageheight=\dimen124
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\pdfpages\pppdftex.def"
 File: pppdftex.def 2016/04/19 v0.5f Pdfpages driver for pdfTeX (AM)
 )
-\AM@pagebox=\box28
-\AM@global@opts=\toks19
-\AM@toc@title=\toks20
-\c@AM@survey=\count96
-\AM@templatesizebox=\box29
+\AM@pagebox=\box32
+\AM@global@opts=\toks20
+\AM@toc@title=\toks21
+\c@AM@survey=\count101
+\AM@templatesizebox=\box33
 )
 ("C:\Apps\MiKTeX 2.9\tex\latex\pstricks\pstricks.sty"
 Package: pstricks 2015/11/14 v0.62 LaTeX wrapper for `PSTricks' (RN,HV)
@@ -571,63 +591,63 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
 ("C:\Apps\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
 ("C:\Apps\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex"
-\XKV@toks=\toks21
-\XKV@tempa@toks=\toks22
+\XKV@toks=\toks22
+\XKV@tempa@toks=\toks23
 )
-\XKV@depth=\count97
+\XKV@depth=\count102
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )))
 ("C:\Apps\MiKTeX 2.9\tex\generic\pstricks\pst-fp.tex"
 `pst-fp' v0.05, 2010/01/17 (hv)
-\pstFP@xs=\count98
-\pstFP@xia=\count99
-\pstFP@xib=\count100
-\pstFP@xfa=\count101
-\pstFP@xfb=\count102
-\pstFP@rega=\count103
-\pstFP@regb=\count104
-\pstFP@regs=\count105
-\pstFP@times=\count106
+\pstFP@xs=\count103
+\pstFP@xia=\count104
+\pstFP@xib=\count105
+\pstFP@xfa=\count106
+\pstFP@xfb=\count107
+\pstFP@rega=\count108
+\pstFP@regb=\count109
+\pstFP@regs=\count110
+\pstFP@times=\count111
 )
 ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common.tex"
-\pgfutil@everybye=\toks23
-\pgfutil@tempdima=\dimen124
-\pgfutil@tempdimb=\dimen125
+\pgfutil@everybye=\toks24
+\pgfutil@tempdima=\dimen125
+\pgfutil@tempdimb=\dimen126
 
 ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common-lists.tex"))
 ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex"
-\pgfkeys@pathtoks=\toks24
-\pgfkeys@temptoks=\toks25
+\pgfkeys@pathtoks=\toks25
+\pgfkeys@temptoks=\toks26
 
 ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeysfiltered.code.tex"
-\pgfkeys@tmptoks=\toks26
+\pgfkeys@tmptoks=\toks27
 ))
 ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\utilities\pgffor.code.tex"
 ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex"
 ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\math\pgfmathcalc.code.tex"
 ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\math\pgfmathutil.code.tex"
-\pgf@x=\dimen126
-\pgf@xa=\dimen127
-\pgf@xb=\dimen128
-\pgf@xc=\dimen129
-\pgf@y=\dimen130
-\pgf@ya=\dimen131
-\pgf@yb=\dimen132
-\pgf@yc=\dimen133
-\c@pgf@counta=\count107
-\c@pgf@countb=\count108
-\c@pgf@countc=\count109
-\c@pgf@countd=\count110
-\pgfutil@tempcnta=\count111
-\pgfutil@tempcntb=\count112
+\pgf@x=\dimen127
+\pgf@xa=\dimen128
+\pgf@xb=\dimen129
+\pgf@xc=\dimen130
+\pgf@y=\dimen131
+\pgf@ya=\dimen132
+\pgf@yb=\dimen133
+\pgf@yc=\dimen134
+\c@pgf@counta=\count112
+\c@pgf@countb=\count113
+\c@pgf@countc=\count114
+\c@pgf@countd=\count115
+\pgfutil@tempcnta=\count116
+\pgfutil@tempcntb=\count117
 )
 ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\math\pgfmathparser.code.tex"
-\pgfmath@dimen=\dimen134
-\pgfmath@count=\count113
-\pgfmath@box=\box30
-\pgfmath@toks=\toks27
-\pgfmath@stack@operand=\toks28
-\pgfmath@stack@operation=\toks29
+\pgfmath@dimen=\dimen135
+\pgfmath@count=\count118
+\pgfmath@box=\box34
+\pgfmath@toks=\toks28
+\pgfmath@stack@operand=\toks29
+\pgfmath@stack@operation=\toks30
 )
 ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.code.tex"
 ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.basic.code.tex")
@@ -640,64 +660,64 @@ ex") ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.random.code.tex
 ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.misc.code.tex")
 ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.integerarithmetics.c
 ode.tex"))) ("C:\Apps\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfloat.code.tex"
-\c@pgfmathroundto@lastzeros=\count114
+\c@pgfmathroundto@lastzeros=\count119
 ))
-\pgffor@iter=\dimen135
-\pgffor@skip=\dimen136
-\pgffor@stack=\toks30
-\pgffor@toks=\toks31
+\pgffor@iter=\dimen136
+\pgffor@skip=\dimen137
+\pgffor@stack=\toks31
+\pgffor@toks=\toks32
 )
-\psLoopIndex=\count115
-`PSTricks' v2.69  <2016/09/16> (tvz)
-\pst@dima=\dimen137
-\pst@dimb=\dimen138
-\pst@dimc=\dimen139
-\pst@dimd=\dimen140
-\pst@dimg=\dimen141
-\pst@dimh=\dimen142
-\pst@dimm=\dimen143
-\pst@dimn=\dimen144
-\pst@dimo=\dimen145
-\pst@dimp=\dimen146
-\pst@hbox=\box31
-\pst@ibox=\box32
-\pst@boxg=\box33
-\pst@cnta=\count116
-\pst@cntb=\count117
-\pst@cntc=\count118
-\pst@cntd=\count119
-\pst@cntg=\count120
-\pst@cnth=\count121
-\pst@cntm=\count122
-\pst@cntn=\count123
-\pst@cnto=\count124
-\pst@cntp=\count125
-\@zero=\count126
-\pst@toks=\toks32
+\psLoopIndex=\count120
+`PSTricks' v2.70  <2016/09/23> (tvz)
+\pst@dima=\dimen138
+\pst@dimb=\dimen139
+\pst@dimc=\dimen140
+\pst@dimd=\dimen141
+\pst@dimg=\dimen142
+\pst@dimh=\dimen143
+\pst@dimm=\dimen144
+\pst@dimn=\dimen145
+\pst@dimo=\dimen146
+\pst@dimp=\dimen147
+\pst@hbox=\box35
+\pst@ibox=\box36
+\pst@boxg=\box37
+\pst@cnta=\count121
+\pst@cntb=\count122
+\pst@cntc=\count123
+\pst@cntd=\count124
+\pst@cntg=\count125
+\pst@cnth=\count126
+\pst@cntm=\count127
+\pst@cntn=\count128
+\pst@cnto=\count129
+\pst@cntp=\count130
+\@zero=\count131
+\pst@toks=\toks33
 ("C:\Apps\MiKTeX 2.9\tex\generic\pstricks\pstricks.con")
-\psunit=\dimen147
-\psxunit=\dimen148
-\psyunit=\dimen149
-\pst@C@@rType=\count127
-\pslinewidth=\dimen150
-\psk@startLW=\dimen151
-\psk@endLW=\dimen152
-\pst@customdefs=\toks33
-\pslinearc=\dimen153
-\pst@symbolStep=\dimen154
-\pst@symbolWidth=\dimen155
-\pst@symbolLinewidth=\dimen156
-\everypsbox=\toks34
-\psframesep=\dimen157
-\pslabelsep=\dimen158
-\sh@wgridXunit=\dimen159
-\sh@wgridYunit=\dimen160
-\pst@shift=\dimen161
+\psunit=\dimen148
+\psxunit=\dimen149
+\psyunit=\dimen150
+\pst@C@@rType=\count132
+\pslinewidth=\dimen151
+\psk@startLW=\dimen152
+\psk@endLW=\dimen153
+\pst@customdefs=\toks34
+\pslinearc=\dimen154
+\pst@symbolStep=\dimen155
+\pst@symbolWidth=\dimen156
+\pst@symbolLinewidth=\dimen157
+\everypsbox=\toks35
+\psframesep=\dimen158
+\pslabelsep=\dimen159
+\sh@wgridXunit=\dimen160
+\sh@wgridYunit=\dimen161
+\pst@shift=\dimen162
 )
-File: pstricks.tex 2016/09/16 v2.69 `PSTricks' (tvz,hv)
+File: pstricks.tex 2016/09/23 v2.70 `PSTricks' (tvz,hv)
 
 ("C:\Apps\MiKTeX 2.9\tex\generic\pstricks\pst-fp.tex")
-File: pst-fp.tex 2016/09/16 v2.69 `PST-fp' (hv)
+File: pst-fp.tex 2016/09/23 v2.70 `PST-fp' (hv)
 )
 ("C:\Apps\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
 Package: geometry 2010/09/12 v5.6 Page Geometry
@@ -709,60 +729,63 @@ Package ifvtex Info: VTeX not detected.
 ("C:\Apps\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count128
-\Gm@cntv=\count129
-\c@Gm@tempcnt=\count130
-\Gm@bindingoffset=\dimen162
-\Gm@wd@mp=\dimen163
-\Gm@odd@mp=\dimen164
-\Gm@even@mp=\dimen165
-\Gm@layoutwidth=\dimen166
-\Gm@layoutheight=\dimen167
-\Gm@layouthoffset=\dimen168
-\Gm@layoutvoffset=\dimen169
-\Gm@dimlist=\toks35
+\Gm@cnth=\count133
+\Gm@cntv=\count134
+\c@Gm@tempcnt=\count135
+\Gm@bindingoffset=\dimen163
+\Gm@wd@mp=\dimen164
+\Gm@odd@mp=\dimen165
+\Gm@even@mp=\dimen166
+\Gm@layoutwidth=\dimen167
+\Gm@layoutheight=\dimen168
+\Gm@layouthoffset=\dimen169
+\Gm@layoutvoffset=\dimen170
+\Gm@dimlist=\toks36
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
 ("C:\Apps\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty"
 Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count131
+\etb@tempcnta=\count136
+)
+("C:\Apps\MiKTeX 2.9\tex\latex\graphics\lscape.sty"
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 32.
+less on input line 34.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 33.
+less on input line 35.
 
 (Project_Charter.aux)
 \openout1 = `Project_Charter.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
  ("C:\Apps\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count132
-\scratchdimen=\dimen170
-\scratchbox=\box34
-\nofMPsegments=\count133
-\nofMParguments=\count134
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count135
-\MPscratchDim=\dimen171
-\MPnumerator=\count136
-\makeMPintoPDFobject=\count137
-\everyMPtoPDFconversion=\toks37
+\scratchcounter=\count137
+\scratchdimen=\dimen171
+\scratchbox=\box38
+\nofMPsegments=\count138
+\nofMParguments=\count139
+\everyMPshowfont=\toks37
+\MPscratchCnt=\count140
+\MPscratchDim=\dimen172
+\MPnumerator=\count141
+\makeMPintoPDFobject=\count142
+\everyMPtoPDFconversion=\toks38
 ) ("C:\Apps\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
 Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -807,15 +830,11 @@ G,.JBIG2,.JB2,.eps]
 )
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 51.
-\AtBeginShipoutBox=\box35
+(lastpage)             ! on input line 53.
+\AtBeginShipoutBox=\box39
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty"
 Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
-
-("C:\Apps\MiKTeX 2.9\tex\latex\graphics\lscape.sty"
-Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
-)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
 *geometry* driver: auto-detecting
@@ -855,7 +874,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 <image.png, id=1, 640.3925pt x 170.6375pt>
 File: image.png Graphic file (type png)
  <use image.png>
-Package pdftex.def Info: image.png used on input line 55.
+Package pdftex.def Info: image.png used on input line 57.
 (pdftex.def)             Requested size: 320.19547pt x 85.31853pt.
  [1
 Non-PDF special ignored!
@@ -880,7 +899,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 File: image.png Graphic file (type png)
  <use image.png>
-Package pdftex.def Info: image.png used on input line 79.
+Package pdftex.def Info: image.png used on input line 81.
 (pdftex.def)             Requested size: 131.3497pt x 35.0pt.
 
 
@@ -890,21 +909,25 @@ Package Fancyhdr Warning: \headheight is too small (18.125pt):
  This may cause the page layout to be inconsistent, however.
 
 [2] (1.tex) (2.tex
-Underfull \hbox (badness 10000) in paragraph at lines 5--11
+Underfull \hbox (badness 10000) in paragraph at lines 5--12
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 12.
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--12
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 13.
 ("C:\Apps\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 12.
-) (3.tex) (4.tex
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 13.
+) (3.tex
 File: image.png Graphic file (type png)
-
-<use image.png>
-Package pdftex.def Info: image.png used on input line 8.
+ <use image.png>
+Package pdftex.def Info: image.png used on input line 10.
 (pdftex.def)             Requested size: 131.3497pt x 35.0pt.
 
 
@@ -913,16 +936,74 @@ Package Fancyhdr Warning: \headheight is too small (18.125pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[3])
-Underfull \hbox (badness 10000) in paragraph at lines 10--93
+[3]) (4.tex
+Underfull \hbox (badness 10000) in paragraph at lines 5--9
 
  []
 
-(5.tex) 
-AED: lastpage setting LastPage
+)
+Underfull \hbox (badness 10000) in paragraph at lines 11--95
+
+ []
+
+(5.tex
+Underfull \hbox (badness 10000) in paragraph at lines 14--14
+[]|\OT1/cmr/m/n/12 Validation and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--18
+[]|\OT1/cmr/m/n/12 Validation and
+ []
+
+
+Underfull \hbox (badness 6412) in paragraph at lines 21--21
+[]|\OT1/cmr/m/n/12 Radiation code
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--22
+[]|\OT1/cmr/m/n/12 Validation and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--24
+[]|\OT1/cmr/m/n/12 Combination
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--24
+\OT1/cmr/m/n/12 code de-vel-op-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+[]|\OT1/cmr/m/n/12 Validation and
+ []
+
+
+Underfull \hbox (badness 6016) in paragraph at lines 27--27
+\OT1/cmr/m/n/12 prac-ti-cal ap-pli-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--28
+[]|\OT1/cmr/m/n/12 Application
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--28
+\OT1/cmr/m/n/12 code de-vel-op-
+ []
+
+
+Overfull \hbox (5.50438pt too wide) in alignment at lines 6--28
+ [] [] [] 
+ []
+
 File: image.png Graphic file (type png)
 <use image.png>
-Package pdftex.def Info: image.png used on input line 97.
+Package pdftex.def Info: image.png used on input line 28.
 (pdftex.def)             Requested size: 131.3497pt x 35.0pt.
 
 
@@ -931,23 +1012,92 @@ Package Fancyhdr Warning: \headheight is too small (18.125pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4] (Project_Charter.aux) ) 
+[4]
+Underfull \vbox (badness 10000) detected at line 28
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--29
+[]|\OT1/cmr/m/n/12 Validation and
+ []
+
+
+Overfull \hbox (5.50438pt too wide) in alignment at lines 28--34
+ [] [] [] 
+ []
+
+File: image.png Graphic file (type png)
+<use image.png>
+Package pdftex.def Info: image.png used on input line 34.
+(pdftex.def)             Requested size: 131.3497pt x 35.0pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (18.125pt): 
+ Make it at least 39.35004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[5]
+Overfull \hbox (3.678pt too wide) in alignment at lines 37--59
+ [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 59
+ []
+
+
+Overfull \hbox (3.678pt too wide) in alignment at lines 59--65
+ [] [] [] [] 
+ []
+
+File: image.png Graphic file (type png)
+<use image.png>
+Package pdftex.def Info: image.png used on input line 68.
+(pdftex.def)             Requested size: 131.3497pt x 35.0pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (18.125pt): 
+ Make it at least 39.35004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[6] <Gantt.png, id=28, 615.80063pt x 534.49687pt>
+File: Gantt.png Graphic file (type png)
+ <use Gantt.png>
+Package pdftex.def Info: Gantt.png used on input line 70.
+(pdftex.def)             Requested size: 431.0575pt x 374.14525pt.
+)
+
+AED: lastpage setting LastPage
+File: image.png Graphic file (type png)
+<use image.png>
+Package pdftex.def Info: image.png used on input line 99.
+(pdftex.def)             Requested size: 131.3497pt x 35.0pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (18.125pt): 
+ Make it at least 39.35004pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[7 <./Gantt.png>] (Project_Charter.aux) ) 
 Here is how much of TeX's memory you used:
- 12700 strings out of 493334
- 219487 string characters out of 3143122
- 381643 words of memory out of 3000000
- 16030 multiletter control sequences out of 15000+200000
+ 12793 strings out of 493334
+ 220582 string characters out of 3143122
+ 403416 words of memory out of 3000000
+ 16120 multiletter control sequences out of 15000+200000
  8804 words of font info for 31 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 49i,15n,72p,8875b,372s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mbx12.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Ap
-ps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Apps/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmr17.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb>
-Output written on Project_Charter.pdf (4 pages, 77468 bytes).
+ 49i,15n,72p,8875b,462s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Apps/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmbx12.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcs
+c10.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Apps/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Apps/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb>
+Output written on Project_Charter.pdf (7 pages, 150172 bytes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
+ 50 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
