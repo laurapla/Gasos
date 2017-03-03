@@ -2,4 +2,6 @@
 \contentsline {section}{\numberline {2}Scope}{3}
 \contentsline {section}{\numberline {3}Requirements}{3}
 \contentsline {section}{\numberline {4}Justification}{4}
+\contentsline {subsection}{\numberline {4.1}Need that is being covered}{4}
+\contentsline {subsection}{\numberline {4.2}Advantatges and drawbacks}{4}
 \contentsline {section}{\numberline {5}Calendar}{4}
