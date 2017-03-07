@@ -1,10 +1,12 @@
 #include<iostream>
+#include<math.h>
 #include<fstream>
 
 using namespace std;
 
 // FUNCTIONS
 double double_interpolation (float x, float y, double T11, double T12, double T21, double T22, double x1, double x2, double y1, double y2);
+void search_index (float point, double *x, int N, int &ipoint, int& ip);
 
 // DATA
 // Coordinates
@@ -243,64 +245,11 @@ int main(){
 	Tright = Tright0;
 	
 	// Searching for the points (0.65, 0.56) and (0.74, 0.72)
-    for(int i = 0; i<N1+N2-1; i++)
-    {
-    	if(x[i]<=point[0][0] && x[i+1]>point[0][0])
-    	{
-    		if(point[0][0]-x[i]<x[i+1]-point[0][0])
-    		{
-    			ipoint1 = i;
-    			ip1 = i+1;
-			}
-			else
-			{
-				ipoint1 = i+1;
-				ip1 = i;
-			}
-		}
-		if(x[i]<=point[1][0] && x[i+1]>point[1][0])
-    	{
-    		if(point[1][0]-x[i]<x[i+1]-point[1][0])
-    		{
-    			ipoint2 = i;
-    			ip2 = i+1;
-			}
-			else
-			{
-				ipoint2 = i+1;
-				ip2 = i;
-			}
-		}
-	}
-	for(int j = 0; j<M1+M2+M3-1; j++)
-    {
-    	if(y[j]>point[0][1] && y[j+1]<=point[0][1])
-    	{
-    		if(point[0][1]-y[j+1]<y[j]-point[0][1])
-    		{
-    			jpoint1 = j;
-    			jp1 = j+1;
-			}
-			else
-			{
-				jpoint1 = j+1;
-				jp1 = j;
-			}
-		}
-		if(y[j]>point[1][1] && y[j+1]<=point[1][1])
-    	{
-    		if(point[1][1]-y[j+1]<y[j]-point[1][1])
-    		{
-    			jpoint2 = j;
-    			jp2 = j+1;
-			}
-			else
-			{
-				jpoint2 = j+1;
-				jp2 = j;
-			}
-		}
-	}
+    search_index (point[0][0], x, N1+N2, ipoint1, ip1);
+    search_index (point[1][0], x, N1+N2, ipoint2, ip2);
+    search_index (point[0][1], y, M1+M2+M3, jpoint1, jp1);
+    search_index (point[1][1], y, M1+M2+M3, jpoint2, jp2);
+	
 	
 	// CALCULATION OF CONSTANT COEFFICIENTS
 	
@@ -492,14 +441,7 @@ int main(){
 			{
 				for(int j = 0; j<M1+M2+M3; j++)
 				{
-					if(Tcalc[j][i]>T[j][i])
-					{
-						resta = Tcalc[j][i]-T[j][i];
-					}
-					else
-					{
-						resta = T[j][i]-Tcalc[j][i];
-					}
+					resta = fabs(Tcalc[j][i]-T[j][i]);
 					
 					if(resta>MAX)
 					{
@@ -544,14 +486,17 @@ int main(){
 		cout<<endl;  // go to a new line
     }
     
-    cout<<endl<<y[jpoint1]<<","<<y[jp1]<<endl;
-    cout<<endl<<x[ipoint1]<<","<<x[ip1]<<endl;
-    cout<<endl<<T[jpoint1][ipoint1]<<","<<T[jp1][ipoint1]<<"\n"<<T[jpoint1][ip1]<<","<<T[jp1][ip1]<<endl;
+//    cout<<endl<<y[jpoint1]<<","<<y[jp1]<<endl;
+//    cout<<endl<<x[ipoint1]<<","<<x[ip1]<<endl;
+//    cout<<endl<<T[jpoint1][ipoint1]<<","<<T[jp1][ipoint1]<<"\n"<<T[jpoint1][ip1]<<","<<T[jp1][ip1]<<endl;
+	
+    cout<<endl<<x[ipoint1]<<","<<y[jpoint1]<<endl;
+    cout<<endl<<x[ipoint2]<<","<<y[jpoint2]<<endl;
     
     // Output file
     cout<<"Creating file..."<<endl;
     ofstream results;
-    results.open("Resultatss.dat");
+    results.open("Resultats.dat");
     t = 0;
     for(int k = 0; k<Time; k++)
     {
@@ -575,4 +520,45 @@ double double_interpolation (float x, float y, double T11, double T12, double T2
 	result2 = T12+(T22-T12)*(x-x1)/(x2-x1);
 	finalresult = result1+(result2-result1)*(y-y1)/(y2-y1);
 	return finalresult;
+}
+
+// Searching the index of a given value in an array
+void search_index (float point, double *x, int N, int &ipoint, int& ip)
+{
+	for(int i = 0; i<N-1; i++)
+    {
+    	if(x[i+1]-x[i]>0)
+    	{
+    		if(x[i]<=point && x[i+1]>point)
+    		{
+    			if(point-x[i]<x[i+1]-point)
+				{
+					ipoint = i;
+					ip = i+1;
+				}
+				else
+				{
+					ipoint = i+1;
+					ip = i;
+				}
+			}    		
+		}
+		else
+		{
+			if(x[i]>point && x[i+1]<=point)
+    		{
+    			if(point-x[i+1]<x[i]-point)
+    			{
+    				ipoint = i;
+    				ip = i+1;
+				}
+				else
+				{
+					ipoint = i+1;
+					ip = i;
+				}
+			}
+		}
+	}
+	
 }
