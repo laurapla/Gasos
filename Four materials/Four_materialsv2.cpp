@@ -522,7 +522,7 @@ double double_interpolation (float x, float y, double T11, double T12, double T2
 	return finalresult;
 }
 
-// Searching the index of a given value in an array
+// Searching the index of the node closest to a given point (and the second closest)
 void search_index (float point, double *x, int N, int &ipoint, int& ip)
 {
 	for(int i = 0; i<N-1; i++)
@@ -533,8 +533,8 @@ void search_index (float point, double *x, int N, int &ipoint, int& ip)
     		{
     			if(point-x[i]<x[i+1]-point)
 				{
-					ipoint = i;
-					ip = i+1;
+					ipoint = i; //ipoint is the index of the node closest to the point we want
+					ip = i+1; //ip is the second node closest to it (used in interpolation)
 				}
 				else
 				{
