@@ -13,19 +13,18 @@ const int N2 = 60;
 
 // Definition of types
 typedef double matrix[M1+M2+M3][N1+N2];
-typedef double matx[M1+M2+M3][N1+N2+1];
-typedef double maty[M1+M2+M3+1][N1+N2];
 
 
 // FUNCTIONS
+void horizontal_coordinates (double dx1, double dx2, double xvc[], double x[]);
+void vertical_coordinates (double dy1, double dy2, double dy3, double yvc[], double y[]);
 void volume (double *xvc, double *yvc, int N, int M, matrix& V);
-void surface_vertical (double *yvc, int N, int M, matx& Sx);
-void surface_horizontal (double *xvc, int N, int M, maty& Sy);
+void surface (double *yvc, int M, double Sx[]);
 void properties (double *x, double *y, const float p[3][2], const float rhod[4], const float cpd[4], const float lamd[4], matrix& rho, matrix& cp, matrix& lambda);
 void harmonic_mean (matrix lambda, double* x, double* y, double* xvc, double* yvc, int N, int M, matrix& lambdaw, matrix& lambdae, matrix& lambdas, matrix& lambdan);
 void search_index (float point, double *x, int Number, int &ipoint, int& ip);
-void constant_coefficients (double *x, double *y, double *xvc, double *yvc, matx Sx, maty Sy, matrix V, float dt, float beta, float alpha, matrix rho, matrix cp, matrix lambda, matrix lambdaw, matrix lambdae, matrix lambdas, matrix lambdan, matrix& ap, matrix& aw, matrix& ae, matrix& as, matrix& an);
-void bp_coefficients (double *x, double *y, double *xvc, double *yvc, matx Sx, maty Sy, double Sytotal, matrix V, float dt, float beta, float alpha, float Qtop, float qv, float Tbottom, float Tgleft, float Tright, float Trightant, matrix Tant, matrix rho, matrix cp, matrix lambda, matrix lambdaw, matrix lambdae, matrix lambdas, matrix lambdan, matrix& bp);
+void constant_coefficients (double *x, double *y, double *xvc, double *yvc, double *Sx, double *Sy, matrix V, float dt, float beta, float alpha, matrix rho, matrix cp, matrix lambda, matrix lambdaw, matrix lambdae, matrix lambdas, matrix lambdan, matrix& ap, matrix& aw, matrix& ae, matrix& as, matrix& an);
+void bp_coefficients (double *x, double *y, double *xvc, double *yvc, double *Sx, double *Sy, double Sytotal, matrix V, float dt, float beta, float alpha, float Qtop, float qv, float Tbottom, float Tgleft, float Tright, float Trightant, matrix Tant, matrix rho, matrix cp, matrix lambda, matrix lambdaw, matrix lambdae, matrix lambdas, matrix lambdan, matrix& bp);
 void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float fr, float delta, int N, int M, matrix& T);
 double double_interpolation (float x, float y, double T11, double T12, double T21, double T22, double x1, double x2, double y1, double y2);
 void print_matrix (matrix T, int N, int M);
@@ -99,46 +98,16 @@ int main(){
 	double xvc[N1+N2+1],yvc[M1+M2+M3+1]; // Coordinates of the faces
 	double x[N1+N2],y[M1+M2+M3]; // Coordinates of the nodes
 	xvc[0] = 0;
-	for (int i = 1; i<N1+N2+1; i++)
-	{
-		if(i<=N1)
-		{
-			xvc[i] = xvc[i-1]+dx1;
-			x[i-1] = (xvc[i-1]+xvc[i])/2;
-		}
-		else
-		{
-			xvc[i] = xvc[i-1]+dx2;
-			x[i-1] = (xvc[i-1]+xvc[i])/2;
-		}
-	}
+	horizontal_coordinates (dx1, dx2, xvc, x);
 	yvc[0] = p[2][1];
-	for (int j = 1; j<M1+M2+M3+1; j++)
-	{
-		if(j<=M3)
-		{
-			yvc[j] = yvc[j-1]-dy3;
-			y[j-1] = (yvc[j-1]+yvc[j])/2;
-		}
-		else if(j>M3 && j<=M2+M3)
-		{
-			yvc[j] = yvc[j-1]-dy2;
-			y[j-1] = (yvc[j-1]+yvc[j])/2;
-		}
-		else
-		{
-			yvc[j] = yvc[j-1]-dy1;
-			y[j-1] = (yvc[j-1]+yvc[j])/2;
-		}
-	}
-	
+	vertical_coordinates (dy1, dy2, dy3, yvc, y);
 	
 	// Surfaces and volumes
-	double Sx[M1+M2+M3][N1+N2+1], Sy[M1+M2+M3+1][N1+N2], V[M1+M2+M3][N1+N2], Sytotal; // Surfaces and volumes
+	double Sx[M1+M2+M3], Sy[N1+N2], V[M1+M2+M3][N1+N2], Sytotal; // Surfaces and volumes
 	Sytotal = p[2][1]; // Total surface of the north face
 	volume (xvc, yvc, N1+N2, M1+M2+M3, V);
-	surface_vertical (yvc, N1+N2, M1+M2+M3, Sx);
-	surface_horizontal (xvc, N1+N2, M1+M2+M3, Sy);
+	surface (yvc, M1+M2+M3, Sx);
+	surface (xvc, N1+N2, Sy);
 	
 	
 	cout<<"Calculating properties..."<<endl;
@@ -236,38 +205,64 @@ int main(){
 // FUNCTIONS
 // ------------------------------------------
 
+void horizontal_coordinates (double dx1, double dx2, double xvc[], double x[])
+{
+	for (int i = 1; i<N1+N2+1; i++)
+	{
+		if(i<=N1)
+		{
+			xvc[i] = xvc[i-1]+dx1;
+			x[i-1] = (xvc[i-1]+xvc[i])/2;
+		}
+		else
+		{
+			xvc[i] = xvc[i-1]+dx2;
+			x[i-1] = (xvc[i-1]+xvc[i])/2;
+		}
+	}
+}
+
+
+void vertical_coordinates (double dy1, double dy2, double dy3, double yvc[], double y[])
+{
+	for (int j = 1; j<M1+M2+M3+1; j++)
+	{
+		if(j<=M3)
+		{
+			yvc[j] = yvc[j-1]-dy3;
+			y[j-1] = (yvc[j-1]+yvc[j])/2;
+		}
+		else if(j>M3 && j<=M2+M3)
+		{
+			yvc[j] = yvc[j-1]-dy2;
+			y[j-1] = (yvc[j-1]+yvc[j])/2;
+		}
+		else
+		{
+			yvc[j] = yvc[j-1]-dy1;
+			y[j-1] = (yvc[j-1]+yvc[j])/2;
+		}
+	}
+}
+
+
 void volume (double *xvc, double *yvc, int N, int M, matrix& V)
 {
 	for(int i = 0; i<N; i++)
 	{
 		for(int j = 0; j<M; j++)
 		{
-			V[j][i] = (xvc[i+1]-xvc[i])*(yvc[j]-yvc[j+1]); // Volume
+			V[j][i] = fabs(xvc[i+1]-xvc[i])*fabs(yvc[j]-yvc[j+1]); // Volume
 		}
 	}
 }
 
 
-void surface_vertical (double *yvc, int N, int M, matx& Sx)
+void surface (double *yvc, int M, double Sx[])
 {
-	for(int i = 0; i<=N; i++)
+	for(int j = 0; j<M; j++)
 	{
-		for(int j = 0; j<M; j++)
-		{
-			Sx[j][i] = yvc[j]-yvc[j+1]; // Surfaces east and west
-		}
-	}
-}
-
-
-void surface_horizontal (double *xvc, int N, int M, maty& Sy)
-{
-	for(int i = 0; i<N; i++)
-	{
-		for(int j = 0; j<=M; j++)
-		{
-			Sy[j][i] = xvc[i+1]-xvc[i]; // Surfaces north and south
-		}
+		Sx[j] = fabs(yvc[j]-yvc[j+1]);
 	}
 }
 
@@ -396,7 +391,7 @@ void search_index (float point, double *x, int Number, int &ipoint, int& ip)
 
 
 // Calculation of the constant coefficients
-void constant_coefficients (double *x, double *y, double *xvc, double *yvc, matx Sx, maty Sy, matrix V, float dt, float beta, float alpha, matrix rho, matrix cp, matrix lambda, matrix lambdaw, matrix lambdae, matrix lambdas, matrix lambdan, matrix& ap, matrix& aw, matrix& ae, matrix& as, matrix& an)
+void constant_coefficients (double *x, double *y, double *xvc, double *yvc, double *Sx, double *Sy, matrix V, float dt, float beta, float alpha, matrix rho, matrix cp, matrix lambda, matrix lambdaw, matrix lambdae, matrix lambdas, matrix lambdan, matrix& ap, matrix& aw, matrix& ae, matrix& as, matrix& an)
 {
 	for(int i =0; i<N1+N2; i++)
 	{
@@ -404,74 +399,74 @@ void constant_coefficients (double *x, double *y, double *xvc, double *yvc, matx
 		{
 			if(i==0 && j==0)
 			{
-				ae[j][i] = beta*lambdae[j][i]*Sx[j][i+1]/(x[i+1]-x[i]);
+				ae[j][i] = beta*lambdae[j][i]*Sx[j]/(x[i+1]-x[i]);
 				aw[j][i] = 0;
-				as[j][i] = beta*lambdas[j][i]*Sy[j+1][i]/(y[j]-y[j+1]);
+				as[j][i] = beta*lambdas[j][i]*Sy[i]/(y[j]-y[j+1]);
 				an[j][i] = 0;
-				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt+beta*Sx[j][i]/(1/alpha+(x[i]-xvc[i])/lambda[j][i]);
+				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt+beta*Sx[j]/(1/alpha+(x[i]-xvc[i])/lambda[j][i]);
 			}
 			else if(i==0 && j!=0 && j!=M1+M2+M3-1)
 			{
-				ae[j][i] = beta*lambdae[j][i]*Sx[j][i+1]/(x[i+1]-x[i]);
+				ae[j][i] = beta*lambdae[j][i]*Sx[j]/(x[i+1]-x[i]);
 				aw[j][i] = 0;
-				as[j][i] = beta*lambdas[j][i]*Sy[j+1][i]/(y[j]-y[j+1]);
-				an[j][i] = beta*lambdan[j][i]*Sy[j][i]/(y[j-1]-y[j]);
-				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt+beta*Sx[j][i]/(1/alpha+(x[i]-xvc[i])/lambda[j][i]);
+				as[j][i] = beta*lambdas[j][i]*Sy[i]/(y[j]-y[j+1]);
+				an[j][i] = beta*lambdan[j][i]*Sy[i]/(y[j-1]-y[j]);
+				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt+beta*Sx[j]/(1/alpha+(x[i]-xvc[i])/lambda[j][i]);
 			}
 			else if(i==0 && j==M1+M2+M3-1)
 			{
-				ae[j][i] = beta*lambdae[j][i]*Sx[j][i+1]/(x[i+1]-x[i]);
+				ae[j][i] = beta*lambdae[j][i]*Sx[j]/(x[i+1]-x[i]);
 				aw[j][i] = 0;
 				as[j][i] = 0;
-				an[j][i] = beta*lambdan[j][i]*Sy[j][i]/(y[j-1]-y[j]);
-				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt+beta*Sx[j][i]/(1/alpha+(x[i]-xvc[i])/lambda[j][i])+beta*lambda[j][i]/(y[j]-yvc[j+1])*Sy[j+1][i];
+				an[j][i] = beta*lambdan[j][i]*Sy[i]/(y[j-1]-y[j]);
+				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt+beta*Sx[j]/(1/alpha+(x[i]-xvc[i])/lambda[j][i])+beta*lambda[j][i]/(y[j]-yvc[j+1])*Sy[i];
 			}
 			else if(i==N1+N2-1 && j==0)
 			{
 				ae[j][i] = 0;
-				aw[j][i] = beta*lambdaw[j][i]*Sx[j][i]/(x[i]-x[i-1]);
-				as[j][i] = beta*lambdas[j][i]*Sy[j+1][i]/(y[j]-y[j+1]);
+				aw[j][i] = beta*lambdaw[j][i]*Sx[j]/(x[i]-x[i-1]);
+				as[j][i] = beta*lambdas[j][i]*Sy[i]/(y[j]-y[j+1]);
 				an[j][i] = 0;
-				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt+beta*lambda[j][i]*Sx[j][i+1]/(xvc[i+1]-x[i]);
+				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt+beta*lambda[j][i]*Sx[j]/(xvc[i+1]-x[i]);
 			}
 			else if(i==N1+N2-1 && j==M1+M2+M3-1)
 			{
 				ae[j][i] = 0;
-				aw[j][i] = beta*lambdaw[j][i]*Sx[j][i]/(x[i]-x[i-1]);
+				aw[j][i] = beta*lambdaw[j][i]*Sx[j]/(x[i]-x[i-1]);
 				as[j][i] = 0;
-				an[j][i] = beta*lambdan[j][i]*Sy[j][i]/(y[j-1]-y[j]);
-				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt+beta*lambda[j][i]*Sx[j][i+1]/(xvc[i+1]-x[i])+beta*lambda[j][i]/(y[j]-yvc[j+1])*Sy[j+1][i];
+				an[j][i] = beta*lambdan[j][i]*Sy[i]/(y[j-1]-y[j]);
+				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt+beta*lambda[j][i]*Sx[j]/(xvc[i+1]-x[i])+beta*lambda[j][i]/(y[j]-yvc[j+1])*Sy[i];
 			}
 			else if(i==N1+N2-1 && j!=0 && j!=M1+M2+M3-1)
 			{
 				ae[j][i] = 0;
-				aw[j][i] = beta*lambdaw[j][i]*Sx[j][i]/(x[i]-x[i-1]);
-				as[j][i] = beta*lambdas[j][i]*Sy[j+1][i]/(y[j]-y[j+1]);
-				an[j][i] = beta*lambdan[j][i]*Sy[j][i]/(y[j-1]-y[j]);
-				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt+beta*lambda[j][i]*Sx[j][i+1]/(xvc[i+1]-x[i]);
+				aw[j][i] = beta*lambdaw[j][i]*Sx[j]/(x[i]-x[i-1]);
+				as[j][i] = beta*lambdas[j][i]*Sy[i]/(y[j]-y[j+1]);
+				an[j][i] = beta*lambdan[j][i]*Sy[i]/(y[j-1]-y[j]);
+				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt+beta*lambda[j][i]*Sx[j]/(xvc[i+1]-x[i]);
 			}
 			else if(i!=0 && i!=N1+N2-1 && j==0)
 			{
-				ae[j][i] = beta*lambdae[j][i]*Sx[j][i+1]/(x[i+1]-x[i]);
-				aw[j][i] = beta*lambdaw[j][i]*Sx[j][i]/(x[i]-x[i-1]);
-				as[j][i] = beta*lambdas[j][i]*Sy[j+1][i]/(y[j]-y[j+1]);
+				ae[j][i] = beta*lambdae[j][i]*Sx[j]/(x[i+1]-x[i]);
+				aw[j][i] = beta*lambdaw[j][i]*Sx[j]/(x[i]-x[i-1]);
+				as[j][i] = beta*lambdas[j][i]*Sy[i]/(y[j]-y[j+1]);
 				an[j][i] = 0;
 				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt;
 			}
 			else if(i!=0 && i!=N1+N2-1 && j==M1+M2+M3-1)
 			{
-				ae[j][i] = beta*lambdae[j][i]*Sx[j][i+1]/(x[i+1]-x[i]);
-				aw[j][i] = beta*lambdaw[j][i]*Sx[j][i]/(x[i]-x[i-1]);
+				ae[j][i] = beta*lambdae[j][i]*Sx[j]/(x[i+1]-x[i]);
+				aw[j][i] = beta*lambdaw[j][i]*Sx[j]/(x[i]-x[i-1]);
 				as[j][i] = 0;
-				an[j][i] = beta*lambdan[j][i]*Sy[j][i]/(y[j-1]-y[j]);
-				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt+beta*lambda[j][i]*Sy[j+1][i]/(y[j]-yvc[j+1]);
+				an[j][i] = beta*lambdan[j][i]*Sy[i]/(y[j-1]-y[j]);
+				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt+beta*lambda[j][i]*Sy[i]/(y[j]-yvc[j+1]);
 			}
 			else
 			{
-				ae[j][i] = beta*lambdae[j][i]*Sx[j][i+1]/(x[i+1]-x[i]);
-				aw[j][i] = beta*lambdaw[j][i]*Sx[j][i]/(x[i]-x[i-1]);
-				as[j][i] = beta*lambdas[j][i]*Sy[j+1][i]/(y[j]-y[j+1]);
-				an[j][i] = beta*lambdan[j][i]*Sy[j][i]/(y[j-1]-y[j]);
+				ae[j][i] = beta*lambdae[j][i]*Sx[j]/(x[i+1]-x[i]);
+				aw[j][i] = beta*lambdaw[j][i]*Sx[j]/(x[i]-x[i-1]);
+				as[j][i] = beta*lambdas[j][i]*Sy[i]/(y[j]-y[j+1]);
+				an[j][i] = beta*lambdan[j][i]*Sy[i]/(y[j-1]-y[j]);
 				ap[j][i] = ae[j][i]+aw[j][i]+as[j][i]+an[j][i]+rho[j][i]*cp[j][i]*V[j][i]/dt;
 			}
 		}
@@ -479,7 +474,8 @@ void constant_coefficients (double *x, double *y, double *xvc, double *yvc, matx
 }
 
 
-void bp_coefficients (double *x, double *y, double *xvc, double *yvc, matx Sx, maty Sy, double Sytotal, matrix V, float dt, float beta, float alpha, float Qtop, float qv, float Tbottom, float Tgleft, float Tright, float Trightant, matrix Tant, matrix rho, matrix cp, matrix lambda, matrix lambdaw, matrix lambdae, matrix lambdas, matrix lambdan, matrix& bp)
+// Calculation of non-constant coefficients
+void bp_coefficients (double *x, double *y, double *xvc, double *yvc, double *Sx, double *Sy, double Sytotal, matrix V, float dt, float beta, float alpha, float Qtop, float qv, float Tbottom, float Tgleft, float Tright, float Trightant, matrix Tant, matrix rho, matrix cp, matrix lambda, matrix lambdaw, matrix lambdae, matrix lambdas, matrix lambdan, matrix& bp)
 {
 	for(int i =0; i<N1+N2; i++)
 		{
@@ -487,39 +483,39 @@ void bp_coefficients (double *x, double *y, double *xvc, double *yvc, matx Sx, m
 			{
 				if(i==0 && j==0)
 				{
-					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*((Tgleft-Tant[j][i])*Sx[j][i]/(1/alpha+(x[i]-xvc[i])/lambda[j][i])+lambdae[j][i]*(Tant[j][i+1]-Tant[j][i])*Sx[j][i+1]/(x[i+1]-x[i])+lambdas[j][i]*(Tant[j+1][i]-Tant[j][i])*Sy[j+1][i]/(y[j]-y[j+1]))+beta*Tgleft*Sx[j][i]/(1/alpha+(x[i]-xvc[i])/lambda[j][i])+Qtop*Sy[j][i]/Sytotal+qv*V[j][i];
+					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*((Tgleft-Tant[j][i])*Sx[j]/(1/alpha+(x[i]-xvc[i])/lambda[j][i])+lambdae[j][i]*(Tant[j][i+1]-Tant[j][i])*Sx[j]/(x[i+1]-x[i])+lambdas[j][i]*(Tant[j+1][i]-Tant[j][i])*Sy[i]/(y[j]-y[j+1]))+beta*Tgleft*Sx[j]/(1/alpha+(x[i]-xvc[i])/lambda[j][i])+Qtop*Sy[i]/Sytotal+qv*V[j][i];
 				}
 				else if(i==0 && j!=0 && j!=M1+M2+M3-1)
 				{
-					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*((Tgleft-Tant[j][i])*Sx[j][i]/(1/alpha+(x[i]-xvc[i])/lambda[j][i])+lambdae[j][i]*(Tant[j][i+1]-Tant[j][i])*Sx[j][i+1]/(x[i+1]-x[i])+lambdas[j][i]*(Tant[j+1][i]-Tant[j][i])*Sy[j+1][i]/(y[j]-y[j+1])+lambdan[j][i]*(Tant[j-1][i]-Tant[j][i])*Sy[j][i]/(y[j-1]-y[j]))+beta*Tgleft*Sx[j][i]/(1/alpha+(x[i]-xvc[i])/lambda[j][i])+qv*V[j][i];
+					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*((Tgleft-Tant[j][i])*Sx[j]/(1/alpha+(x[i]-xvc[i])/lambda[j][i])+lambdae[j][i]*(Tant[j][i+1]-Tant[j][i])*Sx[j]/(x[i+1]-x[i])+lambdas[j][i]*(Tant[j+1][i]-Tant[j][i])*Sy[i]/(y[j]-y[j+1])+lambdan[j][i]*(Tant[j-1][i]-Tant[j][i])*Sy[i]/(y[j-1]-y[j]))+beta*Tgleft*Sx[j]/(1/alpha+(x[i]-xvc[i])/lambda[j][i])+qv*V[j][i];
 				}
 				else if(i==0 && j==M1+M2+M3-1)
 				{
-					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*((Tgleft-Tant[j][i])*Sx[j][i]/(1/alpha+(x[i]-xvc[i])/lambda[j][i])+lambdae[j][i]*(Tant[j][i+1]-Tant[j][i])*Sx[j][i+1]/(x[i+1]-x[i])+lambda[j][i]*(Tbottom-Tant[j][i])/(y[j]-yvc[j+1])*Sy[j+1][i]+lambdan[j][i]*(Tant[j-1][i]-Tant[j][i])*Sy[j][i]/(y[j-1]-y[j]))+beta*lambda[j][i]*Tbottom/(y[j]-yvc[j+1])*Sy[j+1][i]+beta*Tgleft*Sx[j][i]/(1/alpha+(x[i]-xvc[i])/lambda[j][i])+qv*V[j][i];
+					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*((Tgleft-Tant[j][i])*Sx[j]/(1/alpha+(x[i]-xvc[i])/lambda[j][i])+lambdae[j][i]*(Tant[j][i+1]-Tant[j][i])*Sx[j]/(x[i+1]-x[i])+lambda[j][i]*(Tbottom-Tant[j][i])/(y[j]-yvc[j+1])*Sy[i]+lambdan[j][i]*(Tant[j-1][i]-Tant[j][i])*Sy[i]/(y[j-1]-y[j]))+beta*lambda[j][i]*Tbottom/(y[j]-yvc[j+1])*Sy[i]+beta*Tgleft*Sx[j]/(1/alpha+(x[i]-xvc[i])/lambda[j][i])+qv*V[j][i];
 				}
 				else if(i==N1+N2-1 && j==0)
 				{
-					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*(lambdaw[j][i]*(Tant[j][i-1]-Tant[j][i])*Sx[j][i]/(x[i]-x[i-1])+lambda[j][i]*(Trightant-Tant[j][i])*Sx[j][i+1]/(xvc[i+1]-x[i])+lambdas[j][i]*(Tant[j+1][i]-Tant[j][i])*Sy[j+1][i]/(y[j]-y[j+1]))+Qtop*Sy[j][i]/Sytotal+beta*lambda[j][i]*Tright*Sx[j][i+1]/(xvc[i+1]-x[i])+qv*V[j][i];
+					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*(lambdaw[j][i]*(Tant[j][i-1]-Tant[j][i])*Sx[j]/(x[i]-x[i-1])+lambda[j][i]*(Trightant-Tant[j][i])*Sx[j]/(xvc[i+1]-x[i])+lambdas[j][i]*(Tant[j+1][i]-Tant[j][i])*Sy[i]/(y[j]-y[j+1]))+Qtop*Sy[i]/Sytotal+beta*lambda[j][i]*Tright*Sx[j]/(xvc[i+1]-x[i])+qv*V[j][i];
 				}
 				else if(i==N1+N2-1 && j==M1+M2+M3-1)
 				{
-					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*(lambdaw[j][i]*(Tant[j][i-1]-Tant[j][i])*Sx[j][i]/(x[i]-x[i-1])+lambda[j][i]*(Trightant-Tant[j][i])*Sx[j][i+1]/(xvc[i+1]-x[i])+lambda[j][i]*(Tbottom-Tant[j][i])/(y[j]-yvc[j+1])*Sy[j+1][i]+lambdan[j][i]*(Tant[j-1][i]-Tant[j][i])*Sy[j][i]/(y[j-1]-y[j]))+beta*lambda[j][i]*Tright*Sx[j][i+1]/(xvc[i+1]-x[i])+beta*lambda[j][i]*Tbottom/(y[j]-yvc[j+1])*Sy[j+1][i]+qv*V[j][i];
+					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*(lambdaw[j][i]*(Tant[j][i-1]-Tant[j][i])*Sx[j]/(x[i]-x[i-1])+lambda[j][i]*(Trightant-Tant[j][i])*Sx[j]/(xvc[i+1]-x[i])+lambda[j][i]*(Tbottom-Tant[j][i])/(y[j]-yvc[j+1])*Sy[i]+lambdan[j][i]*(Tant[j-1][i]-Tant[j][i])*Sy[i]/(y[j-1]-y[j]))+beta*lambda[j][i]*Tright*Sx[j]/(xvc[i+1]-x[i])+beta*lambda[j][i]*Tbottom/(y[j]-yvc[j+1])*Sy[i]+qv*V[j][i];
 				}
 				else if(i==N1+N2-1 && j!=0 && j!=M1+M2+M3-1)
 				{
-					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*(lambdaw[j][i]*(Tant[j][i-1]-Tant[j][i])*Sx[j][i]/(x[i]-x[i-1])+lambda[j][i]*(Trightant-Tant[j][i])*Sx[j][i+1]/(xvc[i+1]-x[i])+lambdas[j][i]*(Tant[j+1][i]-Tant[j][i])*Sy[j+1][i]/(y[j]-y[j+1])+lambdan[j][i]*(Tant[j-1][i]-Tant[j][i])*Sy[j][i]/(y[j-1]-y[j]))+beta*lambda[j][i]*Tright*Sx[j][i+1]/(xvc[i+1]-x[i])+qv*V[j][i];
+					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*(lambdaw[j][i]*(Tant[j][i-1]-Tant[j][i])*Sx[j]/(x[i]-x[i-1])+lambda[j][i]*(Trightant-Tant[j][i])*Sx[j]/(xvc[i+1]-x[i])+lambdas[j][i]*(Tant[j+1][i]-Tant[j][i])*Sy[i]/(y[j]-y[j+1])+lambdan[j][i]*(Tant[j-1][i]-Tant[j][i])*Sy[i]/(y[j-1]-y[j]))+beta*lambda[j][i]*Tright*Sx[j]/(xvc[i+1]-x[i])+qv*V[j][i];
 				}
 				else if(i!=0 && i!=N1+N2-1 && j==0)
 				{
-				bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*(lambdaw[j][i]*(Tant[j][i-1]-Tant[j][i])*Sx[j][i]/(x[i]-x[i-1])+lambdae[j][i]*(Tant[j][i+1]-Tant[j][i])*Sx[j][i+1]/(x[i+1]-x[i])+lambdas[j][i]*(Tant[j+1][i]-Tant[j][i])*Sy[j+1][i]/(y[j]-y[j+1]))+Qtop*Sy[j][i]/Sytotal+qv*V[j][i];
+				bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*(lambdaw[j][i]*(Tant[j][i-1]-Tant[j][i])*Sx[j]/(x[i]-x[i-1])+lambdae[j][i]*(Tant[j][i+1]-Tant[j][i])*Sx[j]/(x[i+1]-x[i])+lambdas[j][i]*(Tant[j+1][i]-Tant[j][i])*Sy[i]/(y[j]-y[j+1]))+Qtop*Sy[i]/Sytotal+qv*V[j][i];
 				}
 				else if(i!=0 && i!=N1+N2-1 && j==M1+M2+M3-1)
 				{
-					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*(lambdaw[j][i]*(Tant[j][i-1]-Tant[j][i])*Sx[j][i]/(x[i]-x[i-1])+lambdae[j][i]*(Tant[j][i+1]-Tant[j][i])*Sx[j][i+1]/(x[i+1]-x[i])+lambda[j][i]*(Tbottom-Tant[j][i])*Sy[j+1][i]/(y[j]-yvc[j+1])+lambdan[j][i]*(Tant[j-1][i]-Tant[j][i])*Sy[j][i]/(y[j-1]-y[j]))+beta*lambda[j][i]*Tbottom*Sy[j+1][i]/(y[j]-yvc[j+1])+qv*V[j][i];
+					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*(lambdaw[j][i]*(Tant[j][i-1]-Tant[j][i])*Sx[j]/(x[i]-x[i-1])+lambdae[j][i]*(Tant[j][i+1]-Tant[j][i])*Sx[j]/(x[i+1]-x[i])+lambda[j][i]*(Tbottom-Tant[j][i])*Sy[i]/(y[j]-yvc[j+1])+lambdan[j][i]*(Tant[j-1][i]-Tant[j][i])*Sy[i]/(y[j-1]-y[j]))+beta*lambda[j][i]*Tbottom*Sy[i]/(y[j]-yvc[j+1])+qv*V[j][i];
 				}
 				else
 				{
-					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*(lambdaw[j][i]*(Tant[j][i-1]-Tant[j][i])*Sx[j][i]/(x[i]-x[i-1])+lambdae[j][i]*(Tant[j][i+1]-Tant[j][i])*Sx[j][i+1]/(x[i+1]-x[i])+lambdas[j][i]*(Tant[j+1][i]-Tant[j][i])*Sy[j+1][i]/(y[j]-y[j+1])+lambdan[j][i]*(Tant[j-1][i]-Tant[j][i])*Sy[j][i]/(y[j-1]-y[j]))+qv*V[j][i];
+					bp[j][i] = rho[j][i]*cp[j][i]*Tant[j][i]*V[j][i]/dt+(1-beta)*(lambdaw[j][i]*(Tant[j][i-1]-Tant[j][i])*Sx[j]/(x[i]-x[i-1])+lambdae[j][i]*(Tant[j][i+1]-Tant[j][i])*Sx[j]/(x[i+1]-x[i])+lambdas[j][i]*(Tant[j+1][i]-Tant[j][i])*Sy[i]/(y[j]-y[j+1])+lambdan[j][i]*(Tant[j-1][i]-Tant[j][i])*Sy[i]/(y[j-1]-y[j]))+qv*V[j][i];
 				}
 			}
 		}
