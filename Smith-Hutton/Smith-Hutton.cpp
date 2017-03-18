@@ -8,6 +8,7 @@ const int N = 10;
 const int M = 5;
 
 typedef double matrix[M][N];
+typedef double mface[M+1][N+1];
 
 
 // FUNCTIONS
@@ -22,10 +23,15 @@ void output_matrix(int N, int M, matrix mat);
 int main(){
 	
 	// DATA
-	int alpha = 10;
+	int alpha = 10; // Angle [º]
+	float rho = 1; // Density
+	float gamma = rho/10;
 	float Sc = 0; // Source term = Sc+Sp*phi
 	float Sp = 0;
 	string method = "CDS";
+	
+	float delta = 1; // Precision of the simulation
+	float fr = 1.2; // Relaxation factor
 	
 	// PREVIOUS CALCULATIONS
 	
@@ -61,15 +67,29 @@ int main(){
 	phi_boundary = 1-tanh(alpha);
 	
 	
+	// Mass flow on the faces
+	mface mflowx, mflowy;
+	for(int i = 0; i<N+1; i++)
+	{
+		for(int j = 0; j<M+1; j++)
+		{
+			mflowx[j][i] = rho*Sv[j]*2*yvc[j]*(1-pow(xvc[i],2));
+			mflowy[j][i] = rho*Sh[i]*2*xvc[i]*(1-pow(yvc[j],2));
+		}
+	}
+	
+	
 	// Value on the faces
-	matrix phiadim;
+	matrix phiadim, phi;
+	mface phifadim, phif;
 	double phid, phic, phiu;
 	float xd, xc, xu;
 	float xfd, xfc, xfu;
+	double xadim, xfadim;
 	for(int i = 0; i<N; i++)
 	{
 		xc = x[i];
-		xf = xvc[i];
+		xfc = xvc[i];
 		if(i==0)
 		{
 			xu = x[i+1];
@@ -77,7 +97,7 @@ int main(){
 			xfu = xvc[i+1];
 			xfd = xvc[i-1];
 		}
-		elseif(i==N-1)
+		else if(i==N-1)
 		{
 			xu = xvc[i+1];
 			xd = x[i-1];
@@ -96,9 +116,9 @@ int main(){
 			if(i==0)
 			{
 				phiu = phi[j][i+1];
-				phid = phis;
+				phid = phis[i];
 			}
-			elseif(i==N-1)
+			else if(i==N-1)
 			{
 				phiu = phi_boundary;
 				phid = phi[j][i-1];
@@ -108,25 +128,47 @@ int main(){
 				phiu = phi[j][i+1];
 				phid = phi[j][i-1];
 			}
-			phiadim = (phic-phiu)/(phid-phiu);
+			phiadim[j][i] = (phic-phiu)/(phid-phiu);
 			
 			if(method=="CDS")
 			{
-				phifadim = 
+				phifadim[j][i] = (xfadim-xadim)/(1-xadim)+(xfadim-1)*phiadim[j][i]/(xadim-1);
 			}
+			else if(method=="UDS")
+			{
+				phifadim[j][i] = phiadim[j][i];
+			}
+			else if(method=="SUDS")
+			{
+				phifadim[j][i] = xfadim*phiadim[j][i]/xadim;
+			}
+			else if(method=="QUICK")
+			{
+				phifadim[j][i] = xfadim+xfadim*(xfadim-1)*(phiadim[j][i]-xadim)/(xadim*(xadim-1));
+			}
+			
+			phif[j][i] = phiu+phiadim[j][i]*(phid-phiu);
 		}
 	}
 	
 	
 	// SCREEN!!!!!!!!! :D
 //	output_matrix(N, M, v);
-	for(int j = 0; j<=N; j++)
+//	for(int j = 0; j<=N; j++)
+//	{
+//		cout<<xvc[j]<<"	";
+//	}
+//	for(int j = 0; j<=N; j++)
+//	{
+//		cout<<phis[j]<<"	";
+//	}
+	for(int j = 0; j<=M; j++)
 	{
-		cout<<xvc[j]<<"	";
-	}
-	for(int j = 0; j<=N; j++)
-	{
-		cout<<phis[j]<<"	";
+		for(int i = 0; i<=N; i++)
+		{
+			cout<<phif[j][i]<<"	";
+		}
+		cout<<endl;
 	}
 	
 }
@@ -215,15 +257,123 @@ void phi_inlet_outlet(float *xvc, float alpha, int N, double phis[])
 //}
 
 
-//void coefficients ()
-//{
-//	ae[j][i] = De-(m[j][i+1]-fabs(m[j][i+1]))/2;
-//	aw[j][i] = Dw+(m[j][i-1]-fabs(m[j][i-1]))/2;
-//	an[j][i] = Dn-(m[j-1][i]-fabs(m[j-1][i]))/2;
-//	as[j][i] = Ds+(m[j+1][i]+fabs(m[j+1][i]))/2;
-//	ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
-//	bp[j][i] = -m[j][i+1]*(phiHRS[j][i+1]-phiUDS[j][i+1])+m[j][i-1]*(phiHRS[j][i-1]-phiUDS[j][i-1])-m[j-1][i]*(phiHRS[j-1][i]-phiUDS[j-1][i])+m[j+1][i]*(phiHRS[j+1][i]-phiUDS[j+1][i])+rho0*V[j][i]*phi0[j][i]/dt+Sc*V[j][i]
-//}
+void coefficients ()
+{
+	if(i==0 && j==0)
+	{
+		De = gamma*Sh[i+1]/fabs(x[i+1]-x[i]);
+		Ds = gamma*Sv[j+1]/fabs(y[j]-y[j+1]);
+		ae[j][i] = De-(m[j][i+1]-fabs(m[j][i+1]))/2;
+		aw[j][i] = 0;
+		an[j][i] = 0;
+		as[j][i] = Ds+(m[j+1][i]+fabs(m[j+1][i]))/2;
+		ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
+		bp[j][i] = -m[j][i+1]*(phiHRS[j][i+1]-phiUDS[j][i+1])+m[j][i-1]*(phiHRS[j][i-1]-phiUDS[j][i-1])-m[j-1][i]*(phiHRS[j-1][i]-phiUDS[j-1][i])+m[j+1][i]*(phiHRS[j+1][i]-phiUDS[j+1][i])+rho0*V[j][i]*phi0[j][i]/dt+Sc*V[j][i];
+	}
+	else
+	{
+		De = gamma*Sh[i+1]/fabs(x[i+1]-x[i]);
+		Dw = gamma*Sh[i]/fabs(x[i]-x[i-1]);
+		Dn = gamma*Sv[j]/fabs(y[j-1]-y[j]);
+		Ds = gamma*Sv[j+1]/fabs(y[j]-y[j+1]);
+		ae[j][i] = De-(m[j][i+1]-fabs(m[j][i+1]))/2;
+		aw[j][i] = Dw+(m[j][i-1]-fabs(m[j][i-1]))/2;
+		an[j][i] = Dn-(m[j-1][i]-fabs(m[j-1][i]))/2;
+		as[j][i] = Ds+(m[j+1][i]+fabs(m[j+1][i]))/2;
+		ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
+		bp[j][i] = -m[j][i+1]*(phiHRS[j][i+1]-phiUDS[j][i+1])+m[j][i-1]*(phiHRS[j][i-1]-phiUDS[j][i-1])-m[j-1][i]*(phiHRS[j-1][i]-phiUDS[j-1][i])+m[j+1][i]*(phiHRS[j+1][i]-phiUDS[j+1][i])+rho0*V[j][i]*phi0[j][i]/dt+Sc*V[j][i];
+	}
+	
+}
+
+
+// Solver (using Gauss-Seidel)
+void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float fr, float delta, int N, int M, matrix& T)
+{
+	double Tcalc[M][N]; // Temperature calculated in the previous iteration
+	for(int i = 0; i<N; i++)
+	{
+		for(int j = 0; j<M; j++)
+		{
+			Tcalc[j][i] = T[j][i];
+		}
+	}
+	
+	double MAX = 1; // Maximum value of the difference between T and Tcalc
+	double resta = 1; // Difference between T and Tcalc
+		
+	while(MAX>delta)
+	{			
+		
+		// SOLVER: Gauss-Seidel
+		for(int i = 0; i<N; i++)
+		{
+			for(int j = 0; j<M; j++)
+			{
+				if(i==0 && j==0)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((ae[j][i]*Tcalc[j][i+1]+as[j][i]*Tcalc[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i==0 && j==M-1)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((ae[j][i]*Tcalc[j][i+1]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i==0 && j!=0 && j!=M-1)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((ae[j][i]*Tcalc[j][i+1]+as[j][i]*Tcalc[j+1][i]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i==N-1 && j==0)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+as[j][i]*Tcalc[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i==N-1 && j==M-1)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i==N && j!=0 && j!=M-1)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+as[j][i]*Tcalc[j+1][i]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i!=0 && i!=N-1 && j==0)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*Tcalc[j][i+1]+as[j][i]*Tcalc[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i!=0 && i!=N-1 && j==M-1)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*Tcalc[j][i+1]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*Tcalc[j][i+1]+as[j][i]*Tcalc[j+1][i]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+			}
+		}
+		
+		// Comprovation
+		MAX = 0;
+		for(int i = 0; i<N; i++)
+		{
+			for(int j = 0; j<M; j++)
+			{
+				resta = fabs(Tcalc[j][i]-T[j][i]);
+				
+				if(resta>MAX)
+				{
+					MAX = resta;
+				}
+			}
+		}
+	
+		// New assignation
+		for(int i = 0; i<N; i++)
+		{
+			for(int j = 0; j<M; j++)
+			{
+				Tcalc[j][i] = T[j][i];
+			}
+		}
+	}
+}
 
 
 void output_matrix(int N, int M, matrix mat)

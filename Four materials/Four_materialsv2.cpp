@@ -561,7 +561,7 @@ void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix
 				{
 					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+as[j][i]*Tcalc[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 				}
-				else if(i==N1+N2-1 && j==M1+M2+M3-1)
+				else if(i==N-1 && j==M-1)
 				{
 					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 				}
@@ -586,9 +586,9 @@ void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix
 		
 		// Comprovation
 		MAX = 0;
-		for(int i = 0; i<N1+N2; i++)
+		for(int i = 0; i<N; i++)
 		{
-			for(int j = 0; j<M1+M2+M3; j++)
+			for(int j = 0; j<M; j++)
 			{
 				resta = fabs(Tcalc[j][i]-T[j][i]);
 				
