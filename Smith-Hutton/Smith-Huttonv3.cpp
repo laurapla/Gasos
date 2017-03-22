@@ -8,7 +8,7 @@ using namespace std;
 const int N = 50;
 const int M = 25;
 
-typedef double matrix[M][N];
+typedef double matrix[M+2][N+2];
 typedef double mface[M+1][N+1];
 
 
@@ -17,7 +17,7 @@ void coordinates(float dx, int N, float xvc[], float x[]);
 void surface(float *yvc, int M, float Sv[]);
 void volume(float *xvc, float *yvc, int N, int M, matrix& V);
 void velocity(float *x, float *y, int N, int M, matrix& u, matrix& v);
-void phi_inlet_outlet(float *xvc, float alpha, int N, double phis[]);
+void phi_inlet_outlet(float *x, float alpha, int N, double phis[]);
 double max(double a, double b);
 double Aperator(string method, double P);
 void coefficients (string method, float rho0, float gamma, float dt, float Sp, float Sc, float *x, float *y, float *Sh, float *Sv, matrix V, matrix phi0, mface mflowx, mface mflowy, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap, matrix& bp);
@@ -34,9 +34,9 @@ int main(){
 	float gamma = rho/10;
 	float Sc = 0; // Source term = Sc+Sp*phi
 	float Sp = 0;
-	string method = "UDS";
+	string method = "EDS";
 	
-	float delta = 0.1; // Precision of the simulation
+	float delta = 0.001; // Precision of the simulation
 	float fr = 1.2; // Relaxation factor
 	int Time = 100;
 	
@@ -50,13 +50,17 @@ int main(){
 	
 	// Coordinates
 	float xvc[N+1], yvc[M+1]; // Coordinates of the faces
-	float x[N], y[M]; // Coordinates of the nodes
+	float x[N+2], y[M+2]; // Coordinates of the nodes
 	
 	xvc[0] = -1;
-	coordinates(dx, N, xvc, x);
+	x[0] = xvc[0];
+	coordinates(dx, N+1, xvc, x);
+	x[N+1] = 1;
 	
 	yvc[0] = 1;
-	coordinates(-dy, M, yvc, y);
+	y[0] = yvc[0];
+	coordinates(-dy, M+1, yvc, y);
+	y[M+1] = 0;
 	
 	// Surfaces and volumes
 	float Sh[N], Sv[M];
@@ -71,7 +75,7 @@ int main(){
 	
 	// Boundary conditions
 	double phi_boundary, phis[N+1];
-	phi_inlet_outlet(xvc, alpha, N, phis);
+	phi_inlet_outlet(x, alpha, N+2, phis);
 	phi_boundary = 1-tanh(alpha);
 	
 	
@@ -159,7 +163,7 @@ int main(){
     	results<<x[k]<<"	"<<phi[M-1][k]<<"\n";
 	}
     results.close();
-	
+    
 }
 
 
@@ -169,7 +173,7 @@ void coordinates(float dx, int N, float xvc[], float x[])
 	for(int i = 0; i<N; i++)
 	{
 		xvc[i+1] = xvc[i]+dx;
-		x[i] = (xvc[i+1]+xvc[i])/2;
+		x[i+1] = (xvc[i+1]+xvc[i])/2;
 	}
 }
 
@@ -208,13 +212,13 @@ void velocity(float *x, float *y, int N, int M, matrix& u, matrix& v)
 }
 
 
-void phi_inlet_outlet(float *xvc, float alpha, int N, double phis[])
+void phi_inlet_outlet(float *x, float alpha, int N, double phis[])
 {
-	for(int i = 0; i<=N; i++)
+	for(int i = 0; i<N; i++)
 	{
-		if(xvc[i]<0)
+		if(x[i]<0)
 		{
-			phis[i] = 1+tanh(alpha*(2*xvc[i]+1));
+			phis[i] = 1+tanh(alpha*(2*x[i]+1));
 		}
 		else
 		{
@@ -388,23 +392,14 @@ void coefficients (string method, float rho0, float gamma, float dt, float Sp, f
 				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
 				bp[j][i] = rho0*V[j][i]*phi0[j][i]/dt+Sc*V[j][i];
 			}
-			else if(j==M-1 && i!=0 && i!=N-1)
+			else if(j==M-1)
 			{
-				De = gamma*Sh[i+1]/fabs(x[i+1]-x[i]);
-				Dw = gamma*Sh[i]/fabs(x[i]-x[i-1]);
-				Dn = gamma*Sv[j]/fabs(y[j-1]-y[j]);
-				Fe = mflowx[j][i+1];
-				Fw = mflowx[j][i];
-				Fn = mflowy[j][i];
-				Pe = Fe/De;
-				Pw = Fw/Dw;
-				Pn = Fn/Dn;
-				ae[j][i] = De*Aperator(method,Pe)+max(-Fe,0);
-				aw[j][i] = Dw*Aperator(method,Pw)+max(Fw,0);
-				an[j][i] = Dn*Aperator(method,Pn)+max(-Fn,0);
+				ae[j][i] = 0;
+				aw[j][i] = 0;
+				an[j][i] = 1;
 				as[j][i] = 0;
-				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
-				bp[j][i] = rho0*V[j][i]*phi0[j][i]/dt+Sc*V[j][i];
+				ap[j][i] = 1;
+				bp[j][i] = 0;
 			}
 			else
 			{
