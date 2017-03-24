@@ -5,8 +5,8 @@
 using namespace std;
 
 // Numerical parameters
-const int N = 10;
-const int M = 5;
+const int N = 50;
+const int M = 25;
 
 typedef double matrix[M][N];
 typedef double mface[M+1][N+1];
@@ -17,10 +17,10 @@ void coordinates(float dx, int N, float xvc[], float x[]);
 void surface(float *yvc, int M, float Sv[]);
 void volume(float *xvc, float *yvc, int N, int M, matrix& V);
 void velocity(float *x, float *y, int N, int M, matrix& u, matrix& v);
-void phi_inlet_outlet(float *xvc, float alpha, int N, double phis[]);
+void phi_inlet_outlet(float *x, float alpha, int N, double phis[]);
 double max(double a, double b);
 double Aperator(string method, double P);
-void coefficients (string method, float rho0, float gamma, float dt, float Sp, float Sc, float *x, float *y, float *Sh, float *Sv, matrix V, matrix phi0, mface mflowx, mface mflowy, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap, matrix& bp);
+void coefficients (string method, float rho0, float gamma, float dt, float Sp, float Sc, float *xvc, float *yvc, float *x, float *y, float *Sh, float *Sv, matrix V, matrix phi0, mface mflowx, mface mflowy, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap, matrix& bp);
 void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float* x, double* phis, double phi_boundary, float fr, float delta, int N, int M, matrix& T);
 void output_matrix(int N, int M, matrix mat);
 void output_file (matrix T, int N);
@@ -34,10 +34,10 @@ int main(){
 	float gamma = rho/10;
 	float Sc = 0; // Source term = Sc+Sp*phi
 	float Sp = 0;
-	string method = "EDS";
+	string method = "UDS";
 	
-	float delta = 0.00000000001; // Precision of the simulation
-	float fr = 1; // Relaxation factor
+	float delta = 0.1; // Precision of the simulation
+	float fr = 1.2; // Relaxation factor
 	int Time = 100;
 	
 	// PREVIOUS CALCULATIONS
@@ -59,10 +59,10 @@ int main(){
 	coordinates(-dy, M, yvc, y);
 	
 	// Surfaces and volumes
-	float Sh[N+1], Sv[M+1];
+	float Sh[N], Sv[M];
 	matrix V;
-	surface(yvc, M+1, Sv);
-	surface(xvc, N+1, Sh);
+	surface(yvc, M, Sv);
+	surface(xvc, N, Sh);
 	volume(xvc, yvc, N, M, V);
 	
 	// Velocity
@@ -71,7 +71,7 @@ int main(){
 	
 	// Boundary conditions
 	double phi_boundary, phis[N+1];
-	phi_inlet_outlet(x, alpha, N-1, phis);
+	phi_inlet_outlet(x, alpha, N, phis);
 	phi_boundary = 1-tanh(alpha);
 	
 	
@@ -85,18 +85,6 @@ int main(){
 			mflowy[j][i] = -rho*Sh[i]*2*xvc[i]*(1-pow(yvc[j],2));
 		}
 	}
-	for(int j = 0; j<M+1; j++)
-	{
-		for(int i = 0; i<N+1; i++)
-		{
-			cout<<mflowx[j][i]<<"	";
-		}
-		cout<<endl;
-	}
-//	for(int i = 0; i<N+1; i++)
-//	{
-//		cout<<(1-pow(xvc[i],2))<<endl;
-//	}
 	
 	
 	// Value on the faces
@@ -122,7 +110,7 @@ int main(){
 	
 	while(t<=Time)
 	{
-		coefficients (method, rho, gamma, dt, Sp, Sc, x, y, Sh, Sv, V, phi0, mflowx, mflowy, ae, aw, an, as, ap, bp);
+		coefficients (method, rho, gamma, dt, Sp, Sc, xvc, yvc, x, y, Sh, Sv, V, phi0, mflowx, mflowy, ae, aw, an, as, ap, bp);
 		Gauss_Seidel (ap, aw, ae, as, an, bp, x, phis, phi_boundary, fr, delta, N, M, phi);
 		
 		//New increment of time
@@ -138,8 +126,7 @@ int main(){
 	
 	
 	// SCREEN!!!!!!!!! :D
-//	output_matrix(N, M, phi);
-	
+	output_matrix(N, M, phi);
 	
 	ofstream results;
     results.open("Resultats.dat");
@@ -168,10 +155,6 @@ void surface(float *yvc, int M, float Sv[])
 	for(int j = 0; j<M; j++)
 	{
 		Sv[j] = fabs(yvc[j]-yvc[j+1]);
-		if(j==M-1)
-		{
-			Sv[j] = Sv[j-1];
-		}
 	}
 }
 
@@ -201,13 +184,13 @@ void velocity(float *x, float *y, int N, int M, matrix& u, matrix& v)
 }
 
 
-void phi_inlet_outlet(float *xvc, float alpha, int N, double phis[])
+void phi_inlet_outlet(float *x, float alpha, int N, double phis[])
 {
-	for(int i = 0; i<=N; i++)
+	for(int i = 0; i<N; i++)
 	{
-		if(xvc[i]<0)
+		if(x[i]<0)
 		{
-			phis[i] = 1+tanh(alpha*(2*xvc[i]+1));
+			phis[i] = 1+tanh(alpha*(2*x[i]+1));
 		}
 		else
 		{
@@ -257,7 +240,7 @@ double Aperator(string method, double P)
 }
 
 
-void coefficients (string method, float rho0, float gamma, float dt, float Sp, float Sc, float *x, float *y, float *Sh, float *Sv, matrix V, matrix phi0, mface mflowx, mface mflowy, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap, matrix& bp)
+void coefficients (string method, float rho0, float gamma, float dt, float Sp, float Sc, float *xvc, float *yvc, float *x, float *y, float *Sh, float *Sv, matrix V, matrix phi0, mface mflowx, mface mflowy, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap, matrix& bp)
 {
 	double De, Dw, Dn, Ds;
 	double Pe, Pw, Pn, Ps;
@@ -270,14 +253,20 @@ void coefficients (string method, float rho0, float gamma, float dt, float Sp, f
 			if(i==0 && j==0)
 			{
 				De = gamma*Sh[i+1]/fabs(x[i+1]-x[i]);
+				Dw = gamma*Sh[i]/fabs(x[i]-xvc[i]);
+				Dn = gamma*Sv[j]/fabs(yvc[j]-y[j]);
 				Ds = gamma*Sv[j+1]/fabs(y[j]-y[j+1]);
 				Fe = mflowx[j][i+1];
+				Fw = mflowx[j][i];
+				Fn = mflowy[j][i];
 				Fs = mflowy[j+1][i];
 				Pe = Fe/De;
+				Pw = Fw/Dw;
+				Pn = Fn/Dn;
 				Ps = Fs/Ds;
 				ae[j][i] = De*Aperator(method,Pe)+max(-Fe,0);
-				aw[j][i] = 0;
-				an[j][i] = 0;
+				aw[j][i] = Dw*Aperator(method,Pw)+max(Fw,0);
+				an[j][i] = Dn*Aperator(method,Pn)+max(-Fn,0);
 				as[j][i] = Ds*Aperator(method,Ps)+max(Fs,0);
 				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
 				bp[j][i] = rho0*V[j][i]*phi0[j][i]/dt+Sc*V[j][i];
@@ -285,31 +274,40 @@ void coefficients (string method, float rho0, float gamma, float dt, float Sp, f
 			else if(i==0 && j==M-1)
 			{
 				De = gamma*Sh[i+1]/fabs(x[i+1]-x[i]);
+				Dw = gamma*Sh[i]/fabs(x[i]-xvc[i]);
 				Dn = gamma*Sv[j]/fabs(y[j-1]-y[j]);
+				Ds = gamma*Sv[j+1]/fabs(y[j]-yvc[j+1]);
 				Fe = mflowx[j][i+1];
+				Fw = mflowx[j][i];
 				Fn = mflowy[j][i];
+				Fs = mflowy[j+1][i];
 				Pe = Fe/De;
+				Pw = Fw/Dw;
 				Pn = Fn/Dn;
+				Ps = Fs/Ds;
 				ae[j][i] = De*Aperator(method,Pe)+max(-Fe,0);
-				aw[j][i] = 0;
+				aw[j][i] = Dw*Aperator(method,Pw)+max(Fw,0);
 				an[j][i] = Dn*Aperator(method,Pn)+max(-Fn,0);
-				as[j][i] = 0;
+				as[j][i] = Ds*Aperator(method,Ps)+max(Fs,0);
 				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
 				bp[j][i] = rho0*V[j][i]*phi0[j][i]/dt+Sc*V[j][i];
 			}
 			else if(i==0 && j!=0 && j!=M-1)
 			{
 				De = gamma*Sh[i+1]/fabs(x[i+1]-x[i]);
+				Dw = gamma*Sh[i]/fabs(x[i]-xvc[i]);
 				Dn = gamma*Sv[j]/fabs(y[j-1]-y[j]);
 				Ds = gamma*Sv[j+1]/fabs(y[j]-y[j+1]);
 				Fe = mflowx[j][i+1];
+				Fw = mflowx[j][i];
 				Fn = mflowy[j][i];
 				Fs = mflowy[j+1][i];
 				Pe = Fe/De;
+				Pw = Fw/Dw;
 				Pn = Fn/Dn;
 				Ps = Fs/Ds;
 				ae[j][i] = De*Aperator(method,Pe)+max(-Fe,0);
-				aw[j][i] = 0;
+				aw[j][i] = Dw*Aperator(method,Pw)+max(Fw,0);
 				an[j][i] = Dn*Aperator(method,Pn)+max(-Fn,0);
 				as[j][i] = Ds*Aperator(method,Ps)+max(Fs,0);
 				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
@@ -317,46 +315,61 @@ void coefficients (string method, float rho0, float gamma, float dt, float Sp, f
 			}
 			else if(i==N-1 && j==0)
 			{
+				De = gamma*Sh[i+1]/fabs(xvc[i+1]-x[i]);
 				Dw = gamma*Sh[i]/fabs(x[i]-x[i-1]);
+				Dn = gamma*Sv[j]/fabs(yvc[j]-y[j]);
 				Ds = gamma*Sv[j+1]/fabs(y[j]-y[j+1]);
+				Fe = mflowx[j][i+1];
 				Fw = mflowx[j][i];
+				Fn = mflowy[j][i];
 				Fs = mflowy[j+1][i];
+				Pe = Fe/De;
 				Pw = Fw/Dw;
+				Pn = Fn/Dn;
 				Ps = Fs/Ds;
-				ae[j][i] = 0;
+				ae[j][i] = De*Aperator(method,Pe)+max(-Fe,0);
 				aw[j][i] = Dw*Aperator(method,Pw)+max(Fw,0);
-				an[j][i] = 0;
+				an[j][i] = Dn*Aperator(method,Pn)+max(-Fn,0);
 				as[j][i] = Ds*Aperator(method,Ps)+max(Fs,0);
 				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
 				bp[j][i] = rho0*V[j][i]*phi0[j][i]/dt+Sc*V[j][i];
 			}
 			else if(i==N-1 && j==M-1)
 			{
+				De = gamma*Sh[i+1]/fabs(xvc[i]-x[i]);
 				Dw = gamma*Sh[i]/fabs(x[i]-x[i-1]);
 				Dn = gamma*Sv[j]/fabs(y[j-1]-y[j]);
+				Ds = gamma*Sv[j+1]/fabs(y[j]-yvc[j+1]);
+				Fe = mflowx[j][i+1];
 				Fw = mflowx[j][i];
 				Fn = mflowy[j][i];
+				Fs = mflowy[j+1][i];
+				Pe = Fe/De;
 				Pw = Fw/Dw;
 				Pn = Fn/Dn;
-				ae[j][i] = 0;
+				Ps = Fs/Ds;
+				ae[j][i] = De*Aperator(method,Pe)+max(-Fe,0);
 				aw[j][i] = Dw*Aperator(method,Pw)+max(Fw,0);
 				an[j][i] = Dn*Aperator(method,Pn)+max(-Fn,0);
-				as[j][i] = 0;
+				as[j][i] = Ds*Aperator(method,Ps)+max(Fs,0);
 				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
 				bp[j][i] = rho0*V[j][i]*phi0[j][i]/dt+Sc*V[j][i];
 			}
 			else if(i==N-1 && j!=0 && j!=M-1)
 			{
+				De = gamma*Sh[i+1]/fabs(xvc[i]-x[i]);
 				Dw = gamma*Sh[i]/fabs(x[i]-x[i-1]);
 				Dn = gamma*Sv[j]/fabs(y[j-1]-y[j]);
 				Ds = gamma*Sv[j+1]/fabs(y[j]-y[j+1]);
+				Fe = mflowx[j][i+1];
 				Fw = mflowx[j][i];
 				Fn = mflowy[j][i];
 				Fs = mflowy[j+1][i];
+				Pe = Fe/De;
 				Pw = Fw/Dw;
 				Pn = Fn/Dn;
 				Ps = Fs/Ds;
-				ae[j][i] = 0;
+				ae[j][i] = De*Aperator(method,Pe)+max(-Fe,0);
 				aw[j][i] = Dw*Aperator(method,Pw)+max(Fw,0);
 				an[j][i] = Dn*Aperator(method,Pn)+max(-Fn,0);
 				as[j][i] = Ds*Aperator(method,Ps)+max(Fs,0);
@@ -367,16 +380,19 @@ void coefficients (string method, float rho0, float gamma, float dt, float Sp, f
 			{
 				De = gamma*Sh[i+1]/fabs(x[i+1]-x[i]);
 				Dw = gamma*Sh[i]/fabs(x[i]-x[i-1]);
+				Dn = gamma*Sv[j]/fabs(yvc[j]-y[j]);
 				Ds = gamma*Sv[j+1]/fabs(y[j]-y[j+1]);
 				Fe = mflowx[j][i+1];
 				Fw = mflowx[j][i];
+				Fn = mflowy[j][i];
 				Fs = mflowy[j+1][i];
 				Pe = Fe/De;
 				Pw = Fw/Dw;
+				Pn = Fn/Dn;
 				Ps = Fs/Ds;
 				ae[j][i] = De*Aperator(method,Pe)+max(-Fe,0);
 				aw[j][i] = Dw*Aperator(method,Pw)+max(Fw,0);
-				an[j][i] = 0;
+				an[j][i] = Dn*Aperator(method,Pn)+max(-Fn,0);
 				as[j][i] = Ds*Aperator(method,Ps)+max(Fs,0);
 				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
 				bp[j][i] = rho0*V[j][i]*phi0[j][i]/dt+Sc*V[j][i];
@@ -386,24 +402,21 @@ void coefficients (string method, float rho0, float gamma, float dt, float Sp, f
 				De = gamma*Sh[i+1]/fabs(x[i+1]-x[i]);
 				Dw = gamma*Sh[i]/fabs(x[i]-x[i-1]);
 				Dn = gamma*Sv[j]/fabs(y[j-1]-y[j]);
+				Ds = gamma*Sv[j+1]/fabs(y[j]-yvc[j+1]);
 				Fe = mflowx[j][i+1];
 				Fw = mflowx[j][i];
 				Fn = mflowy[j][i];
+				Fs = mflowy[j+1][i];
 				Pe = Fe/De;
 				Pw = Fw/Dw;
 				Pn = Fn/Dn;
-//				ae[j][i] = De*Aperator(method,Pe)+max(-Fe,0);
-//				aw[j][i] = Dw*Aperator(method,Pw)+max(Fw,0);
-//				an[j][i] = Dn*Aperator(method,Pn)+max(-Fn,0);
-//				as[j][i] = 0;
-//				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
-//				bp[j][i] = rho0*V[j][i]*phi0[j][i]/dt+Sc*V[j][i];
-				ae[j][i] = 0;
-				aw[j][i] = 0;
-				an[j][i] = 1;
-				as[j][i] = 0;
-				ap[j][i] = 1;
-				bp[j][i] = 0;
+				Ps = Fs/Ds;
+				ae[j][i] = De*Aperator(method,Pe)+max(-Fe,0);
+				aw[j][i] = Dw*Aperator(method,Pw)+max(Fw,0);
+				an[j][i] = Dn*Aperator(method,Pn)+max(-Fn,0);
+				as[j][i] = Ds*Aperator(method,Ps)+max(Fs,0);
+				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
+				bp[j][i] = rho0*V[j][i]*phi0[j][i]/dt+Sc*V[j][i];
 			}
 			else
 			{
@@ -425,7 +438,6 @@ void coefficients (string method, float rho0, float gamma, float dt, float Sp, f
 				as[j][i] = Ds*Aperator(method,Ps)+max(Fs,0);
 				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
 				bp[j][i] = rho0*V[j][i]*phi0[j][i]/dt+Sc*V[j][i];
-//				cout<<j<<"	"<<i<<"	"<<ap[j][i]<<endl;
 			}
 		}
 	}
@@ -455,15 +467,39 @@ void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix
 		{
 			for(int j = 0; j<M; j++)
 			{
-				if(i==0 || j==0 || i==N-1)
+				if(i==0 && j==0)
 				{
-					T[j][i] = phi_boundary;
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*phi_boundary+ae[j][i]*Tcalc[j][i+1]+as[j][i]*Tcalc[j+1][i]+an[j][i]*phi_boundary+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 				}
-				else if(j==M-1)
+				else if(i==0 && j==M-1)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*phi_boundary+ae[j][i]*Tcalc[j][i+1]+as[j][i]*phis[i]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i==0 && j!=0 && j!=M-1)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*phi_boundary+ae[j][i]*Tcalc[j][i+1]+as[j][i]*Tcalc[j+1][i]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i==N-1 && j==0)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*phi_boundary+as[j][i]*Tcalc[j+1][i]+an[j][i]*phi_boundary+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i==N-1 && j==M-1)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*phi_boundary+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i==N-1 && j!=0 && j!=M-1)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*phi_boundary+as[j][i]*Tcalc[j+1][i]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i!=0 && i!=N-1 && j==0)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*Tcalc[j][i+1]+as[j][i]*Tcalc[j+1][i]+an[j][i]*phi_boundary+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i!=0 && i!=N-1 && j==M-1)
 				{
 					if(x[i]<0)
 					{
-						T[j][i] = phis[i];
+						T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*Tcalc[j][i+1]+as[j][i]*phi_boundary+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 					}
 					else
 					{
