@@ -247,7 +247,7 @@ double Aperator(string method, double P)
 	}
 	else if(method=="PLDS") // Power Law Differencing Scheme
 	{
-		A = max(0,pow(1-0.5*fabs(P),5));
+		A = max(0,pow(1-0.1*fabs(P),5));
 	}
 	else if(method=="EDS") // Exponential Differencing Scheme
 	{

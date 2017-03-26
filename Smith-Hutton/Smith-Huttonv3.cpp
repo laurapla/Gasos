@@ -29,9 +29,9 @@ void output_file (matrix T, int N);
 int main(){
 	
 	// DATA
-	int alpha = 10; // Angle [º]
+	float alpha = 10; // Angle [º]
 	float rho = 1; // Density
-	float gamma = rho/10;
+	float gamma = rho/1000000;
 	float Sc = 0; // Source term = Sc+Sp*phi
 	float Sp = 0;
 	string method = "PLDS";
@@ -56,12 +56,15 @@ int main(){
 	x[0] = xvc[0];
 	coordinates(dx, N+1, xvc, x);
 	x[N+1] = 1;
+	xvc[0] = -1+dx/2;
+	xvc[N] = 1-dx/2;
 	
 	yvc[0] = 1;
 	y[0] = yvc[0];
 	coordinates(-dy, M+1, yvc, y);
 	y[M+1] = 0;
-	yvc[M] = 0;
+	yvc[0] = 1-dy/2;
+	yvc[M] = dy/2;
 	
 	// Surfaces and volumes
 	float Sh[N+2], Sv[M+2];
@@ -243,7 +246,7 @@ double Aperator(string method, double P)
 	}
 	else if(method=="PLDS") // Power Law Differencing Scheme
 	{
-		A = max(0,pow(1-0.5*fabs(P),5));
+		A = max(0,pow(1-0.1*fabs(P),5));
 	}
 	else if(method=="EDS") // Exponential Differencing Scheme
 	{
