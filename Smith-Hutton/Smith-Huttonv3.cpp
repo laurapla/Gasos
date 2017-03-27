@@ -5,8 +5,8 @@
 using namespace std;
 
 // Numerical parameters
-const int N = 50;
-const int M = 25;
+const int N = 200;
+const int M = 100;
 
 typedef double matrix[M+2][N+2];
 typedef double mface[M+1][N+1];
@@ -20,7 +20,8 @@ void velocity(float *x, float *y, int N, int M, matrix& u, matrix& v);
 void phi_inlet_outlet(float *x, float alpha, int N, double phis[]);
 double max(double a, double b);
 double Aperator(string method, double P);
-void coefficients (int N, int M, string method, float rho0, float gamma, float dt, float Sp, float Sc, float *x, float *y, float *Sh, float *Sv, matrix V, matrix phi0, mface mflowx, mface mflowy, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap, matrix& bp);
+void constant_coefficients (int N, int M, string method, float rho0, float gamma, float dt, float Sp, float *x, float *y, float *Sh, float *Sv, matrix V, mface mflowx, mface mflowy, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
+void bp_coefficient (int N, int M, float rho0, float dt, float Sc, float *x, double phi_boundary, double *phis, matrix phi0, matrix V, matrix& bp);
 void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float* x, double* phis, double phi_boundary, float fr, float delta, int N, int M, matrix& T);
 void output_matrix(int N, int M, matrix mat);
 void output_file (matrix T, int N);
@@ -34,7 +35,7 @@ int main(){
 	float gamma = rho/1000000;
 	float Sc = 0; // Source term = Sc+Sp*phi
 	float Sp = 0;
-	string method = "PLDS";
+	string method = "EDS";
 	
 	float delta = 0.0000000001; // Precision of the simulation
 	float fr = 1.2; // Relaxation factor
@@ -104,8 +105,8 @@ int main(){
 	
 	
 	matrix ae, aw, an, as, ap, bp;
-	double resta;
-	double MAX;
+	constant_coefficients (N+2, M+2, method, rho, gamma, dt, Sp, x, y, Sh, Sv, V, mflowx, mflowy, ae, aw, an, as, ap);
+	
 	float t = 0;
 	
 	while(t<=Time)
@@ -119,7 +120,7 @@ int main(){
 			}
 		}
 		
-		coefficients (N+2, M+2, method, rho, gamma, dt, Sp, Sc, x, y, Sh, Sv, V, phi0, mflowx, mflowy, ae, aw, an, as, ap, bp);
+		bp_coefficient (N+2, M+2, rho, dt, Sc, x, phi_boundary, phis, phi0, V, bp);
 		Gauss_Seidel (ap, aw, ae, as, an, bp, x, phis, phi_boundary, fr, delta, N+2, M+2, phi);
 		
 		t = t+dt;
@@ -131,7 +132,15 @@ int main(){
 		
 	ofstream results;
     results.open("Resultats.dat");
-    for(int k = 0; k<N+2; k++)
+    int roar;
+    for(int i = 0; i<N/2+2; i++)
+    {
+    	if(x[i]<0 && x[i+1]>=0)
+    	{
+    		roar = i+1;
+		}
+	}
+    for(int k = roar; k<N+2; k++)
     {
     	results<<x[k]<<"	"<<phi[M+1][k]<<"\n";
 	}
@@ -256,7 +265,7 @@ double Aperator(string method, double P)
 }
 
 
-void coefficients (int N, int M, string method, float rho0, float gamma, float dt, float Sp, float Sc, float *x, float *y, float *Sh, float *Sv, matrix V, matrix phi0, mface mflowx, mface mflowy, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap, matrix& bp)
+void constant_coefficients (int N, int M, string method, float rho0, float gamma, float dt, float Sp, float *x, float *y, float *Sh, float *Sv, matrix V, mface mflowx, mface mflowy, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap)
 {
 	double De, Dw, Dn, Ds;
 	double Pe, Pw, Pn, Ps;
@@ -266,14 +275,45 @@ void coefficients (int N, int M, string method, float rho0, float gamma, float d
 	{
 		for(int j = 0; j<M; j++)
 		{
-			if(j==M-1)
+			if(j==M-1 && x[i]>=0)
 			{
 				ae[j][i] = 0;
 				aw[j][i] = 0;
 				an[j][i] = 1;
 				as[j][i] = 0;
 				ap[j][i] = 1;
-				bp[j][i] = 0;
+			}
+			else if(j==M-1 && x[i]<0)
+			{
+				ae[j][i] = 0;
+				aw[j][i] = 0;
+				an[j][i] = 0;
+				as[j][i] = 0;
+				ap[j][i] = 1;
+			}
+			else if(i==0)
+			{
+				ae[j][i] = 0;
+				aw[j][i] = 0;
+				an[j][i] = 0;
+				as[j][i] = 0;
+				ap[j][i] = 1;
+			}
+			else if(j==0)
+			{
+				ae[j][i] = 0;
+				aw[j][i] = 0;
+				an[j][i] = 1;
+				as[j][i] = 0;
+				ap[j][i] = 1;
+			}
+			else if(i==N-1)
+			{
+				ae[j][i] = 0;
+				aw[j][i] = 0;
+				an[j][i] = 1;
+				as[j][i] = 0;
+				ap[j][i] = 1;
 			}
 			else
 			{
@@ -294,6 +334,40 @@ void coefficients (int N, int M, string method, float rho0, float gamma, float d
 				an[j][i] = Dn*Aperator(method,Pn)+max(-Fn,0);
 				as[j][i] = Ds*Aperator(method,Ps)+max(Fs,0);
 				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+rho0*V[j][i]/dt-Sp*V[j][i];
+			}
+		}
+	}
+}
+
+
+void bp_coefficient (int N, int M, float rho0, float dt, float Sc, float *x, double phi_boundary, double *phis, matrix phi0, matrix V, matrix& bp)
+{
+	for(int i = 0; i<N; i++)
+	{
+		for(int j = 0; j<M; j++)
+		{
+			if(j==M-1 && x[i]>=0)
+			{
+				bp[j][i] = 0;
+			}
+			else if(j==M-1 && x[i]<0)
+			{
+				bp[j][i] = phis[i];
+			}
+			else if(i==0)
+			{
+				bp[j][i] = phi_boundary;
+			}
+			else if(j==0)
+			{
+				bp[j][i] = phi_boundary;
+			}
+			else if(i==N-1)
+			{
+				bp[j][i] = phi_boundary;
+			}
+			else
+			{
 				bp[j][i] = rho0*V[j][i]*phi0[j][i]/dt+Sc*V[j][i];
 			}
 		}
@@ -324,20 +398,37 @@ void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix
 		{
 			for(int j = 0; j<M; j++)
 			{
-				if(j==M-1)
+				if(i==0 && j==0)
 				{
-					if(x[i]<0)
-					{
-						T[j][i] = phis[i];
-					}
-					else
-					{
-						T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*Tcalc[j][i+1]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
-					}
+					T[j][i] = Tcalc[j][i]+fr*((ae[j][i]*Tcalc[j][i+1]+as[j][i]*Tcalc[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 				}
-				else if(i==0 || j==0 || i==N-1)
+				else if(i==0 && j==M-1)
 				{
-					T[j][i] = phi_boundary;
+					T[j][i] = Tcalc[j][i]+fr*((ae[j][i]*Tcalc[j][i+1]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i==0 && j!=0 && j!=M-1)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((ae[j][i]*Tcalc[j][i+1]+as[j][i]*Tcalc[j+1][i]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i==N-1 && j==0)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+as[j][i]*Tcalc[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i==N-1 && j==M-1)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i==N && j!=0 && j!=M-1)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+as[j][i]*Tcalc[j+1][i]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i!=0 && i!=N-1 && j==0)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*Tcalc[j][i+1]+as[j][i]*Tcalc[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+				}
+				else if(i!=0 && i!=N-1 && j==M-1)
+				{
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*Tcalc[j][i+1]+an[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 				}
 				else
 				{
