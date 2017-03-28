@@ -15,7 +15,7 @@ typedef double mface[M+1][N+1];
 // FUNCTIONS
 void coordinates(float dx, int N, float xvc[], float x[]);
 void surface(float *yvc, int M, float Sv[]);
-void volume(float dx, float dy, int N, int M, matrix& V);
+void volume(float *xvc, float *yvc, int N, int M, matrix& V);
 void velocity(float *x, float *y, int N, int M, matrix& u, matrix& v);
 void phi_inlet_outlet(float *x, float alpha, int N, double phis[]);
 double max(double a, double b);
@@ -32,12 +32,12 @@ int main(){
 	// DATA
 	float alpha = 10; // Angle [º]
 	float rho = 1; // Density
-	float gamma = rho/1000000;
+	float gamma = rho/10;
 	float Sc = 0; // Source term = Sc+Sp*phi
 	float Sp = 0;
-	string method = "EDS";
+	string method = "PLDS";
 	
-	float delta = 0.0000000001; // Precision of the simulation
+	float delta = 0.000000001; // Precision of the simulation
 	float fr = 1.2; // Relaxation factor
 	int Time = 100;
 	
@@ -72,7 +72,7 @@ int main(){
 	matrix V;
 	surface(yvc, M+2, Sv);
 	surface(xvc, N+2, Sh);
-	volume(dx, dy, N+2, M+2, V);
+	volume(xvc, yvc, N+2, M+2, V);
 	
 	
 	// Boundary conditions
@@ -108,8 +108,9 @@ int main(){
 	constant_coefficients (N+2, M+2, method, rho, gamma, dt, Sp, x, y, Sh, Sv, V, mflowx, mflowy, ae, aw, an, as, ap);
 	
 	float t = 0;
+	float resta = 1;
 	
-	while(t<=Time)
+	while(resta>delta)
 	{
 		//New increment of time
 		for(int i = 0; i<N+2; i++)
@@ -124,6 +125,15 @@ int main(){
 		Gauss_Seidel (ap, aw, ae, as, an, bp, x, phis, phi_boundary, fr, delta, N+2, M+2, phi);
 		
 		t = t+dt;
+		
+		resta = 0;
+		for(int i = 0; i<N+2; i++)
+		{
+			for(int j = 0; j<M+2; j++)
+			{
+				resta = max(resta, fabs(phi[j][i]-phi0[j][i]));
+			}
+		}
 	}
 	
 	
@@ -146,6 +156,7 @@ int main(){
 	}
     results.close();
     
+    cout<<t;
 }
 
 
@@ -173,24 +184,13 @@ void surface(float *yvc, int M, float Sv[])
 }
 
 
-void volume(float dx, float dy, int N, int M, matrix& V)
+void volume(float *xvc, float *yvc, int N, int M, matrix& V)
 {
 	for(int i = 0; i<N; i++)
 	{
 		for(int j = 0; j<M; j++)
 		{
-			if((i==0 && j==0) || (i==0 && j==M-1) || (i==N-1 && j==0) || (i==N-1 && j==M-1))
-			{
-				V[j][i] = dx*dy/4;
-			}
-			else if(i==0 || j==0 || i==N-1 || j==M-1)
-			{
-				V[j][i] = dx*dy/2;
-			}
-			else
-			{
-				V[j][i] = dx*dy;
-			}
+			V[j][i] = fabs(xvc[i]-xvc[i-1])*fabs(yvc[j-1]-yvc[j]);
 		}
 	}
 }
