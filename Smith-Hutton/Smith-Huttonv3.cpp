@@ -16,7 +16,8 @@ typedef double mface[M+1][N+1];
 void coordinates(float dx, int N, float xvc[], float x[]);
 void surface(float *yvc, int M, float Sv[]);
 void volume(float *xvc, float *yvc, int N, int M, matrix& V);
-void velocity(float *x, float *y, int N, int M, matrix& u, matrix& v);
+void velocity(float *x, float *y, int N, int M, mface& u, mface& v);
+void mass_flow(float rho, int N, int M, float *Sv, float *Sh, float *xvc, float *yvc, mface& mflowx, mface& mflowy);
 void phi_inlet_outlet(float *x, float alpha, int N, double phis[]);
 double max(double a, double b);
 double Aperator(string method, double P);
@@ -35,7 +36,7 @@ int main(){
 	float gamma = rho/10;
 	float Sc = 0; // Source term = Sc+Sp*phi
 	float Sp = 0;
-	string method = "PLDS";
+	string method = "UDS";
 	
 	float delta = 0.000000001; // Precision of the simulation
 	float fr = 1.2; // Relaxation factor
@@ -83,14 +84,7 @@ int main(){
 	
 	// Mass flow on the faces
 	mface mflowx, mflowy;
-	for(int i = 0; i<N+1; i++)
-	{
-		for(int j = 0; j<M+1; j++)
-		{
-			mflowx[j][i] = rho*Sv[j]*2*yvc[j]*(1-pow(xvc[i],2));
-			mflowy[j][i] = -rho*Sh[i]*2*xvc[i]*(1-pow(yvc[j],2));
-		}
-	}
+	mass_flow(rho, N+1, M+1, Sv, Sh, xvc, yvc, mflowx, mflowy);
 	
 	
 	// Assignation
@@ -107,7 +101,7 @@ int main(){
 	matrix ae, aw, an, as, ap, bp;
 	constant_coefficients (N+2, M+2, method, rho, gamma, dt, Sp, x, y, Sh, Sv, V, mflowx, mflowy, ae, aw, an, as, ap);
 	
-	float t = 0;
+	
 	float resta = 1;
 	
 	while(resta>delta)
@@ -123,8 +117,6 @@ int main(){
 		
 		bp_coefficient (N+2, M+2, rho, dt, Sc, x, phi_boundary, phis, phi0, V, bp);
 		Gauss_Seidel (ap, aw, ae, as, an, bp, x, phis, phi_boundary, fr, delta, N+2, M+2, phi);
-		
-		t = t+dt;
 		
 		resta = 0;
 		for(int i = 0; i<N+2; i++)
@@ -142,21 +134,22 @@ int main(){
 		
 	ofstream results;
     results.open("Resultats.dat");
-    int roar;
-    for(int i = 0; i<N/2+2; i++)
+    int index;
+    if(remainder(N,2)==0)
     {
-    	if(x[i]<0 && x[i+1]>=0)
-    	{
-    		roar = i+1;
-		}
+    	index = N/2+1;
 	}
-    for(int k = roar; k<N+2; k++)
+	else
+	{
+		index = N/2+2;
+	}
+    for(int k = index; k<N+2; k++)
     {
     	results<<x[k]<<"	"<<phi[M+1][k]<<"\n";
 	}
     results.close();
     
-    cout<<t;
+    return 0;
 }
 
 
@@ -196,7 +189,7 @@ void volume(float *xvc, float *yvc, int N, int M, matrix& V)
 }
 
 
-void velocity(float *x, float *y, int N, int M, matrix& u, matrix& v)
+void velocity(float *x, float *y, int N, int M, mface& u, mface& v)
 {
 	for(int i = 0; i<N; i++)
 	{
@@ -204,6 +197,19 @@ void velocity(float *x, float *y, int N, int M, matrix& u, matrix& v)
 		{
 			u[j][i] = 2*y[j]*(1-pow(x[i],2));
 			v[j][i] = -2*x[i]*(1-pow(y[j],2));
+		}
+	}
+}
+
+
+void mass_flow(float rho, int N, int M, float *Sv, float *Sh, float *xvc, float *yvc, mface& mflowx, mface& mflowy)
+{
+	for(int i = 0; i<N; i++)
+	{
+		for(int j = 0; j<M; j++)
+		{
+			mflowx[j][i] = rho*Sv[j]*2*yvc[j]*(1-pow(xvc[i],2));
+			mflowy[j][i] = -rho*Sh[i]*2*xvc[i]*(1-pow(yvc[j],2));
 		}
 	}
 }
