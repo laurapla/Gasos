@@ -40,7 +40,7 @@ int main(){
 	float rho = 1; // Density
 	float Sc = 0; // Source term = Sc+Sp*phi
 	float Sp = 0;
-	string method = "UDS";
+	string method = "HDS";
 	
 	float delta = 0.000000001; // Precision of the simulation
 	float fr = 1.2; // Relaxation factor

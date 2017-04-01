@@ -29,7 +29,7 @@ void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix
 double double_interpolation (float x, float y, double T11, double T12, double T21, double T22, double x1, double x2, double y1, double y2);
 void print_matrix (matrix T, int N, int M);
 void output_file (double* Tpoint1, double* Tpoint2, int Time, float dt);
-
+void resultaats (double *x, double *y, matrix T, int N, int M);
 
 
 // ------------------------------------------
@@ -191,6 +191,7 @@ int main(){
     // Output file
     cout<<"Creating file..."<<endl;
     output_file (Tpoint1, Tpoint2, Time, dt);
+	resultaats (x, y, T, N1+N2, M1+M2+M3);
     
     cout<<"End of program"<<endl;
     
@@ -638,13 +639,28 @@ void print_matrix (matrix T, int N, int M)
 // Create an output file with the results
 void output_file (double* Tpoint1, double* Tpoint2, int Time, float dt)
 {
-	ofstream results;
-    results.open("Resultats.dat");
+	ofstream puntss;
+    puntss.open("Punts.dat");
     float t = 0;
     for(int k = 0; k<Time; k++)
     {
-    	results<<t<<"	"<<Tpoint1[k]<<"	"<<Tpoint2[k]<<"\n";
+    	puntss<<t<<"	"<<Tpoint1[k]<<"	"<<Tpoint2[k]<<"\n";
     	t = t+dt;
+	}
+    puntss.close();
+}
+
+void resultaats (double *x, double *y, matrix T, int N, int M)
+{
+	ofstream results;
+    results.open("Resultats.dat");
+    for(int i = 0; i<N; i++)
+    {
+    	for(int j = 0; j<M; j++)
+    	{
+    		results<<x[i]<<"	"<<y[j]<<"	"<<T[j][i]<<endl;
+		}
+		results<<endl;
 	}
     results.close();
 }

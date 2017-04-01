@@ -25,7 +25,7 @@ void constant_coefficients (int N, int M, string method, float rho0, float gamma
 void bp_coefficient (int N, int M, float rho0, float dt, float Sc, float *x, double phi_boundary, double *phis, matrix phi0, matrix V, matrix& bp);
 void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float* x, double* phis, double phi_boundary, float fr, float delta, int N, int M, matrix& T);
 void output_matrix(int N, int M, matrix mat);
-void output_file (matrix T, int N);
+void output_file (float *x, float *y, matrix T, int N, int M);
 
 
 int main(){
@@ -33,10 +33,10 @@ int main(){
 	// DATA
 	float alpha = 10; // Angle [º]
 	float rho = 1; // Density
-	float gamma = rho/10;
+	float gamma = rho/1000;
 	float Sc = 0; // Source term = Sc+Sp*phi
 	float Sp = 0;
-	string method = "UDS";
+	string method = "HDS";
 	
 	float delta = 0.000000001; // Precision of the simulation
 	float fr = 1.2; // Relaxation factor
@@ -103,6 +103,7 @@ int main(){
 	
 	
 	float resta = 1;
+	float t = 0;
 	
 	while(resta>delta)
 	{
@@ -126,28 +127,15 @@ int main(){
 				resta = max(resta, fabs(phi[j][i]-phi0[j][i]));
 			}
 		}
+		t = t+dt;
+		cout<<t;
 	}
 	
 	
 	// SCREEN!!!!!!!!! :D
 	output_matrix(N+2, M+2, phi);
 		
-	ofstream results;
-    results.open("Resultats.dat");
-    int index;
-    if(remainder(N,2)==0)
-    {
-    	index = N/2+1;
-	}
-	else
-	{
-		index = N/2+2;
-	}
-    for(int k = index; k<N+2; k++)
-    {
-    	results<<x[k]<<"	"<<phi[M+1][k]<<"\n";
-	}
-    results.close();
+	output_file (x, y, phi, N+2, M+2);
     
     return 0;
 }
@@ -484,13 +472,17 @@ void output_matrix(int N, int M, matrix mat)
 
 
 // Create an output file with the results
-void output_file (matrix T, int N)
+void output_file (float *x, float *y, matrix T, int N, int M)
 {
 	ofstream results;
     results.open("Resultats.dat");
-    for(int k = N/2-1; k<N; k++)
+    for(int i = 0; i<N; i++)
     {
-    	results<<T[M-1][k]<<"\n";
+    	for(int j = 0; j<M; j++)
+    	{
+    		results<<x[i]<<"	"<<y[j]<<"	"<<T[j][i]<<endl;
+		}
+		results<<endl;
 	}
     results.close();
 }

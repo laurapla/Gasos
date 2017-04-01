@@ -1,6 +1,9 @@
 10:
 plot '10CDS.dat' title 'CDS', '10UDS.dat' title 'UDS', '10HDS.dat' title 'HDS', '10PLDS.dat' title 'PLDS', '10EDS.dat' title 'EDS'
 
+1000:
+plot '1000CDS.dat' title 'CDS', '1000UDS.dat' title 'UDS', '1000HDS.dat' title 'HDS', '1000PLDS.dat' title 'PLDS', '1000EDS.dat' title 'EDS'
+
 1000000:
 plot '1000000CDS.dat' title 'CDS', '1000000UDS.dat' title 'UDS', '1000000HDS.dat' title 'HDS', '1000000PLDS.dat' title 'PLDS', '1000000EDS.dat' title 'EDS'
 
@@ -9,3 +12,10 @@ plot '1000000CDS.dat' title 'CDS' with linespoints ls 1, '1000000UDS.dat' title 
 
 1000000 with just lines:
 plot '1000CDS.dat' title 'CDS' with lines, '1000UDS.dat' title 'UDS' with lines, '1000HDS.dat' title 'HDS' with lines, '1000PLDS.dat' title 'PLDS' with lines, '1000EDS.dat' title 'EDS' with lines
+
+Comparació de resultats:
+plot '10\10UDS.dat' title '{/Symbol r}/{/Symbol G} = 10', '1000\1000UDS.dat' title '{/Symbol r}/{/Symbol G} = 10^{3}', '1000000\1000000UDS.dat' title '{/Symbol r}/{/Symbol G} = 10^{6}'
+plot '10\10EDS.dat' title '{/Symbol r}/{/Symbol G} = 10', '1000\1000EDS.dat' title '{/Symbol r}/{/Symbol G} = 10^{3}', '1000000\1000000EDS.dat' title '{/Symbol r}/{/Symbol G} = 10^{6}'
+plot '10\10PLDS.dat' title '{/Symbol r}/{/Symbol G} = 10', '1000\1000PLDS.dat' title '{/Symbol r}/{/Symbol G} = 10^{3}', '1000000\1000000PLDS.dat' title '{/Symbol r}/{/Symbol G} = 10^{6}'
+plot '10\10HDS.dat' title '{/Symbol r}/{/Symbol G} = 10', '1000\1000HDS.dat' title '{/Symbol r}/{/Symbol G} = 10^{3}', '1000000\1000000HDS.dat' title '{/Symbol r}/{/Symbol G} = 10^{6}'
+plot '10\10CDS.dat' title '{/Symbol r}/{/Symbol G} = 10', '1000\1000CDS.dat' title '{/Symbol r}/{/Symbol G} = 10^{3}', '1000000\1000000CDS.dat' title '{/Symbol r}/{/Symbol G} = 10^{6}'
