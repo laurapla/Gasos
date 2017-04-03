@@ -39,8 +39,7 @@ int main(){
 	string method = "HDS";
 	
 	float delta = 0.000000001; // Precision of the simulation
-	float fr = 1.2; // Relaxation factor
-	int Time = 100;
+	float fr = 1.1; // Relaxation factor
 	
 	// PREVIOUS CALCULATIONS
 	
@@ -480,7 +479,11 @@ void output_file (float *x, float *y, matrix T, int N, int M)
     {
     	for(int j = 0; j<M; j++)
     	{
-    		results<<x[i]<<"	"<<y[j]<<"	"<<T[j][i]<<endl;
+    		if(x[i]>=0)
+    		{
+    			results<<x[i]<<"	"<<T[M-1][i]<<endl;
+			}
+//    		results<<x[i]<<"	"<<y[j]<<"	"<<T[j][i]<<endl;
 		}
 		results<<endl;
 	}
