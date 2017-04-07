@@ -45,24 +45,27 @@ int main()
 	
 	
 	// Properties that are going to be calculated
-	matrix p, u, v, u0, v0; // Values in the nodes
-	staggx ustagg; // Values in the points given by the staggered meshes
-	staggy vstagg;
+	matrix p; // Values in the nodes
+	staggx u, u0; // Values in the points given by the staggered meshes
+	staggy v, v0;
 	
 	// Inicialization
 	for(int j = 0; j<M; j++)
 	{
-		for(int i = 0; i<N; i++)
+		for(int i = 0; i<N+1; i++)
 		{
 			u[j][i] = 0; // Horizontal velocity
 			u0[j][i] = u[j][i];
-			ustagg[j][i] = u[j][i];
-			v[j][i] = 0; // Vertical velocity
-			v0[j][i] = v[j][i];
-			vstagg[j][i] = v[j][i];
 		}
 	}
-	
+	for(int j = 0; j<M+1; j++)
+	{
+		for(int i = 0; i<N; i++)
+		{
+			v[j][i] = 0; // Vertical velocity
+			v0[j][i] = v[j][i];
+		}
+	}
 	
 	// Calculation of the constant coefficients that are used to determine the pressure
 	matrix ae, aw, an, as, ap, bp;
@@ -81,7 +84,7 @@ int main()
 	{
 		// STEP 1 !!!
 		
-		for(int i = 0; i<N; i++)
+		for(int i = 0; i<N+1; i++)
 		{
 			for(int j = 0; j<M; j++)
 			{
@@ -93,17 +96,64 @@ int main()
 				
 				
 				// HORIZONTAL
-				ue = convective_term (method, delta, xvc[i+1], x[i-1], x[i], x[i+1], x[i+2], u[j][i-1], u[j][i], u[j][i+1], u[j][i+2]);
-				uw = convective_term (method, delta, xvc[i], x[i+1], x[i], x[i-1], x[i-2], u[j][i+1], u[j][i], u[j][i-1], u[j][i-2]);
-				un = convective_term (method, delta, yvc[j+1], y[j-1], y[j], y[j+1], y[j+2], u[j-1][i], u[j][i], u[j+1][i], u[j+2][i]);
-				us = convective_term (method, delta, yvc[j], y[j+1], y[j], y[j-1], y[j-2], u[j+1][i], u[j][i], u[j-1][i], u[j-2][i]);
+				ue = convective_term (method, delta, x[i], xvc[i-1], xvc[i], xvc[i+1], xvc[i+2], u[j][i-1], u[j][i], u[j][i+1], u[j][i+2]);
+				uw = convective_term (method, delta, x[i-1], xvc[i+1], xvc[i], xvc[i-1], xvc[i-2], u[j][i+1], u[j][i], u[j][i-1], u[j][i-2]);
+				un = convective_term (method, delta, y[j], yvc[j-1], yvc[j], yvc[j+1], yvc[j+2], u[j-1][i], u[j][i], u[j+1][i], u[j+2][i]);
+				us = convective_term (method, delta, y[j-1], yvc[j+1], yvc[j], yvc[j-1], yvc[j-2], u[j+1][i], u[j][i], u[j-1][i], u[j-2][i]);
+				
 				
 				// R (horizontal)
-				Ru = mu*(u[j][i+1]-u[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(u[j+1][i]-u[j][i])*Sh[j]/fabs(y[j+1]-y[j])-mu*(u[j][i]-u[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(u[j][i]-u[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mfloww*uw-mflows*us);
+				if(i==0 && j==0)
+				{
+					Ru = mu*(u[j][i+1]-u[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u[j+1][i]-u[j][i])*Sh[j]/fabs(y[j+1]-y[j])-(mflowe*ue+mflown*un);
+				}
+				else if(i==0 && j==M-1)
+				{
+					Ru = mu*(u[j][i+1]-u[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])-mu*(u[j][i]-u[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue-mflows*us);
+				}
+				else if(i==0 && j!=0 && j!=M-1)
+				{
+					Ru = mu*(u[j][i+1]-u[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u[j+1][i]-u[j][i])*Sh[j]/fabs(y[j+1]-y[j])-mu*(u[j][i]-u[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mflows*us);
+				}
+				else if(i==N && j==0)
+				{
+					Ru = mu*(u[j+1][i]-u[j][i])*Sh[j]/fabs(y[j+1]-y[j])-mu*(u[j][i]-u[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-(mflown*un-mfloww*uw);
+				}
+				else if(i==N && j==M-1)
+				{
+					Ru = -mu*(u[j][i]-u[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u[j][i]-u[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(-mfloww*uw-mflows*us);
+				}
+				else if(i==N && j!=0 && j!=M-1)
+				{
+					Ru = mu*(u[j+1][i]-u[j][i])*Sh[j]/fabs(y[j+1]-y[j])-mu*(u[j][i]-u[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u[j][i]-u[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflown*un-mfloww*uw-mflows*us);
+				}
+				else if(j==0 && i!=0 && i!=N)
+				{
+					Ru = mu*(u[j][i+1]-u[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u[j+1][i]-u[j][i])*Sh[j]/fabs(y[j+1]-y[j])-mu*(u[j][i]-u[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-(mflowe*ue+mflown*un-mfloww*uw);
+				}
+				else if(j==M-1 && i!=0 && i!=N)
+				{
+					Ru = mu*(u[j][i+1]-u[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])-mu*(u[j][i]-u[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u[j][i]-u[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue-mfloww*uw-mflows*us);
+				}
+				else
+				{
+					Ru = mu*(u[j][i+1]-u[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u[j+1][i]-u[j][i])*Sh[j]/fabs(y[j+1]-y[j])-mu*(u[j][i]-u[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u[j][i]-u[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mfloww*uw-mflows*us);
+				}
 				Ru0 = 0;
 				
 				// Intermediate velocity (horizontal)
 				up[j][i] = u[j][i]+dt*(3/2*Ru-1/2*Ru0)/rho;
+			}
+		}
+		for(int i = 0; i<N; i++)
+		{
+			for(int j = 0; j<M+1; j++)
+			{
+				// Mass flow terms (rho*v*S)
+				mflowe = (rho*u[j][i+1]+rho*u[j][i])*Sv[j]/2;
+				mfloww = (rho*u[j][i-1]+rho*u[j][i])*Sv[j]/2;
+				mflown = (rho*v[j][i]+rho*v[j+1][i])*Sh[i]/2;
+				mflows = (rho*v[j][i]+rho*v[j-1][i])*Sh[i]/2;
 				
 				
 				// VERTICAL
@@ -113,7 +163,42 @@ int main()
 				vs = convective_term (method, delta, yvc[j], y[j+1], y[j], y[j-1], y[j-2], v[j+1][i], v[j][i], v[j-1][i], v[j-2][i]);
 				
 				// R (vertical)
-				Rv = mu*(v[j][i+1]-v[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v[j+1][i]-v[j][i])*Sh[j]/fabs(y[j+1]-y[j])-mu*(v[j][i]-v[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v[j][i]-v[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ve+mflown*vn-mfloww*vw-mflows*vs);
+				if(i==0 && j==0)
+				{
+					Rv = mu*(v[j][i+1]-v[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v[j+1][i]-v[j][i])*Sh[j]/fabs(yvc[j+1]-yvc[j])-(mflowe*ve+mflown*vn);
+				}
+				else if(i==0 && j==M)
+				{
+					Rv = mu*(v[j][i+1]-v[j][i])*Sv[j]/fabs(x[i+1]-x[i])-mu*(v[j][i]-v[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve-mflows*vs);
+				}
+				else if(i==0 && j!=0 && j!=M)
+				{
+					Rv = mu*(v[j][i+1]-v[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v[j+1][i]-v[j][i])*Sh[j]/fabs(yvc[j+1]-yvc[j])-mu*(v[j][i]-v[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mflows*vs);
+				}
+				else if(i==N-1 && j==0)
+				{
+					Rv = mu*(v[j+1][i]-v[j][i])*Sh[j]/fabs(yvc[j+1]-yvc[j])-mu*(v[j][i]-v[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-(mflown*vn-mfloww*vw);
+				}
+				else if(i==N-1 && j==M)
+				{
+					Rv = -mu*(v[j][i]-v[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v[j][i]-v[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(-mfloww*vw-mflows*vs);
+				}
+				else if(i==N-1 && j!=0 && j!=M)
+				{
+					Rv = mu*(v[j+1][i]-v[j][i])*Sh[j]/fabs(yvc[j+1]-yvc[j])-mu*(v[j][i]-v[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v[j][i]-v[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflown*vn-mfloww*vw-mflows*vs);
+				}
+				else if(j==0 && i!=0 && i!=N-1)
+				{
+					Rv = mu*(v[j][i+1]-v[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v[j+1][i]-v[j][i])*Sh[j]/fabs(yvc[j+1]-yvc[j])-mu*(v[j][i]-v[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-(mflowe*ve+mflown*vn-mfloww*vw);
+				}
+				else if(j==M && i!=0 && i!=N-1)
+				{
+					Rv = mu*(v[j][i+1]-v[j][i])*Sv[j]/fabs(x[i+1]-x[i])-mu*(v[j][i]-v[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v[j][i]-v[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve-mfloww*vw-mflows*vs);
+				}
+				else
+				{
+					Rv = mu*(v[j][i+1]-v[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v[j+1][i]-v[j][i])*Sh[j]/fabs(yvc[j+1]-yvc[j])-mu*(v[j][i]-v[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v[j][i]-v[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mfloww*vw-mflows*vs);
+				}
 				Rv0 = 0;
 				
 				// Intermediate velocity (vertical)
