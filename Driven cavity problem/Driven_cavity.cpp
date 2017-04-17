@@ -1,5 +1,6 @@
 #include<iostream>
 #include<math.h>
+#include<fstream>
 
 using namespace std;
 
@@ -50,8 +51,8 @@ int main()
 	
 	// Properties that are going to be calculated
 	matrix p; // Values in the nodes
-	staggx u, u0, u00, uant, Ru, Ru0; // Values in the points given by the staggered meshes
-	staggy v, v0, v00, vant, Rv, Rv0;
+	staggx u, u0, Ru, Ru0; // Values in the points given by the staggered meshes
+	staggy v, v0, Rv, Rv0;
 	
 	// Inicialization
 	for(int j = 0; j<M; j++)
@@ -67,8 +68,6 @@ int main()
 				u[j][i] = 0; // Horizontal velocity at n+1
 			}
 			u0[j][i] = 0; // Horizontal velocity at n
-			u00[j][i] = 0; // Horizontal velocity at n-1
-			uant[j][i] = u[j][i]+10;
 			Ru0[j][i] = 0;
 		}
 	}
@@ -78,8 +77,6 @@ int main()
 		{
 			v[j][i] = 0; // Vertical velocity at n+1
 			v0[j][i] = 0; // Vertical velocity at n
-			v00[j][i] = 0; // Vertical velocity at n-1
-			vant[j][i] = v[j][i]+10;
 			Rv0[j][i] = 0;
 		}
 	}
@@ -115,10 +112,10 @@ int main()
 				
 				
 				// HORIZONTAL
-				ue = convective_term (method, delta, x[i], xvc[i-1], xvc[i], xvc[i+1], xvc[i+2], u0[j][i-1], u0[j][i], u0[j][i+1], u0[j][i+2]);
-				uw = convective_term (method, delta, x[i-1], xvc[i+1], xvc[i], xvc[i-1], xvc[i-2], u0[j][i+1], u0[j][i], u0[j][i-1], u0[j][i-2]);
-				un = convective_term (method, delta, y[j], yvc[j-1], yvc[j], yvc[j+1], yvc[j+2], u0[j-1][i], u0[j][i], u0[j+1][i], u0[j+2][i]);
-				us = convective_term (method, delta, y[j-1], yvc[j+1], yvc[j], yvc[j-1], yvc[j-2], u0[j+1][i], u0[j][i], u0[j-1][i], u0[j-2][i]);
+				ue = convective_term (method, delta, x[i+1], xvc[i-1], xvc[i], xvc[i+1], xvc[i+2], u0[j][i-1], u0[j][i], u0[j][i+1], u0[j][i+2]);
+				uw = convective_term (method, delta, x[i], xvc[i-2], xvc[i-1], xvc[i], xvc[i+1], u0[j][i-2], u0[j][i-1], u0[j][i], u0[j][i+1]);
+				un = convective_term (method, delta, yvc[j], y[j-1], y[j], y[j+1], y[j+2], u0[j-1][i], u0[j][i], u0[j+1][i], u0[j+2][i]);
+				us = convective_term (method, delta, yvc[j-1], y[j-2], y[j-1], y[j], y[j+1], u0[j-2][i], u0[j-1][i], u0[j][i], u0[j+1][i]);
 				
 				
 				// R (horizontal)
@@ -176,9 +173,9 @@ int main()
 				
 				// VERTICAL
 				ve = convective_term (method, delta, xvc[i+1], x[i-1], x[i], x[i+1], x[i+2], v0[j][i-1], v0[j][i], v0[j][i+1], v0[j][i+2]);
-				vw = convective_term (method, delta, xvc[i], x[i+1], x[i], x[i-1], x[i-2], v0[j][i+1], v0[j][i], v0[j][i-1], v0[j][i-2]);
-				vn = convective_term (method, delta, yvc[j+1], y[j-1], y[j], y[j+1], y[j+2], v0[j-1][i], v0[j][i], v0[j+1][i], v0[j+2][i]);
-				vs = convective_term (method, delta, yvc[j], y[j+1], y[j], y[j-1], y[j-2], v0[j+1][i], v0[j][i], v0[j-1][i], v0[j-2][i]);
+				vw = convective_term (method, delta, xvc[i], x[i-2], x[i-1], x[i], x[i+1], v0[j][i-2], v0[j][i-1], v0[j][i], v0[j][i+1]);
+				vn = convective_term (method, delta, y[j+1], yvc[j-1], yvc[j], yvc[j+1], yvc[j+2], v0[j-1][i], v0[j][i], v0[j+1][i], v0[j+2][i]);
+				vs = convective_term (method, delta, y[j], yvc[j-2], yvc[j-1], yvc[j], yvc[j+1], v0[j-2][i], v0[j-1][i], v0[j][i], v0[j+1][i]);
 				
 				// R (vertical)
 				if(i==0 && j==0)
@@ -245,7 +242,11 @@ int main()
 			{
 				if(i==0)
 				{
-					u[j][i] = up[j][i]-dt*p[j][i]/(rho*fabs(x[i]-xvc[i]));
+					u[j][i] = 0;
+				}
+				else if(i==N)
+				{
+					u[j][i] = 0;
 				}
 				else if(j==M-1)
 				{
@@ -265,7 +266,11 @@ int main()
 			{
 				if(j==0)
 				{
-					v[j][i] = vp[j][i]-dt*p[j][i]/(rho*fabs(y[j]-yvc[j]));
+					v[j][i] = 0;
+				}
+				else if(j==M)
+				{
+					v[j][i] = 0;
 				}
 				else
 				{
@@ -349,6 +354,22 @@ int main()
 	
 	
 	
+	ofstream results;
+    results.open("Resultats.dat");
+    for(int j = M-1; j>=0; j--)
+    {
+    	for(int i = 0; i<N; i++)
+    	{
+    		if(x[i]>=0)
+    		{
+    			results<<p[j][i]<<"	";
+			}
+		}
+		results<<endl;
+	}
+    results.close();
+	
+	
 	return 0;
 }
 
@@ -399,10 +420,10 @@ void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *S
 		{
 			if(j==M-1)
 			{
-				ae[j][i] = 0;
+				ae[j][i] = 1;
 				aw[j][i] = 0;
 				an[j][i] = 0;
-				as[j][i] = 1;
+				as[j][i] = 0;
 				ap[j][i] = 1;
 			}
 			else if(i==0 && j==0)
@@ -418,7 +439,7 @@ void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *S
 				ae[j][i] = 1;
 				aw[j][i] = 0;
 				an[j][i] = 0;
-				as[j][i] = 1;
+				as[j][i] = 0;
 				ap[j][i] = 1;
 			}
 			else if(i==0 && j!=0 && j!=M-1)
@@ -439,10 +460,10 @@ void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *S
 			}
 			else if(i==N-1 && j==M-1)
 			{
-				ae[j][i] = 0;
+				ae[j][i] = 1;
 				aw[j][i] = 1;
 				an[j][i] = 0;
-				as[j][i] = 1;
+				as[j][i] = 0;
 				ap[j][i] = 1;
 			}
 			else if(i==N-1 && j!=0 && j!=M-1)
@@ -480,26 +501,35 @@ double convective_term (string method, float delta, float xf, float x1, float x2
 	double u, ud, uu, uuu;
 	float xd, xu, xuu;
 	float resta = 1;
+	double uant = u2+2;
+	u = u2;
 	
 	if(method=="CDS")
 	{
-		u = 0.5*(u1+u2);
+		u = 0.5*(u2+u3);
 	}
 	else if(method=="UDS")
 	{
+		// No funciona
 		int fe;
-		if(u2>0)
+		while(resta>delta)
 		{
-			fe = 0;
+			if(u>0)
+			{
+				fe = 0;
+			}
+			else
+			{
+				fe = 1;
+			}
+			u = u1+fe*(u2-u1);
+			resta = fabs(u-uant);
+			uant = u;
 		}
-		else
-		{
-			fe = 1;
-		}
-		u = u1+fe*(u2-u1);
 	}
 	else if(method=="QUICK")
 	{
+		// No crec que estigui bé
 		float g1, g2;
 		if(u2>0)
 		{
