@@ -36,7 +36,7 @@ int main()
 	
 	
 	string method = "CDS";
-	float delta = 0.0001; // Precision of the simulation
+	float delta = 0.000017; // Precision of the simulation
 	float fr = 1; // Relaxation factor
 	
 	// Coordinates
@@ -62,13 +62,12 @@ int main()
 		{
 			if(j==M-1 && i!=0 && i!=N)
 			{
-				u[j][i] = uref; // Horizontal velocity
+				u0[j][i] = uref; // Horizontal velocity at n
 			}
 			else
 			{
-				u[j][i] = 0; // Horizontal velocity at n+1
+				u0[j][i] = 0; // Horizontal velocity at n
 			}
-			u0[j][i] = 0; // Horizontal velocity at n
 			Ru0[j][i] = 0;
 		}
 	}
@@ -76,7 +75,6 @@ int main()
 	{
 		for(int i = 0; i<N; i++)
 		{
-			v[j][i] = 0; // Vertical velocity at n+1
 			v0[j][i] = 0; // Vertical velocity at n
 			Rv0[j][i] = 0;
 		}
@@ -352,8 +350,8 @@ void intermediate_velocities (int N, int M, float rho, float mu, string method, 
 			// Mass flow terms (rho*v*S)
 			mflowe = (rho*u0[j][i+1]+rho*u0[j][i])*Sv[j]/2;
 			mfloww = (rho*u0[j][i-1]+rho*u0[j][i])*Sv[j]/2;
-			mflown = (rho*v0[j][i]+rho*v0[j+1][i])*Sh[i]/2;
-			mflows = (rho*v0[j][i]+rho*v0[j-1][i])*Sh[i]/2;
+			mflown = (rho*v0[j+1][i-1]+rho*v0[j+1][i])*Sh[i]/2;
+			mflows = (rho*v0[j][i-1]+rho*v0[j][i])*Sh[i]/2;
 			
 			
 			// HORIZONTAL
@@ -362,15 +360,36 @@ void intermediate_velocities (int N, int M, float rho, float mu, string method, 
 			un = convective_term (method, delta, yvc[j+1], y[j-1], y[j], y[j+1], y[j+2], u0[j-1][i], u0[j][i], u0[j+1][i], u0[j+2][i]);
 			us = convective_term (method, delta, yvc[j], y[j-2], y[j-1], y[j], y[j+1], u0[j-2][i], u0[j-1][i], u0[j][i], u0[j+1][i]);
 			
+			if(i==0)
+			{
+				mfloww = 0;
+				uw = 0;
+			}
+			if(i==N)
+			{
+				mflowe = 0;
+				ue = 0;
+			}
+			if(j==0)
+			{
+				mflows = 0;
+				us = 0;
+			}
+			if(j==M-1)
+			{
+				mflown = rho*1*Sh[i];
+				un = 1;
+			}
+			
 			
 			// R (horizontal)
 			if(i==0 && j==0)
 			{
-				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-(mflowe*ue+mflown*un);
+				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*u0[j][i]*Sh[i]/fabs(y[j]-yvc[j])-(mflowe*ue+mflown*un-mflows*us);
 			}
 			else if(i==0 && j==M-1)
 			{
-				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue-mflows*us);
+				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(1-u0[j][i])*Sh[i]/fabs(yvc[j+1]-y[j])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mflows*us);
 			}
 			else if(i==0 && j!=0 && j!=M-1)
 			{
@@ -378,11 +397,11 @@ void intermediate_velocities (int N, int M, float rho, float mu, string method, 
 			}
 			else if(i==N && j==0)
 			{
-				Ru[j][i] = mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-(mflown*un-mfloww*uw);
+				Ru[j][i] = mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*u0[j][i]*Sh[i]/fabs(y[j]-yvc[j])-(mflown*un-mfloww*uw-mflows*us);
 			}
 			else if(i==N && j==M-1)
 			{
-				Ru[j][i] = -mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(-mfloww*uw-mflows*us);
+				Ru[j][i] = mu*(1-u0[j][i])*Sh[i]/fabs(yvc[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflown*un-mfloww*uw-mflows*us);
 			}
 			else if(i==N && j!=0 && j!=M-1)
 			{
@@ -390,11 +409,11 @@ void intermediate_velocities (int N, int M, float rho, float mu, string method, 
 			}
 			else if(j==0 && i!=0 && i!=N)
 			{
-				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-(mflowe*ue+mflown*un-mfloww*uw);
+				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*u0[j][i]*Sh[i]/fabs(y[j]-yvc[j])-(mflowe*ue+mflown*un-mfloww*uw-mflows*us);
 			}
 			else if(j==M-1 && i!=0 && i!=N)
 			{
-				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue-mfloww*uw-mflows*us);
+				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(1-u0[j][i])*Sh[i]/fabs(yvc[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mfloww*uw-mflows*us);
 			}
 			else
 			{
@@ -413,8 +432,8 @@ void intermediate_velocities (int N, int M, float rho, float mu, string method, 
 		for(int j = 0; j<M+1; j++)
 		{
 			// Mass flow terms (rho*v*S)
-			mflowe = (rho*u0[j][i+1]+rho*u0[j][i])*Sv[j]/2;
-			mfloww = (rho*u0[j][i-1]+rho*u0[j][i])*Sv[j]/2;
+			mflowe = (rho*u0[j-1][i+1]+rho*u0[j][i+1])*Sv[j]/2;
+			mfloww = (rho*u0[j-1][i]+rho*u0[j][i])*Sv[j]/2;
 			mflown = (rho*v0[j][i]+rho*v0[j+1][i])*Sh[i]/2;
 			mflows = (rho*v0[j][i]+rho*v0[j-1][i])*Sh[i]/2;
 			
@@ -424,6 +443,28 @@ void intermediate_velocities (int N, int M, float rho, float mu, string method, 
 			vw = convective_term (method, delta, xvc[i], x[i-2], x[i-1], x[i], x[i+1], v0[j][i-2], v0[j][i-1], v0[j][i], v0[j][i+1]);
 			vn = convective_term (method, delta, y[j], yvc[j-1], yvc[j], yvc[j+1], yvc[j+2], v0[j-1][i], v0[j][i], v0[j+1][i], v0[j+2][i]);
 			vs = convective_term (method, delta, y[j-1], yvc[j-2], yvc[j-1], yvc[j], yvc[j+1], v0[j-2][i], v0[j-1][i], v0[j][i], v0[j+1][i]);
+			
+			if(i==0)
+			{
+				mfloww = 0;
+				uw = 0;
+			}
+			if(i==N-1)
+			{
+				mflowe = 0;
+				ue = 0;
+			}
+			if(j==0)
+			{
+				mflows = 0;
+				us = 0;
+			}
+			if(j==M)
+			{
+				mflown = 0;
+				un = 0;
+			}
+			
 			
 			// R (vertical)
 			if(i==0 && j==0)
@@ -476,7 +517,14 @@ void bp_coefficient (int N, int M, float rho, float dt, float* Sh, float* Sv, st
 	{
 		for(int j = 0; j<M; j++)
 		{
-			bp[j][i] = -(rho*up[j][i+1]*Sv[j]+rho*vp[j+1][i]*Sh[i]-rho*up[j][i]*Sv[j]-rho*vp[j][i]*Sh[i])/dt;
+			if(i==0 || i==N-1 || j==0 || j==M-1)
+			{
+				bp[j][i] = 0;
+			}
+			else
+			{
+				bp[j][i] = -(rho*up[j][i+1]*Sv[j]+rho*vp[j+1][i]*Sh[i]-rho*up[j][i]*Sv[j]-rho*vp[j][i]*Sh[i])/dt;
+			}
 		}
 	}
 }
@@ -586,14 +634,14 @@ void velocities (int N, int M, float rho, float dt, float uref, float* x, float*
 			{
 				u[j][i] = 0;
 			}
-			else if(j==0)
-			{
-				u[j][i] = 0;
-			}
-			else if(j==M-1)
-			{
-				u[j][i] = uref;
-			}
+//			else if(j==0)
+//			{
+//				u[j][i] = 0;
+//			}
+//			else if(j==M-1)
+//			{
+//				u[j][i] = uref;
+//			}
 			else
 			{
 				u[j][i] = up[j][i]-dt*(p[j][i]-p[j][i-1])/(rho*fabs(x[i]-x[i-1]));
@@ -614,14 +662,14 @@ void velocities (int N, int M, float rho, float dt, float uref, float* x, float*
 			{
 				v[j][i] = 0;
 			}
-			else if(i==0)
-			{
-				v[j][i] = 0;
-			}
-			else if(i==N-1)
-			{
-				v[j][i] = 0;
-			}
+//			else if(i==0)
+//			{
+//				v[j][i] = 0;
+//			}
+//			else if(i==N-1)
+//			{
+//				v[j][i] = 0;
+//			}
 			else
 			{
 				v[j][i] = vp[j][i]-dt*(p[j][i]-p[j-1][i])/(rho*fabs(y[j]-y[j-1]));

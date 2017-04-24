@@ -24,7 +24,7 @@ double max(double a, double b);
 double Aperator(string method, double P);
 void constant_coefficients (int N, int M, string method, float rho0, float gamma, float dt, float Sp, float *x, float *y, float *Sh, float *Sv, matrix V, mface mflowx, mface mflowy, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
 void bp_coefficient (int N, int M, float rho0, float dt, float Sc, float *x, double phi_boundary, double *phis, matrix phi0, matrix V, matrix& bp);
-void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float* x, float fr, float delta, int N, int M, matrix& T);
+void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float fr, float delta, int N, int M, matrix& T);
 void solver(string method, float rho, float gamma, float dt, float fr, float delta, float Sp, float Sc, double phi_boundary, double *phis, float *x, float *y, float *Sh, float *Sv, matrix V, mface mflowx, mface mflowy, float *xfinal, int index[2][11], double phi1[11]);
 void output_matrix(int N, int M, matrix mat);
 void output_file (matrix T, int N);
@@ -408,7 +408,7 @@ void bp_coefficient (int N, int M, float rho0, float dt, float Sc, float *x, dou
 
 
 // Solver (using Gauss-Seidel)
-void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float* x, float fr, float delta, int N, int M, matrix& T)
+void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float fr, float delta, int N, int M, matrix& T)
 {
 	double Tcalc[M][N]; // Temperature calculated in the previous iteration
 	for(int i = 0; i<N; i++)
@@ -535,7 +535,7 @@ void solver(string method, float rho, float gamma, float dt, float fr, float del
 		}
 		
 		bp_coefficient (N+2, M+2, rho, dt, Sc, x, phi_boundary, phis, phi0, V, bp);
-		Gauss_Seidel (ap, aw, ae, as, an, bp, x, fr, delta, N+2, M+2, phi);
+		Gauss_Seidel (ap, aw, ae, as, an, bp, fr, delta, N+2, M+2, phi);
 		
 		resta = 0;
 		for(int i = 0; i<N+2; i++)

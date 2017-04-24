@@ -5,8 +5,8 @@
 using namespace std;
 
 // Numerical parameters
-const int N = 10;
-const int M = 10;
+const int N = 100;
+const int M = 100;
 
 typedef double matrix[M][N];
 typedef double staggx[M][N+1];
@@ -33,7 +33,7 @@ int main()
 	
 	
 	string method = "CDS";
-	float delta = 0.001; // Precision of the simulation
+	float delta = 0.000001; // Precision of the simulation
 	float fr = 1; // Relaxation factor
 	
 	// Coordinates
@@ -61,13 +61,13 @@ int main()
 		{
 			if(j==M-1)
 			{
-				u[j][i] = uref; // Horizontal velocity
+				u0[j][i] = uref; // Horizontal velocity
 			}
 			else
 			{
-				u[j][i] = 0; // Horizontal velocity at n+1
+				u0[j][i] = 0; // Horizontal velocity at n+1
 			}
-			u0[j][i] = 0; // Horizontal velocity at n
+//			u0[j][i] = 0; // Horizontal velocity at n
 			Ru0[j][i] = 0;
 		}
 	}
@@ -94,7 +94,7 @@ int main()
 	double ue, uw, un, us; // Horizontal velocities
 	double ve, vw, vn, vs; // Vertical velocities
 	matrix up, vp; // Intermediate velocities
-	
+	int t = 0;
 	
 	while(resta>delta)
 	{
@@ -107,8 +107,8 @@ int main()
 				// Mass flow terms (rho*v*S)
 				mflowe = (rho*u0[j][i+1]+rho*u0[j][i])*Sv[j]/2;
 				mfloww = (rho*u0[j][i-1]+rho*u0[j][i])*Sv[j]/2;
-				mflown = (rho*v0[j][i]+rho*v0[j+1][i])*Sh[i]/2;
-				mflows = (rho*v0[j][i]+rho*v0[j-1][i])*Sh[i]/2;
+				mflown = (rho*v0[j+1][i-1]+rho*v0[j+1][i])*Sh[i]/2;
+				mflows = (rho*v0[j][i-1]+rho*v0[j][i])*Sh[i]/2;
 				
 				
 				// HORIZONTAL
@@ -165,8 +165,8 @@ int main()
 			for(int j = 0; j<M+1; j++)
 			{
 				// Mass flow terms (rho*v*S)
-				mflowe = (rho*u0[j][i+1]+rho*u0[j][i])*Sv[j]/2;
-				mfloww = (rho*u0[j][i-1]+rho*u0[j][i])*Sv[j]/2;
+				mflowe = (rho*u0[j-1][i]+rho*u0[j][i])*Sv[j]/2;
+				mfloww = (rho*u0[j-1][i+1]+rho*u0[j][i+1])*Sv[j]/2;
 				mflown = (rho*v0[j][i]+rho*v0[j+1][i])*Sh[i]/2;
 				mflows = (rho*v0[j][i]+rho*v0[j-1][i])*Sh[i]/2;
 				
@@ -227,7 +227,15 @@ int main()
 		{
 			for(int j = 0; j<M; j++)
 			{
-				bp[j][i] = -(rho*up[j][i+1]*Sv[j]+rho*vp[j+1][i]*Sh[i]-rho*up[j][i]*Sv[j]-rho*vp[j][i]*Sh[i])/dt;
+				if(i==0 || i==N-1 || j==0 || j==M-1)
+				{
+					bp[j][i] = 0;
+				}
+				else
+				{
+					bp[j][i] = -(rho*up[j][i+1]*Sv[j]+rho*vp[j+1][i]*Sh[i]-rho*up[j][i]*Sv[j]-rho*vp[j][i]*Sh[i])/dt;
+				}
+//				bp[j][i] = -(rho*up[j][i+1]*Sv[j]+rho*vp[j+1][i]*Sh[i]-rho*up[j][i]*Sv[j]-rho*vp[j][i]*Sh[i])/dt;
 			}
 		}
 		Gauss_Seidel (ap, aw, ae, as, an, bp, x, fr, delta, N, M, p);
@@ -240,11 +248,7 @@ int main()
 		{
 			for(int j = 0; j<M; j++)
 			{
-				if(i==0)
-				{
-					u[j][i] = 0;
-				}
-				else if(i==N)
+				if(i==0 || i==N || j==0)
 				{
 					u[j][i] = 0;
 				}
@@ -264,11 +268,7 @@ int main()
 		{
 			for(int j = 0; j<M+1; j++)
 			{
-				if(j==0)
-				{
-					v[j][i] = 0;
-				}
-				else if(j==M)
+				if(j==0 || j==M || i==0 || i==N-1)
 				{
 					v[j][i] = 0;
 				}
@@ -358,11 +358,11 @@ int main()
     results.open("Resultats.dat");
     for(int j = M-1; j>=0; j--)
     {
-    	for(int i = 0; i<N; i++)
+    	for(int i = 0; i<N+1; i++)
     	{
     		if(x[i]>=0)
     		{
-    			results<<p[j][i]<<"	";
+    			results<<u[j][i]<<"	";
 			}
 		}
 		results<<endl;
@@ -506,7 +506,7 @@ double convective_term (string method, float delta, float xf, float x1, float x2
 	
 	if(method=="CDS")
 	{
-		u = 0.5*(u2+u3);
+		u = (u2+u3)/fabs(x3-x2);
 	}
 	else if(method=="UDS")
 	{
