@@ -15,7 +15,7 @@ typedef double staggy[M+1][N+2];
 void coordinates(float L, int N, float xvc[], float x[]);
 void surface(float *yvc, int M, float Sv[]);
 void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
-double convective_term (string method, float delta, float xf, float x1, float x2, float x3, float x4, double u1, double u2, double u3, double u4);
+double convective_term (string method, float xf, float x2, float x3, double u2, double u3);
 void intermediate_velocities (int N, int M, float rho, float mu, string method, float delta, float dt, float* x, float* y, float *xvc, float* yvc, float* Sh, float* Sv, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp);
 void bp_coefficient (int N, int M, float rho, float dt, float* Sh, float* Sv, staggx up, staggy vp, matrix bp);
 void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float fr, float delta, int N, int M, matrix& T);
@@ -36,7 +36,7 @@ int main()
 	
 	
 	string method = "CDS";
-	float delta = 0.000001; // Precision of the simulation
+	float delta = 0.00001; // Precision of the simulation
 	float fr = 1; // Relaxation factor
 	
 	// Coordinates
@@ -152,7 +152,6 @@ int main()
 				Rv0[j][i] = Rv[j][i];
 			}
 		}
-//		resta = 0;
 	}
 	
 	ofstream resultats;
@@ -169,9 +168,9 @@ int main()
 	
 	ofstream results;
     results.open("Results.dat");
-    for(int i = 0; i<M+2; i++)
+    for(int i = M+1; i>=0; i--)
     {
-    	results<<x[i]<<"	"<<up[i][N/2]<<endl;
+    	results<<x[i]<<"	"<<u[i][N/2]<<endl;
 	}
     results.close();
 	
@@ -221,18 +220,18 @@ void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *S
 			}
 			else if(i==0 && j==0)
 			{
-				ae[j][i] = 0;
+				ae[j][i] = 1;
 				aw[j][i] = 0;
-				an[j][i] = 0;
+				an[j][i] = 1;
 				as[j][i] = 0;
 				ap[j][i] = 1;
 			}
 			else if(i==0 && j==M-1)
 			{
-				ae[j][i] = 0;
+				ae[j][i] = 1;
 				aw[j][i] = 0;
 				an[j][i] = 0;
-				as[j][i] = 0;
+				as[j][i] = 1;
 				ap[j][i] = 1;
 			}
 			else if(i==0 && j!=0 && j!=M-1)
@@ -246,17 +245,17 @@ void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *S
 			else if(i==N-1 && j==0)
 			{
 				ae[j][i] = 0;
-				aw[j][i] = 0;
-				an[j][i] = 0;
+				aw[j][i] = 1;
+				an[j][i] = 1;
 				as[j][i] = 0;
 				ap[j][i] = 1;
 			}
 			else if(i==N-1 && j==M-1)
 			{
 				ae[j][i] = 0;
-				aw[j][i] = 0;
+				aw[j][i] = 1;
 				an[j][i] = 0;
-				as[j][i] = 0;
+				as[j][i] = 1;
 				ap[j][i] = 1;
 			}
 			else if(i==N-1 && j!=0 && j!=M-1)
@@ -288,12 +287,10 @@ void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *S
 }
 
 
-double convective_term (string method, float delta, float xf, float x1, float x2, float x3, float x4, double u1, double u2, double u3, double u4)
+double convective_term (string method, float xf, float x2, float x3, double u2, double u3)
 {
-	// 1 refers to node W, 2 to node P, 3 to node E, and 4 to node EE
-	double u, ud, uu, uuu;
-	float xd, xu, xuu;
-	float resta = 1;
+	// 2 refers to node P, 3 to node E
+	double u;
 	
 	if(method=="CDS")
 	{
@@ -312,32 +309,6 @@ double convective_term (string method, float delta, float xf, float x1, float x2
 			fe = 1;
 		}
 		u = u2+fe*(u3-u2);
-	}
-	else if(method=="QUICK")
-	{
-		// Aquest encara menys
-		float g1, g2;
-		if(u3>0)
-		{
-			ud = u3;
-			uu = u2;
-			uuu = u1;
-			xd = x3;
-			xu = x2;
-			xuu = x1;
-		}
-		else
-		{
-			ud = u2;
-			uu = u3;
-			uuu = u4;
-			xd = x2;
-			xu = x3;
-			xuu = x4;
-		}
-		g1 = (xf-xu)*(xf-xuu)/((xd-xu)*(xd-xuu));
-		g2 = (xf-xu)*(xd-xf)/((xu-xuu)*(xd-xuu));
-		u = uu+g1*(ud-uu)+g2*(uu-uuu);
 	}
 	return u;
 }
@@ -360,49 +331,49 @@ void intermediate_velocities (int N, int M, float rho, float mu, string method, 
 			
 			
 			// HORIZONTAL
-			ue = convective_term (method, delta, x[i+1], xvc[i-1], xvc[i], xvc[i+1], xvc[i+2], u0[j][i-1], u0[j][i], u0[j][i+1], u0[j][i+2]);
-			uw = convective_term (method, delta, x[i], xvc[i+1], xvc[i], xvc[i-1], xvc[i-2], u0[j][i+1], u0[j][i], u0[j][i-1], u0[j][i-2]);
-			un = convective_term (method, delta, yvc[j], y[j-1], y[j], y[j+1], y[j+2], u0[j-1][i], u0[j][i], u0[j+1][i], u0[j+2][i]);
-			us = convective_term (method, delta, yvc[j-1], y[j+1], y[j], y[j-1], y[j-2], u0[j+1][i], u0[j][i], u0[j-1][i], u0[j-2][i]);
+			ue = convective_term (method, x[i+1], xvc[i], xvc[i+1], u0[j][i], u0[j][i+1]);
+			uw = convective_term (method, x[i], xvc[i], xvc[i-1], u0[j][i], u0[j][i-1]);
+			un = convective_term (method, yvc[j], y[j], y[j+1], u0[j][i], u0[j+1][i]);
+			us = convective_term (method, yvc[j-1], y[j], y[j-1], u0[j][i], u0[j-1][i]);
 			
 			
 			// R (horizontal)
-//			if(i==0 && j==0)
-//			{
-//				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-(mflowe*ue+mflown*un);
-//			}
-//			else if(i==0 && j==M+1)
-//			{
-//				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue-mflows*us);
-//			}
-//			else if(i==0 && j!=0 && j!=M+1)
-//			{
-//				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mflows*us);
-//			}
-//			else if(i==N && j==0)
-//			{
-//				Ru[j][i] = mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-(mflown*un-mfloww*uw);
-//			}
-//			else if(i==N && j==M+1)
-//			{
-//				Ru[j][i] = -mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(-mfloww*uw-mflows*us);
-//			}
-//			else if(i==N && j!=0 && j!=M+1)
-//			{
-//				Ru[j][i] = mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflown*un-mfloww*uw-mflows*us);
-//			}
-//			else if(j==0 && i!=0 && i!=N)
-//			{
-//				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-(mflowe*ue+mflown*un-mfloww*uw);
-//			}
-//			else if(j==M+1 && i!=0 && i!=N)
-//			{
-//				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue-mfloww*uw-mflows*us);
-//			}
-			if(i==0 || i==N || j==0 || j==M+1)
+			if(i==0 && j==0)
 			{
-				Ru[j][i] = 0;
+				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-(mflowe*ue+mflown*un);
 			}
+			else if(i==0 && j==M+1)
+			{
+				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue-mflows*us);
+			}
+			else if(i==0 && j!=0 && j!=M+1)
+			{
+				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mflows*us);
+			}
+			else if(i==N && j==0)
+			{
+				Ru[j][i] = mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-(mflown*un-mfloww*uw);
+			}
+			else if(i==N && j==M+1)
+			{
+				Ru[j][i] = -mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(-mfloww*uw-mflows*us);
+			}
+			else if(i==N && j!=0 && j!=M+1)
+			{
+				Ru[j][i] = mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflown*un-mfloww*uw-mflows*us);
+			}
+			else if(j==0 && i!=0 && i!=N)
+			{
+				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-(mflowe*ue+mflown*un-mfloww*uw);
+			}
+			else if(j==M+1 && i!=0 && i!=N)
+			{
+				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue-mfloww*uw-mflows*us);
+			}
+//			if(i==0 || i==N || j==0 || j==M+1)
+//			{
+//				Ru[j][i] = 0;
+//			}
 			else
 			{
 				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mfloww*uw-mflows*us);
@@ -427,48 +398,48 @@ void intermediate_velocities (int N, int M, float rho, float mu, string method, 
 			
 			
 			// VERTICAL
-			ve = convective_term (method, delta, xvc[i], x[i-1], x[i], x[i+1], x[i+2], v0[j][i-1], v0[j][i], v0[j][i+1], v0[j][i+2]);
-			vw = convective_term (method, delta, xvc[i-1], x[i+1], x[i], x[i-1], x[i-2], v0[j][i+1], v0[j][i], v0[j][i-1], v0[j][i-2]);
-			vn = convective_term (method, delta, y[j+1], yvc[j-1], yvc[j], yvc[j+1], yvc[j+2], v0[j-1][i], v0[j][i], v0[j+1][i], v0[j+2][i]);
-			vs = convective_term (method, delta, y[j], yvc[j+1], yvc[j], yvc[j-1], yvc[j-2], v0[j+1][i], v0[j][i], v0[j-1][i], v0[j-2][i]);
+			ve = convective_term (method, xvc[i], x[i], x[i+1], v0[j][i], v0[j][i+1]);
+			vw = convective_term (method, xvc[i-1], x[i], x[i-1], v0[j][i], v0[j][i-1]);
+			vn = convective_term (method, y[j+1], yvc[j], yvc[j+1], v0[j][i], v0[j+1][i]);
+			vs = convective_term (method, y[j], yvc[j], yvc[j-1], v0[j][i], v0[j-1][i]);
 			
 			// R (vertical)
-//			if(i==0 && j==0)
-//			{
-//				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-(mflowe*ve+mflown*vn);
-//			}
-//			else if(i==0 && j==M)
-//			{
-//				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve-mflows*vs);
-//			}
-//			else if(i==0 && j!=0 && j!=M)
-//			{
-//				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mflows*vs);
-//			}
-//			else if(i==N+1 && j==0)
-//			{
-//				Rv[j][i] = mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-(mflown*vn-mfloww*vw);
-//			}
-//			else if(i==N+1 && j==M)
-//			{
-//				Rv[j][i] = -mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(-mfloww*vw-mflows*vs);
-//			}
-//			else if(i==N+1 && j!=0 && j!=M)
-//			{
-//				Rv[j][i] = mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflown*vn-mfloww*vw-mflows*vs);
-//			}
-//			else if(j==0 && i!=0 && i!=N+1)
-//			{
-//				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-(mflowe*ve+mflown*vn-mfloww*vw);
-//			}
-//			else if(j==M && i!=0 && i!=N+1)
-//			{
-//				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve-mfloww*vw-mflows*vs);
-//			}
-			if(i==0 || i==N+1 || j==0 || j==M)
+			if(i==0 && j==0)
 			{
-				Rv[j][i] = 0;
+				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-(mflowe*ve+mflown*vn);
 			}
+			else if(i==0 && j==M)
+			{
+				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve-mflows*vs);
+			}
+			else if(i==0 && j!=0 && j!=M)
+			{
+				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mflows*vs);
+			}
+			else if(i==N+1 && j==0)
+			{
+				Rv[j][i] = mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-(mflown*vn-mfloww*vw);
+			}
+			else if(i==N+1 && j==M)
+			{
+				Rv[j][i] = -mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(-mfloww*vw-mflows*vs);
+			}
+			else if(i==N+1 && j!=0 && j!=M)
+			{
+				Rv[j][i] = mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflown*vn-mfloww*vw-mflows*vs);
+			}
+			else if(j==0 && i!=0 && i!=N+1)
+			{
+				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-(mflowe*ve+mflown*vn-mfloww*vw);
+			}
+			else if(j==M && i!=0 && i!=N+1)
+			{
+				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve-mfloww*vw-mflows*vs);
+			}
+//			if(i==0 || i==N+1 || j==0 || j==M)
+//			{
+//				Rv[j][i] = 0;
+//			}
 			else
 			{
 				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mfloww*vw-mflows*vs);
@@ -487,7 +458,7 @@ void bp_coefficient (int N, int M, float rho, float dt, float* Sh, float* Sv, st
 	{
 		for(int j = 0; j<M; j++)
 		{
-			if(i==0 || i==N-1 || j==0 || j==M-1)
+			if(i==1 || i==N-1 || j==0 || j==M-1)
 			{
 				bp[j][i] = 0;
 			}
@@ -676,17 +647,4 @@ double time_step (float dtd, float* x, float* y, staggx u, staggy v)
 	}
 	dt = min(dtc, dtd);
 	return dt;
-}
-
-
-void output_matrix(int N, int M, matrix mat)
-{
-	for(int j = M-1; j>=0; j--)
-	{
-		for(int i = 0; i<N; i++)
-		{
-			cout<<mat[j][i]<<"	";
-		}
-		cout<<endl;
-	}
 }
