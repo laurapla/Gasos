@@ -14,30 +14,27 @@ complex<double> function(int k, int N, double Re, double F, vector<complex<doubl
 
 int main()
 {
-	int N = 20;
-	double Re = 40;
+	const int N = 20;
+	const double Re = 40;
 	double F = 0;
 	
-	double delta = 0.00001;
-	double dt = 0.1*Re/pow(N,2);
+	double delta = 0.0001;
+	double dt = 0.005*Re/pow(N,2);
 	
 	vector<complex<double> > u(N);
 	vector<complex<double> > u0(N);
 	vector<complex<double> > uant(N);
 	
-	for(double k = 1; k<N; k++)
+	for(double k = 0; k<N; k++)
 	{
-		u0[k] = 1/k;
-		u[k] = u0[k];
-		uant[k] = u[k];
+		u0[k] = 1/(k+1); // u at n
+		u[k] = u0[k]; // u at n+1
+		uant[k] = u[k]; // calculated u at n+1
 	}
 	
 	complex<double> resta;
 	double MAX = 1;
 	double MAX2;
-	
-	complex<double> diff;
-	complex<double> conv;
 	
 	
 	double t = 0;
@@ -49,21 +46,21 @@ int main()
 		
 		for(int k = 1; k<N; k++)
 		{
-			u[k] = u0[k]+(1.5*function(k, N, Re, F, u)-0.5*function(k, N, Re, F, u0));
+			u[k] = u0[k]+(diffusive(k, Re, u0[k])-convective(k, N, u0)+F)*dt;
 		}
 		
 		// Comprovation
 		MAX = 0;
-		for(int k = 0; k<N; k++)
+		for(int k = 1; k<N; k++)
 		{
-			resta = u[k]-u0[k];
+			resta = (u[k]-u0[k])/dt;
 			if(abs(resta)>MAX)
 			{
 				MAX = abs(resta);
 			}
 		}
-		cout<<MAX;
-		for(int k = 0; k<N; k++)
+//		cout<<MAX;
+		for(int k = 1; k<N; k++)
 		{
 			u0[k] = u[k];
 		}
@@ -78,9 +75,9 @@ int main()
 	
 	ofstream results;
     results.open("Results.dat");
-    for(int k = 1; k<N; k++)
+    for(int k = 0; k<N; k++)
     {
-    	results<<k<<"	"<<E[k]<<endl;
+    	results<<k+1<<"	"<<E[k]<<endl;
 	}
     results.close();
 	
@@ -92,7 +89,7 @@ int main()
 
 complex<double> diffusive(int k, double Re, complex<double> u)
 {
-	return -pow(k,2)*u/Re;
+	return -pow(k+1,2)*u/Re;
 }
 
 
@@ -101,22 +98,29 @@ complex<double> convective(int k, int N, vector<complex<double> > u)
 	complex<double> conv (0,0);
 	complex<double> i(0,1);
 	
-	for(int p = -N+1; p<N; p++)
+	for(int p = -N; p<=N; p++)
 	{
-		int q = k-p;
-		if(q>-N && q<N)
+		int q = k+1-p;
+		if(q>=-N && q<=N)
 		{
 			int qu = q;
 			int pu = p;
-			if(qu<0)
+			
+			if(qu==0 || pu==0){}
+			else if(qu<0)
 			{
 				qu = -q;
+				conv = conv+u[pu-1]*i*double(q)*conj(u[qu-1]);
 			}
-			if(pu<0)
+			else if(pu<0)
 			{
 				pu = -p;
+				conv = conv+conj(u[pu-1])*i*double(q)*u[qu-1];
 			}
-			conv = conv+u[pu]*i*double(q)*u[qu];
+			else
+			{
+				conv = conv+u[pu-1]*i*double(q)*u[qu-1];
+			}
 		}
 	}
 	return conv;
