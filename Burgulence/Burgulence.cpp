@@ -7,19 +7,20 @@
 using namespace std;
 
 
-complex<double> diffusive(int k, int N, double Re, vector<complex<double> > u, bool LES);
+complex<double> diffusive(int k, int N, double Re, vector<complex<double> > u, bool LES, float CK);
 complex<double> convective(int k, int N, vector<complex<double> > u);
 
 
 
 int main()
 {
-	const int N = 101;
+	const int N = 21;
 	const double Re = 40; // Reynolds number
 	bool LES = 1; // 1 is LES, 0 is DNS
 	double F = 0; // Source term (in Fourier space)
 	
 	double delta = 1e-5; // Precision of the simulation
+	float CK = 0.4523; // Kolgomorov constant
 	float C1 = 0.01;
 	double dt = C1*Re/pow(N,2); // Increment of time
 	
@@ -44,7 +45,7 @@ int main()
 		
 		for(int k = 1; k<N; k++)
 		{
-			u[k] = u0[k]+(diffusive(k, N, Re, u0, LES)-convective(k, N, u0)+F)*dt;
+			u[k] = u0[k]+(diffusive(k, N, Re, u0, LES, CK)-convective(k, N, u0)+F)*dt;
 		}
 		
 		// Comprovation
@@ -85,7 +86,7 @@ int main()
 
 
 
-complex<double> diffusive(int k, int N, double Re, vector<complex<double> > u, bool LES)
+complex<double> diffusive(int k, int N, double Re, vector<complex<double> > u, bool LES, float CK)
 {
 	if(!LES)
 	{
@@ -94,16 +95,15 @@ complex<double> diffusive(int k, int N, double Re, vector<complex<double> > u, b
 	else
 	{
 		int m = 2; // Slope of the energy spectrum
-		float CK = 0.4523; // Kolgomorov constant
 		
 		double viscosity;
 		double eddy; // Eddy-viscosity
 		double vinf;
 		double vnon;
-		double EkN = abs(u[k]*conj(u[k])); //Energy at the cutoff frequency
+		double EkN = abs(u[N-1]*conj(u[N-1])); //Energy at the cutoff frequency
 		
 		vinf = 0.31*(5-m)*sqrt(3-m)*pow(CK,-3/2)/(m+1);
-		vnon = 1+34.5*exp(-3.03*N/(k));
+		vnon = 1+34.5*exp(-3.03*N/k);
 		eddy = vinf*sqrt(EkN/N)*vnon;
 		viscosity = 1/Re+eddy;
 		return -pow(k+1,2)*u[k]*viscosity;
