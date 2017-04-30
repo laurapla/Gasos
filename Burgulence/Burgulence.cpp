@@ -20,7 +20,7 @@ int main()
 	double F = 0; // Source term (in Fourier space)
 	
 	double delta = 1e-5; // Precision of the simulation
-	float C1 = 0.02;
+	float C1 = 0.01;
 	double dt = C1*Re/pow(N,2); // Increment of time
 	
 	vector<complex<double> > u(N);
@@ -41,7 +41,6 @@ int main()
 	while(MAX>delta)
 	{
 		t = t+dt;
-//		cout<<endl<<t<<":"<<endl;
 		
 		for(int k = 1; k<N; k++)
 		{
@@ -58,12 +57,13 @@ int main()
 				MAX = abs(resta);
 			}
 		}
-//		cout<<MAX;
+		
 		for(int k = 1; k<N; k++)
 		{
 			u0[k] = u[k];
 		}
 	}
+	cout<<"Steady state reached at t="<<t;
 	
 	vector<double> E(N);
 	for(int k = 0; k<N; k++)
@@ -100,11 +100,11 @@ complex<double> diffusive(int k, int N, double Re, vector<complex<double> > u, b
 		double eddy; // Eddy-viscosity
 		double vinf;
 		double vnon;
-		double EkN = abs(u[N-1]*conj(u[N-1])); //Energy at the cutoff frequency
+		double EkN = abs(u[k]*conj(u[k])); //Energy at the cutoff frequency
 		
 		vinf = 0.31*(5-m)*sqrt(3-m)*pow(CK,-3/2)/(m+1);
-		vnon = 1+34.5*exp(-3.03*(N-1)/k);
-		eddy = vinf*pow(EkN/(N-1),1/2)*vnon;
+		vnon = 1+34.5*exp(-3.03*N/(k));
+		eddy = vinf*sqrt(EkN/N)*vnon;
 		viscosity = 1/Re+eddy;
 		return -pow(k+1,2)*u[k]*viscosity;
 	}
