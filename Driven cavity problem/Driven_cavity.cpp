@@ -15,7 +15,7 @@ typedef double staggy[M+1][N];
 void coordinates(float dx, int N, float xvc[], float x[]);
 void surface(float *yvc, int M, float Sv[]);
 void volume(float *xvc, float *yvc, int N, int M, matrix& V);
-void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
+void constant_coefficients(int N, int M, float *x, float *y, float *xvc, float *yvc, float *Sv, float *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
 double convective_term (string method, float delta, float xf, float x1, float x2, float x3, float x4, double u1, double u2, double u3, double u4);
 void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float* x, float fr, float delta, int N, int M, matrix& T);
 double min(double a, double b);
@@ -33,7 +33,7 @@ int main()
 	
 	
 	string method = "CDS";
-	float delta = 0.000001; // Precision of the simulation
+	float delta = 1e-6; // Precision of the simulation
 	float fr = 1; // Relaxation factor
 	
 	// Coordinates
@@ -59,15 +59,15 @@ int main()
 	{
 		for(int i = 0; i<N+1; i++)
 		{
-			if(j==M-1)
-			{
-				u0[j][i] = uref; // Horizontal velocity
-			}
-			else
-			{
-				u0[j][i] = 0; // Horizontal velocity at n+1
-			}
-//			u0[j][i] = 0; // Horizontal velocity at n
+//			if(j==M-1)
+//			{
+//				u0[j][i] = uref; // Horizontal velocity
+//			}
+//			else
+//			{
+//				u0[j][i] = 0; // Horizontal velocity at n+1
+//			}
+			u0[j][i] = 0; // Horizontal velocity at n
 			Ru0[j][i] = 0;
 		}
 	}
@@ -75,7 +75,6 @@ int main()
 	{
 		for(int i = 0; i<N; i++)
 		{
-			v[j][i] = 0; // Vertical velocity at n+1
 			v0[j][i] = 0; // Vertical velocity at n
 			Rv0[j][i] = 0;
 		}
@@ -83,7 +82,7 @@ int main()
 	
 	// Calculation of the constant coefficients that are used to determine the pressure
 	matrix ae, aw, an, as, ap, bp;
-	constant_coefficients(N, M, x, y, Sv, Sh, ae, aw, an, as, ap);
+	constant_coefficients(N, M, x, y, xvc, yvc, Sv, Sh, ae, aw, an, as, ap);
 	
 	double resta = 1;
 	double dtd = 0.2*rho*pow(x[1]-xvc[1],2)/mu;
@@ -99,7 +98,7 @@ int main()
 	while(resta>delta)
 	{
 		// STEP 1 !!! : INTERMEDIATE VELOCITY
-		cout<<"Intermediate Velocity	";
+//		cout<<"Intermediate Velocity	";
 		for(int i = 0; i<N+1; i++)
 		{
 			for(int j = 0; j<M; j++)
@@ -112,10 +111,10 @@ int main()
 				
 				
 				// HORIZONTAL
-				ue = convective_term (method, delta, x[i+1], xvc[i-1], xvc[i], xvc[i+1], xvc[i+2], u0[j][i-1], u0[j][i], u0[j][i+1], u0[j][i+2]);
-				uw = convective_term (method, delta, x[i], xvc[i-2], xvc[i-1], xvc[i], xvc[i+1], u0[j][i-2], u0[j][i-1], u0[j][i], u0[j][i+1]);
-				un = convective_term (method, delta, yvc[j], y[j-1], y[j], y[j+1], y[j+2], u0[j-1][i], u0[j][i], u0[j+1][i], u0[j+2][i]);
-				us = convective_term (method, delta, yvc[j-1], y[j-2], y[j-1], y[j], y[j+1], u0[j-2][i], u0[j-1][i], u0[j][i], u0[j+1][i]);
+				ue = convective_term (method, delta, x[i], xvc[i-1], xvc[i], xvc[i+1], xvc[i+2], u0[j][i-1], u0[j][i], u0[j][i+1], u0[j][i+2]);
+				uw = convective_term (method, delta, x[i-1], xvc[i-2], xvc[i-1], xvc[i], xvc[i+1], u0[j][i-2], u0[j][i-1], u0[j][i], u0[j][i+1]);
+				un = convective_term (method, delta, yvc[j+1], y[j-1], y[j], y[j+1], y[j+2], u0[j-1][i], u0[j][i], u0[j+1][i], u0[j+2][i]);
+				us = convective_term (method, delta, yvc[j], y[j-2], y[j-1], y[j], y[j+1], u0[j-2][i], u0[j-1][i], u0[j][i], u0[j+1][i]);
 				
 				
 				// R (horizontal)
@@ -149,7 +148,7 @@ int main()
 				}
 				else if(j==M-1 && i!=0 && i!=N)
 				{
-					Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue-mfloww*uw-mflows*us);
+					Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(1-u0[j][i])*Sh[i]/fabs(yvc[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue-mfloww*uw-mflows*us);
 				}
 				else
 				{
@@ -165,8 +164,8 @@ int main()
 			for(int j = 0; j<M+1; j++)
 			{
 				// Mass flow terms (rho*v*S)
-				mflowe = (rho*u0[j-1][i]+rho*u0[j][i])*Sv[j]/2;
-				mfloww = (rho*u0[j-1][i+1]+rho*u0[j][i+1])*Sv[j]/2;
+				mflowe = (rho*u0[j-1][i+1]+rho*u0[j][i+1])*Sv[j]/2;
+				mfloww = (rho*u0[j-1][i]+rho*u0[j][i])*Sv[j]/2;
 				mflown = (rho*v0[j][i]+rho*v0[j+1][i])*Sh[i]/2;
 				mflows = (rho*v0[j][i]+rho*v0[j-1][i])*Sh[i]/2;
 				
@@ -174,8 +173,8 @@ int main()
 				// VERTICAL
 				ve = convective_term (method, delta, xvc[i+1], x[i-1], x[i], x[i+1], x[i+2], v0[j][i-1], v0[j][i], v0[j][i+1], v0[j][i+2]);
 				vw = convective_term (method, delta, xvc[i], x[i-2], x[i-1], x[i], x[i+1], v0[j][i-2], v0[j][i-1], v0[j][i], v0[j][i+1]);
-				vn = convective_term (method, delta, y[j+1], yvc[j-1], yvc[j], yvc[j+1], yvc[j+2], v0[j-1][i], v0[j][i], v0[j+1][i], v0[j+2][i]);
-				vs = convective_term (method, delta, y[j], yvc[j-2], yvc[j-1], yvc[j], yvc[j+1], v0[j-2][i], v0[j-1][i], v0[j][i], v0[j+1][i]);
+				vn = convective_term (method, delta, y[j], yvc[j-1], yvc[j], yvc[j+1], yvc[j+2], v0[j-1][i], v0[j][i], v0[j+1][i], v0[j+2][i]);
+				vs = convective_term (method, delta, y[j-1], yvc[j-2], yvc[j-1], yvc[j], yvc[j+1], v0[j-2][i], v0[j-1][i], v0[j][i], v0[j+1][i]);
 				
 				// R (vertical)
 				if(i==0 && j==0)
@@ -222,39 +221,38 @@ int main()
 		
 		
 		// STEP 2 !!! : PRESSURE
-		cout<<"Pressure	";
+//		cout<<"Pressure	";
 		for(int i = 0; i<N; i++)
 		{
 			for(int j = 0; j<M; j++)
 			{
-				if(i==0 || i==N-1 || j==0 || j==M-1)
+				if(i==N-1)
 				{
-					bp[j][i] = 0;
+					bp[j][i] = -(rho*vp[j+1][i]*Sh[i]-rho*up[j][i]*Sv[j]-rho*vp[j][i]*Sh[i])/dt;
+				}
+				else if(j==M-1)
+				{
+					bp[j][i] = -(rho*up[j][i+1]*Sv[j]-rho*up[j][i]*Sv[j]-rho*vp[j][i]*Sh[i])/dt;
 				}
 				else
 				{
 					bp[j][i] = -(rho*up[j][i+1]*Sv[j]+rho*vp[j+1][i]*Sh[i]-rho*up[j][i]*Sv[j]-rho*vp[j][i]*Sh[i])/dt;
 				}
-//				bp[j][i] = -(rho*up[j][i+1]*Sv[j]+rho*vp[j+1][i]*Sh[i]-rho*up[j][i]*Sv[j]-rho*vp[j][i]*Sh[i])/dt;
 			}
 		}
 		Gauss_Seidel (ap, aw, ae, as, an, bp, x, fr, delta, N, M, p);
 		
 		
 		// STEP 3 !!! : VELOCITY
-		cout<<"Velocity	";
+//		cout<<"Velocity	";
 		// Horizontal velocity
 		for(int i = 0; i<N+1; i++)
 		{
 			for(int j = 0; j<M; j++)
 			{
-				if(i==0 || i==N || j==0)
+				if(i==0 || i==N)
 				{
 					u[j][i] = 0;
-				}
-				else if(j==M-1)
-				{
-					u[j][i] = uref;
 				}
 				else
 				{
@@ -268,7 +266,7 @@ int main()
 		{
 			for(int j = 0; j<M+1; j++)
 			{
-				if(j==0 || j==M || i==0 || i==N-1)
+				if(j==0 || j==M)
 				{
 					v[j][i] = 0;
 				}
@@ -281,20 +279,20 @@ int main()
 		
 		
 		// STEP 4 !!! : TIME STEP
-		cout<<"Time Step	";
+//		cout<<"Time Step	";
 		dtc = 100;
-		for(int i = 0; i<N+1; i++)
+		for(int i = 1; i<N; i++)
 		{
-			for(int j = 0; j<M; j++)
+			for(int j = 1; j<M+1; j++)
 			{
-				dtc = min(dtc, 0.35*fabs(x[3]-x[2])/fabs(u[j][i]));
+				dtc = min(dtc, 0.35*fabs(x[i+1]-x[i])/fabs(u[j][i]));
 			}
 		}
-		for(int i = 0; i<N; i++)
+		for(int i = 1; i<N+1; i++)
 		{
-			for(int j = 0; j<M+1; j++)
+			for(int j = 1; j<M; j++)
 			{
-				dtc = min(dtc, 0.35*fabs(y[3]-y[2])/fabs(v[j][i]));
+				dtc = min(dtc, 0.35*fabs(y[j+1]-y[j])/fabs(v[j][i]));
 			}
 		}
 		dt = min(dtc, dtd);
@@ -316,7 +314,7 @@ int main()
 				resta = max(resta, fabs(v[j][i]-v0[j][i]));
 			}
 		}
-		cout<<resta<<endl;
+//		cout<<resta<<endl;
 		
 		// New time step
 		for(int i = 0; i<N+1; i++)
@@ -338,37 +336,51 @@ int main()
 	}
 	
 	
-//	for(int j = M-1; j>=0; j--)
-//	{
-//		for(int i = 0; i<N+1; i++)
-//		{
-//			cout<<u[j][i]<<"	";
-//		}
-//		cout<<endl;
-//	}
-//	for(int i = 0; i<N; i++)
-//	{
-//		cout<<x[i]<<endl;
-//	}
-//	output_matrix(N, M, p);
-	
-	
-	
 	ofstream results;
     results.open("Resultats.dat");
-    for(int j = M-1; j>=0; j--)
+    for(int i = 0; i<N+1; i++)
     {
-    	for(int i = 0; i<N+1; i++)
+    	for(int j = -1; j<M+1; j++)
     	{
-    		if(x[i]>=0)
+    		if(j==-1)
     		{
-    			results<<u[j][i]<<"	";
+    			results<<x[i]<<"	"<<y[j]<<"	"<<0<<endl;
+			}
+			else if(j==M)
+			{
+				results<<x[i]<<"	"<<y[j]<<"	"<<uref<<endl;
+			}
+			else
+			{
+				results<<x[i]<<"	"<<y[j]<<"	"<<u[j][i]<<endl;
 			}
 		}
 		results<<endl;
 	}
     results.close();
 	
+	ofstream resvlts;
+    resvlts.open("Resvltats.dat");
+    for(int i = -1; i<N+1; i++)
+    {
+    	for(int j = 0; j<M+1; j++)
+    	{
+    		if(i==-1)
+    		{
+    			resvlts<<x[i]<<"	"<<y[j]<<"	"<<0<<endl;
+			}
+			else if(i==N)
+			{
+				resvlts<<x[i]<<"	"<<y[j]<<"	"<<0<<endl;
+			}
+			else
+			{
+				resvlts<<x[i]<<"	"<<y[j]<<"	"<<v[j][i]<<endl;
+			}
+		}
+		resvlts<<endl;
+	}
+    resvlts.close();
 	
 	return 0;
 }
@@ -392,10 +404,6 @@ void surface(float *yvc, int M, float Sv[])
 	for(int j = 0; j<M; j++)
 	{
 		Sv[j] = fabs(yvc[j]-yvc[j+1]);
-		if(j==M-1)
-		{
-			Sv[j] = Sv[j-1];
-		}
 	}
 }
 
@@ -412,7 +420,7 @@ void volume(float *xvc, float *yvc, int N, int M, matrix& V)
 }
 
 
-void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap)
+void constant_coefficients(int N, int M, float *x, float *y, float *xvc, float *yvc, float *Sv, float *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap)
 {
 	for(int i = 0; i<N; i++)
 	{
@@ -420,67 +428,67 @@ void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *S
 		{
 			if(j==M-1)
 			{
-				ae[j][i] = 1;
-				aw[j][i] = 0;
-				an[j][i] = 0;
-				as[j][i] = 0;
-				ap[j][i] = 1;
+				ae[j][i] = Sv[j]/fabs(x[i+1]-x[i]);
+				aw[j][i] = Sv[j]/fabs(x[i]-x[i-1]);
+				an[j][i] = Sh[i]/fabs(yvc[j+1]-y[j]);
+				as[j][i] = Sh[i]/fabs(y[j]-y[j-1]);
+				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i];
 			}
 			else if(i==0 && j==0)
 			{
-				ae[j][i] = 1;
-				aw[j][i] = 0;
-				an[j][i] = 1;
-				as[j][i] = 0;
-				ap[j][i] = 1;
+				ae[j][i] = Sv[j]/fabs(x[i+1]-x[i]);
+				aw[j][i] = Sv[j]/fabs(x[i]-xvc[i]);
+				an[j][i] = Sh[i]/fabs(y[j+1]-y[j]);
+				as[j][i] = Sh[i]/fabs(y[j]-yvc[j]);
+				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i];
 			}
 			else if(i==0 && j==M-1)
 			{
-				ae[j][i] = 1;
-				aw[j][i] = 0;
-				an[j][i] = 0;
-				as[j][i] = 0;
-				ap[j][i] = 1;
+				ae[j][i] = Sv[j]/fabs(x[i+1]-x[i]);
+				aw[j][i] = Sv[j]/fabs(x[i]-xvc[i]);
+				an[j][i] = Sh[i]/fabs(yvc[j+1]-y[j]);
+				as[j][i] = Sh[i]/fabs(y[j]-y[j-1]);
+				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i];
 			}
 			else if(i==0 && j!=0 && j!=M-1)
 			{
-				ae[j][i] = 1;
-				aw[j][i] = 0;
-				an[j][i] = 0;
-				as[j][i] = 0;
-				ap[j][i] = 1;
+				ae[j][i] = Sv[j]/fabs(x[i+1]-x[i]);
+				aw[j][i] = Sv[j]/fabs(x[i]-xvc[i]);
+				an[j][i] = Sh[i]/fabs(y[j+1]-y[j]);
+				as[j][i] = Sh[i]/fabs(y[j]-y[j-1]);
+				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i];
 			}
 			else if(i==N-1 && j==0)
 			{
-				ae[j][i] = 0;
-				aw[j][i] = 1;
-				an[j][i] = 1;
-				as[j][i] = 0;
-				ap[j][i] = 1;
+				ae[j][i] = Sv[j]/fabs(xvc[i+1]-x[i]);
+				aw[j][i] = Sv[j]/fabs(x[i]-x[i-1]);
+				an[j][i] = Sh[i]/fabs(y[j+1]-y[j]);
+				as[j][i] = Sh[i]/fabs(y[j]-yvc[j]);
+				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i];
 			}
 			else if(i==N-1 && j==M-1)
 			{
-				ae[j][i] = 1;
-				aw[j][i] = 1;
-				an[j][i] = 0;
-				as[j][i] = 0;
-				ap[j][i] = 1;
+				ae[j][i] = Sv[j]/fabs(xvc[i+1]-x[i]);
+				aw[j][i] = Sv[j]/fabs(x[i]-x[i-1]);
+				an[j][i] = Sh[i]/fabs(yvc[j+1]-y[j]);
+				as[j][i] = Sh[i]/fabs(y[j]-y[j-1]);
+				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i];
 			}
 			else if(i==N-1 && j!=0 && j!=M-1)
 			{
-				ae[j][i] = 0;
-				aw[j][i] = 1;
-				an[j][i] = 0;
-				as[j][i] = 0;
-				ap[j][i] = 1;
+				ae[j][i] = Sv[j]/fabs(xvc[i+1]-x[i]);
+				aw[j][i] = Sv[j]/fabs(x[i]-x[i-1]);
+				an[j][i] = Sh[i]/fabs(y[j+1]-y[j]);
+				as[j][i] = Sh[i]/fabs(y[j]-y[j-1]);
+				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i];
 			}
 			else if(j==0 && i!=0 && i!=N-1)
 			{
-				ae[j][i] = 0;
-				aw[j][i] = 0;
-				an[j][i] = 1;
-				as[j][i] = 0;
-				ap[j][i] = 1;
+				ae[j][i] = Sv[j]/fabs(x[i+1]-x[i]);
+				aw[j][i] = Sv[j]/fabs(x[i]-x[i-1]);
+				an[j][i] = Sh[i]/fabs(y[j+1]-y[j]);
+				as[j][i] = Sh[i]/fabs(y[j]-yvc[j]);
+				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i];
 			}
 			else
 			{
@@ -506,7 +514,7 @@ double convective_term (string method, float delta, float xf, float x1, float x2
 	
 	if(method=="CDS")
 	{
-		u = (u2+u3)/fabs(x3-x2);
+		u = u2+fabs(x2-xf)*(u3-u2)/fabs(x3-x2);
 	}
 	else if(method=="UDS")
 	{
@@ -582,39 +590,39 @@ void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix
 			{
 				if(i==0 && j==M-1)
 				{
-					T[j][i] = Tcalc[j][i]+fr*((ae[j][i]*Tcalc[j][i+1]+as[j][i]*Tcalc[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+					T[j][i] = Tcalc[j][i]+fr*((ae[j][i]*Tcalc[j][i+1]+as[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 				}
 				else if(i==0 && j==0)
 				{
-					T[j][i] = Tcalc[j][i]+fr*((ae[j][i]*Tcalc[j][i+1]+an[j][i]*T[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+					T[j][i] = Tcalc[j][i]+fr*((ae[j][i]*Tcalc[j][i+1]+an[j][i]*Tcalc[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 				}
 				else if(i==0 && j!=0 && j!=M-1)
 				{
-					T[j][i] = Tcalc[j][i]+fr*((ae[j][i]*Tcalc[j][i+1]+as[j][i]*Tcalc[j-1][i]+an[j][i]*T[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+					T[j][i] = Tcalc[j][i]+fr*((ae[j][i]*Tcalc[j][i+1]+as[j][i]*T[j-1][i]+an[j][i]*Tcalc[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 				}
 				else if(i==N-1 && j==M-1)
 				{
-					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+as[j][i]*Tcalc[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+as[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 				}
 				else if(i==N-1 && j==0)
 				{
-					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+an[j][i]*T[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+an[j][i]*Tcalc[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 				}
-				else if(i==N && j!=0 && j!=M-1)
+				else if(i==N-1 && j!=0 && j!=M-1)
 				{
-					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+as[j][i]*Tcalc[j-1][i]+an[j][i]*T[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+as[j][i]*T[j-1][i]+an[j][i]*Tcalc[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 				}
 				else if(i!=0 && i!=N-1 && j==M-1)
 				{
-					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*Tcalc[j][i+1]+as[j][i]*Tcalc[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*Tcalc[j][i+1]+as[j][i]*T[j-1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 				}
 				else if(i!=0 && i!=N-1 && j==0)
 				{
-					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*Tcalc[j][i+1]+an[j][i]*T[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*Tcalc[j][i+1]+an[j][i]*Tcalc[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 				}
 				else
 				{
-					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*Tcalc[j][i+1]+as[j][i]*Tcalc[j-1][i]+an[j][i]*T[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
+					T[j][i] = Tcalc[j][i]+fr*((aw[j][i]*T[j][i-1]+ae[j][i]*Tcalc[j][i+1]+as[j][i]*T[j-1][i]+an[j][i]*Tcalc[j+1][i]+bp[j][i])/ap[j][i]-Tcalc[j][i]);
 				}
 			}
 		}
@@ -633,7 +641,7 @@ void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix
 				}
 			}
 		}
-	
+		
 		// New assignation
 		for(int i = 0; i<N; i++)
 		{

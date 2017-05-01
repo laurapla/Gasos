@@ -14,16 +14,17 @@ typedef double staggy[M+1][N+2];
 
 void coordinates(float L, int N, float xvc[], float x[]);
 void surface(float *yvc, int M, float Sv[]);
+void volume(float *xvc, float *yvc, int N, int M, matrix& V);
 void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
 double convective_term (string method, float xf, float x2, float x3, double u2, double u3);
-void intermediate_velocities (int N, int M, float rho, float mu, string method, float delta, float dt, float* x, float* y, float *xvc, float* yvc, float* Sh, float* Sv, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp);
+void intermediate_velocities (int N, int M, float rho, float mu, string method, float delta, float dt, float* x, float* y, float *xvc, float* yvc, float* Sh, float* Sv, matrix V, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp);
 void bp_coefficient (int N, int M, float rho, float dt, float* Sh, float* Sv, staggx up, staggy vp, matrix bp);
 void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float fr, float delta, int N, int M, matrix& T);
 void velocities (int N, int M, float rho, float dt, float uref, float* x, float* y, matrix p, staggx up, staggy vp, staggx &u, staggy &v);
 double min(double a, double b);
 double max(double a, double b);
 double time_step (float dtd, float* x, float* y, staggx u, staggy v);
-void output_matrix(int N, int M, matrix mat);
+void output_files (float* x, float* y, staggx u, staggy v);
 
 
 int main()
@@ -36,7 +37,7 @@ int main()
 	
 	
 	string method = "CDS";
-	float delta = 0.00001; // Precision of the simulation
+	float delta = 1e-2; // Precision of the simulation (error/dt)
 	float fr = 1; // Relaxation factor
 	
 	// Coordinates
@@ -46,8 +47,10 @@ int main()
 	
 	// Surfaces
 	float Sh[N+2], Sv[M+2];
+	matrix V;
 	surface(xvc, N+2, Sh); // Horizontal surface
 	surface(yvc, M+2, Sv); // Vertical surface
+	volume(xvc, yvc, N+2, M+2, V); // Volume
 	
 	
 	// Properties that are going to be calculated
@@ -84,7 +87,7 @@ int main()
 	matrix ae, aw, an, as, ap, bp;
 	constant_coefficients(N+2, M+2, x, y, Sv, Sh, ae, aw, an, as, ap);
 	
-	// Time step (CFL)
+	// Time step (CFL condition)
 	double resta = 1;
 	double dtd = 0.2*rho*pow(x[2]-xvc[1],2)/mu;
 	double dtc = 0.35*fabs(x[2]-xvc[1])/uref;
@@ -98,7 +101,7 @@ int main()
 	{
 		// STEP 1 !!! : INTERMEDIATE VELOCITY
 		cout<<"Intermediate Velocity	";
-		intermediate_velocities (N, M, rho, mu, method, delta, dt, x, y, xvc, yvc, Sh, Sv, u0, v0, Ru0, Rv0, Ru, Rv, up, vp);
+		intermediate_velocities (N, M, rho, mu, method, delta, dt, x, y, xvc, yvc, Sh, Sv, V, u0, v0, Ru0, Rv0, Ru, Rv, up, vp);
 
 		
 		// STEP 2 !!! : PRESSURE
@@ -123,14 +126,14 @@ int main()
 		{
 			for(int j = 0; j<M+2; j++)
 			{
-				resta = max(resta, fabs(u[j][i]-u0[j][i]));
+				resta = max(resta, fabs(u[j][i]-u0[j][i])/dt);
 			}
 		}
 		for(int i = 0; i<N+2; i++)
 		{
 			for(int j = 0; j<M+1; j++)
 			{
-				resta = max(resta, fabs(v[j][i]-v0[j][i]));
+				resta = max(resta, fabs(v[j][i]-v0[j][i])/dt);
 			}
 		}
 		cout<<resta<<endl;
@@ -153,26 +156,8 @@ int main()
 			}
 		}
 	}
-	
-	ofstream resultats;
-    resultats.open("Resultats.dat");
-	for(int j = M+1; j>=0; j--)
-	{
-		for(int i = 0; i<N+2; i++)
-		{
-			resultats<<x[i]<<"	"<<y[j]<<"	"<<u[j][i]<<endl;
-		}
-		resultats<<endl;
-	}
-	resultats.close();
-	
-	ofstream results;
-    results.open("Results.dat");
-    for(int i = M+1; i>=0; i--)
-    {
-    	results<<x[i]<<"	"<<u[i][N/2]<<endl;
-	}
-    results.close();
+    
+    output_files (x, y, u, v);
 	
 	return 0;
 }
@@ -199,8 +184,27 @@ void surface(float *yvc, int M, float Sv[])
 	{
 		Sv[j+1] = fabs(yvc[j]-yvc[j+1]);
 	}
-	Sv[0] = Sv[1];
-	Sv[M-1] = Sv[M-2];
+	Sv[0] = 0;
+	Sv[M-1] = 0;
+}
+
+
+void volume(float *xvc, float *yvc, int N, int M, matrix& V)
+{
+	for(int i = 0; i<N; i++)
+	{
+		for(int j = 0; j<M; j++)
+		{
+			if(i==N-1 || j==M-1)
+			{
+				V[j][i] = 0;
+			}
+			else
+			{
+				V[j][i] = fabs(xvc[i]-xvc[i-1])*fabs(yvc[j]-yvc[j-1]);
+			}
+		}
+	}
 }
 
 
@@ -298,7 +302,6 @@ double convective_term (string method, float xf, float x2, float x3, double u2, 
 	}
 	else if(method=="UDS")
 	{
-		// No crec que estigui bé
 		int fe;
 		if(u3>0)
 		{
@@ -314,7 +317,7 @@ double convective_term (string method, float xf, float x2, float x3, double u2, 
 }
 
 
-void intermediate_velocities (int N, int M, float rho, float mu, string method, float delta, float dt, float* x, float* y, float *xvc, float* yvc, float* Sh, float* Sv, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp)
+void intermediate_velocities (int N, int M, float rho, float mu, string method, float delta, float dt, float* x, float* y, float *xvc, float* yvc, float* Sh, float* Sv, matrix V, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp)
 {
 	double mflowe, mfloww, mflown, mflows;
 	double ue, uw, un, us;
@@ -338,45 +341,45 @@ void intermediate_velocities (int N, int M, float rho, float mu, string method, 
 			
 			
 			// R (horizontal)
-			if(i==0 && j==0)
-			{
-				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-(mflowe*ue+mflown*un);
-			}
-			else if(i==0 && j==M+1)
-			{
-				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue-mflows*us);
-			}
-			else if(i==0 && j!=0 && j!=M+1)
-			{
-				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mflows*us);
-			}
-			else if(i==N && j==0)
-			{
-				Ru[j][i] = mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-(mflown*un-mfloww*uw);
-			}
-			else if(i==N && j==M+1)
-			{
-				Ru[j][i] = -mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(-mfloww*uw-mflows*us);
-			}
-			else if(i==N && j!=0 && j!=M+1)
-			{
-				Ru[j][i] = mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflown*un-mfloww*uw-mflows*us);
-			}
-			else if(j==0 && i!=0 && i!=N)
-			{
-				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-(mflowe*ue+mflown*un-mfloww*uw);
-			}
-			else if(j==M+1 && i!=0 && i!=N)
-			{
-				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue-mfloww*uw-mflows*us);
-			}
-//			if(i==0 || i==N || j==0 || j==M+1)
+//			if(i==0 && j==0)
 //			{
-//				Ru[j][i] = 0;
+//				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-(mflowe*ue+mflown*un);
 //			}
+//			else if(i==0 && j==M+1)
+//			{
+//				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue-mflows*us);
+//			}
+//			else if(i==0 && j!=0 && j!=M+1)
+//			{
+//				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mflows*us);
+//			}
+//			else if(i==N && j==0)
+//			{
+//				Ru[j][i] = mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-(mflown*un-mfloww*uw);
+//			}
+//			else if(i==N && j==M+1)
+//			{
+//				Ru[j][i] = -mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(-mfloww*uw-mflows*us);
+//			}
+//			else if(i==N && j!=0 && j!=M+1)
+//			{
+//				Ru[j][i] = mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflown*un-mfloww*uw-mflows*us);
+//			}
+//			else if(j==0 && i!=0 && i!=N)
+//			{
+//				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-(mflowe*ue+mflown*un-mfloww*uw);
+//			}
+//			else if(j==M+1 && i!=0 && i!=N)
+//			{
+//				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue-mfloww*uw-mflows*us);
+//			}
+			if(i==0 || i==N || j==0 || j==M+1)
+			{
+				Ru[j][i] = 0;
+			}
 			else
 			{
-				Ru[j][i] = mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mfloww*uw-mflows*us);
+				Ru[j][i] = (mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mfloww*uw-mflows*us))/V[j][i];
 			}
 			
 			// Intermediate velocity (horizontal)
@@ -404,45 +407,45 @@ void intermediate_velocities (int N, int M, float rho, float mu, string method, 
 			vs = convective_term (method, y[j], yvc[j], yvc[j-1], v0[j][i], v0[j-1][i]);
 			
 			// R (vertical)
-			if(i==0 && j==0)
-			{
-				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-(mflowe*ve+mflown*vn);
-			}
-			else if(i==0 && j==M)
-			{
-				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve-mflows*vs);
-			}
-			else if(i==0 && j!=0 && j!=M)
-			{
-				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mflows*vs);
-			}
-			else if(i==N+1 && j==0)
-			{
-				Rv[j][i] = mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-(mflown*vn-mfloww*vw);
-			}
-			else if(i==N+1 && j==M)
-			{
-				Rv[j][i] = -mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(-mfloww*vw-mflows*vs);
-			}
-			else if(i==N+1 && j!=0 && j!=M)
-			{
-				Rv[j][i] = mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflown*vn-mfloww*vw-mflows*vs);
-			}
-			else if(j==0 && i!=0 && i!=N+1)
-			{
-				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-(mflowe*ve+mflown*vn-mfloww*vw);
-			}
-			else if(j==M && i!=0 && i!=N+1)
-			{
-				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve-mfloww*vw-mflows*vs);
-			}
-//			if(i==0 || i==N+1 || j==0 || j==M)
+//			if(i==0 && j==0)
 //			{
-//				Rv[j][i] = 0;
+//				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-(mflowe*ve+mflown*vn);
 //			}
+//			else if(i==0 && j==M)
+//			{
+//				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve-mflows*vs);
+//			}
+//			else if(i==0 && j!=0 && j!=M)
+//			{
+//				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mflows*vs);
+//			}
+//			else if(i==N+1 && j==0)
+//			{
+//				Rv[j][i] = mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-(mflown*vn-mfloww*vw);
+//			}
+//			else if(i==N+1 && j==M)
+//			{
+//				Rv[j][i] = -mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(-mfloww*vw-mflows*vs);
+//			}
+//			else if(i==N+1 && j!=0 && j!=M)
+//			{
+//				Rv[j][i] = mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflown*vn-mfloww*vw-mflows*vs);
+//			}
+//			else if(j==0 && i!=0 && i!=N+1)
+//			{
+//				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-(mflowe*ve+mflown*vn-mfloww*vw);
+//			}
+//			else if(j==M && i!=0 && i!=N+1)
+//			{
+//				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve-mfloww*vw-mflows*vs);
+//			}
+			if(i==0 || i==N+1 || j==0 || j==M)
+			{
+				Rv[j][i] = 0;
+			}
 			else
 			{
-				Rv[j][i] = mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mfloww*vw-mflows*vs);
+				Rv[j][i] = (mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mfloww*vw-mflows*vs))/V[j][i];
 			}
 			
 			// Intermediate velocity (vertical)
@@ -458,7 +461,7 @@ void bp_coefficient (int N, int M, float rho, float dt, float* Sh, float* Sv, st
 	{
 		for(int j = 0; j<M; j++)
 		{
-			if(i==1 || i==N-1 || j==0 || j==M-1)
+			if(i==0 || j==0 || i==N-1 || j==M-1)
 			{
 				bp[j][i] = 0;
 			}
@@ -647,4 +650,48 @@ double time_step (float dtd, float* x, float* y, staggx u, staggy v)
 	}
 	dt = min(dtc, dtd);
 	return dt;
+}
+
+
+void output_files (float* x, float* y, staggx u, staggy v)
+{
+	ofstream resultats;
+    resultats.open("Resultats.dat");
+	for(int j = M+1; j>=0; j--)
+	{
+		for(int i = 0; i<N+2; i++)
+		{
+			resultats<<x[i]<<"	"<<y[j]<<"	"<<u[j][i]<<endl;
+		}
+		resultats<<endl;
+	}
+	resultats.close();
+	
+	ofstream resvltats;
+    resvltats.open("Resvltats.dat");
+	for(int j = M+1; j>=0; j--)
+	{
+		for(int i = 0; i<N+2; i++)
+		{
+			resvltats<<x[i]<<"	"<<y[j]<<"	"<<v[j][i]<<endl;
+		}
+		resvltats<<endl;
+	}
+	resvltats.close();
+	
+	ofstream resultsu;
+    resultsu.open("u.dat");
+    for(int i = M+1; i>=0; i--)
+    {
+    	resultsu<<y[i]<<"	"<<u[i][N/2]<<endl;
+	}
+    resultsu.close();
+	
+	ofstream resultsv;
+    resultsv.open("v.dat");
+    for(int i = N+1; i>=0; i--)
+    {
+    	resultsv<<x[i]<<"	"<<v[M/2][i]<<endl;
+	}
+    resultsv.close();
 }
