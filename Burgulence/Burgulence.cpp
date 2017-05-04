@@ -16,12 +16,12 @@ int main()
 {
 	const int N = 21;
 	const double Re = 40; // Reynolds number
-	bool LES = 1; // 1 is LES, 0 is DNS
+	bool LES = 0; // 1 is LES, 0 is DNS
 	double F = 0; // Source term (in Fourier space)
 	
-	double delta = 1e-5; // Precision of the simulation
+	double delta = 1e-6; // Precision of the simulation
 	float CK = 0.4523; // Kolgomorov constant
-	float C1 = 0.01;
+	float C1 = 0.02;
 	double dt = C1*Re/pow(N,2); // Increment of time
 	
 	vector<complex<double> > u(N);
@@ -85,7 +85,7 @@ int main()
 
 
 
-
+// Calculation of the diffusive term
 complex<double> diffusive(int k, int N, double Re, vector<complex<double> > u, bool LES, float CK)
 {
 	if(!LES)
@@ -111,6 +111,7 @@ complex<double> diffusive(int k, int N, double Re, vector<complex<double> > u, b
 }
 
 
+// Calculation of the convective term
 complex<double> convective(int k, int N, vector<complex<double> > u)
 {
 	complex<double> conv (0,0);

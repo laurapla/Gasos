@@ -9,3 +9,8 @@ set cntrparam levels incremental 23,1,32
 set cntrlabel onecolor
 repl 'Resultats5000.dat' u 1:2:3 w labels t ''
 set cntrlabel start 50 interval -1
+
+plot 'DNS20.dat' with linespoints title 'DNS N=20', 'DNS100.dat' with linespoints title 'DNS N=100', 'LES2004.dat' with linespoints title 'LES N=20 C_{K}=0.4223', 'LES20005.dat' with linespoints title 'LES N=20 C_{K}=0.05'
+set format y "%g"
+
+plot 'DNS20.dat' with linespoints title 'DNS N=20', 'DNS100.dat' with linespoints title 'DNS N=100', 'LES2004.dat' with linespoints title 'LES N=20 CK=0.4223', 'LES20005.dat' with linespoints title 'LES N=20 CK=0.05'
