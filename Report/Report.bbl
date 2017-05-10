@@ -1,0 +1,18 @@
+\begin{thebibliography}{1}
+
+\bibitem{CTTC}
+CTTC.
+\newblock {Introduction to the Fractional Step Method}.
+\newblock pages 1--10.
+
+\bibitem{Ferziger2002}
+Joel~H. Ferziger and Milovan Peric.
+\newblock {\em {Computational Methods for Fluid Dynamics}}.
+\newblock Springer, Berlin, 3 edition, 2002.
+
+\bibitem{Patankar1980}
+Suhas~V. Patankar.
+\newblock {\em {Numerical Heat Transfer and Fluid Flow}}.
+\newblock McGraw-Hill, New York, 1980.
+
+\end{thebibliography}

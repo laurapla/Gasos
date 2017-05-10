@@ -1,0 +1,32 @@
+\contentsline {chapter}{List of Tables}{iv}{section*.1}
+\contentsline {chapter}{List of Figures}{v}{section*.2}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Introduction}{1}{section.1.1}
+\contentsline {chapter}{\numberline {2}Numerical analysis}{2}{chapter.2}
+\contentsline {section}{\numberline {2.1}Conservation equations}{2}{section.2.1}
+\contentsline {section}{\numberline {2.2}Numerical methods}{3}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Finite difference method}{3}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Finite volume method}{4}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Time integration}{4}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}Evaluation of the convective term}{5}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}The central differencing scheme (CDS)}{5}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}The upwind scheme (UDS)}{5}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}The exponential scheme (EDS)}{5}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}The hybrid scheme (HDS) and the power-law scheme (PLDS)}{6}{subsection.2.3.4}
+\contentsline {chapter}{\numberline {3}Conduction}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}Four materials}{7}{section.3.1}
+\contentsline {section}{\numberline {3.2}Discretization}{8}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Spatial discretization}{9}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Time discretization}{10}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Boundary conditions}{11}{subsection.3.2.3}
+\contentsline {chapter}{\numberline {4}Convection}{13}{chapter.4}
+\contentsline {section}{\numberline {4.1}Smith-Hutton problem}{13}{section.4.1}
+\contentsline {section}{\numberline {4.2}Discretization}{13}{section.4.2}
+\contentsline {section}{\numberline {4.3}Driven cavity problem}{17}{section.4.3}
+\contentsline {section}{\numberline {4.4}Fractional step method}{18}{section.4.4}
+\contentsline {section}{\numberline {4.5}Discretization}{19}{section.4.5}
+\contentsline {section}{\numberline {4.6}Boundary conditions}{20}{section.4.6}
+\contentsline {chapter}{\numberline {5}Turbulence}{22}{chapter.5}
+\contentsline {section}{\numberline {5.1}Burgers equation}{22}{section.5.1}
+\contentsline {chapter}{\numberline {6}Radiation}{23}{chapter.6}
+\contentsline {chapter}{\numberline {7}Bibliography}{24}{chapter.7}
