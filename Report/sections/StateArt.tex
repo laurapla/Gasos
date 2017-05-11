@@ -1,3 +1,5 @@
+\chapter{Numerical methods}
+
 The laws governing the processes of heat transfer and fluid flow are usually expressed in terms of differential equations. Some of these equations are the momentum equation, the energy equation and the mass conservation equation, among others. However, these expressions usually don’t have an analytical solution except for some simple cases. To solve complex problems it is necessary to use numerical methods.
 
 \section{Conservation equations}
@@ -42,7 +44,7 @@ Numerical methods are based in dividing the domain that is going to be studied i
 Once the domain is discretized, it is also necessary to discretize the equations. The relations between the grid points have to be established. It is assumed that the value $\phi$ of a grid point only influences the distribution of $\phi$ in its immediate neighbours. For this reason, as the number of grid points becomes larger, the numerical solution approaches the real solution of the problem.
 There are different methods of discretizing the equations, but the most common ones are exposed in the following lines.
 
-\subsection{Finite difference method}
+\section{Finite difference method}
 The finite difference method (FDM) is based in the Taylor-series expansion. It is used to approximate the derivatives in the differential equation. Taking the three successive points represented in figure \ref{3gridpoints}, the approximation of the values in the left point (west) and in the right point (east) is easily calculated with Taylor series:
 \begin{equation}
 \phi_{W}=\phi_{P}-\Delta x\left(\frac{d\phi}{dx}\right)_{P}+\frac{1}{2}\left(\Delta x\right)^{2}\left(\frac{d^{2}\phi}{dx^{2}}\right)-\dots
@@ -65,7 +67,7 @@ These expressions are substituted in the differential equation to obtain the fin
 	\label{3gridpoints}
 \end{figure}
 
-\subsection{Finite volume method}
+\section{Finite volume method}
 The finite-volume method (FVM) is more used than the FDM. It consists in dividing the domain in different control volumes as the ones in figure \ref{controlvolume2d}, so that each control volume surrounds one grid point. Then, the differential equation is integrated over each control volume, ensuring that each of them satisfy the conservation.
 \begin{figure}[h!]
 	\centering
@@ -74,7 +76,15 @@ The finite-volume method (FVM) is more used than the FDM. It consists in dividin
 	\label{controlvolume2d}
 \end{figure}
 
-\subsection{Time integration}
+\subsection{Mesh}
+There are different methods to divide discretize the domain for the FVM. These methods are listed below \cite{Ferziger2002}:
+\begin{itemize}
+	\item Structured (regular) mesh: The grid lines do not cross each other. The lines can be numbered consecutively, so as the position of any grid point can be easily identified by two (2D) or three (3D) indices. This is the simplest structure and easiest to work with, but it can only be used for geometrically simple domains.
+	\item Unstructured mesh: The control volumes may have any shape, and there is not a restriction on the number of neighbour nodes. It is the method used for very complex geometries, but the grid generation and the pre-processing are much difficult than on structured meshes.
+\end{itemize}
+
+\section{Time integration}
+\label{TimeIntegration}
 Time is a one-way variable, which means that the unknowns only depend on the values in the previous instant of time, and do not depend on the values in the next instant of time. Taking this property into account, to obtain the results of an unsteady problem, the method is to discretize the time and calculate the values for each time step. When the unknowns of one time step are obtained, the calculation moves on to the next time step.
 
 Time integration can be done using different methods. The ones that are widely used are:
@@ -84,8 +94,8 @@ Time integration can be done using different methods. The ones that are widely u
 	\item Crank-Nicholson: It is a second order approximation. The terms are evaluated using the values of the previous and the next time step.
 \end{itemize}
 
-\section{Evaluation of the convective term}
-There are different schemes to evaluate the convective term of the convection-diffusion equation. This term is evaluated in the faces, not in the nodes, so it is necessary to know the value in the faces of the control volume. Some of the most common schemes are listed below\cite{Patankar1980,Ferziger2002}, all of them studied in a one-dimensional case to simplify their explanation.
+\section{Interpolation schemes}
+In some cases, it is necessary to obtain the properties of the points that are not nodes. Usually, a term is evaluated in the faces, not in the nodes, so it is necessary to know the values in the faces of the control volume. There are different schemes to do so.  Some of the most common ones are listed below\cite{Patankar1980,Ferziger2002}.
 
 \subsection{The central differencing scheme (CDS)}
 It is the most natural scheme. It is a linear interpolation between the two nearest nodes:

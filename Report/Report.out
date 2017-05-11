@@ -1,32 +1,45 @@
 \BOOKMARK [0][-]{section*.1}{List of Tables}{}% 1
 \BOOKMARK [0][-]{section*.2}{List of Figures}{}% 2
-\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 3
-\BOOKMARK [1][-]{section.1.1}{Introduction}{chapter.1}% 4
-\BOOKMARK [0][-]{chapter.2}{Numerical analysis}{}% 5
-\BOOKMARK [1][-]{section.2.1}{Conservation equations}{chapter.2}% 6
-\BOOKMARK [1][-]{section.2.2}{Numerical methods}{chapter.2}% 7
-\BOOKMARK [2][-]{subsection.2.2.1}{Finite difference method}{section.2.2}% 8
-\BOOKMARK [2][-]{subsection.2.2.2}{Finite volume method}{section.2.2}% 9
-\BOOKMARK [2][-]{subsection.2.2.3}{Time integration}{section.2.2}% 10
-\BOOKMARK [1][-]{section.2.3}{Evaluation of the convective term}{chapter.2}% 11
-\BOOKMARK [2][-]{subsection.2.3.1}{The central differencing scheme \(CDS\)}{section.2.3}% 12
-\BOOKMARK [2][-]{subsection.2.3.2}{The upwind scheme \(UDS\)}{section.2.3}% 13
-\BOOKMARK [2][-]{subsection.2.3.3}{The exponential scheme \(EDS\)}{section.2.3}% 14
-\BOOKMARK [2][-]{subsection.2.3.4}{The hybrid scheme \(HDS\) and the power-law scheme \(PLDS\)}{section.2.3}% 15
-\BOOKMARK [0][-]{chapter.3}{Conduction}{}% 16
-\BOOKMARK [1][-]{section.3.1}{Four materials}{chapter.3}% 17
-\BOOKMARK [1][-]{section.3.2}{Discretization}{chapter.3}% 18
-\BOOKMARK [2][-]{subsection.3.2.1}{Spatial discretization}{section.3.2}% 19
-\BOOKMARK [2][-]{subsection.3.2.2}{Time discretization}{section.3.2}% 20
-\BOOKMARK [2][-]{subsection.3.2.3}{Boundary conditions}{section.3.2}% 21
-\BOOKMARK [0][-]{chapter.4}{Convection}{}% 22
-\BOOKMARK [1][-]{section.4.1}{Smith-Hutton problem}{chapter.4}% 23
-\BOOKMARK [1][-]{section.4.2}{Discretization}{chapter.4}% 24
-\BOOKMARK [1][-]{section.4.3}{Driven cavity problem}{chapter.4}% 25
-\BOOKMARK [1][-]{section.4.4}{Fractional step method}{chapter.4}% 26
-\BOOKMARK [1][-]{section.4.5}{Discretization}{chapter.4}% 27
-\BOOKMARK [1][-]{section.4.6}{Boundary conditions}{chapter.4}% 28
-\BOOKMARK [0][-]{chapter.5}{Turbulence}{}% 29
-\BOOKMARK [1][-]{section.5.1}{Burgers equation}{chapter.5}% 30
-\BOOKMARK [0][-]{chapter.6}{Radiation}{}% 31
-\BOOKMARK [0][-]{chapter.7}{Bibliography}{}% 32
+\BOOKMARK [-1][-]{part.1}{I Introduction}{}% 3
+\BOOKMARK [0][-]{chapter.1}{Introduction}{part.1}% 4
+\BOOKMARK [1][-]{section.1.1}{Aim}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.2}{Scope}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.3}{Requirements}{chapter.1}% 7
+\BOOKMARK [1][-]{section.1.4}{Justification}{chapter.1}% 8
+\BOOKMARK [2][-]{subsection.1.4.1}{Identification of the need}{section.1.4}% 9
+\BOOKMARK [2][-]{subsection.1.4.2}{Advantatges and drawbacks}{section.1.4}% 10
+\BOOKMARK [-1][-]{part.2}{II Numerical analysis}{}% 11
+\BOOKMARK [0][-]{chapter.2}{Numerical methods}{part.2}% 12
+\BOOKMARK [1][-]{section.2.1}{Conservation equations}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.2}{Numerical methods}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.3}{Finite difference method}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.4}{Finite volume method}{chapter.2}% 16
+\BOOKMARK [2][-]{subsection.2.4.1}{Mesh}{section.2.4}% 17
+\BOOKMARK [1][-]{section.2.5}{Time integration}{chapter.2}% 18
+\BOOKMARK [1][-]{section.2.6}{Interpolation schemes}{chapter.2}% 19
+\BOOKMARK [2][-]{subsection.2.6.1}{The central differencing scheme \(CDS\)}{section.2.6}% 20
+\BOOKMARK [2][-]{subsection.2.6.2}{The upwind scheme \(UDS\)}{section.2.6}% 21
+\BOOKMARK [2][-]{subsection.2.6.3}{The exponential scheme \(EDS\)}{section.2.6}% 22
+\BOOKMARK [2][-]{subsection.2.6.4}{The hybrid scheme \(HDS\) and the power-law scheme \(PLDS\)}{section.2.6}% 23
+\BOOKMARK [-1][-]{part.3}{III Conduction}{}% 24
+\BOOKMARK [0][-]{chapter.3}{Conduction}{part.3}% 25
+\BOOKMARK [1][-]{section.3.1}{Governing equations}{chapter.3}% 26
+\BOOKMARK [1][-]{section.3.2}{Discretization}{chapter.3}% 27
+\BOOKMARK [2][-]{subsection.3.2.1}{Spatial discretization}{section.3.2}% 28
+\BOOKMARK [2][-]{subsection.3.2.2}{Temporal discretization}{section.3.2}% 29
+\BOOKMARK [1][-]{section.3.3}{Boundary conditions}{chapter.3}% 30
+\BOOKMARK [0][-]{chapter.4}{A Two-dimensional Transient Conduction Problem}{part.3}% 31
+\BOOKMARK [1][-]{section.4.1}{Discretization}{chapter.4}% 32
+\BOOKMARK [1][-]{section.4.2}{Boundary conditions}{chapter.4}% 33
+\BOOKMARK [1][-]{section.4.3}{Algorithm}{chapter.4}% 34
+\BOOKMARK [1][-]{section.4.4}{Results}{chapter.4}% 35
+\BOOKMARK [-1][-]{part.4}{IV Convection}{}% 36
+\BOOKMARK [0][-]{chapter.5}{The Navier-Stokes Equations}{part.4}% 37
+\BOOKMARK [0][-]{chapter.6}{Smith-Hutton problem}{part.4}% 38
+\BOOKMARK [1][-]{section.6.1}{Discretization}{chapter.6}% 39
+\BOOKMARK [0][-]{chapter.7}{Fractional Step Method}{part.4}% 40
+\BOOKMARK [1][-]{section.7.1}{Fractional Step Method algorithm}{chapter.7}% 41
+\BOOKMARK [1][-]{section.7.2}{Discretization}{chapter.7}% 42
+\BOOKMARK [0][-]{chapter.8}{Driven cavity problem}{part.4}% 43
+\BOOKMARK [1][-]{section.8.1}{Boundary conditions}{chapter.8}% 44
+\BOOKMARK [0][-]{chapter.9}{Bibliography}{part.4}% 45

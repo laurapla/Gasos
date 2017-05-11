@@ -1,32 +1,45 @@
 \contentsline {chapter}{List of Tables}{iv}{section*.1}
 \contentsline {chapter}{List of Figures}{v}{section*.2}
-\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Introduction}{1}{section.1.1}
-\contentsline {chapter}{\numberline {2}Numerical analysis}{2}{chapter.2}
-\contentsline {section}{\numberline {2.1}Conservation equations}{2}{section.2.1}
-\contentsline {section}{\numberline {2.2}Numerical methods}{3}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Finite difference method}{3}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Finite volume method}{4}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Time integration}{4}{subsection.2.2.3}
-\contentsline {section}{\numberline {2.3}Evaluation of the convective term}{5}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}The central differencing scheme (CDS)}{5}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}The upwind scheme (UDS)}{5}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}The exponential scheme (EDS)}{5}{subsection.2.3.3}
-\contentsline {subsection}{\numberline {2.3.4}The hybrid scheme (HDS) and the power-law scheme (PLDS)}{6}{subsection.2.3.4}
-\contentsline {chapter}{\numberline {3}Conduction}{7}{chapter.3}
-\contentsline {section}{\numberline {3.1}Four materials}{7}{section.3.1}
-\contentsline {section}{\numberline {3.2}Discretization}{8}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Spatial discretization}{9}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Time discretization}{10}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Boundary conditions}{11}{subsection.3.2.3}
-\contentsline {chapter}{\numberline {4}Convection}{13}{chapter.4}
-\contentsline {section}{\numberline {4.1}Smith-Hutton problem}{13}{section.4.1}
-\contentsline {section}{\numberline {4.2}Discretization}{13}{section.4.2}
-\contentsline {section}{\numberline {4.3}Driven cavity problem}{17}{section.4.3}
-\contentsline {section}{\numberline {4.4}Fractional step method}{18}{section.4.4}
-\contentsline {section}{\numberline {4.5}Discretization}{19}{section.4.5}
-\contentsline {section}{\numberline {4.6}Boundary conditions}{20}{section.4.6}
-\contentsline {chapter}{\numberline {5}Turbulence}{22}{chapter.5}
-\contentsline {section}{\numberline {5.1}Burgers equation}{22}{section.5.1}
-\contentsline {chapter}{\numberline {6}Radiation}{23}{chapter.6}
-\contentsline {chapter}{\numberline {7}Bibliography}{24}{chapter.7}
+\contentsline {part}{I\hspace {1em}Introduction}{1}{part.1}
+\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}
+\contentsline {section}{\numberline {1.1}Aim}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}Scope}{2}{section.1.2}
+\contentsline {section}{\numberline {1.3}Requirements}{3}{section.1.3}
+\contentsline {section}{\numberline {1.4}Justification}{3}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Identification of the need}{3}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}Advantatges and drawbacks}{4}{subsection.1.4.2}
+\contentsline {part}{II\hspace {1em}Numerical analysis}{5}{part.2}
+\contentsline {chapter}{\numberline {2}Numerical methods}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}Conservation equations}{6}{section.2.1}
+\contentsline {section}{\numberline {2.2}Numerical methods}{7}{section.2.2}
+\contentsline {section}{\numberline {2.3}Finite difference method}{7}{section.2.3}
+\contentsline {section}{\numberline {2.4}Finite volume method}{8}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Mesh}{8}{subsection.2.4.1}
+\contentsline {section}{\numberline {2.5}Time integration}{9}{section.2.5}
+\contentsline {section}{\numberline {2.6}Interpolation schemes}{9}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}The central differencing scheme (CDS)}{9}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}The upwind scheme (UDS)}{10}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}The exponential scheme (EDS)}{10}{subsection.2.6.3}
+\contentsline {subsection}{\numberline {2.6.4}The hybrid scheme (HDS) and the power-law scheme (PLDS)}{10}{subsection.2.6.4}
+\contentsline {part}{III\hspace {1em}Conduction}{11}{part.3}
+\contentsline {chapter}{\numberline {3}Conduction}{12}{chapter.3}
+\contentsline {section}{\numberline {3.1}Governing equations}{12}{section.3.1}
+\contentsline {section}{\numberline {3.2}Discretization}{12}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Spatial discretization}{13}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Temporal discretization}{14}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Boundary conditions}{15}{section.3.3}
+\contentsline {chapter}{\numberline {4}A Two-dimensional Transient Conduction Problem}{17}{chapter.4}
+\contentsline {section}{\numberline {4.1}Discretization}{18}{section.4.1}
+\contentsline {section}{\numberline {4.2}Boundary conditions}{18}{section.4.2}
+\contentsline {section}{\numberline {4.3}Algorithm}{19}{section.4.3}
+\contentsline {section}{\numberline {4.4}Results}{21}{section.4.4}
+\contentsline {part}{IV\hspace {1em}Convection}{22}{part.4}
+\contentsline {chapter}{\numberline {5}The Navier-Stokes Equations}{23}{chapter.5}
+\contentsline {chapter}{\numberline {6}Smith-Hutton problem}{24}{chapter.6}
+\contentsline {section}{\numberline {6.1}Discretization}{25}{section.6.1}
+\contentsline {chapter}{\numberline {7}Fractional Step Method}{29}{chapter.7}
+\contentsline {section}{\numberline {7.1}Fractional Step Method algorithm}{30}{section.7.1}
+\contentsline {section}{\numberline {7.2}Discretization}{30}{section.7.2}
+\contentsline {chapter}{\numberline {8}Driven cavity problem}{32}{chapter.8}
+\contentsline {section}{\numberline {8.1}Boundary conditions}{32}{section.8.1}
+\contentsline {chapter}{\numberline {9}Bibliography}{34}{chapter.9}

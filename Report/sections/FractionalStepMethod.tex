@@ -1,0 +1,87 @@
+\chapter{Fractional Step Method}
+The equations to be solved are the conservation of mass and the conservation of momentum:
+\begin{equation}
+\begin{aligned}
+\nabla\cdot\vec{v}=0 \\
+\rho\frac{\partial\vec{v}}{\partial t}+\rho\left(\vec{v}\cdot\nabla\right)\vec{v}=-\nabla p+\mu\nabla^{2}\vec{v}
+\end{aligned}
+\end{equation}
+According to the Helmholtz-Hodge theorem, it is possible to decompose any vector in a divergence-free vector parallel to the boundary and a gradient field, and this decomposition is unique \cite{CTTC}.
+Assuming constant density and viscosity, the Navier-Stokes equation can be rewritten as:
+\begin{equation}
+\rho\frac{\partial\vec{v}}{\partial t}=R\left(\vec{v}\right)-\nabla p
+\label{RNSFSM}
+\end{equation}
+where $R\left(\vec{v}\right)=-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}$.
+Integrating the equation \ref{RNSFSM} over time:
+\begin{equation}
+\rho\frac{\vec{v}^{n+1}-\vec{v}^{n}}{\Delta t}=R^{n+\frac{1}{2}}\left(\vec{v}\right)-\nabla p^{n+1}
+\end{equation}
+However, the term $R^{n+\frac{1}{2}}\left(\vec{v}\right)$ is not easy to evaluate. To do so, the Adams-Bashforth second-order scheme is used:
+\begin{equation}
+R^{n+\frac{1}{2}}\left(\vec{v}\right)\approx\frac{3}{2}R\left(\vec{v^{n}}\right)-\frac{1}{2}R\left(\vec{v}^{n-1}\right)
+\end{equation}
+Applying the Helmholtz-Hodge Theorem, the intermediate velocity is easily obtained:
+\begin{equation}
+\vec{v}^{P}=\vec{v}^{n+1}+\frac{\Delta t}{\rho}\nabla p^{n+1}
+\label{IntermediateVelocity}
+\end{equation}
+Introducing this expression to the integrated equation:
+\begin{equation}
+\rho\frac{\vec{v}^{P}-\vec{v}^{n}}{\Delta t}=R^{n+\frac{1}{2}}\left(\vec{v}\right)
+\label{IntermediatewithR}
+\end{equation}
+And finally, applying the divergence to the expression of the intermediate velocity $\vec{v}^{P}$ \ref{IntermediateVelocity}, the Poisson equation is obtained:
+\begin{equation}
+\nabla\cdot\vec{v}=\frac{\Delta t}{\rho}\nabla^{2}p
+\label{Poisson}
+\end{equation}
+
+\section{Fractional Step Method algorithm}
+With all these expressions the fractional step method (FSM) can be finally implemented, following the next scheme:
+\begin{enumerate}
+	\item Evaluate $R^{n+\frac{1}{2}}\left(\vec{v}\right)$.
+	\item Calculate the intermediate velocity with equation \ref{IntermediatewithR}.
+	\item Calculate the pressure $p^{n+1}$ from the Poisson equation \ref{Poisson} using a linear solver.
+	\item Calculate the velocity at the next time step with equation \ref{IntermediateVelocity}.
+\end{enumerate}
+However, this method can be problematic if the mesh of the problem is not correctly implemented. To avoid having solutions with no physical sense, it is important to use staggered meshes or collocated meshes.
+
+\section{Discretization}
+To avoid convergence problems or incorrect solutions, the staggered meshes are used. As shown in figure \ref{staggered}, in a two-dimensional case there are 3 control volumes, one for each variable: $p_{P}$, $u_{P}$ and $v_{P}$. They are coloured in black, red and green respectively.
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.8]{DrivenCavity/staggered}
+	\caption{Staggered meshes (2D)}
+	\label{staggered}
+\end{figure}
+Knowing the space discretization of the domain, the discretized Poisson equation can be calculated. Integrating the expression over the domain and applying the divergence theorem, the following expression can be easily obtained:
+\begin{equation}
+\begin{aligned}
+\frac{p_{E}^{n+1}-p_{P}^{n+1}}{d_{EP}}A_{e}+\frac{p_{N}^{n+1}-p_{P}^{n+1}}{d_{NP}}A_{n}-\frac{p_{P}^{n+1}-p_{W}^{n+1}}{d_{WP}}A_{w}-\frac{p_{P}^{n+1}-p_{S}^{n+1}}{d_{SP}}A_{s}= \\
+\frac{1}{\Delta t}\left[\left(\rho u^{P}\right)_{e}A_{e}+\left(\rho v^{P}\right)_{n}A_{n}-\left(\rho u^{P}\right)_{w}A_{w}-\left(\rho v^{P}\right)_{s}A_{s}\right]
+\end{aligned}
+\end{equation}
+Rewriting the equation using discretization coefficients:
+\begin{equation}
+a_{P}p_{P}^{n+1}=a_{E}p_{E}^{n+1}+a_{W}p_{W}^{n+1}+a_{N}p_{N}^{n+1}+a_{S}p_{S}^{n+1}+b_{P}
+\end{equation}
+where
+\begin{equation}
+a_{P}=a_{E}+a_{W}+a_{N}+a_{S}
+\end{equation}
+\begin{equation}
+a_{E}=\frac{A_{e}}{d_{EP}}
+\end{equation}
+\begin{equation}
+a_{W}=\frac{A_{w}}{d_{WP}}
+\end{equation}
+\begin{equation}
+a_{N}=\frac{A_{n}}{d_{NP}}
+\end{equation}
+\begin{equation}
+a_{S}=\frac{A_{s}}{d_{SP}}
+\end{equation}
+\begin{equation}
+b_{P}=-\frac{1}{\Delta t}\left[\left(\rho u^{P}\right)_{e}A_{e}+\left(\rho v^{P}\right)_{n}A_{n}-\left(\rho u^{P}\right)_{w}A_{w}-\left(\rho v^{P}\right)_{s}A_{s}\right]
+\end{equation}

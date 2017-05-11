@@ -49,22 +49,26 @@
 \newpage
 \setlength{\parskip}{1em}
 
-\chapter{Introduction}
+\part{Introduction}
 \import{sections/}{Introduction}
 
-\chapter{Numerical analysis}
+\part{Numerical analysis}
 \import{sections/}{StateArt}
 
-\chapter{Conduction}
+\part{Conduction}
+\import{sections/}{Conduction}
 \import{sections/}{FourMaterials}
 
-\chapter{Convection}
-\import{sections/}{Convection}
+\part{Convection}
+\import{sections/}{NSEquations}
+\import{sections/}{SmithHutton}
+\import{sections/}{FractionalStepMethod}
+\import{sections/}{DrivenCavity}
 
-\chapter{Turbulence}
-\import{sections/}{Burgers}
-
-\chapter{Radiation}
+%\part{Turbulence}
+%\import{sections/}{Burgers}
+%
+%\part{Radiation}
 
 
 % BIBLIOGRAPHY
@@ -79,7 +83,7 @@
 %	siam    : [#] Initial. Surname (sc)
 %	unsrt   : [#] Name Surname
 
-\bibliographystyle{plain}
+\bibliographystyle{unsrt}
 \bibliography{bib} 
 
 \end{document}

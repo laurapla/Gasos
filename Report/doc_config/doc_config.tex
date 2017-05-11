@@ -51,9 +51,6 @@
 %%%%%%%%% Until here: creation of \subsubsubsection{} %%%%%%%%%
 
 
-%\let\oldsection\section % This line and the following force sections to start on odd pages.
-%\def\section{\cleardoublepage\oldsection}
-
 \newcommand*{\blankpage}{%
     \vspace*{\fill}
         \begin{center}
@@ -70,12 +67,11 @@
 \makeatother
 
 % WRITING
-%   - Math/Chemistry/...
 \usepackage{amsmath}                % Mathematical features.
     % Section numbering
-    \numberwithin{equation}{section}    % Equation numbering by section
-    \numberwithin{table}{section}       % Table numbering by section
-    \numberwithin{figure}{section}      % Table numbering by section
+%    \numberwithin{equation}{section}    % Equation numbering by section
+%    \numberwithin{table}{section}       % Table numbering by section
+%    \numberwithin{figure}{section}      % Table numbering by section
 \usepackage{amssymb}                % Symbols.
 \usepackage[version=3]{mhchem}                 % Chemical equation typesetting. i.e.: \ce{CO2 + C <=> 2CO}
 \usepackage{siunitx}                % Simplifies the usage of values with units.
@@ -133,12 +129,8 @@
 \usepackage{etoolbox}
 \usepackage{lscape}
 
-%EVA STUFF
-
-\usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage{graphicx}
 \usepackage{eurosym}
 \usepackage{wrapfig}
 \usepackage{mathdots}
