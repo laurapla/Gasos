@@ -6,14 +6,22 @@
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Heat fluxes through the faces of a control volume\relax }}{13}{figure.caption.6}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces General scheme of the four materials problem\relax }}{17}{figure.caption.7}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Instantaneous isotherm at t=5000 s\relax }}{21}{figure.caption.12}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Instantaneous isotherm at t=10000 s\relax }}{22}{figure.caption.13}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Instantaneous isotherm at t=5000 s\relax }}{22}{figure.caption.13}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Instantaneous isotherm at t=10000 s\relax }}{22}{figure.caption.14}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Mesh of the Smith-Hutton problem\relax }}{25}{figure.caption.15}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces General scheme of the Smith-Hutton problem\relax }}{25}{figure.caption.14}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Mesh of the Smith-Hutton problem\relax }}{26}{figure.caption.15}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces General scheme of the Smith-Hutton problem\relax }}{29}{figure.caption.17}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Comparative of the different methods $\rho /\Gamma =10$\relax }}{31}{figure.caption.20}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Comparative of the different methods $\rho /\Gamma =10^{3}$\relax }}{32}{figure.caption.21}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Comparative of the different methods $\rho /\Gamma =10^{6}$\relax }}{32}{figure.caption.22}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10$ (UDS)\relax }}{33}{figure.caption.23}
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10^{3}$ (UDS)\relax }}{33}{figure.caption.24}
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10^{6}$ (UDS)\relax }}{34}{figure.caption.25}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Staggered meshes (2D)\relax }}{31}{figure.caption.17}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Staggered meshes (2D)\relax }}{36}{figure.caption.26}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {8.1}{\ignorespaces General scheme of the driven cavity problem\relax }}{34}{figure.caption.18}
+\contentsline {figure}{\numberline {8.1}{\ignorespaces General scheme of the driven cavity problem\relax }}{39}{figure.caption.27}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {9.1}{\ignorespaces Representation of all the possible interactions between the modes in the convective term. Extracted from \cite {CTTC2014}\relax }}{43}{figure.caption.29}
 \addvspace {10\p@ }

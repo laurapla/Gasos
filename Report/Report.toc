@@ -31,15 +31,26 @@
 \contentsline {chapter}{\numberline {4}A Two-dimensional Transient Conduction Problem}{17}{chapter.4}
 \contentsline {section}{\numberline {4.1}Discretization}{18}{section.4.1}
 \contentsline {section}{\numberline {4.2}Boundary conditions}{18}{section.4.2}
-\contentsline {section}{\numberline {4.3}Algorithm}{19}{section.4.3}
-\contentsline {section}{\numberline {4.4}Results}{21}{section.4.4}
+\contentsline {section}{\numberline {4.3}Algorithm}{20}{section.4.3}
+\contentsline {section}{\numberline {4.4}Results}{20}{section.4.4}
 \contentsline {part}{IV\hspace {1em}Convection}{23}{part.4}
-\contentsline {chapter}{\numberline {5}The Navier-Stokes Equations}{24}{chapter.5}
-\contentsline {chapter}{\numberline {6}Smith-Hutton problem}{25}{chapter.6}
-\contentsline {section}{\numberline {6.1}Discretization}{26}{section.6.1}
-\contentsline {chapter}{\numberline {7}Fractional Step Method}{30}{chapter.7}
-\contentsline {section}{\numberline {7.1}Fractional Step Method algorithm}{31}{section.7.1}
-\contentsline {section}{\numberline {7.2}Discretization}{31}{section.7.2}
-\contentsline {chapter}{\numberline {8}Driven cavity problem}{33}{chapter.8}
-\contentsline {section}{\numberline {8.1}Boundary conditions}{33}{section.8.1}
-\contentsline {chapter}{\numberline {9}Bibliography}{35}{chapter.9}
+\contentsline {chapter}{\numberline {5}Convection}{24}{chapter.5}
+\contentsline {section}{\numberline {5.1}The generic convection-diffusion equation}{24}{section.5.1}
+\contentsline {section}{\numberline {5.2}Discretization}{24}{section.5.2}
+\contentsline {section}{\numberline {5.3}Evaluation of the value in the faces}{26}{section.5.3}
+\contentsline {chapter}{\numberline {6}Smith-Hutton problem}{29}{chapter.6}
+\contentsline {section}{\numberline {6.1}Discretization}{30}{section.6.1}
+\contentsline {section}{\numberline {6.2}Boundary conditions}{30}{section.6.2}
+\contentsline {section}{\numberline {6.3}Algorithm}{31}{section.6.3}
+\contentsline {section}{\numberline {6.4}Results}{31}{section.6.4}
+\contentsline {chapter}{\numberline {7}Fractional Step Method}{35}{chapter.7}
+\contentsline {section}{\numberline {7.1}Fractional Step Method algorithm}{36}{section.7.1}
+\contentsline {section}{\numberline {7.2}Discretization}{36}{section.7.2}
+\contentsline {chapter}{\numberline {8}Driven cavity problem}{38}{chapter.8}
+\contentsline {section}{\numberline {8.1}Boundary conditions}{38}{section.8.1}
+\contentsline {part}{V\hspace {1em}Turbulence}{40}{part.5}
+\contentsline {chapter}{\numberline {9}Burgers' equation}{41}{chapter.9}
+\contentsline {section}{\numberline {9.1}Fourier space}{41}{section.9.1}
+\contentsline {section}{\numberline {9.2}Discretization}{43}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}Large-Eddy Simulation}{44}{subsection.9.2.1}
+\contentsline {chapter}{\numberline {10}Bibliography}{45}{chapter.10}

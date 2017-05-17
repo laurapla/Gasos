@@ -45,7 +45,16 @@ The four materials problem is a two-dimensional transient conduction problem. It
 The initial temperature field is $T=8.00 ^{\circ}C$.
 
 \section{Discretization}
-The spatial discretization of the problem is that described in section \ref{SpatialDiscretizationConduction}, and the temporal discretization the one described in section \ref{TemporalDiscretizationConduction}.
+The spatial discretization of the problem is that described in section \ref{SpatialDiscretizationConduction}. However, since there are different materials, each of them is discretized separately. The variable $M_{1}$ is the number of control volumes in the vertical direction from $Y=0$ to the point $p_{1}$, $M_{2}$ from $p_{1}$ to $p_{2}$ and $M_{3}$ form $p_{2}$ to $p_{3}$. In the horizontal direction, the variable $N_{1}$ is the number of control volumes from $X=0$ to the point $p_{1}$ and $N_{2}$ from $p_{1}$ to $p_{3}$.
+\begin{table}[h]
+	\centering
+	\begin{tabular}{ |c|c|c|c|c|c| }
+		\hline
+		$M_{1}$ & $M_{2}$ & $M_{3}$ & $N_{1}$ & $N_{2}$ & $\delta$ \\ \hline
+		$40$ & $30$ & $10$ & $50$ & $60$ & $10^{-3}$ \\ \hline
+	\end{tabular}
+	\caption{Numerical parameters of the four materials problem}
+\end{table}
 
 \section{Boundary conditions}
 The coefficients of the discretized equation in the inner nodes are the ones of the section \ref{DiscrCond}. The outer walls of the rod have special conditions, so each of them has to be studied in order to determine which coefficients of their boundary nodes are different.
@@ -97,7 +106,7 @@ b_{P}=\frac{\rho_{P}V_{P}\bar{c}_{P}T_{P}^{n}}{\Delta t}+\beta\left(\dot{q}_{vP}
 
 \section{Algorithm}
 The algorithm used in this convection problem is represented below. In this case, some of the discretization coefficients are constant, but sometimes they are not. These would change slightly the algorithm used.
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.21]{FourMaterials/algorithm}
 \end{figure}

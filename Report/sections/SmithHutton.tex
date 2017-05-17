@@ -1,12 +1,13 @@
 \chapter{Smith-Hutton problem}
-The Smith-Hutton problem is a two-dimensional steady convection-diffusion problem, represented in figure \ref{SHscheme}. In this problem, the density is constant, and the velocity field is known.
-\begin{figure}[h]
+The Smith-Hutton problem is a two-dimensional steady convection-diffusion problem, represented in figure \ref{SHscheme}. In the problem, the density is constant, and the velocity field is known.
+\begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.7]{SmithHutton/SmithHutton}
+	\includegraphics[scale=0.65]{SmithHutton/SmithHutton}
 	\caption{General scheme of the Smith-Hutton problem}
 	\label{SHscheme}
 \end{figure}
-The velocity field is given by equations \ref{SHuvel} and \ref{SHvvel}:
+
+The velocity is given by equations \ref{SHuvel} and \ref{SHvvel}:
 \begin{equation}
 u\left(x,y\right)=2y\left(1-x^{2}\right)
 \label{SHuvel}
@@ -27,170 +28,91 @@ And the prescribed boundary conditions for the variable $\phi$ are described in 
 where $\alpha=10$.
 
 \section{Discretization}
-It is necessary to discretize equation \ref{GCDE} in space and time. The control volume used to discretize the problem is specified in figure \ref{SHmesh}. The boundary nodes are in blue and the inner nodes in black.
+The spatial discretization is the one explained in section \ref{DiscretizationSH}, and the temporal scheme used is the implicit one, as explained in the same section.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{ |c|c|c|c| }
+		\hline
+		$N_{x}$ & $N_{y}$ & $\delta$ & Source term \\ \hline
+		$200$ & $100$ & $10^{-9}$ & $0$ \\ \hline
+	\end{tabular}
+\caption{Numerical parameters of the Smith-Hutton problem}
+\end{table}
+
+\section{Boundary conditions}
+To apply the boundary conditions to the problem, some modifications on the coefficients defined by equation \ref{DiscretizedEquGCDE} have to be done. The easiest one is for the points in the left, top and right sides of the domain, in which the value of $\phi$ is defined.
+
+In the bottom it is necessary to distinguish between the inlet and the outlet. A similar approach to that of the left, top and right side is used to determine the coefficients of the points in the inlet. However, in the outlet the only condition is that the derivative of $\phi$ in the vertical direction is equal to zero. The following reasoning leads to:
+\begin{equation}
+\frac{\partial\phi}{\partial y}\approx\frac{\phi_{N}-\phi_{P}}{\Delta y}=0
+\end{equation}
+\begin{equation}
+\phi_{P}=\phi_{N}
+\end{equation}
+The implementation of the boundary conditions in the problem is done with the discretization coefficients listed in table \ref{BoundaryCondSH}.
+\begin{table}[h]
+	\centering
+	\begin{tabular}{ |c|c|c|c| }
+		\hline
+		Coefficients & Left, top and right & Inlet (bottom) & Outlet (bottom) \\ \hline
+		$a_{E}$ & $0$ & $0$ & $0$ \\ \hline
+		$a_{W}$ & $0$ & $0$ & $0$ \\ \hline
+		$a_{N}$ & $0$ & $0$ & $1$ \\ \hline
+		$a_{S}$ & $0$ & $0$ & $0$ \\ \hline
+		$a_{P}$ & $1$ & $1$ & $1$ \\ \hline
+		$b_{P}$ & $1-\tanh\left(\alpha\right)$ & $1+\tanh\left(\alpha\left(2x+1\right)\right)$ & $0$ \\ \hline
+	\end{tabular}
+\caption{Discretization coefficients of the boundary points}
+\label{BoundaryCondSH}
+\end{table}
+
+
+\section{Algorithm}
+
+\section{Results}
+Some of the results are plotted in the following section, but due to the amount of information, not all of them are in the report. To see more results refer to Attachment A.
+
+Since the velocity and the dimensions are constant, the parameter $\rho/\Gamma$ is somehow equivalent to the Péclet number. In figure \ref{ResSH10}, when the Péclet number is low, all the methods have similar results, and there is almost no error compared to the reference values. However, as the Péclet number increases, the error increases, as it can be seen in figure \ref{ResSH1000} and figure \ref{ResSH1000000}.
+
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.6]{SmithHutton/mesh}
-	\caption{Mesh of the Smith-Hutton problem}
-	\label{SHmesh}
+	\input{SmithHutton/SH10}
+	\caption{Comparative of the different methods $\rho/\Gamma=10$}
+	\label{ResSH10}
 \end{figure}
-To do so, it is easier to start with the discretization of the mass equation \ref{massequation}:
-\begin{equation}
-\frac{\partial\rho}{\partial t}+\nabla\cdot\left(\rho\vec{v}\right)=0
-\label{massequation}
-\end{equation}
-The first step is to integrate Equation \ref{massequation} over time and space. Taking only the first term of the equation:
-\begin{equation}
-\begin{aligned}
-\int_{t^{n}}^{t^{n+1}}\int_{V_{P}}^{}\frac{\partial\rho}{\partial t}dVdt=\int_{t^{n}}^{t^{n+1}}V_{P}\frac{\partial\bar{\rho}_{P}}{\partial t}dt=V_{P}\left(\bar{\rho}_{P}^{n+1}-\bar{\rho}_{P}^{n}\right)\approx \\
-V_{P}\left(\rho_{P}^{n+1}-\rho_{P}^{n}\right)=V_{P}\left(\rho_{P}-\rho_{0}\right)
-\end{aligned}
-\end{equation}
-Using the Divergence Theorem, the second term of the mass equation transforms into a surface integral. Then, to integrate over time, an implicit scheme is used.
-\begin{equation}
-\begin{aligned}
-\int_{t^{n}}^{t^{n+1}}\int_{V_{P}}^{}\nabla\cdot\left(\rho\vec{v}\right)dVdt=\int_{t^{n}}^{t^{n+1}}\int_{S_{f}}^{}\rho\vec{v}\cdot\vec{n}dSdt= \\
-\int_{t^{n}}^{t^{n+1}}\left(\dot{m}_{e}-dot{m}_{w}+dot{m}_{n}-dot{m}_{s}\right)dt\approx\left[\dot{m}_{e}-dot{m}_{w}+dot{m}_{n}-dot{m}_{s}\right]^{n+1}\Delta t
-\end{aligned}
-\end{equation}
-The final discretized mass equation is \ref{Discretizedmasseq2D}:
-\begin{equation}
-\frac{V_{P}\left(\rho_{P}-\rho_{0}\right)}{\Delta t}+\dot{m}_{e}-dot{m}_{w}+dot{m}_{n}-dot{m}_{s}=0
-\label{Discretizedmasseq2D}
-\end{equation}
-The discretization of the convection-diffusion equation is very similar to that of the mass equation. Integrating over the volume the transport term of equation \ref{GCDE} and applying the Divergence Theorem:
-\begin{equation}
-\int_{V_{P}}\nabla\cdot\left(\rho\vec{v}\phi\right)=\int_{S_{f}}\rho\phi\vec{v}\cdot\vec{n}dS=\dot{m}_{e}\phi_{e}-\dot{m}_{w}\phi_{w}+\dot{m}_{n}\phi_{n}-\dot{m}_{s}\phi_{s}
-\end{equation}
-The same procedure is used for the diffusion term of equation \ref{GCDE}:
-\begin{equation}
-\begin{aligned}
-\int_{V_{P}}\nabla\cdot\left(\Gamma\nabla\phi\right)=\int_{S_{f}}\Gamma\cdot\nabla\phi\cdot\vec{n}dS=-\Gamma_{w}\frac{\partial\phi}{\partial x}\big|_{w}S_{w}+\Gamma_{e}\frac{\partial\phi}{\partial x}\big|_{e}S_{e}-\Gamma_{s}\frac{\partial\phi}{\partial x}\big|_{s}S_{s}+\Gamma_{n}\frac{\partial\phi}{\partial x}\big|_{n}S_{n}\approx \\
-D_{e}\left(\phi_{E}-\phi_{P}\right)-D_{w}\left(\phi_{P}-\phi_{W}\right)+D_{n}\left(\phi_{N}-\phi_{P}\right)-D_{s}\left(\phi_{P}-\phi_{S}\right)\big|
-\end{aligned}
-\end{equation}
-where
-\begin{equation}
-D_{e}=\frac{\Gamma_{e}S_{e}}{d_{PE}}
-\end{equation}
-\begin{equation}
-D_{w}=\frac{\Gamma_{w}S_{w}}{d_{PW}}
-\end{equation}
-\begin{equation}
-D_{n}=\frac{\Gamma_{n}S_{n}}{d_{PN}}
-\end{equation}
-\begin{equation}
-D_{s}=\frac{\Gamma_{s}S_{s}}{d_{PS}}
-\end{equation}
-To simplify the source term, it is linearized:
-\begin{equation}
-\int_{V_{P}}S_{\phi}dV\approx S_{\phi,P}V_{P}=\left(S_{c}^{\phi}+S_{p}^{\phi}\phi_{P}\right)V_{P}
-\end{equation}
-So that the resulting discretized equation is:
-\begin{equation}
-\begin{aligned}
-\frac{\rho_{P}\phi_{P}-\rho_{P}^{0}\phi_{P}^{0}}{\Delta t}V_{P}+\dot{m}_{e}\phi_{e}-\dot{m}_{w}\phi_{w}+\dot{m}_{n}\phi_{n}-\dot{m}_{s}\phi_{s}= \\
-D_{e}\left(\phi_{E}-\phi_{P}\right)-D_{w}\left(\phi_{P}-\phi_{W}\right)+D_{n}\left(\phi_{N}-\phi_{P}\right)-D_{s}\left(\phi_{P}-\phi_{S}\right)+S_{\phi,P}V_{P}
-\end{aligned}
-\label{IntermGCDE}
-\end{equation}
-Multiplying by $\phi$ the discretized mass equation \ref{Discretizedmasseq2D} and subtracting the result in \ref{IntermGCDE}, the discretized convection-diffusion equation is obtained:
-\begin{equation}
-\rho_{P}^{0}\frac{\phi_{P}-\phi_{P}^{0}}{\Delta t}V_{P}+\dot{m}_{e}\left(\phi_{e}-\phi_{P}\right)-\dot{m}_{w}\left(\phi_{w}-\phi_{P}\right)+\dot{m}_{n}\left(\phi_{n}-\phi_{P}\right)-\dot{m}_{s}\left(\phi_{s}-\phi_{P}\right)=D_{e}\left(\phi_{E}-\phi_{P}\right)-D_{w}\left(\phi_{P}-\phi_{W}\right)+D_{n}\left(\phi_{N}-\phi_{P}\right)-D_{s}\left(\phi_{P}-\phi_{S}\right)+S_{\phi,P}V_{P}
-\label{DiscretizedGCDE}
-\end{equation}
-To simplify the problem, a new variable is introduced to the problem: the total flux \cite{Patankar1980}. But this variable is split in the two dimensions of the problem, the flux in the x-direction and the flux in the y-direction.
-\begin{equation}
-J_{x}\equiv\rho u\phi-\Gamma\frac{\partial\phi}{\partial x}
-\label{fluxx}
-\end{equation}
-\begin{equation}
-J_{y}\equiv\rho v\phi-\Gamma\frac{\partial\phi}{\partial y}
-\label{fluxy}
-\end{equation}
-Introducing the expressions of the total flux \ref{fluxx} and \ref{fluxy} to \ref{DiscretizedGCDE}, the discretized convection diffusion equation becomes:
-\begin{equation}
-\rho_{P}^{0}\frac{\phi_{P}-\phi_{P}^{0}}{\Delta t}V_{P}+\left(J_{e}-F_{e}\phi_{P}\right)-\left(J_{w}-F_{w}\phi_{P}\right)+\left(J_{n}-F_{n}\phi_{P}\right)-\left(J_{s}-F_{s}\phi_{P}\right)=\left(S_{p}^{\phi}\phi_{P}\right)V_{P}
-\label{FinalDiscrGCDE}
-\end{equation}
-where the flow rates are:
-\begin{equation}
-F_{e}=\left(\rho u\right)_{e}S_{e}
-\end{equation}
-\begin{equation}
-F_{w}=\left(\rho u\right)_{w}S_{w}
-\end{equation}
-\begin{equation}
-F_{n}=\left(\rho v\right)_{n}S_{n}
-\end{equation}
-\begin{equation}
-F_{s}=\left(\rho v\right)_{s}S_{s}
-\end{equation}
-However, it is necessary to know how the fluxes are going to be evaluated. In order to use non-dimensional numbers, a new variable is defined:
-\begin{equation}
-	J^{*}\equiv\frac{J\delta}{\Gamma}=P\phi-\frac{d\phi}{d\left(x/\delta\right)}
-\end{equation}
-where $P$ is the Péclet number and $\delta$ is the distance between the point that is going to be studied $i$, and the point next to it, $i+1$. The value of $\phi$ and the value of the gradient $d\phi/d\left(x/\delta\right)$ are a combination of the $\phi_{i}$ and $\phi_{i+1}$, so that $J^{*}$ can be expressed as \cite{Patankar1980}:
-\begin{equation}
-J^{*}=B\phi_{i}-A\phi_{i+1}
-\end{equation}
-The coefficients $A$ and $B$ are dimensionless and depend on the Péclet number. However, $B$ is a combination of $A$ and the Péclet number, and both coefficients are symmetric \cite{Patankar1980}. Taking these properties into account and introducing the operator $\textlbrackdbl A,B\textrbrackdbl$ that denotes the greater of $A$ and $B$, it can be deduced that:
-\begin{equation}
-A\left(P\right)=A\left(|P|\right)+\textlbrackdbl-P,0\textrbrackdbl
-\label{A}
-\end{equation}
-\begin{equation}
-B\left(P\right)=A\left(|P|\right)+\textlbrackdbl-P,0\textrbrackdbl
-\label{B}
-\end{equation}
-Introducing equations \ref{A} and \ref{B} into \ref{FinalDiscrGCDE}, the following formulation is obtained:
-\begin{equation}
-	a_{P}\phi_{P}=a_{E}\phi_{E}+a_{W}\phi_{W}+a_{N}\phi_{N}+a_{S}\phi_{S}+b_{P}
-\end{equation}
-where
-\begin{equation}
-a_{E}=D_{e}A\left(|P_{e}|\right)+\textlbrackdbl-F_{e},0\textrbrackdbl
-\end{equation}
-\begin{equation}
-a_{W}=D_{w}A\left(|P_{w}|\right)+\textlbrackdbl F_{w},0\textrbrackdbl
-\end{equation}
-\begin{equation}
-a_{N}=D_{n}A\left(|P_{n}|\right)+\textlbrackdbl-F_{n},0\textrbrackdbl
-\end{equation}
-\begin{equation}
-a_{S}=D_{s}A\left(|P_{s}|\right)+\textlbrackdbl-F_{s},0\textrbrackdbl
-\end{equation}
-\begin{equation}
-a_{P}=a_{E}+a_{W}+a_{N}+a_{S}+\frac{\rho_{P}^{0}V_{P}}{\Delta t}-S_{P}V_{P}
-\end{equation}
-\begin{equation}
-b_{P}=S_{c}V_{P}+\frac{\rho_{P}^{0}V_{P}}{\Delta t}\phi_{P}^{0}
-\end{equation}
-And the Péclet numbers are:
-\begin{equation}
-P_{e}=\frac{F_{e}}{D_{e}}
-\end{equation}
-\begin{equation}
-P_{w}=\frac{F_{w}}{D_{w}}
-\end{equation}
-\begin{equation}
-P_{n}=\frac{F_{n}}{D_{n}}
-\end{equation}
-\begin{equation}
-P_{s}=\frac{F_{s}}{D_{s}}
-\end{equation}
-The only operation that should be defined is the value of the coefficient $A$. This value depends on the integration scheme that is going to be used. Some of its values are listed in table \ref{Patankarvalues}.
-\begin{table}
+\begin{figure}
 	\centering
-	\begin{tabular}{ |c|c| }
-		\hline
-		Scheme & Formula for $A\left(|P_{s}|\right)$ \\ \hline
-		Central difference (CDS) & $1-0.5|P|$ \\ \hline
-		Upwind (UDS) & $1$ \\ \hline
-		Hybrid (HDS) & $\textlbrackdbl0,1-0.5|P|\textrbrackdbl$ \\ \hline
-		Power law (PLDS) & $\textlbrackdbl0,\left(1-0.5|P|\right)^{5}\textrbrackdbl$ \\ \hline
-		Exponential (EDS) & $|P|/\left[exp\left(|P|\right)-1\right]$ \\ \hline
-	\end{tabular}
-\caption{Function $A(|P|)$ for different schemes\cite{Patankar}}
-\label{Patankarvalues}
-\end{table}
+	\input{SmithHutton/SH1000}
+	\caption{Comparative of the different methods $\rho/\Gamma=10^{3}$}
+	\label{ResSH1000}
+\end{figure}
+\begin{figure}
+	\centering
+	\input{SmithHutton/SH1000000}
+	\caption{Comparative of the different methods $\rho/\Gamma=10^{6}$}
+	\label{ResSH1000000}
+\end{figure}
+It is important to notice that in the cases in which $\rho/\Gamma=10^{3}$ and $\rho/\Gamma=10^{6}$ CDS diverges, and no results can be obtained with this method. It is not a surprise, because the central differencing scheme tends to diverge in some cases.
+
+It is also important to understand the variation of the variable $\phi$ in the whole domain. For a low Péclet number (figure \ref{ResuSH10}), the variation is very gradual. But as it increases (figures \ref{ResuSH1000} and \ref{ResuSH1000000}), the change is more abrupt, and there is almost no variation except for the centre bottom zone. The shape of the variation becomes more symmetrical as the Péclet number increases.
+\begin{figure}
+	\centering
+	\input{SmithHutton/R10}
+	\caption{Representation of the whole domain for $\rho/\Gamma=10$ (UDS)}
+	\label{ResuSH10}
+\end{figure}
+\begin{figure}
+	\centering
+	\input{SmithHutton/R1000}
+	\caption{Representation of the whole domain for $\rho/\Gamma=10^{3}$ (UDS)}
+	\label{ResuSH1000}
+\end{figure}
+\begin{figure}
+	\centering
+	\input{SmithHutton/R1000000}
+	\caption{Representation of the whole domain for $\rho/\Gamma=10^{6}$ (UDS)}
+	\label{ResuSH1000000}
+\end{figure}
+
+As a conclusion, it can be stated that when convergence dominates over diffusion (low Péclet numbers), velocity distributes the properties of the inlet to a great part of the domain. However, as diffusion becomes more important (the Péclet number increases), the influence of the inlet becomes less important.

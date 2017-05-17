@@ -1,5 +1,9 @@
 \chapter{Burgers' equation}
 Burgers' equation, also known as Burgulence, is a one dimensional approach to the Navier-Stokes equations in an incompressible flow. Taking the dimensionless expressions that describe an incompressible flow:
+
+%https://books.google.es/books?id=TQfYCwAAQBAJ&printsec=frontcover&hl=es#v=onepage&q&f=false 
+%pag 4-33
+
 \begin{equation}
 \frac{\partial\vec{v}}{\partial t}+\left(\vec{v}\cdot\nabla\right)\vec{v}=\frac{1}{Re}\nabla^{2}\vec{v}-\nabla p
 \end{equation}
@@ -30,10 +34,12 @@ Using this expression, the Burgers' equation can be transformed into the Fourier
 \begin{equation}
 \frac{\partial u}{\partial x}=\frac{\partial}{\partial x}\sum_{k=-N}^{k=+N}û_{k}e^{ikx}=\sum_{k=-N}^{k=+N}û_{k}\frac{\partial e^{ikx}}{\partial x}=\sum_{k=-N}^{k=+N}û_{k}\left(ik\right)e^{ikx}
 \end{equation}
+
 The same procedure is applied to the second derivative in order to obtain the diffusive term:
-\begin{equation}
-\frac{\partial^{2}u}{\partial x^{2}}=\frac{\partial}{\partial x}\left(\frac{\partial u}{\partial x}\right)=\frac{\partial}{\partial x}\sum_{k=-N}^{k=+N}û_{k}\left(ik\right)e^{ikx}=\sum_{k=-N}^{k=+N}û_{k}\left(ik\right)\frac{\partial e^{ikx}}{\partial x}=\sum_{k=-N}^{k=+N}û_{k}\left(ik\right)^{2}e^{ikx}=\sum_{k=-N}^{k=+N}\left(-k^{2}û_{k}\right)e^{ikx}
-\end{equation}
+\begin{multline}
+\frac{\partial^{2}u}{\partial x^{2}}=\frac{\partial}{\partial x}\left(\frac{\partial u}{\partial x}\right)=\frac{\partial}{\partial x}\sum_{k=-N}^{k=+N}û_{k}\left(ik\right)e^{ikx}=\sum_{k=-N}^{k=+N}û_{k}\left(ik\right)\frac{\partial e^{ikx}}{\partial x}= \\
+\sum_{k=-N}^{k=+N}û_{k}\left(ik\right)^{2}e^{ikx}=\sum_{k=-N}^{k=+N}\left(-k^{2}û_{k}\right)e^{ikx}
+\end{multline}
 The transient \ref{TransientTerm} and forcing \ref{ForcingTerm} terms are straightforward:
 \begin{equation}
 \frac{\partial u}{\partial t}=\frac{\partial}{\partial t}\sum_{k=-N}^{k=+N}û_{k}e^{ikx}
@@ -43,7 +49,8 @@ The transient \ref{TransientTerm} and forcing \ref{ForcingTerm} terms are straig
 f=\sum_{k=-N}^{k=+N}F_{k}e^{ikx}
 \label{ForcingTerm}
 \end{equation}
-However, the convective term is more complicated. This non-linear term is a multiplication of the function u and its derivative, and when this term is transformed into Fourier space there are some things that need to be taken into account. The terms in question are:
+
+On the other, the convective term is more complicated. This non-linear term is a multiplication of the function u and its derivative, and when this term is transformed into Fourier space there are some things that need to be taken into account. The terms in question are:
 \begin{equation}
 \frac{\partial u}{\partial x}=\sum_{q=-N}^{q=+N}iqû_{q}e^{iqx}
 \end{equation}
@@ -60,9 +67,14 @@ Taking all these expressions, integrating them into the Burgers equation and app
 \end{equation}
 for $k=1,\dots, N$; and where $û_{k}\in\mathbb{C}$.
 
-As it can be seen, one of the main advantages of spectral methods is that all the modes can be solved separately. However, due to the convective term, there is still a sum of terms in the equation, which can be named triadic interactions. This summation can be easily interpreted with figure .
-
-In Fourier space $\bar{û}_{-k}=û_{k}$, so only the positive modes need to be solved. Moreover, since the Fourier series are truncated for $k≤|N|$, the only possible interactions are those of $p+q≤N$. Therefore, only the interactions between the lines $k=0$ and $k=+N$ have to be considered in the computation of the convective term.
+As it can be seen, one of the main advantages of spectral methods is that all the modes can be solved separately. However, due to the convective term, there is still a sum of terms in the equation, which can be named triadic interactions. This summation can be easily interpreted with figure \ref{TriadicFigure}.
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.7]{Burgers/Burger}
+	\caption{Representation of all the possible interactions between the modes in the convective term. Extracted from \cite{CTTC2014}}
+	\label{TriadicFigure}
+\end{figure}
+In Fourier space $\bar{û}_{-k}=û_{k}$, so only the positive modes need to be solved. Moreover, since the Fourier series are truncated for $k\leq|N|$, the only possible interactions are those of $p+q\leq N$. Therefore, only the interactions between the lines $k=0$ and $k=+N$ have to be considered in the computation of the convective term.
 
 \section{Discretization}
 In order to solve the equation it is necessary to discretize it over time. The time-integration scheme used is the fully explicit one:
