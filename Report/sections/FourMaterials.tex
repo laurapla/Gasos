@@ -106,20 +106,20 @@ b_{P}=\frac{\rho_{P}V_{P}\bar{c}_{P}T_{P}^{n}}{\Delta t}+\beta\left(\dot{q}_{vP}
 
 \section{Algorithm}
 The algorithm used in this convection problem is represented below. In this case, some of the discretization coefficients are constant, but sometimes they are not. These would change slightly the algorithm used.
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.21]{FourMaterials/algorithm}
+	\includegraphics[scale=0.154]{FourMaterials/algorithm}
 \end{figure}
 
 \section{Results}
 The four materials problem is transitory. Since the temperature in the right wall changes over time, it never reaches a steady state. To obtain some results, given time steps have been chosen.
 \begin{figure}[h]
 	\centering
-	\input{FourMaterials/Res5000}
+	\input{FourMaterials/Resultats5000}
 	\caption{Instantaneous isotherm at t=5000 s}
 \end{figure}
 \begin{figure}[h]
 	\centering
-	\input{FourMaterials/Resu}
+	\input{FourMaterials/Resultats}
 	\caption{Instantaneous isotherm at t=10000 s}
 \end{figure}

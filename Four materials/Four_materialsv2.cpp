@@ -68,9 +68,9 @@ int main(){
 	}; // Points to be studied [m]
 	
 	// Mathematical properties
-	const int Time = 10001; // Time discretization
+	const int Time = 5001; // Time discretization
 	const float beta = 0.5;
-	const float tfinal = 10000; // Time of the simulation
+	const float tfinal = 5000; // Time of the simulation
 	const float delta = 0.001; // Precision of the simulation
 	const float fr = 1.2; // Relaxation factor
 	
@@ -191,9 +191,58 @@ int main(){
     // Output file
     cout<<"Creating file..."<<endl;
     output_file (Tpoint1, Tpoint2, Time, dt);
-	resultaats (x, y, T, N1+N2, M1+M2+M3);
+//	resultaats (x, y, T, N1+N2, M1+M2+M3);
     
     cout<<"End of program"<<endl;
+    
+    ofstream results;
+    results.open("Ressultats5000.dat");
+    int N = N1+N2;
+    int M = M1+M2+M3;
+    for(int i = -1; i<N+1; i++)
+    {
+    	for(int j = -1; j<M+1; j++)
+    	{
+    		if(i==-1 && j==-1)
+    		{
+    			results<<0.000<<"	"<<0.800<<"	"<<(200*T[0][0]/0.005+alpha*Tgleft)/(alpha+200/0.005)<<endl;
+			}
+			else if(i==-1 && j==M)
+			{
+				results<<0.000<<"	"<<0.000<<"	"<<23.000<<endl;
+			}
+			else if(i==-1 && j!=-1 && j!=M)
+			{
+				results<<0.000<<"	"<<y[j]<<"	"<<(lambda[j][0]*T[j][0]/0.005+alpha*Tgleft)/(alpha+lambda[j][0]/0.005)<<endl;
+			}
+			else if(i==N && j==-1)
+			{
+				results<<1.100<<"	"<<0.800<<"	"<<8+0.005*tfinal<<endl;
+			}
+			else if(i==N && j==M)
+			{
+				results<<1.100<<"	"<<0.000<<"	"<<8+0.005*tfinal<<endl;
+			}
+			else if(i==N && j!=-1 && j!=M)
+			{
+				results<<1.100<<"	"<<y[j]<<"	"<<8+0.005*tfinal<<endl;
+			}
+			else if(j==-1 && i!=-1 && i!=N)
+			{
+				results<<x[i]<<"	"<<0.800<<"	"<<T[0][i]+Qtop*0.005/(1.10*lambda[0][i]*0.005)<<endl;
+			}
+			else if(j==M && i!=-1 && i!=N)
+			{
+				results<<x[i]<<"	"<<0.000<<"	"<<23.000<<endl;
+			}
+    		else
+    		{
+    			results<<x[i]<<"	"<<y[j]<<"	"<<T[j][i]<<endl;
+			}
+		}
+		results<<endl;
+	}
+    results.close();
     
     return 0;
     
@@ -650,17 +699,7 @@ void output_file (double* Tpoint1, double* Tpoint2, int Time, float dt)
     puntss.close();
 }
 
-void resultaats (double *x, double *y, matrix T, int N, int M)
-{
-	ofstream results;
-    results.open("Resultats.dat");
-    for(int i = 0; i<N; i++)
-    {
-    	for(int j = 0; j<M; j++)
-    	{
-    		results<<x[i]<<"	"<<y[j]<<"	"<<T[j][i]<<endl;
-		}
-		results<<endl;
-	}
-    results.close();
-}
+//void resultaats (double *x, double *y, matrix T, int N, int M)
+//{
+//	
+//}

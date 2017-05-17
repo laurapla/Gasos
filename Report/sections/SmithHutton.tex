@@ -69,25 +69,29 @@ The implementation of the boundary conditions in the problem is done with the di
 
 
 \section{Algorithm}
+The algorithm of resolution is very similar to that used in the four materials problem. The main difference is that in the Smith-Hutton problem the resolution ends when the variable $\phi$ reaches a steady state. The schematic resolution is displayed below:
+\begin{figure}[h!]
+	\includegraphics[scale=0.17]{SmithHutton/algorithm}
+\end{figure}
 
 \section{Results}
 Some of the results are plotted in the following section, but due to the amount of information, not all of them are in the report. To see more results refer to Attachment A.
 
 Since the velocity and the dimensions are constant, the parameter $\rho/\Gamma$ is somehow equivalent to the Péclet number. In figure \ref{ResSH10}, when the Péclet number is low, all the methods have similar results, and there is almost no error compared to the reference values. However, as the Péclet number increases, the error increases, as it can be seen in figure \ref{ResSH1000} and figure \ref{ResSH1000000}.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\input{SmithHutton/SH10}
 	\caption{Comparative of the different methods $\rho/\Gamma=10$}
 	\label{ResSH10}
 \end{figure}
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\input{SmithHutton/SH1000}
 	\caption{Comparative of the different methods $\rho/\Gamma=10^{3}$}
 	\label{ResSH1000}
 \end{figure}
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\input{SmithHutton/SH1000000}
 	\caption{Comparative of the different methods $\rho/\Gamma=10^{6}$}
@@ -96,19 +100,19 @@ Since the velocity and the dimensions are constant, the parameter $\rho/\Gamma$ 
 It is important to notice that in the cases in which $\rho/\Gamma=10^{3}$ and $\rho/\Gamma=10^{6}$ CDS diverges, and no results can be obtained with this method. It is not a surprise, because the central differencing scheme tends to diverge in some cases.
 
 It is also important to understand the variation of the variable $\phi$ in the whole domain. For a low Péclet number (figure \ref{ResuSH10}), the variation is very gradual. But as it increases (figures \ref{ResuSH1000} and \ref{ResuSH1000000}), the change is more abrupt, and there is almost no variation except for the centre bottom zone. The shape of the variation becomes more symmetrical as the Péclet number increases.
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\input{SmithHutton/R10}
 	\caption{Representation of the whole domain for $\rho/\Gamma=10$ (UDS)}
 	\label{ResuSH10}
 \end{figure}
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\input{SmithHutton/R1000}
 	\caption{Representation of the whole domain for $\rho/\Gamma=10^{3}$ (UDS)}
 	\label{ResuSH1000}
 \end{figure}
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\input{SmithHutton/R1000000}
 	\caption{Representation of the whole domain for $\rho/\Gamma=10^{6}$ (UDS)}
