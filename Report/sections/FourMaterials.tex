@@ -112,14 +112,34 @@ The algorithm used in this convection problem is represented below. In this case
 \end{figure}
 
 \section{Results}
-The four materials problem is transitory. Since the temperature in the right wall changes over time, it never reaches a steady state. To obtain some results, given time steps have been chosen.
-\begin{figure}[h]
+To verify the simulation, the results obtained are compared with some reference values for a time of 5000 s. As it can be seen in figures \ref{ref4M} and \ref{ref4M}, the results of the code are very similar to the reference values.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.55]{FourMaterials/reference}
+	\caption{Reference value: Instantaneous isotherms at $t=10000/2$ s}
+	\label{ref4M}
+\end{figure}
+\begin{figure}[h!]
 	\centering
 	\input{FourMaterials/Resultats5000}
 	\caption{Instantaneous isotherm at t=5000 s}
+	\label{plot4M}
 \end{figure}
+
+The four materials problem is transitory. Since the temperature in the right wall changes over time, it never reaches a steady state. To obtain some results, the final time of the simulation has been chosen to be 10000 s, as in the results of the figure \ref{4Mfinal}.
 \begin{figure}[h]
 	\centering
 	\input{FourMaterials/Resultats}
-	\caption{Instantaneous isotherm at t=10000 s}
+	\caption{Instantaneous plot at t=10000 s}
+	\label{4Mfinal}
 \end{figure}
+
+Nevertheless, to analyse the results obtained, the same simulation has been run for a homogeneous material (figure \ref{HomoM2}). The geometrical parameters and the boundary conditions have been maintained, but the physical properties of the whole material are those of the section $M_{2}$ of the four materials problem.
+\begin{figure}[h]
+	\centering
+	\input{FourMaterials/HomoM2}
+	\caption{Instantaneous plot at t=10000 s for a homogeneous material}
+	\label{HomoM2}
+\end{figure}
+
+Comparing both graphs, it can be stated that the final result is very similar in both cases. The main visible difference is that in the four materials problem, the higher temperatures move further to the left. In the original problem, the upper right region is made of the material $M_{4}$, which has the same conductivity as the homogeneous material $M_{2}$, but a higher density and specific heat, making the first material more capable of conducting the heat.

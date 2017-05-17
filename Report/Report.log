@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  17 MAY 2017 12:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  18 MAY 2017 01:40
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -1479,9 +1479,9 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 )
 \verbatim@out=\write3
-runsystem(echo t > "w18-test-2017517741.tex")...executed.
+runsystem(echo t > "w18-test-2017518100.tex")...executed.
 
-runsystem(del "w18-test-2017517741.tex")...executed.
+runsystem(del "w18-test-2017518100.tex")...executed.
 
 Package gnuplottex Info: Automatically converting gnuplot files. on input line 
 110.
@@ -1980,7 +1980,7 @@ LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 23.
 ("C:\Apps\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd"
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) (doc_config/cover.tex
-<./doc_config/image.png, id=227, 640.3925pt x 170.6375pt>
+<./doc_config/image.png, id=235, 640.3925pt x 170.6375pt>
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
@@ -2199,7 +2199,7 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 47.
  [6
 
 ]
-<sections/StateArt/3gridpoints.png, id=407, 372.64218pt x 92.59593pt>
+<sections/StateArt/3gridpoints.png, id=421, 372.64218pt x 92.59593pt>
 File: sections/StateArt/3gridpoints.png Graphic file (type png)
 
 <use sections/StateArt/3gridpoints.png>
@@ -2207,7 +2207,7 @@ Package pdftex.def Info: sections/StateArt/3gridpoints.png used on input line 6
 6.
 (pdftex.def)             Requested size: 372.64127pt x 92.59569pt.
 
-<sections/StateArt/controlvolume2d.png, id=409, 274.02374pt x 270.25969pt>
+<sections/StateArt/controlvolume2d.png, id=423, 274.02374pt x 270.25969pt>
 File: sections/StateArt/controlvolume2d.png Graphic file (type png)
 
 <use sections/StateArt/controlvolume2d.png>
@@ -2258,7 +2258,7 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 58.
 ] (sections/Conduction.tex
 Chapter 3.
 
-<sections/FourMaterials/controlvolume2d.png, id=448, 274.02374pt x 270.25969pt>
+<sections/FourMaterials/controlvolume2d.png, id=462, 274.02374pt x 270.25969pt>
 File: sections/FourMaterials/controlvolume2d.png Graphic file (type png)
 <use sections/FourMaterials/controlvolume2d.png>
 Package pdftex.def Info: sections/FourMaterials/controlvolume2d.png used on inp
@@ -2312,7 +2312,7 @@ Underfull \hbox (badness 5105) in paragraph at lines 1--1
 |[]\T1/lmss/bx/n/24.88 A Two-dimensional Tran-sient
  []
 
-<sections/FourMaterials/Fourmaterials.png, id=510, 545.03625pt x 397.485pt>
+<sections/FourMaterials/Fourmaterials.png, id=524, 545.03625pt x 397.485pt>
 File: sections/FourMaterials/Fourmaterials.png Graphic file (type png)
 
 <use sections/FourMaterials/Fourmaterials.png>
@@ -2361,7 +2361,7 @@ Overfull \hbox (5.25569pt too wide) detected at line 105
  []$[] \OT1/lmr/m/n/10.95 + [] [][]$ []  
  []
 
-<sections/FourMaterials/algorithm.png, id=522, 2489.3pt x 3521.155pt>
+<sections/FourMaterials/algorithm.png, id=536, 2489.3pt x 3521.155pt>
 File: sections/FourMaterials/algorithm.png Graphic file (type png)
 
 <use sections/FourMaterials/algorithm.png>
@@ -2378,8 +2378,18 @@ File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 114.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [20 <./sections/FourMaterials/algorithm.png>] (sections/FourMaterials/Resultat
-s5000.tex
+ [20 <./sections/FourMaterials/algorithm.png>] <sections/FourMaterials/referenc
+e.png, id=560, 545.78906pt x 416.30531pt>
+File: sections/FourMaterials/reference.png Graphic file (type png)
+
+<use sections/FourMaterials/reference.png>
+Package pdftex.def Info: sections/FourMaterials/reference.png used on input lin
+e 118.
+(pdftex.def)             Requested size: 300.1849pt x 228.96863pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 119.
+
+(sections/FourMaterials/Resultats5000.tex
 \gptboxheight=\skip129
 \gptboxwidth=\skip130
 \gptboxtext=\box95
@@ -2395,7 +2405,7 @@ ltats5000-eps-converted-to.pdf sections/FourMaterials/Resultats5000.eps>
 (epstopdf)             \includegraphics on input line 9348.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/FourMaterials/Resultats5000-eps-converted-to.pdf, id=544, 361.35pt x 
+<sections/FourMaterials/Resultats5000-eps-converted-to.pdf, id=561, 361.35pt x 
 252.945pt>
 File: sections/FourMaterials/Resultats5000-eps-converted-to.pdf Graphic file (t
 ype pdf)
@@ -2417,7 +2427,7 @@ ltats-eps-converted-to.pdf sections/FourMaterials/Resultats.eps>
 (epstopdf)             \includegraphics on input line 112.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/FourMaterials/Resultats-eps-converted-to.pdf, id=545, 361.35pt x 252.
+<sections/FourMaterials/Resultats-eps-converted-to.pdf, id=563, 361.35pt x 252.
 945pt>
 File: sections/FourMaterials/Resultats-eps-converted-to.pdf Graphic file (type 
 pdf)
@@ -2425,20 +2435,50 @@ pdf)
 Package pdftex.def Info: sections/FourMaterials/Resultats-eps-converted-to.pdf 
 used on input line 112.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
-))
+)
+File: ./doc_config/image.png Graphic file (type png)
+
+<use ./doc_config/image.png>
+Package pdftex.def Info: ./doc_config/image.png used on input line 136.
+(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
+ [21 <./sections/FourMaterials/reference.png> <./sections/FourMaterials/Resulta
+ts5000-eps-converted-to.pdf>]
+(sections/FourMaterials/HomoM2.tex
+Package epstopdf Info: Source file: <sections/FourMaterials/HomoM2.eps>
+(epstopdf)                    date: 2017-05-17 14:02:37
+(epstopdf)                    size: 2062192 bytes
+(epstopdf)             Output file: <sections/FourMaterials/HomoM2-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2017-05-17 14:04:48
+(epstopdf)                    size: 1080170 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/FourMaterials/Homo
+M2-eps-converted-to.pdf sections/FourMaterials/HomoM2.eps>
+(epstopdf)             \includegraphics on input line 113.
+Package epstopdf Info: Output file is already uptodate.
+
+<sections/FourMaterials/HomoM2-eps-converted-to.pdf, id=573, 361.35pt x 252.945
+pt>
+File: sections/FourMaterials/HomoM2-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use sections/FourMaterials/HomoM2-eps-converted-to.pdf>
+Package pdftex.def Info: sections/FourMaterials/HomoM2-eps-converted-to.pdf use
+d on input line 113.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-File: ./doc_config/image.png Graphic file (type png)
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 62.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [21 <./sections/FourMaterials/Resultats5000-eps-converted-to.pdf>]
+)
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 62.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [22 <./sections/FourMaterials/Resultats-eps-converted-to.pdf>]
+File: ./doc_config/image.png Graphic file (type png)
+ <use ./doc_config/image.png>
+Package pdftex.def Info: ./doc_config/image.png used on input line 62.
+(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
+ [23 <./sections/FourMaterials/HomoM2-eps-converted-to.pdf>]
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
 less on input line 62.
@@ -2455,11 +2495,11 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 62.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [23
+ [24
 
 ] (sections/NSEquations.tex
 Chapter 5.
-<sections/SmithHutton/mesh.png, id=569, 361.35pt x 340.27126pt>
+<sections/SmithHutton/mesh.png, id=597, 361.35pt x 340.27126pt>
 File: sections/SmithHutton/mesh.png Graphic file (type png)
 
 <use sections/SmithHutton/mesh.png>
@@ -2482,19 +2522,19 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 28.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [24
+ [25
 
 ]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 52.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [25 <./sections/SmithHutton/mesh.png>]
+ [26 <./sections/SmithHutton/mesh.png>]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 99.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [26]
+ [27]
 
 LaTeX Warning: Command \textlbrackdbl invalid in math mode on input line 121.
 
@@ -2583,7 +2623,7 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 160.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [27]
+ [28]
 
 LaTeX Warning: Command \textlbrackdbl invalid in math mode on input line 175.
 
@@ -2608,16 +2648,14 @@ LaTeX Warning: Command \textrbrackdbl invalid in math mode on input line 176.
 
 LaTeX Warning: Command \textrbrackdbl invalid in math mode on input line 176.
 
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 179.
 ) (sections/SmithHutton.tex
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 1.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [28]
+ [29]
 Chapter 6.
-<sections/SmithHutton/SmithHutton.png, id=651, 560.8453pt x 343.2825pt>
+<sections/SmithHutton/SmithHutton.png, id=677, 560.8453pt x 343.2825pt>
 File: sections/SmithHutton/SmithHutton.png Graphic file (type png)
 
 <use sections/SmithHutton/SmithHutton.png>
@@ -2646,10 +2684,10 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 41.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [29
+ [30
 
  <./sections/SmithHutton/SmithHutton.png>]
-<sections/SmithHutton/algorithm.png, id=665, 2489.3pt x 3521.155pt>
+<sections/SmithHutton/algorithm.png, id=691, 2489.3pt x 3521.155pt>
 File: sections/SmithHutton/algorithm.png Graphic file (type png)
 
 <use sections/SmithHutton/algorithm.png>
@@ -2660,13 +2698,13 @@ File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 76.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [30]
+ [31]
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 80.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [31 <./sections/SmithHutton/algorithm.png>]
+ [32 <./sections/SmithHutton/algorithm.png>]
 (sections/SmithHutton/SH10.tex
 Package epstopdf Info: Source file: <sections/SmithHutton/SH10.eps>
 (epstopdf)                    date: 2017-05-16 16:24:41
@@ -2680,7 +2718,7 @@ ps-converted-to.pdf sections/SmithHutton/SH10.eps>
 (epstopdf)             \includegraphics on input line 121.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/SmithHutton/SH10-eps-converted-to.pdf, id=681, 361.35pt x 252.945pt>
+<sections/SmithHutton/SH10-eps-converted-to.pdf, id=708, 361.35pt x 252.945pt>
 File: sections/SmithHutton/SH10-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/SmithHutton/SH10-eps-converted-to.pdf>
@@ -2701,7 +2739,7 @@ to.pdf>
 (epstopdf)             \includegraphics on input line 115.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/SmithHutton/SH1000-eps-converted-to.pdf, id=682, 361.35pt x 252.945pt
+<sections/SmithHutton/SH1000-eps-converted-to.pdf, id=709, 361.35pt x 252.945pt
 >
 File: sections/SmithHutton/SH1000-eps-converted-to.pdf Graphic file (type pdf)
  <use sections/SmithHutton/SH1000-eps-converted-to.pdf>
@@ -2725,7 +2763,7 @@ ed-to.pdf>
 (epstopdf)             \includegraphics on input line 115.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/SmithHutton/SH1000000-eps-converted-to.pdf, id=683, 361.35pt x 252.94
+<sections/SmithHutton/SH1000000-eps-converted-to.pdf, id=710, 361.35pt x 252.94
 5pt>
 File: sections/SmithHutton/SH1000000-eps-converted-to.pdf Graphic file (type pd
 f)
@@ -2750,7 +2788,7 @@ s-converted-to.pdf sections/SmithHutton/R10.eps>
 (epstopdf)             \includegraphics on input line 110.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/SmithHutton/R10-eps-converted-to.pdf, id=687, 361.35pt x 252.945pt>
+<sections/SmithHutton/R10-eps-converted-to.pdf, id=714, 361.35pt x 252.945pt>
 File: sections/SmithHutton/R10-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/SmithHutton/R10-eps-converted-to.pdf>
@@ -2771,7 +2809,7 @@ eps-converted-to.pdf sections/SmithHutton/R1000.eps>
 (epstopdf)             \includegraphics on input line 110.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/SmithHutton/R1000-eps-converted-to.pdf, id=688, 361.35pt x 252.945pt>
+<sections/SmithHutton/R1000-eps-converted-to.pdf, id=715, 361.35pt x 252.945pt>
 File: sections/SmithHutton/R1000-eps-converted-to.pdf Graphic file (type pdf)
 <use sections/SmithHutton/R1000-eps-converted-to.pdf>
 Package pdftex.def Info: sections/SmithHutton/R1000-eps-converted-to.pdf used o
@@ -2791,7 +2829,7 @@ d-to.pdf>
 (epstopdf)             \includegraphics on input line 110.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/SmithHutton/R1000000-eps-converted-to.pdf, id=689, 361.35pt x 252.945
+<sections/SmithHutton/R1000000-eps-converted-to.pdf, id=716, 361.35pt x 252.945
 pt>
 File: sections/SmithHutton/R1000000-eps-converted-to.pdf Graphic file (type pdf
 )
@@ -2814,65 +2852,70 @@ File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 1.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [32 <./sections/SmithHutton/SH10-eps-converted-to.pdf>]
+ [33 <./sections/SmithHutton/SH10-eps-converted-to.pdf>]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 1.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
 
-[33 <./sections/SmithHutton/SH1000-eps-converted-to.pdf> <./sections/SmithHutto
+[34 <./sections/SmithHutton/SH1000-eps-converted-to.pdf> <./sections/SmithHutto
 n/SH1000000-eps-converted-to.pdf>]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 1.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [34 <./sections/SmithHutton/R10-eps-converted-to.pdf> <./sections/SmithHutton/
+ [35 <./sections/SmithHutton/R10-eps-converted-to.pdf> <./sections/SmithHutton/
 R1000-eps-converted-to.pdf>]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 1.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [35 <./sections/SmithHutton/R1000000-eps-converted-to.pdf>]
+ [36 <./sections/SmithHutton/R1000000-eps-converted-to.pdf>]
 Chapter 7.
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 43.
+less on input line 44.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 43.
+less on input line 44.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 43.
+less on input line 44.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 43.
+Package pdftex.def Info: ./doc_config/image.png used on input line 44.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [36
+ [37
 
 ]
-<sections/DrivenCavity/staggered.png, id=738, 288.3272pt x 274.77657pt>
+<sections/DrivenCavity/staggered.png, id=764, 288.3272pt x 274.77657pt>
 File: sections/DrivenCavity/staggered.png Graphic file (type png)
 
 <use sections/DrivenCavity/staggered.png>
 Package pdftex.def Info: sections/DrivenCavity/staggered.png used on input line
- 54.
+ 55.
 (pdftex.def)             Requested size: 230.66205pt x 219.82153pt.
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 64.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [37 <./sections/DrivenCavity/staggered.png>]) (sections/DrivenCavity.tex
+ [38 <./sections/DrivenCavity/staggered.png>]
 File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
+ <use ./doc_config/image.png>
+Package pdftex.def Info: ./doc_config/image.png used on input line 107.
+(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
+ [39])
+(sections/DrivenCavity.tex
+File: ./doc_config/image.png Graphic file (type png)
+ <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 1.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [38]
+ [40]
 Chapter 8.
-<sections/DrivenCavity/DrivenCavity.png, id=761, 735.49782pt x 450.9347pt>
+<sections/DrivenCavity/DrivenCavity.png, id=798, 735.49782pt x 450.9347pt>
 File: sections/DrivenCavity/DrivenCavity.png Graphic file (type png)
 
 <use sections/DrivenCavity/DrivenCavity.png>
@@ -2896,14 +2939,14 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 68.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [39
+ [41
 
 ]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 68.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [40 <./sections/DrivenCavity/DrivenCavity.png>]
+ [42 <./sections/DrivenCavity/DrivenCavity.png>]
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
 less on input line 68.
@@ -2920,7 +2963,7 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 68.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [41
+ [43
 
 ] (sections/Burgers.tex
 Chapter 9.
@@ -2946,7 +2989,7 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 32.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [42
+ [44
 
 ]
 
@@ -3016,8 +3059,8 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 70.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [43]
-<sections/Burgers/Burger.png, id=801, 424.58624pt x 346.29375pt>
+ [45]
+<sections/Burgers/Burger.png, id=839, 424.58624pt x 346.29375pt>
 File: sections/Burgers/Burger.png Graphic file (type png)
 
 <use sections/Burgers/Burger.png>
@@ -3052,13 +3095,13 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 87.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [44 <./sections/Burgers/Burger.png>]) (Report.bbl
+ [46 <./sections/Burgers/Burger.png>]) (Report.bbl
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 1.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [45]
+ [47]
 Chapter 10.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
 (Font)              Font shape `T1/lmss/m/sl' tried instead on input line 5.
@@ -3080,7 +3123,7 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 89.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [46
+ [48
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 89.
@@ -3089,14 +3132,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 89.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 89.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 89.
 Package rerunfilecheck Info: File `Report.out' has not changed.
-(rerunfilecheck)             Checksum: 3C64B151B53AA70ADC42380CAFC98B5E;3665.
+(rerunfilecheck)             Checksum: D887ABDB3F4FF68A45C32903234EC086;3834.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 89.
  ) 
 Here is how much of TeX's memory you used:
- 30771 strings out of 493334
- 567431 string characters out of 3143122
- 1889829 words of memory out of 3000000
- 33416 multiletter control sequences out of 15000+200000
+ 30800 strings out of 493334
+ 568125 string characters out of 3143122
+ 1891672 words of memory out of 3000000
+ 33430 multiletter control sequences out of 15000+200000
  95064 words of font info for 88 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,16n,84p,10486b,841s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -3117,9 +3160,9 @@ lm/lmssbx10.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmsso10.pfb><C:/Apps/
 MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/pub
 lic/lm/lmsy8.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmsy9.pfb><C:/Apps/M
 iKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Report.pdf (51 pages, 5689036 bytes).
+Output written on Report.pdf (53 pages, 6825508 bytes).
 PDF statistics:
- 956 PDF objects out of 1000 (max. 8388607)
- 280 named destinations out of 1000 (max. 500000)
- 549 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 996 PDF objects out of 1000 (max. 8388607)
+ 291 named destinations out of 1000 (max. 500000)
+ 575 words of extra memory for PDF output out of 10000 (max. 10000000)
 

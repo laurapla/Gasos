@@ -7,7 +7,8 @@ The equations to be solved are the conservation of mass and the conservation of 
 \end{aligned}
 \end{equation}
 According to the Helmholtz-Hodge theorem, it is possible to decompose any vector in a divergence-free vector parallel to the boundary and a gradient field, and this decomposition is unique \cite{CTTC}.
-Assuming constant density and viscosity, the Navier-Stokes equation can be rewritten as:
+
+Assuming constant density and viscosity, the convective and viscosity terms can be grouped together in a single variable $R\left(\vec{v}\right)$, rewriting the Navier-Stokes equation as:
 \begin{equation}
 \rho\frac{\partial\vec{v}}{\partial t}=R\left(\vec{v}\right)-\nabla p
 \label{RNSFSM}
@@ -55,7 +56,32 @@ To avoid convergence problems or incorrect solutions, the staggered meshes are u
 	\caption{Staggered meshes (2D)}
 	\label{staggered}
 \end{figure}
-Knowing the space discretization of the domain, the discretized Poisson equation can be calculated. Integrating the expression over the domain and applying the divergence theorem, the following expression can be easily obtained:
+
+\subsection{Intermediate velocity discretization}
+First of all, it is necessary to discretize the expression of R of the equation \ref{RNSFSM}:
+\begin{equation}
+R\left(\vec{v}\right)=-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}
+\end{equation}
+This variable is a vector. Integrating the expression over the control volume of the horizontal velocity staggered mesh in the horizontal direction:
+\begin{equation}
+\int_{\Omega_{x}}R\left(u\right)d\Omega_{x}=-\int_{\Omega_{x}}\left(\rho\vec{v}\cdot\nabla\right)ud\Omega_{x}+\int_{\Omega_{x}}\mu\nabla^{2}ud\Omega_{x}
+\end{equation}
+Now, applying the Gauss Theorem:
+\begin{equation}
+R\left(u\right)V_{P}=-\int_{\partial\Omega_{x}}\left(\rho\vec{v}\right)u\cdot\vec{n}dS+\int_{\Omega_{x}}\mu\nabla^{2}u\cdot\vec{n}dS
+\end{equation}
+The final integration of R in the horizontal direction results as:
+\begin{multline}
+R\left(u\right)V_{P}=\left[\mu_{e}\frac{u_{E}-u_{P}}{d_{EP}}A_{e}+\mu_{n}\frac{u_{N}-u_{P}}{d_{NP}}A_{n}-\mu_{w}\frac{u_{P}-u_{W}}{d_{WP}}A_{w}-\mu_{s}\frac{u_{P}-u_{S}}{d_{SP}}A_{s}\right] \\
+-\left[\left(\rho u\right)_{e}u_{e}A_{e}+\left(\rho v\right)_{n}u_{n}A_{n}-\left(\rho u\right)_{w}u_{w}A_{w}-\left(\rho v\right)_{s}u_{s}A_{s}\right]
+\end{multline}
+The main problem of this expression is the evaluation of the velocities and the mass flows in the faces of the control volume. To calculate the velocities in the faces, some of the numerical schemes previously discussed can be used: CDS, UDS... In the case of the mass flows a simple approach is used:
+\begin{equation}
+\left(\rho u\right)_{e}=\frac{\left(\rho u\right)_{E}+\left(\rho u\right)_{P}}{2}
+\end{equation}
+
+\subsection{Pressure discretization}
+Knowing the space discretization of the domain, the discretized Poisson equation can be calculated. Integrating the expression \ref{Poisson} over the domain and applying the divergence theorem, the following expression can be easily obtained:
 \begin{equation}
 \begin{aligned}
 \frac{p_{E}^{n+1}-p_{P}^{n+1}}{d_{EP}}A_{e}+\frac{p_{N}^{n+1}-p_{P}^{n+1}}{d_{NP}}A_{n}-\frac{p_{P}^{n+1}-p_{W}^{n+1}}{d_{WP}}A_{w}-\frac{p_{P}^{n+1}-p_{S}^{n+1}}{d_{SP}}A_{s}= \\
