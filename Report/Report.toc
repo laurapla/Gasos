@@ -1,5 +1,5 @@
-\contentsline {chapter}{List of Tables}{iv}{section*.1}
-\contentsline {chapter}{List of Figures}{v}{section*.2}
+\contentsline {chapter}{List of Tables}{v}{section*.1}
+\contentsline {chapter}{List of Figures}{vi}{section*.2}
 \contentsline {part}{I\hspace {1em}Introduction}{1}{part.1}
 \contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}
 \contentsline {section}{\numberline {1.1}Aim}{2}{section.1.1}
@@ -46,13 +46,18 @@
 \contentsline {chapter}{\numberline {7}Fractional Step Method}{37}{chapter.7}
 \contentsline {section}{\numberline {7.1}Fractional Step Method algorithm}{38}{section.7.1}
 \contentsline {section}{\numberline {7.2}Discretization}{38}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}Intermediate velocity discretization}{39}{subsection.7.2.1}
-\contentsline {subsection}{\numberline {7.2.2}Pressure discretization}{39}{subsection.7.2.2}
-\contentsline {chapter}{\numberline {8}Driven cavity problem}{41}{chapter.8}
-\contentsline {section}{\numberline {8.1}Boundary conditions}{41}{section.8.1}
-\contentsline {part}{V\hspace {1em}Turbulence}{43}{part.5}
-\contentsline {chapter}{\numberline {9}Burgers' equation}{44}{chapter.9}
-\contentsline {section}{\numberline {9.1}Fourier space}{44}{section.9.1}
-\contentsline {section}{\numberline {9.2}Discretization}{46}{section.9.2}
-\contentsline {subsection}{\numberline {9.2.1}Large-Eddy Simulation}{47}{subsection.9.2.1}
-\contentsline {chapter}{\numberline {10}Bibliography}{48}{chapter.10}
+\contentsline {subsection}{\numberline {7.2.1}Intermediate velocity discretization}{38}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Pressure discretization}{40}{subsection.7.2.2}
+\contentsline {subsection}{\numberline {7.2.3}Velocity discretization}{41}{subsection.7.2.3}
+\contentsline {section}{\numberline {7.3}Time step}{41}{section.7.3}
+\contentsline {chapter}{\numberline {8}Driven cavity problem}{43}{chapter.8}
+\contentsline {section}{\numberline {8.1}Discretization}{43}{section.8.1}
+\contentsline {section}{\numberline {8.2}Boundary conditions}{44}{section.8.2}
+\contentsline {section}{\numberline {8.3}Algorithm}{45}{section.8.3}
+\contentsline {section}{\numberline {8.4}Results}{46}{section.8.4}
+\contentsline {part}{V\hspace {1em}Turbulence}{47}{part.5}
+\contentsline {chapter}{\numberline {9}Burgers' equation}{48}{chapter.9}
+\contentsline {section}{\numberline {9.1}Fourier space}{48}{section.9.1}
+\contentsline {section}{\numberline {9.2}Discretization}{50}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}Large-Eddy Simulation}{51}{subsection.9.2.1}
+\contentsline {chapter}{\numberline {10}Bibliography}{52}{chapter.10}
