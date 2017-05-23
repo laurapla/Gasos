@@ -12,45 +12,42 @@ typedef double matrix[M+2][N+2];
 typedef double staggx[M+2][N+1];
 typedef double staggy[M+1][N+2];
 
-void coordinates(float L, int N, float xvc[], float x[]);
-void surface(float *yvc, int M, float Sv[]);
-void volume(float *xvc, float *yvc, int N, int M, matrix& V);
-void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
-double convective_term (float xf, float x2, float x3, double u2, double u3);
-void intermediate_velocities (int N, int M, float rho, float mu, float delta, float dt, float* x, float* y, float *xvc, float* yvc, float* Sh, float* Sv, matrix V, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp);
-void bp_coefficient (int N, int M, float rho, float dt, float* Sh, float* Sv, staggx up, staggy vp, matrix bp);
+void coordinates(float L, int N, double xvc[], double x[]);
+void surface(double *yvc, int M, double Sv[]);
+void volume(double *xvc, double *yvc, int N, int M, matrix& V);
+void constant_coefficients(int N, int M, double *x, double *y, double *Sv, double *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
+double convective_term (double xf, double x2, double x3, double u2, double u3);
+void intermediate_velocities (int N, int M, int Pr, int Ra, float delta, double dt, double* x, double* y, double *xvc, double* yvc, double* Sh, double* Sv, matrix V, matrix T0, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp);
+void bp_coefficient (int N, int M, double dt, double* Sh, double* Sv, staggx up, staggy vp, matrix bp);
 void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float fr, float delta, int N, int M, matrix& T);
-void velocities (int N, int M, float rho, float dt, float uref, float* x, float* y, matrix p, staggx up, staggy vp, staggx &u, staggy &v);
+void velocities (int N, int M, double dt, double* x, double* y, matrix p, staggx up, staggy vp, staggx &u, staggy &v);
 double min(double a, double b);
 double max(double a, double b);
-double time_step (float dtd, float* x, float* y, staggx u, staggy v);
+double time_step (double dtd, double* x, double* y, staggx u, staggy v);
 double error (int N, int M, staggx u, staggy v, staggx u0, staggy v0);
-void search_index (float point, float *x, int Number, int& ipoint, int& ip);
-double interpolation(float x, double T1, double T2, double x1, double x2);
-void output_files (int N, int M, float L, float* x, float* y, float* xvc, float* yvc, staggx u, staggy v);
+void output_files (int N, int M, float L, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v, matrix T);
 
 
 int main()
 {
-	int Re = 100; // Reynolds number
+	int Pr = 0.71; // Prandtl number
+	int Ra = 10; // Rayleigh number
 	float L = 1; // Length of the cavity
-	float rho = 1; // Density
-	float uref = 1; // Reference velocity
-	float mu = rho*uref*L/Re; // Viscosity
 	
 	float delta = 1e-5; // Precision of the simulation (as the Re increases it is recommended to use 5e-5, 1e-4, 2e-4...)
 	float fr = 1.2; // Relaxation factor
 	
 	cout<<"Program started"<<endl;
-	cout<<"Re="<<Re<<endl<<endl;
+	cout<<"Pr="<<Pr<<endl<<endl;
+	cout<<"Ra="<<Ra<<endl<<endl;
 	
 	// Coordinates
-	float xvc[N+1], yvc[M+1], x[N+2], y[M+2];
+	double xvc[N+1], yvc[M+1], x[N+2], y[M+2];
 	coordinates(L, N, xvc, x);
 	coordinates(L, M, yvc, y);
 	
 	// Surfaces
-	float Sh[N+2], Sv[M+2];
+	double Sh[N+2], Sv[M+2];
 	matrix V;
 	surface(xvc, N+2, Sh); // Horizontal surface
 	surface(yvc, M+2, Sv); // Vertical surface
@@ -58,7 +55,7 @@ int main()
 	
 	
 	// Properties that are going to be calculated
-	matrix p, T; // Values in the nodes (pressure and temperature)
+	matrix p, T, T0; // Values in the nodes (pressure)
 	staggx u, u0, Ru0; // Values in the points given by the staggered meshes (velocities)
 	staggy v, v0, Rv0;
 	
@@ -79,6 +76,20 @@ int main()
 			Rv0[j][i] = 0; // R (vertical) at n-1
 		}
 	}
+	for(int j = 0; j<M+2; j++)
+	{
+		for(int i = 0; i<N+2; i++)
+		{
+			if(i==N+1)
+			{
+				T0[j][i] = 1;
+			}
+			else
+			{
+				T0[j][i] = 0;
+			}
+		}
+	}
 	
 	// Calculation of the constant coefficients that are used to determine the pressure
 	matrix ae, aw, an, as, ap, bp;
@@ -86,8 +97,8 @@ int main()
 	
 	// Time step (CFL condition)
 	double resta = 1;
-	double dtd = 0.2*rho*pow(x[2]-xvc[1],2)/mu;
-	double dtc = 0.35*fabs(x[2]-xvc[1])/uref;
+	double dtd = 0.2*pow(x[2]-xvc[1],2)*Pr;
+	double dtc = 0.35*fabs(x[2]-xvc[1]);
 	double dt = min(dtd, dtc);
 	
 	staggx up, Ru; // Intermediate velocities
@@ -97,17 +108,89 @@ int main()
 	// Fractional Step Method
 	while(resta>delta)
 	{
+		// STEP 0 !!! : TEMPERATURE
+		double Fe, Fw, Fn, Fs;
+		double De, Dw, Dn, Ds;
+		matrix aTe, aTw, aTn, aTs, aTp, bTp;
+		
+		for(int j = 0; j<M+2; j++)
+		{
+			for(int i = 0; i<N+2; i++)
+			{
+				// Mass flow terms (v*S)
+				Fe = u0[j][i]*Sv[j];
+				Fw = u0[j][i-1]*Sv[j];
+				Fn = v0[j][i]*Sh[i];
+				Fs = v0[j-1][i]*Sh[i];
+				
+				// Areas and distances
+				De = Sv[j]/fabs(x[i+1]-x[i]);
+				Dw = Sv[j]/fabs(x[i]-x[i-1]);
+				Dn = Sh[i]/fabs(y[j+1]-y[j]);
+				Ds = Sh[i]/fabs(y[j+1]-y[j]);
+				
+				if(i==0)
+				{
+					aTe[j][i] = 0;
+					aTw[j][i] = 0;
+					aTn[j][i] = 0;
+					aTs[j][i] = 0;
+					aTp[j][i] = 1;
+					bTp[j][i] = 0;
+				}
+				else if(i==N+1)
+				{
+					aTe[j][i] = 0;
+					aTw[j][i] = 0;
+					aTn[j][i] = 0;
+					aTs[j][i] = 0;
+					aTp[j][i] = 1;
+					bTp[j][i] = 1;
+				}
+				else if(j==0 && i!=0 && i!=N+1)
+				{
+					aTe[j][i] = 0;
+					aTw[j][i] = 0;
+					aTn[j][i] = 1;
+					aTs[j][i] = 0;
+					aTp[j][i] = 1;
+					bTp[j][i] = 0;
+				}
+				else if(j==M+1 && i!=0 && i!=N+1)
+				{
+					aTe[j][i] = 0;
+					aTw[j][i] = 0;
+					aTn[j][i] = 0;
+					aTs[j][i] = 1;
+					aTp[j][i] = 1;
+					bTp[j][i] = 0;
+				}
+				else
+				{
+					aTe[j][i] = De-0.5*Fe;
+					aTw[j][i] = Dw+0.5*Fw;
+					aTn[j][i] = Dn-0.5*Fn;
+					aTs[j][i] = Ds+0.5*Fs;
+					aTp[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i]+V[j][i]/dt;
+					bTp[j][i] = T0[j][i]*V[j][i]/dt;
+				}
+				
+				Gauss_Seidel (aTp, aTw, aTe, aTs, aTn, bTp, fr, delta, N+2, M+2, T);
+				
+			}
+		}
+		
 		// STEP 1 !!! : INTERMEDIATE VELOCITY
-		intermediate_velocities (N, M, rho, mu, delta, dt, x, y, xvc, yvc, Sh, Sv, V, u0, v0, Ru0, Rv0, Ru, Rv, up, vp);
+		intermediate_velocities (N, M, Pr, Ra, delta, dt, x, y, xvc, yvc, Sh, Sv, V, T0, u0, v0, Ru0, Rv0, Ru, Rv, up, vp);
 
 		
 		// STEP 2 !!! : PRESSURE
-		bp_coefficient (N+2, M+2, rho, dt, Sh, Sv, up, vp, bp);
+		bp_coefficient (N+2, M+2, dt, Sh, Sv, up, vp, bp);
 		Gauss_Seidel (ap, aw, ae, as, an, bp, fr, delta, N+2, M+2, p);
 		
 		
 		// STEP 3 !!! : VELOCITY
-		velocities (N, M, rho, dt, uref, x, y, p, up, vp, u, v);
+		velocities (N, M, dt, x, y, p, up, vp, u, v);
 		
 		
 		// STEP 4 !!! : TIME STEP
@@ -134,20 +217,27 @@ int main()
 				Rv0[j][i] = Rv[j][i];
 			}
 		}
+		for(int j = 0; j<M+2; j++)
+		{
+			for(int i = 0; i<N+2; i++)
+			{
+				T0[j][i] = T[j][i];
+			}
+		}
 	}
 	
 	// Results
     cout<<endl<<"Creating some output files..."<<endl;
-    output_files (N, M, L, x, y, xvc, yvc, u, v);
+    output_files (N, M, L, x, y, xvc, yvc, u, v, T);
 	
 	return 0;
 }
 
 
 // Coordinates of the control volumes (x -> nodes, xvc -> faces)
-void coordinates(float L, int N, float xvc[], float x[])
+void coordinates(float L, int N, double xvc[], double x[])
 {
-	float dx = L/N;
+	double dx = L/N;
 	xvc[0] = 0;
 	x[0] = 0;
 	for(int i = 0; i<N; i++)
@@ -160,7 +250,7 @@ void coordinates(float L, int N, float xvc[], float x[])
 
 
 // Surfaces of the control volumes
-void surface(float *yvc, int M, float Sv[])
+void surface(double *yvc, int M, double Sv[])
 {
 	for(int j = 0; j<M-1; j++)
 	{
@@ -172,7 +262,7 @@ void surface(float *yvc, int M, float Sv[])
 
 
 // Volume of each control volume
-void volume(float *xvc, float *yvc, int N, int M, matrix& V)
+void volume(double *xvc, double *yvc, int N, int M, matrix& V)
 {
 	for(int i = 0; i<N; i++)
 	{
@@ -192,7 +282,7 @@ void volume(float *xvc, float *yvc, int N, int M, matrix& V)
 
 
 // Calculation of the constant coefficients (ae, aw, an, as, ap) of the Poisson equation (pressure)
-void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap)
+void constant_coefficients(int N, int M, double *x, double *y, double *Sv, double *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap)
 {
 	for(int i = 0; i<N; i++)
 	{
@@ -276,7 +366,7 @@ void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *S
 
 
 // Computation of the velocity in the convective term using CDS
-double convective_term (float xf, float x2, float x3, double u2, double u3)
+double convective_term (double xf, double x2, double x3, double u2, double u3)
 {
 	// 2 refers to node P, 3 to node E
 	double u;
@@ -287,7 +377,7 @@ double convective_term (float xf, float x2, float x3, double u2, double u3)
 
 
 // Calculation of the intermediate velocities
-void intermediate_velocities (int N, int M, float rho, float mu, float delta, float dt, float* x, float* y, float *xvc, float* yvc, float* Sh, float* Sv, matrix V, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp)
+void intermediate_velocities (int N, int M, int Pr, int Ra, float delta, double dt, double* x, double* y, double *xvc, double* yvc, double* Sh, double* Sv, matrix V, matrix T0, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp)
 {
 	double mflowe, mfloww, mflown, mflows;
 	double ue, uw, un, us;
@@ -296,11 +386,11 @@ void intermediate_velocities (int N, int M, float rho, float mu, float delta, fl
 	{
 		for(int j = 0; j<M+2; j++)
 		{
-			// Mass flow terms (rho*v*S)
-			mflowe = (rho*u0[j][i+1]+rho*u0[j][i])*Sv[j]/2;
-			mfloww = (rho*u0[j][i-1]+rho*u0[j][i])*Sv[j]/2;
-			mflown = (rho*v0[j][i]+rho*v0[j][i+1])*Sh[i]/2;
-			mflows = (rho*v0[j-1][i]+rho*v0[j-1][i+1])*Sh[i]/2;
+			// Mass flow terms (v*S)
+			mflowe = (u0[j][i+1]+u0[j][i])*Sv[j]/2;
+			mfloww = (u0[j][i-1]+u0[j][i])*Sv[j]/2;
+			mflown = (v0[j][i]+v0[j][i+1])*Sh[i]/2;
+			mflows = (v0[j-1][i]+v0[j-1][i+1])*Sh[i]/2;
 			
 			
 			// HORIZONTAL
@@ -317,11 +407,11 @@ void intermediate_velocities (int N, int M, float rho, float mu, float delta, fl
 			}
 			else
 			{
-				Ru[j][i] = (mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mfloww*uw-mflows*us))/V[j][i];
+				Ru[j][i] = (Pr*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+Pr*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-Pr*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-Pr*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mfloww*uw-mflows*us))/V[j][i];
 			}
 			
 			// Intermediate velocity (horizontal)
-			up[j][i] = u0[j][i]+dt*(1.5*Ru[j][i]-0.5*Ru0[j][i])/rho;
+			up[j][i] = u0[j][i]+dt*(1.5*Ru[j][i]-0.5*Ru0[j][i]);
 		}
 	}
 	
@@ -331,11 +421,11 @@ void intermediate_velocities (int N, int M, float rho, float mu, float delta, fl
 	{
 		for(int j = 0; j<M+1; j++)
 		{
-			// Mass flow terms (rho*v*S)
-			mflowe = (rho*u0[j+1][i]+rho*u0[j][i])*Sv[j]/2;
-			mfloww = (rho*u0[j+1][i-1]+rho*u0[j][i-1])*Sv[j]/2;
-			mflown = (rho*v0[j][i]+rho*v0[j+1][i])*Sh[i]/2;
-			mflows = (rho*v0[j][i]+rho*v0[j-1][i])*Sh[i]/2;
+			// Mass flow terms (v*S)
+			mflowe = (u0[j+1][i]+u0[j][i])*Sv[j]/2;
+			mfloww = (u0[j+1][i-1]+u0[j][i-1])*Sv[j]/2;
+			mflown = (v0[j][i]+v0[j+1][i])*Sh[i]/2;
+			mflows = (v0[j][i]+v0[j-1][i])*Sh[i]/2;
 			
 			
 			// VERTICAL
@@ -351,18 +441,18 @@ void intermediate_velocities (int N, int M, float rho, float mu, float delta, fl
 			}
 			else
 			{
-				Rv[j][i] = (mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mfloww*vw-mflows*vs))/V[j][i];
+				Rv[j][i] = (Pr*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+Pr*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-Pr*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-Pr*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mfloww*vw-mflows*vs))/V[j][i]-Pr*Ra*(T0[j][i]+T0[j+1][i])/2;
 			}
 			
 			// Intermediate velocity (vertical)
-			vp[j][i] = v0[j][i]+dt*(1.5*Rv[j][i]-0.5*Rv0[j][i])/rho;
+			vp[j][i] = v0[j][i]+dt*(1.5*Rv[j][i]-0.5*Rv0[j][i]);
 		}
 	}
 }
 
 
 // Calculation of the bp coefficient of the Poisson equation (pressure)
-void bp_coefficient (int N, int M, float rho, float dt, float* Sh, float* Sv, staggx up, staggy vp, matrix bp)
+void bp_coefficient (int N, int M, double dt, double* Sh, double* Sv, staggx up, staggy vp, matrix bp)
 {
 	for(int i = 0; i<N; i++)
 	{
@@ -374,7 +464,7 @@ void bp_coefficient (int N, int M, float rho, float dt, float* Sh, float* Sv, st
 			}
 			else
 			{
-				bp[j][i] = -(rho*up[j][i]*Sv[j]+rho*vp[j][i]*Sh[i]-rho*up[j][i-1]*Sv[j]-rho*vp[j-1][i]*Sh[i])/dt;
+				bp[j][i] = -(up[j][i]*Sv[j]+vp[j][i]*Sh[i]-up[j][i-1]*Sv[j]-vp[j-1][i]*Sh[i])/dt;
 			}
 		}
 	}
@@ -471,7 +561,7 @@ void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix
 
 
 // Calculation of the velocity with the correction of pressure
-void velocities (int N, int M, float rho, float dt, float uref, float* x, float* y, matrix p, staggx up, staggy vp, staggx &u, staggy &v)
+void velocities (int N, int M, double dt, double* x, double* y, matrix p, staggx up, staggy vp, staggx &u, staggy &v)
 {
 	// Horizontal velocity at n+1
 	for(int i = 0; i<N+1; i++)
@@ -484,7 +574,7 @@ void velocities (int N, int M, float rho, float dt, float uref, float* x, float*
 			}
 			else
 			{
-				u[j][i] = up[j][i]-dt*(p[j][i+1]-p[j][i])/(rho*fabs(x[i+1]-x[i]));
+				u[j][i] = up[j][i]-dt*(p[j][i+1]-p[j][i])/(fabs(x[i+1]-x[i]));
 			}
 		}
 	}
@@ -500,7 +590,7 @@ void velocities (int N, int M, float rho, float dt, float uref, float* x, float*
 			}
 			else
 			{
-				v[j][i] = vp[j][i]-dt*(p[j+1][i]-p[j][i])/(rho*fabs(y[j+1]-y[j]));
+				v[j][i] = vp[j][i]-dt*(p[j+1][i]-p[j][i])/(fabs(y[j+1]-y[j]));
 			}
 		}
 	}
@@ -536,10 +626,10 @@ double max(double a, double b)
 
 
 // Calculation of the proper time step (CFL condition)
-double time_step (float dtd, float* x, float* y, staggx u, staggy v)
+double time_step (double dtd, double* x, double* y, staggx u, staggy v)
 {
-	float dt;
-	float dtc = 100;
+	double dt;
+	double dtc = 100;
 	
 	for(int i = 1; i<N; i++)
 	{
@@ -578,63 +668,13 @@ double error (int N, int M, staggx u, staggy v, staggx u0, staggy v0)
 			resta = max(resta, fabs(v[j][i]-v0[j][i]));
 		}
 	}
+	cout<<resta<<endl;
 	return resta;
 }
 
 
-// Searching the index of the node closest to a given point (and the second closest)
-void search_index (float point, float *x, int Number, int& ipoint, int& ip)
-{
-	for(int i = 0; i<Number-1; i++)
-    {
-    	if(x[i+1]-x[i]>0)
-    	{
-    		if(x[i]<=point && x[i+1]>point)
-    		{
-    			if(point-x[i]<x[i+1]-point)
-				{
-					ipoint = i; //ipoint is the index of the node closest to the point we want
-					ip = i+1; //ip is the second node closest to it (used in interpolation)
-				}
-				else
-				{
-					ipoint = i+1;
-					ip = i;
-				}
-			}    		
-		}
-		else
-		{
-			if(x[i]>point && x[i+1]<=point)
-    		{
-    			if(point-x[i+1]<x[i]-point)
-    			{
-    				ipoint = i;
-    				ip = i+1;
-				}
-				else
-				{
-					ipoint = i+1;
-					ip = i;
-				}
-			}
-		}
-	}
-	
-}
-
-
-// Linear interpolation
-double interpolation(float x, double T1, double T2, double x1, double x2)
-{
-	double result;
-	result = T1+(T2-T1)*(x-x1)/(x2-x1);
-	return result;
-}
-
-
 // Output of the results
-void output_files (int N, int M, float L, float* x, float* y, float* xvc, float* yvc, staggx u, staggy v)
+void output_files (int N, int M, float L, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v, matrix T)
 {
 	// Horizontal velocities
 	ofstream resultats;
@@ -661,28 +701,16 @@ void output_files (int N, int M, float L, float* x, float* y, float* xvc, float*
 		resvltats<<endl;
 	}
 	resvltats.close();
-	
-	
-	// Searching the indexes to interpolate
-	int ipoint, ip, jpoint, jp;
-	search_index (L/2, xvc, N+1, ipoint, ip);
-    search_index (L/2, yvc, M+1, jpoint, jp);
-	
-	// Horizontal velocity in the central vertical line
-	ofstream resultsu;
-    resultsu.open("u.dat");
-    for(int i = M+1; i>=0; i--)
+    
+    
+    // Temperature
+    ofstream temperature;
+    temperature.open("Temper.dat");
+    for(int i = 0; i<N+2; i++)
     {
-    	resultsu<<y[i]<<"	"<<interpolation(L/2, u[i][ipoint], u[i][ip], xvc[ipoint], xvc[ip])<<endl;
+    	for(int j = 0; j<M+2; j++)
+    	{
+    		temperature<<x[i]<<"	"<<y[j]<<"	"<<T[j][i]<<endl;
+		}
 	}
-    resultsu.close();
-	
-	// Vertical velocity in the central horizontal line
-	ofstream resultsv;
-    resultsv.open("v.dat");
-    for(int i = N+1; i>=0; i--)
-    {
-    	resultsv<<x[i]<<"	"<<interpolation(L/2, v[jpoint][i], u[jp][i], yvc[jpoint], yvc[jp])<<endl;
-	}
-    resultsv.close();
 }
