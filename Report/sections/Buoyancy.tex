@@ -48,6 +48,7 @@ p^{*}=\frac{p}{\frac{1}{\rho}\left(\frac{\lambda}{c_{P}L}\right)^2}
 \end{equation}
 \begin{equation}
 T^{*}=\frac{T-T_{cold}}{T_{hot}-T_{cold}}
+\label{DimensionlessTemperature}
 \end{equation}
 Inserting these expressions in the equations \ref{NatConvContinuity}, \ref{NatConvMomentum} and \ref{NatConvEnergy}, the non-dimensional equations for natural convection are obtained. In order to simplify the notation, the indexes $^{*}$ have been removed, but the variables that are represented in the following section are the dimensionless ones.
 \begin{equation}
@@ -72,24 +73,16 @@ where $\Delta T=T_{hot}-T_{cold}$.
 \section{Application of the fractional step method}
 The resolution of this problem can be done using the fractional step method described in chapter \ref{FractionalStepM}. In the case of the momentum equation its resolution is done as it is explained in the mentioned section. But the expression of the equation is slightly different. Rewritting the momentum equation as it was done:
 \begin{equation}
-\frac{\partial\vec{v}}{\partial t}=R_{v}\left(\vec{v}\right)-\nabla p
+\frac{\partial\vec{v}}{\partial t}=R\left(\vec{v}\right)-\nabla p
 \end{equation}
 where
 \begin{equation}
-R_{v}\left(\vec{v}\right)=-\left(\vec{v}\cdot\nabla\right)\vec{v}+Pr\nabla^{2}\vec{v}-PrRaT\vec{u}_{g}
+R\left(\vec{v}\right)=-\left(\vec{v}\cdot\nabla\right)\vec{v}+Pr\nabla^{2}\vec{v}-PrRaT\vec{u}_{g}
 \end{equation}
 
-The other important issue is the introduction of the energy equation. It has to be discretized according to this method.
+The other important issue is the introduction of the energy equation. It has to be discretized according to the fractional step method. As it can be seen, this case is very similar to the previously studied Smith-Hutton problem, since the velocity field is "known" (calculated by other means) and the unknown is a scalar. Therefore, an implicit scheme is going to be used for the temporal integration:
 \begin{equation}
-\frac{\partial T}{\partial t}=R_{T}\left(T\right)
-\end{equation}
-where
-\begin{equation}
-R_{T}\left(T\right)=-\vec{v}\cdot\nabla T+\nabla^{2}T
-\end{equation}
-As done with the momentum equation, the Adams-Bashforth scheme is applied for the temporal discretization:
-\begin{equation}
-\frac{T^{n+1}-T^{n}}{\Delta t}=\frac{3}{2}R_{T}\left(T^{n}\right)-\frac{1}{2}R_{T}\left(T^{n-1}\right)
+\frac{T^{n+1}-T^{n}}{\Delta t}=\left[-\vec{v}\cdot\nabla T+\nabla^{2}T\right]^{n+1}
 \end{equation}
 
 \section{Discretization}
@@ -97,24 +90,61 @@ The spatial discretization of the domain is the one described by the figure \ref
 
 The discretization of the momentum equation is very similar to that described in the fractional step method chapter but adding the gravity term in the case of the vertical equation:
 \begin{multline}
-	R_{v}\left(u\right)V_{P}=\left[Pr_{e}\frac{u_{E}-u_{P}}{d_{EP}}A_{e}+Pr_{n}\frac{u_{N}-u_{P}}{d_{NP}}A_{n}-Pr_{w}\frac{u_{P}-u_{W}}{d_{WP}}A_{w}-Pr_{s}\frac{u_{P}-u_{S}}{d_{SP}}A_{s}\right] \\
+	R\left(u\right)V_{P}=\left[Pr_{e}\frac{u_{E}-u_{P}}{d_{EP}}A_{e}+Pr_{n}\frac{u_{N}-u_{P}}{d_{NP}}A_{n}-Pr_{w}\frac{u_{P}-u_{W}}{d_{WP}}A_{w}-Pr_{s}\frac{u_{P}-u_{S}}{d_{SP}}A_{s}\right] \\
 	-\left[\left(u\right)_{e}u_{e}A_{e}+\left(v\right)_{n}u_{n}A_{n}-\left(u\right)_{w}u_{w}A_{w}-\left(v\right)_{s}u_{s}A_{s}\right]
 \end{multline}
 \begin{multline}
-	R_{v}\left(v\right)V_{P}=\left[Pr_{e}\frac{v_{E}-v_{P}}{d_{EP}}A_{e}+Pr_{n}\frac{v_{N}-v_{P}}{d_{NP}}A_{n}-Pr_{w}\frac{v_{P}-v_{W}}{d_{WP}}A_{w}-Pr_{s}\frac{v_{P}-v_{S}}{d_{SP}}A_{s}\right] \\
+	R\left(v\right)V_{P}=\left[Pr_{e}\frac{v_{E}-v_{P}}{d_{EP}}A_{e}+Pr_{n}\frac{v_{N}-v_{P}}{d_{NP}}A_{n}-Pr_{w}\frac{v_{P}-v_{W}}{d_{WP}}A_{w}-Pr_{s}\frac{v_{P}-v_{S}}{d_{SP}}A_{s}\right] \\
 	-\left[\left(u\right)_{e}v_{e}A_{e}+\left(v\right)_{n}v_{n}A_{n}-\left(u\right)_{w}v_{w}A_{w}-\left(v\right)_{s}v_{s}A_{s}\right]-PrRaTV_{P}
 \end{multline}
 
-In the case of the energy equation a similar approach is used. Temperature, like pressure, is evaluated in the nodes, not in the faces like the velocities.
+In the case of the energy equation a similar approach is used. Temperature, like pressure, is evaluated in the nodes, not in the faces like the velocities. The integration of the terms of the equations starts with the Gauss Theorem:
 \begin{equation}
-\int_{\Omega}R_{T}d\Omega=-\int_{\Omega}\vec{v}\nabla Td\Omega+\int_{\Omega}\nabla^{2}Td\Omega
+\int_{\Omega}\vec{v}\nabla Td\Omega=\int_{\partial\Omega}\vec{v}\cdot\vec{n} TdS\approx\left(u\right)_{e}T_{e}A_{e}+\left(v\right)_{n}T_{n}A_{n}-\left(u\right)_{w}T_{w}A_{w}-\left(v\right)_{s}T_{s}A_{s}
 \end{equation}
-Applying the Gauss Theorem:
 \begin{equation}
-R_{T}V_{P}=-\int_{\partial\Omega}\vec{v}\cdot\vec{n} TdS+\int_{\partial\Omega}\nabla T\vec{n}dS
+	\int_{\Omega}\nabla^{2}Td\Omega=\int_{\partial\Omega}\nabla TdS\approx\frac{T_{E}-T_{P}}{d_{PE}}A_{e}+\frac{T_{N}-T_{P}}{d_{PN}}A_{n}-\frac{T_{P}-T_{W}}{d_{PW}}A_{w}-\frac{T_{P}-T_{S}}{d_{PS}}A_{s}
 \end{equation}
-\begin{multline}
-	R_{T}V_{P}=\left[\frac{T_{E}-T_{P}}{d_{PE}}A_{e}+\frac{T_{N}-T_{P}}{d_{PN}}A_{n}-\frac{T_{P}-T_{W}}{d_{PW}}A_{w}-\frac{T_{P}-T_{S}}{d_{PS}}A_{s}\right] \\
-	-\left[\left(u\right)_{e}T_{e}A_{e}+\left(v\right)_{n}T_{n}A_{n}-\left(u\right)_{w}T_{w}A_{w}-\left(v\right)_{s}T_{s}A_{s}\right]
-\end{multline}
 The temperature in the faces is evaluated using the central differencing scheme, as it was done for the velocities.
+
+The final discretized equation for the temperature can be expressed as:
+\begin{equation}
+a_{P}T_{P}=a_{E}T_{E}+a_{W}T_{W}+a_{N}T_{N}+a_{S}T_{S}+b_{p}
+\end{equation}
+where the discretized coefficients are the same discussed in the section \ref{FinalDiscretizationGCDE}.
+
+\section{Boundary conditions}
+Since the cavity is all surrounded by walls, the boundary velocities are:
+\begin{itemize}
+	\item $\vec{v}=0$ in the top wall
+	\item $\vec{v}=0$ in the bottom wall
+	\item $\vec{v}=0$ in the left wall
+	\item $\vec{v}=0$ in the right wall
+\end{itemize}
+In the case of the temperature, they are determined in the right and left walls. Taking into account the expression of T in the equation \ref{DimensionlessTemperature}:
+\begin{itemize}
+	\item $T=0$ in the left wall
+	\item $T=1$ in the right wall
+\end{itemize}
+In the top and bottom walls the only condition is that they are adiabatic. This condition can also be expressed as:
+\begin{equation}
+\frac{\partial T}{\partial y}\approx\frac{T_{P}-T_{S}}{d_{PS}}=0
+\end{equation}
+\begin{equation}
+T_{P}=T_{S}
+\end{equation}
+As a consequence, the discretized coefficients of the boundary nodes have the values listed in table \ref{BoundTempDiffHeat}.
+\begin{table}[h]
+	\centering\begin{tabular}{ |c|c|c|c|c| }
+		\hline
+		Coefficients & Left & Right & Top & Bottom \\ \hline
+		$a_{E}$ & $0$ & $0$ & $0$ & $0$ \\ \hline
+		$a_{W}$ & $0$ & $0$ & $0$ & $0$ \\ \hline
+		$a_{N}$ & $0$ & $0$ & $0$ & $1$ \\ \hline
+		$a_{S}$ & $0$ & $0$ & $1$ & $0$ \\ \hline
+		$a_{P}$ & $1$ & $1$ & $1$ & $1$ \\ \hline
+		$b_{P}$ & $0$ & $1$ & $0$ & $0$ \\ \hline
+	\end{tabular}
+\caption{Discretization coefficients of the boundary temperature nodes}
+\label{BoundTempDiffHeat}
+\end{table}

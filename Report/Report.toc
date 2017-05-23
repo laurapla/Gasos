@@ -60,9 +60,11 @@
 \contentsline {subsection}{\numberline {9.1.1}Non-dimensional equations}{48}{subsection.9.1.1}
 \contentsline {section}{\numberline {9.2}Application of the fractional step method}{49}{section.9.2}
 \contentsline {section}{\numberline {9.3}Discretization}{49}{section.9.3}
-\contentsline {part}{V\hspace {1em}Turbulence}{51}{part.5}
-\contentsline {chapter}{\numberline {10}Burgers' equation}{52}{chapter.10}
-\contentsline {section}{\numberline {10.1}Fourier space}{52}{section.10.1}
-\contentsline {section}{\numberline {10.2}Discretization}{54}{section.10.2}
-\contentsline {subsection}{\numberline {10.2.1}Large-Eddy Simulation}{55}{subsection.10.2.1}
-\contentsline {chapter}{\numberline {11}Bibliography}{56}{chapter.11}
+\contentsline {section}{\numberline {9.4}Boundary conditions}{50}{section.9.4}
+\contentsline {part}{V\hspace {1em}Turbulence}{52}{part.5}
+\contentsline {chapter}{\numberline {10}Burgers' equation}{53}{chapter.10}
+\contentsline {section}{\numberline {10.1}Fourier space}{53}{section.10.1}
+\contentsline {section}{\numberline {10.2}Discretization}{55}{section.10.2}
+\contentsline {subsection}{\numberline {10.2.1}Large-Eddy Simulation}{56}{subsection.10.2.1}
+\contentsline {section}{\numberline {10.3}Results}{56}{section.10.3}
+\contentsline {chapter}{\numberline {11}Bibliography}{58}{chapter.11}

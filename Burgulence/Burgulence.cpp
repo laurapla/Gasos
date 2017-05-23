@@ -14,13 +14,13 @@ complex<double> convective(int k, int N, vector<complex<double> > u);
 
 int main()
 {
-	const int N = 21;
+	const int N = 20;
 	const double Re = 40; // Reynolds number
-	bool LES = 0; // 1 is LES, 0 is DNS
+	bool LES = 1; // 1 is LES, 0 is DNS
 	double F = 0; // Source term (in Fourier space)
 	
 	double delta = 1e-6; // Precision of the simulation
-	float CK = 0.4523; // Kolgomorov constant
+	float CK = 0.05; // Kolgomorov constant
 	float C1 = 0.02;
 	double dt = C1*Re/pow(N,2); // Increment of time
 	
@@ -90,7 +90,7 @@ complex<double> diffusive(int k, int N, double Re, vector<complex<double> > u, b
 {
 	if(!LES)
 	{
-		return -pow(k+1,2)*u[k]/Re;
+		return -(double(k)+1)*(double(k)+1)*u[k]/Re;
 	}
 	else
 	{
@@ -106,7 +106,7 @@ complex<double> diffusive(int k, int N, double Re, vector<complex<double> > u, b
 		vnon = 1+34.5*exp(-3.03*N/k);
 		eddy = vinf*sqrt(EkN/N)*vnon;
 		viscosity = 1/Re+eddy;
-		return -pow(k+1,2)*u[k]*viscosity;
+		return -(double(k)+1)*(double(k)+1)*u[k]*viscosity;
 	}
 }
 

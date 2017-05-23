@@ -34,11 +34,11 @@ V_{P}\left(\rho_{P}^{n+1}-\rho_{P}^{n}\right)=V_{P}\left(\rho_{P}-\rho_{0}\right
 Using the Divergence Theorem, the second term of the mass equation transforms into a surface integral. Then, to integrate over time, an implicit scheme is used.
 \begin{multline}
 \int_{t^{n}}^{t^{n+1}}\int_{V_{P}}^{}\nabla\cdot\left(\rho\vec{v}\right)dVdt=\int_{t^{n}}^{t^{n+1}}\int_{S_{f}}^{}\rho\vec{v}\cdot\vec{n}dSdt= \\
-\int_{t^{n}}^{t^{n+1}}\left(\dot{m}_{e}-dot{m}_{w}+dot{m}_{n}-dot{m}_{s}\right)dt\approx\left[\dot{m}_{e}-dot{m}_{w}+dot{m}_{n}-dot{m}_{s}\right]^{n+1}\Delta t
+\int_{t^{n}}^{t^{n+1}}\left(\dot{m}_{e}-\dot{m}_{w}+\dot{m}_{n}-\dot{m}_{s}\right)dt\approx\left[\dot{m}_{e}-\dot{m}_{w}+\dot{m}_{n}-\dot{m}_{s}\right]^{n+1}\Delta t
 \end{multline}
 The final discretized mass equation is \ref{Discretizedmasseq2D}:
 \begin{equation}
-\frac{V_{P}\left(\rho_{P}-\rho_{0}\right)}{\Delta t}+\dot{m}_{e}-dot{m}_{w}+dot{m}_{n}-dot{m}_{s}=0
+\frac{V_{P}\left(\rho_{P}-\rho_{0}\right)}{\Delta t}+\dot{m}_{e}-\dot{m}_{w}+\dot{m}_{n}-\dot{m}_{s}=0
 \label{Discretizedmasseq2D}
 \end{equation}
 The discretization of the convection-diffusion equation is very similar to that of the mass equation. Integrating over the volume the transport term of equation \ref{GCDE} and applying the Divergence Theorem:
@@ -132,6 +132,7 @@ Introducing equations \ref{A} and \ref{B} into \ref{FinalDiscrGCDE}, the followi
 a_{P}\phi_{P}=a_{E}\phi_{E}+a_{W}\phi_{W}+a_{N}\phi_{N}+a_{S}\phi_{S}+b_{P}
 \label{DiscretizedEquGCDE}
 \end{equation}
+\label{FinalDiscretizationGCDE}
 where
 \begin{equation}
 a_{E}=D_{e}A\left(|P_{e}|\right)+\textlbrackdbl-F_{e},0\textrbrackdbl
