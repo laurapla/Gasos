@@ -12,22 +12,22 @@ typedef double matrix[M+2][N+2];
 typedef double staggx[M+2][N+1];
 typedef double staggy[M+1][N+2];
 
-void coordinates(float L, int N, float xvc[], float x[]);
-void surface(float *yvc, int M, float Sv[]);
-void volume(float *xvc, float *yvc, int N, int M, matrix& V);
-void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
-double convective_term (float xf, float x2, float x3, double u2, double u3);
-void intermediate_velocities (int N, int M, float rho, float mu, float delta, float dt, float* x, float* y, float *xvc, float* yvc, float* Sh, float* Sv, matrix V, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp);
-void bp_coefficient (int N, int M, float rho, float dt, float* Sh, float* Sv, staggx up, staggy vp, matrix bp);
+void coordinates(float L, int N, double xvc[], double x[]);
+void surface(double *yvc, int M, double Sv[]);
+void volume(double *xvc, double *yvc, int N, int M, matrix& V);
+void constant_coefficients(int N, int M, double *x, double *y, double *Sv, double *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
+double convective_term (double xf, double x2, double x3, double u2, double u3);
+void intermediate_velocities (int N, int M, float rho, float mu, float delta, double dt, double* x, double* y, double *xvc, double* yvc, double* Sh, double* Sv, matrix V, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp);
+void bp_coefficient (int N, int M, float rho, double dt, double* Sh, double* Sv, staggx up, staggy vp, matrix bp);
 void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float fr, float delta, int N, int M, matrix& T);
-void velocities (int N, int M, float rho, float dt, float uref, float* x, float* y, matrix p, staggx up, staggy vp, staggx &u, staggy &v);
+void velocities (int N, int M, float rho, double dt, float uref, double* x, double* y, matrix p, staggx up, staggy vp, staggx &u, staggy &v);
 double min(double a, double b);
 double max(double a, double b);
-double time_step (float dtd, float* x, float* y, staggx u, staggy v);
+double time_step (double dtd, double* x, double* y, staggx u, staggy v);
 double error (int N, int M, staggx u, staggy v, staggx u0, staggy v0);
-void search_index (float point, float *x, int Number, int& ipoint, int& ip);
+void search_index (float point, double *x, int Number, int& ipoint, int& ip);
 double interpolation(float x, double T1, double T2, double x1, double x2);
-void output_files (int N, int M, float L, float* x, float* y, float* xvc, float* yvc, staggx u, staggy v);
+void output_files (int N, int M, float L, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v);
 
 
 int main()
@@ -45,12 +45,12 @@ int main()
 	cout<<"Re="<<Re<<endl<<endl;
 	
 	// Coordinates
-	float xvc[N+1], yvc[M+1], x[N+2], y[M+2];
+	double xvc[N+1], yvc[M+1], x[N+2], y[M+2];
 	coordinates(L, N, xvc, x);
 	coordinates(L, M, yvc, y);
 	
 	// Surfaces
-	float Sh[N+2], Sv[M+2];
+	double Sh[N+2], Sv[M+2];
 	matrix V;
 	surface(xvc, N+2, Sh); // Horizontal surface
 	surface(yvc, M+2, Sv); // Vertical surface
@@ -152,9 +152,9 @@ int main()
 
 
 // Coordinates of the control volumes (x -> nodes, xvc -> faces)
-void coordinates(float L, int N, float xvc[], float x[])
+void coordinates(float L, int N, double xvc[], double x[])
 {
-	float dx = L/N;
+	double dx = L/N;
 	xvc[0] = 0;
 	x[0] = 0;
 	for(int i = 0; i<N; i++)
@@ -167,7 +167,7 @@ void coordinates(float L, int N, float xvc[], float x[])
 
 
 // Surfaces of the control volumes
-void surface(float *yvc, int M, float Sv[])
+void surface(double *yvc, int M, double Sv[])
 {
 	for(int j = 0; j<M-1; j++)
 	{
@@ -179,7 +179,7 @@ void surface(float *yvc, int M, float Sv[])
 
 
 // Volume of each control volume
-void volume(float *xvc, float *yvc, int N, int M, matrix& V)
+void volume(double *xvc, double *yvc, int N, int M, matrix& V)
 {
 	for(int i = 0; i<N; i++)
 	{
@@ -199,7 +199,7 @@ void volume(float *xvc, float *yvc, int N, int M, matrix& V)
 
 
 // Calculation of the constant coefficients (ae, aw, an, as, ap) of the Poisson equation (pressure)
-void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap)
+void constant_coefficients(int N, int M, double *x, double *y, double *Sv, double *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap)
 {
 	for(int i = 0; i<N; i++)
 	{
@@ -283,7 +283,7 @@ void constant_coefficients(int N, int M, float *x, float *y, float *Sv, float *S
 
 
 // Computation of the velocity in the convective term using CDS
-double convective_term (float xf, float x2, float x3, double u2, double u3)
+double convective_term (double xf, double x2, double x3, double u2, double u3)
 {
 	// 2 refers to node P, 3 to node E
 	double u;
@@ -294,7 +294,7 @@ double convective_term (float xf, float x2, float x3, double u2, double u3)
 
 
 // Calculation of the intermediate velocities
-void intermediate_velocities (int N, int M, float rho, float mu, float delta, float dt, float* x, float* y, float *xvc, float* yvc, float* Sh, float* Sv, matrix V, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp)
+void intermediate_velocities (int N, int M, float rho, float mu, float delta, double dt, double* x, double* y, double *xvc, double* yvc, double* Sh, double* Sv, matrix V, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp)
 {
 	double mflowe, mfloww, mflown, mflows;
 	double ue, uw, un, us;
@@ -369,7 +369,7 @@ void intermediate_velocities (int N, int M, float rho, float mu, float delta, fl
 
 
 // Calculation of the bp coefficient of the Poisson equation (pressure)
-void bp_coefficient (int N, int M, float rho, float dt, float* Sh, float* Sv, staggx up, staggy vp, matrix bp)
+void bp_coefficient (int N, int M, float rho, double dt, double* Sh, double* Sv, staggx up, staggy vp, matrix bp)
 {
 	for(int i = 0; i<N; i++)
 	{
@@ -478,7 +478,7 @@ void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix
 
 
 // Calculation of the velocity with the correction of pressure
-void velocities (int N, int M, float rho, float dt, float uref, float* x, float* y, matrix p, staggx up, staggy vp, staggx &u, staggy &v)
+void velocities (int N, int M, float rho, double dt, float uref, double* x, double* y, matrix p, staggx up, staggy vp, staggx &u, staggy &v)
 {
 	// Horizontal velocity at n+1
 	for(int i = 0; i<N+1; i++)
@@ -547,10 +547,10 @@ double max(double a, double b)
 
 
 // Calculation of the proper time step (CFL condition)
-double time_step (float dtd, float* x, float* y, staggx u, staggy v)
+double time_step (double dtd, double* x, double* y, staggx u, staggy v)
 {
-	float dt;
-	float dtc = 100;
+	double dt;
+	double dtc = 100;
 	
 	for(int i = 1; i<N; i++)
 	{
@@ -594,7 +594,7 @@ double error (int N, int M, staggx u, staggy v, staggx u0, staggy v0)
 
 
 // Searching the index of the node closest to a given point (and the second closest)
-void search_index (float point, float *x, int Number, int& ipoint, int& ip)
+void search_index (float point, double *x, int Number, int& ipoint, int& ip)
 {
 	for(int i = 0; i<Number-1; i++)
     {
@@ -645,7 +645,7 @@ double interpolation(float x, double T1, double T2, double x1, double x2)
 
 
 // Output of the results
-void output_files (int N, int M, float L, float* x, float* y, float* xvc, float* yvc, staggx u, staggy v)
+void output_files (int N, int M, float L, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v)
 {
 	// Horizontal velocities
 	ofstream resultats;
