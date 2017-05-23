@@ -55,9 +55,14 @@
 \contentsline {section}{\numberline {8.2}Boundary conditions}{44}{section.8.2}
 \contentsline {section}{\numberline {8.3}Algorithm}{45}{section.8.3}
 \contentsline {section}{\numberline {8.4}Results}{46}{section.8.4}
-\contentsline {part}{V\hspace {1em}Turbulence}{47}{part.5}
-\contentsline {chapter}{\numberline {9}Burgers' equation}{48}{chapter.9}
-\contentsline {section}{\numberline {9.1}Fourier space}{48}{section.9.1}
-\contentsline {section}{\numberline {9.2}Discretization}{50}{section.9.2}
-\contentsline {subsection}{\numberline {9.2.1}Large-Eddy Simulation}{51}{subsection.9.2.1}
-\contentsline {chapter}{\numberline {10}Bibliography}{52}{chapter.10}
+\contentsline {chapter}{\numberline {9}Differentially heated cavity}{47}{chapter.9}
+\contentsline {section}{\numberline {9.1}Natural convection}{47}{section.9.1}
+\contentsline {subsection}{\numberline {9.1.1}Non-dimensional equations}{48}{subsection.9.1.1}
+\contentsline {section}{\numberline {9.2}Application of the fractional step method}{49}{section.9.2}
+\contentsline {section}{\numberline {9.3}Discretization}{49}{section.9.3}
+\contentsline {part}{V\hspace {1em}Turbulence}{51}{part.5}
+\contentsline {chapter}{\numberline {10}Burgers' equation}{52}{chapter.10}
+\contentsline {section}{\numberline {10.1}Fourier space}{52}{section.10.1}
+\contentsline {section}{\numberline {10.2}Discretization}{54}{section.10.2}
+\contentsline {subsection}{\numberline {10.2.1}Large-Eddy Simulation}{55}{subsection.10.2.1}
+\contentsline {chapter}{\numberline {11}Bibliography}{56}{chapter.11}

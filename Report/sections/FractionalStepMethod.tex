@@ -1,4 +1,5 @@
 \chapter{Fractional Step Method}
+\label{FractionalStepM}
 The equations to be solved are the conservation of mass and the conservation of momentum:
 \begin{equation}
 \begin{aligned}
@@ -70,7 +71,7 @@ This variable is a vector. Integrating the expression over the control volume of
 \end{equation}
 Now, applying the Gauss Theorem:
 \begin{equation}
-R\left(u\right)V_{P}=-\int_{\partial\Omega_{x}}\left(\rho\vec{v}\right)u\cdot\vec{n}dS+\int_{\Omega_{x}}\mu\nabla^{2}u\cdot\vec{n}dS
+R\left(u\right)V_{P}=-\int_{\partial\Omega_{x}}\left(\rho\vec{v}\right)u\cdot\vec{n}dS+\int_{\partial\Omega_{x}}\mu\nabla u\cdot\vec{n}dS
 \end{equation}
 The final integration of R in the horizontal direction results as:
 \begin{multline}

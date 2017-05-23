@@ -1,25 +1,20 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{Ferziger2002}
+Joel~H. Ferziger and Milovan Peric.
+\newblock {\em {Computational Methods for Fluid Dynamics}}.
+\newblock Springer, Berlin, 3rd edition, 2002.
 
 \bibitem{Patankar1980}
 Suhas~V. Patankar.
 \newblock {\em {Numerical Heat Transfer and Fluid Flow}}.
 \newblock McGraw-Hill, New York, 1980.
 
-\bibitem{CTTC2014}
-CTTC.
-\newblock {Burgers' equation in Fourier space}.
-\newblock 4(4):1--8, 2014.
-
-\bibitem{Ferziger2002}
-Joel~H. Ferziger and Milovan Peric.
-\newblock {\em {Computational Methods for Fluid Dynamics}}.
-\newblock Springer, Berlin, 3 edition, 2002.
-
 \bibitem{Bergman2011}
 Theodore~L. Bergman, Adrienne~S. Lavine, Frank~P. Incropera, and David~P.
   DeWitt.
 \newblock {\em {Fundamentals of Heat and Mass Transfer}}.
-\newblock John Wiley {\&} Sons, 7 edition, 2011.
+\newblock John Wiley {\&} Sons, 7th edition, 2011.
 
 \bibitem{Bejan2013}
 Adrian Bejan.
@@ -30,5 +25,32 @@ Adrian Bejan.
 CTTC.
 \newblock {Introduction to the Fractional Step Method}.
 \newblock pages 1--10.
+
+\bibitem{CTTCa}
+CTTC.
+\newblock {Course on Numerical Methods in Heat Transfer and Fluid Dynamics Unit
+  4: Fractional Step Method Part1: Staggered Meshes}.
+
+\bibitem{DeVahlDavis1983a}
+Graham {de Vahl Davis} and I~P Jones.
+\newblock {Natural convection in a square cavity: A comparison exercise}.
+\newblock 3(July 1982):227--248, 1983.
+
+\bibitem{DeVahlDavis1983}
+Graham {de Vahl Davis}.
+\newblock {Natural convection of air in square cavity : A benchmark numerical
+  solution}.
+\newblock {\em International Journal for Numerical methods in Fluids}, 3(July
+  1982):249--264, 1983.
+
+\bibitem{Ghiaasiaan2011}
+Seyed~Mostafa Ghiaasiaan.
+\newblock {\em {Convective Heat and Mass Transfer}}.
+\newblock Cambridge University Press, New York, 2011.
+
+\bibitem{CTTC2014}
+CTTC.
+\newblock {Burgers' equation in Fourier space}.
+\newblock 4(4):1--8, 2014.
 
 \end{thebibliography}

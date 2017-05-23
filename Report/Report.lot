@@ -8,7 +8,7 @@
 \contentsline {table}{\numberline {4.3}{\ignorespaces Boundary conditions\relax }}{18}{table.caption.10}
 \contentsline {table}{\numberline {4.4}{\ignorespaces Numerical parameters of the four materials problem\relax }}{18}{table.caption.11}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Function $A(|P|)$ for different schemes\cite {Patankar1980}\relax }}{29}{table.caption.18}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Function $A(|P|)$ for different schemes}}{29}{table.caption.18}
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {6.1}{\ignorespaces Numerical parameters of the Smith-Hutton problem\relax }}{31}{table.caption.20}
 \contentsline {table}{\numberline {6.2}{\ignorespaces Discretization coefficients of the boundary points\relax }}{31}{table.caption.21}
@@ -16,5 +16,6 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {8.1}{\ignorespaces Numerical parameters of the driven cavity problem\relax }}{43}{table.caption.32}
 \contentsline {table}{\numberline {8.2}{\ignorespaces Discretization coefficients in the boundary\relax }}{44}{table.caption.33}
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
