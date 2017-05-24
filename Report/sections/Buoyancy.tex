@@ -148,3 +148,17 @@ As a consequence, the discretized coefficients of the boundary nodes have the va
 \caption{Discretization coefficients of the boundary temperature nodes}
 \label{BoundTempDiffHeat}
 \end{table}
+
+\section{Nusselt number}
+In the differentially heated cavity, the motion occurs due to the convective transfer. In other words, the temperature gradient is the important issue in this problem, so it would be useful to calculate it. The local heat flux in a horizontal direction at any point in the cavity \cite{DeVahlDavis1983}:
+\begin{equation}
+Q\left(x, y\right)=uT-\frac{\partial T}{\partial x}
+\end{equation}
+The Nusselt number is a non-dimensional parameter that can be seen as the dimensionless temperature gradient. It provides a measure of the convection heat at a surface \cite{Bergman2011}. The local Nusselt number gives the heat flow through any vertical line:
+\begin{equation}
+	Nu_{x}=\int_{0}^{1}Q\left(x, y\right)dy
+\end{equation}
+Another useful value is the average Nusselt number of the whole cavity:
+\begin{equation}
+\bar{Nu}=\int_{0}^{1}Nu_{x}dx
+\end{equation}
