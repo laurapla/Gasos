@@ -5,8 +5,8 @@
 using namespace std;
 
 // Numerical parameters
-const int N = 50;
-const int M = 50;
+const int N = 20;
+const int M = 20;
 
 typedef double matrix[M+2][N+2];
 typedef double staggx[M+2][N+1];
@@ -101,7 +101,6 @@ int main()
 		// STEP 4 !!! : TEMPERATURE
 		temperature_coefficients(N, M, dt, x, y, Sv, Sh, V, u, v, T0, aTe, aTw, aTn, aTs, aTp, bTp);
 		Gauss_Seidel (aTp, aTw, aTe, aTs, aTn, bTp, fr, delta, N+2, M+2, T);
-		heat_flux(N, M, x, u, T, Q);
 		
 		
 		// STEP 5 !!! : TIME STEP
@@ -138,9 +137,10 @@ int main()
 	}
 	
 	// Results
+	heat_flux(N, M, x, u, T, Q);
 	Nusselt(N, M, x, y, Q, Nu);
     cout<<endl<<"Creating some output files..."<<endl;
-    output_files (N, M, L, x, y, u, v, T, Nu);
+    output_files (N, M, L, x, y, u, v, Q, Nu);
 	
 	return 0;
 }
@@ -394,11 +394,11 @@ void heat_flux(int N, int M, double* x, staggx u, matrix T, matrix Q)
 		{
 			if(i==N+1)
 			{
-				Q[j][i] = (T[j][i]-T[j][i-1])/fabs(x[i]-x[i-1]);
+				Q[j][i] = -(T[j][i]-T[j][i-1])/fabs(x[i]-x[i-1]);
 			}
 			else
 			{
-				Q[j][i] = u[j][i]*T[j][i]+(T[j][i+1]-T[j][i])/fabs(x[i+1]-x[i]);
+				Q[j][i] = u[j][i]*T[j][i]-(T[j][i+1]-T[j][i])/fabs(x[i+1]-x[i]);
 			}
 		}
 	}
@@ -725,7 +725,7 @@ void Nusselt(int N, int M, double* x, double* y, matrix Q, double Nu[])
 {
 	for(int i = 0; i<N+2; i++)
 	{
-		Nu[i] = 0.0;
+		Nu[i] = 0;
 		for(int j = 0; j<M+2; j++)
 		{
 			Nu[i] = Nu[i]+(y[j+1]-y[j])*(Q[j+1][i]+Q[j][i])/2;
@@ -738,7 +738,7 @@ void Nusselt(int N, int M, double* x, double* y, matrix Q, double Nu[])
 	
 	for(int i = 0; i<N+2; i++)
 	{
-		Nuavg = Nuavg+(x[i+1]-x[i])*(Nu[i+1]-Nu[i]);
+		Nuavg = Nuavg+(x[i+1]-x[i])*(Nu[i+1]+Nu[i])/2;
 		Numax = max(Numax, Nu[i]);
 		Numin = min(Numin, Nu[i]);
 	}
