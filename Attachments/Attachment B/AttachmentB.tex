@@ -1,0 +1,75 @@
+\input{doc_config/doc_config} % Document Configurations
+\input{doc_config/doc_info} % Document information
+\input{doc_config/headers_and_footers} % Headers and footers
+\input{doc_config/defined_stuff} % User defined environments
+
+% Paragraph formatting
+\setlength{\parindent}{0pt}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{parskip}
+
+\usepackage{epigraph}
+\usepackage{tocloft}
+\usepackage{mathcomp}
+\usepackage{graphicx}
+\usepackage{subcaption}
+
+\usepackage{multicol}
+\usepackage[T1]{fontenc}
+\usepackage{titlesec, blindtext, color}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+
+
+\renewcommand{\familydefault}{\sfdefault}
+
+
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\lstset{ %
+	language=C++,
+	basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+	breaklines=true,                 % sets automatic line breaking
+	breakatwhitespace=false,
+	columns=flexible,
+	showstringspaces=false, % don't mark spaces in strings
+	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	extendedchars=true
+}
+\lstset{literate={(}{}{0\discretionary{(}{}{(}}% line-break at ()
+}
+\begin{document}
+
+\input{./doc_config/cover} % COVER
+\newpage\thispagestyle{EmptyPage}
+
+\pagenumbering{roman}
+
+% TABLE OF CONTENTS
+\setcounter{tocdepth}{3}
+\tableofcontents
+\pagebreak
+
+% DOCUMENT SECTIONS
+
+\newpage
+\pagenumbering{arabic}
+
+\newpage
+\setlength{\parskip}{1em}
+
+\chapter{Four materials problem}
+\lstinputlisting{Four_materialsv2.cpp}
+
+\chapter{Smith-Hutton problem}
+\lstinputlisting{Smith-Huttonv5.cpp}
+
+\chapter{Driven cavity problem}
+\lstinputlisting{Driven_cavityv2.cpp}
+
+\end{document}

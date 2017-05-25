@@ -35,7 +35,7 @@ void output_files (int N, int M, float L, double* x, double* y, staggx u, staggy
 int main()
 {
 	float Pr = 0.71; // Prandtl number
-	int Ra = 1000; // Rayleigh number
+	int Ra = 1e3; // Rayleigh number
 	float L = 1; // Length of the cavity
 	
 	float delta = 1e-4; // Precision of the simulation (as the Re increases it is recommended to use 5e-5, 1e-4, 2e-4...)
@@ -394,7 +394,7 @@ void heat_flux(int N, int M, double* x, staggx u, matrix T, matrix Q)
 		{
 			if(i==N+1)
 			{
-				Q[j][i] = -(T[j][i]-T[j][i-1])/fabs(x[i]-x[i-1]);
+				Q[j][i] = u[j][i]*T[j][i]-(T[j][i]-T[j][i-1])/fabs(x[i]-x[i-1]);
 			}
 			else
 			{
@@ -728,11 +728,11 @@ void Nusselt(int N, int M, double* x, double* y, matrix Q, double Nu[])
 		Nu[i] = 0;
 		for(int j = 0; j<M+2; j++)
 		{
-			Nu[i] = Nu[i]+(y[j+1]-y[j])*(Q[j+1][i]+Q[j][i])/2;
+			Nu[i] = Nu[i]+(y[j+1]-y[j])*(Q[j+1][i]+Q[j][i])/2
 		}
 	}
 	
-	double Numax = 0;
+	double Numax = -100;
 	double Numin = 100;
 	double Nuavg = 0;
 	
