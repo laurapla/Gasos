@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  25 MAY 2017 18:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  28 MAY 2017 18:17
 entering extended mode
 **./AttachmentB.tex
 (AttachmentB.tex
@@ -1474,9 +1474,9 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 )
 \verbatim@out=\write3
-runsystem(echo t > "w18-test-20175251105.tex")...executed.
+runsystem(echo t > "w18-test-20175281097.tex")...executed.
 
-runsystem(del "w18-test-20175251105.tex")...executed.
+runsystem(del "w18-test-20175281097.tex")...executed.
 
 Package gnuplottex Info: Automatically converting gnuplot files. on input line 
 110.
@@ -2019,7 +2019,7 @@ LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 46.
 ("C:\Apps\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd"
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) (doc_config/cover.tex
-<./doc_config/image.png, id=15, 640.3925pt x 170.6375pt>
+<./doc_config/image.png, id=19, 640.3925pt x 170.6375pt>
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
@@ -2289,19 +2289,19 @@ Chapter 3.
 (Driven_cavityv2.cpp
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 33.
+less on input line 34.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 33.
+less on input line 34.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 33.
+less on input line 34.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 33.
+Package pdftex.def Info: ./doc_config/image.png used on input line 34.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [31
 
@@ -2314,7 +2314,7 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 82.
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 131.
+Package pdftex.def Info: ./doc_config/image.png used on input line 133.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [33]
 File: ./doc_config/image.png Graphic file (type png)
@@ -2341,7 +2341,7 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 328.
  [37]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 371.
+Package pdftex.def Info: ./doc_config/image.png used on input line 370.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [38]
 File: ./doc_config/image.png Graphic file (type png)
@@ -2352,13 +2352,13 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 417.
  [39]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 453.
+Package pdftex.def Info: ./doc_config/image.png used on input line 455.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [40]
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 503.
+Package pdftex.def Info: ./doc_config/image.png used on input line 502.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [41]
 File: ./doc_config/image.png Graphic file (type png)
@@ -2369,40 +2369,77 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 552.
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 602.
+Package pdftex.def Info: ./doc_config/image.png used on input line 604.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [43]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 649.
+Package pdftex.def Info: ./doc_config/image.png used on input line 650.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [44]
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 697.
+Package pdftex.def Info: ./doc_config/image.png used on input line 699.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [45]) 
-AED: lastpage setting LastPage
+ [45])
 File: ./doc_config/image.png Graphic file (type png)
-<use ./doc_config/image.png>
+ <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 75.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [46]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 75.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 75.
+Chapter 4.
+(Burgulence.cpp
+
+Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
+less on input line 40.
+
+
+Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
+less on input line 40.
+
+
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less on input line 40.
+
+File: ./doc_config/image.png Graphic file (type png)
+<use ./doc_config/image.png>
+Package pdftex.def Info: ./doc_config/image.png used on input line 40.
+(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
+ [47
+
+]
+File: ./doc_config/image.png Graphic file (type png)
+ <use ./doc_config/image.png>
+Package pdftex.def Info: ./doc_config/image.png used on input line 90.
+(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
+ [48]
+File: ./doc_config/image.png Graphic file (type png)
+
+<use ./doc_config/image.png>
+Package pdftex.def Info: ./doc_config/image.png used on input line 140.
+(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
+ [49]) 
+AED: lastpage setting LastPage
+File: ./doc_config/image.png Graphic file (type png)
+<use ./doc_config/image.png>
+Package pdftex.def Info: ./doc_config/image.png used on input line 78.
+(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
+ [50]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 78.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 78.
  (AttachmentB.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 75.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 75.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 78.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 78.
 Package rerunfilecheck Info: File `AttachmentB.out' has not changed.
-(rerunfilecheck)             Checksum: AAD5F44D93511446BB1F3AF057AEF966;171.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 75.
+(rerunfilecheck)             Checksum: 93E6B18D742C9BA03C0FF0BBB2E2D75C;224.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 78.
  ) 
 Here is how much of TeX's memory you used:
- 34397 strings out of 493334
- 616002 string characters out of 3143122
+ 34608 strings out of 493334
+ 618906 string characters out of 3143122
  957142 words of memory out of 3000000
- 35388 multiletter control sequences out of 15000+200000
+ 35436 multiletter control sequences out of 15000+200000
  79615 words of font info for 77 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  47i,16n,97p,10491b,2305s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -2414,9 +2451,9 @@ e1/public/lm/lmss10.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pfb><C
 e1/public/lm/lmss9.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><
 C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmsso9.pfb><C:/Apps/MiKTeX 2.9/fonts/t
 ype1/public/lm/lmsy9.pfb>
-Output written on AttachmentB.pdf (48 pages, 535592 bytes).
+Output written on AttachmentB.pdf (52 pages, 565889 bytes).
 PDF statistics:
- 2613 PDF objects out of 2984 (max. 8388607)
- 1997 named destinations out of 2073 (max. 500000)
- 30 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2821 PDF objects out of 2984 (max. 8388607)
+ 2157 named destinations out of 2487 (max. 500000)
+ 38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

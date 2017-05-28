@@ -32,7 +32,7 @@ CTTC.
   4: Fractional Step Method Part1: Staggered Meshes}.
 
 \bibitem{DeVahlDavis1983a}
-Graham {de Vahl Davis} and I~P Jones.
+Graham {de Vahl Davis} and I.~P. Jones.
 \newblock {Natural convection in a square cavity: A comparison exercise}.
 \newblock 3(July 1982):227--248, 1983.
 
@@ -47,6 +47,26 @@ Graham {de Vahl Davis}.
 Seyed~Mostafa Ghiaasiaan.
 \newblock {\em {Convective Heat and Mass Transfer}}.
 \newblock Cambridge University Press, New York, 2011.
+
+\bibitem{Versteeg2007}
+H.K. Versteeg and W.~Malalasekera.
+\newblock {\em {An Introduction to Computational Fluid Dynamics: The Finite
+  Volume Method}}.
+\newblock Pearson Education Limited, Harlow, second edition, 2007.
+
+\bibitem{CTTCb}
+CTTC.
+\newblock {Turbulence Modelling from RANS to DNS and LES}.
+
+\bibitem{Pope2000}
+Stephen~B. Pope.
+\newblock {\em {Turbulent Flows}}, volume~1.
+\newblock Cambridge University Press, 2000.
+
+\bibitem{Johnson2016}
+Richard~W. Johnson.
+\newblock {\em {Handbook of Fluid Dynamics}}.
+\newblock Second edition, 2016.
 
 \bibitem{CTTC2014}
 CTTC.

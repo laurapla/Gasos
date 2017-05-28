@@ -15,6 +15,7 @@ typedef double staggy[M+1][N+2];
 void coordinates(float L, int N, double xvc[], double x[]);
 void surface(double *yvc, int M, double Sv[]);
 void volume(double *xvc, double *yvc, int N, int M, matrix& V);
+void initial_conditions(int N, int M, float uref, staggx& u0, staggx& Ru0, staggy& v0, staggy& Rv0);
 void constant_coefficients(int N, int M, double *x, double *y, double *Sv, double *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
 double convective_term (double xf, double x2, double x3, double u2, double u3);
 void intermediate_velocities (int N, int M, float rho, float mu, float delta, double dt, double* x, double* y, double *xvc, double* yvc, double* Sh, double* Sv, matrix V, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp);
@@ -32,13 +33,13 @@ void output_files (int N, int M, float L, double* x, double* y, double* xvc, dou
 
 int main()
 {
-	int Re = 100; // Reynolds number
+	int Re = 10000; // Reynolds number
 	float L = 1; // Length of the cavity
 	float rho = 1; // Density
 	float uref = 1; // Reference velocity
 	float mu = rho*uref*L/Re; // Viscosity
 	
-	float delta = 1e-5; // Precision of the simulation (as the Re increases it is recommended to use 5e-5, 1e-4, 2e-4...)
+	float delta = 2e-4; // Precision of the simulation (as the Re increases it is recommended to use 5e-5, 1e-4, 2e-4...)
 	float fr = 1.2; // Relaxation factor
 	
 	cout<<"Program started"<<endl;
@@ -63,29 +64,7 @@ int main()
 	staggy v, v0, Rv0;
 	
 	// Inicialization
-	for(int j = 0; j<M+2; j++)
-	{
-		for(int i = 0; i<N+1; i++)
-		{
-			if(j==M+1 && i!=0 && i!=N)
-			{
-				u0[j][i] = uref; // Horizontal velocity at n
-			}
-			else
-			{
-				u0[j][i] = 0; // Horizontal velocity at n
-			}
-			Ru0[j][i] = 0; // R (horizontal) at n-1
-		}
-	}
-	for(int j = 0; j<M+1; j++)
-	{
-		for(int i = 0; i<N+2; i++)
-		{
-			v0[j][i] = 0; // Vertical velocity at n
-			Rv0[j][i] = 0; // R (vertical) at n-1
-		}
-	}
+	initial_conditions(N, M, uref, u0, Ru0, v0, Rv0);
 	
 	// Calculation of the constant coefficients that are used to determine the pressure
 	matrix ae, aw, an, as, ap, bp;
@@ -193,6 +172,35 @@ void volume(double *xvc, double *yvc, int N, int M, matrix& V)
 			{
 				V[j][i] = fabs(xvc[i]-xvc[i-1])*fabs(yvc[j]-yvc[j-1]);
 			}
+		}
+	}
+}
+
+
+// Initial conditions of the problem
+void initial_conditions(int N, int M, float uref, staggx& u0, staggx& Ru0, staggy& v0, staggy& Rv0)
+{
+	for(int j = 0; j<M+2; j++)
+	{
+		for(int i = 0; i<N+1; i++)
+		{
+			if(j==M+1 && i!=0 && i!=N)
+			{
+				u0[j][i] = uref; // Horizontal velocity at n
+			}
+			else
+			{
+				u0[j][i] = 0; // Horizontal velocity at n
+			}
+			Ru0[j][i] = 0; // R (horizontal) at n-1
+		}
+	}
+	for(int j = 0; j<M+1; j++)
+	{
+		for(int i = 0; i<N+2; i++)
+		{
+			v0[j][i] = 0; // Vertical velocity at n
+			Rv0[j][i] = 0; // R (vertical) at n-1
 		}
 	}
 }

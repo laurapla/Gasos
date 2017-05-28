@@ -62,10 +62,15 @@
 \BOOKMARK [1][-]{section.9.3}{Discretization}{chapter.9}% 62
 \BOOKMARK [1][-]{section.9.4}{Boundary conditions}{chapter.9}% 63
 \BOOKMARK [1][-]{section.9.5}{Nusselt number}{chapter.9}% 64
-\BOOKMARK [-1][-]{part.5}{V Turbulence}{}% 65
-\BOOKMARK [0][-]{chapter.10}{Burgers' equation}{part.5}% 66
-\BOOKMARK [1][-]{section.10.1}{Fourier space}{chapter.10}% 67
-\BOOKMARK [1][-]{section.10.2}{Discretization}{chapter.10}% 68
-\BOOKMARK [2][-]{subsection.10.2.1}{Large-Eddy Simulation}{section.10.2}% 69
-\BOOKMARK [1][-]{section.10.3}{Results}{chapter.10}% 70
-\BOOKMARK [0][-]{chapter.11}{Bibliography}{part.5}% 71
+\BOOKMARK [1][-]{section.9.6}{Algorithm}{chapter.9}% 65
+\BOOKMARK [1][-]{section.9.7}{Results}{chapter.9}% 66
+\BOOKMARK [-1][-]{part.5}{V Turbulence}{}% 67
+\BOOKMARK [0][-]{chapter.10}{Burgers' equation}{part.5}% 68
+\BOOKMARK [1][-]{section.10.1}{Burgulence}{chapter.10}% 69
+\BOOKMARK [1][-]{section.10.2}{Fourier space}{chapter.10}% 70
+\BOOKMARK [1][-]{section.10.3}{Discretization}{chapter.10}% 71
+\BOOKMARK [2][-]{subsection.10.3.1}{Direct Numerical Simulation}{section.10.3}% 72
+\BOOKMARK [2][-]{subsection.10.3.2}{Large-Eddy Simulation}{section.10.3}% 73
+\BOOKMARK [1][-]{section.10.4}{Algorithm}{chapter.10}% 74
+\BOOKMARK [1][-]{section.10.5}{Results}{chapter.10}% 75
+\BOOKMARK [0][-]{chapter.11}{Bibliography}{part.5}% 76

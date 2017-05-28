@@ -138,7 +138,7 @@ int main()
 	
 	// Results
 	heat_flux(N, M, x, u, T, Q);
-	Nusselt(N, M, x, y, Q, Nu);
+	Nusselt(N, M, x, yvc, Q, Nu);
     cout<<endl<<"Creating some output files..."<<endl;
     output_files (N, M, L, x, y, u, v, Q, Nu);
 	
@@ -398,7 +398,7 @@ void heat_flux(int N, int M, double* x, staggx u, matrix T, matrix Q)
 			}
 			else
 			{
-				Q[j][i] = u[j][i]*T[j][i]-(T[j][i+1]-T[j][i])/fabs(x[i+1]-x[i]);
+				Q[j][i] = u[j][i]*T[j][i]+(T[j][i+1]-T[j][i])/fabs(x[i+1]-x[i]);
 			}
 		}
 	}
@@ -726,9 +726,9 @@ void Nusselt(int N, int M, double* x, double* y, matrix Q, double Nu[])
 	for(int i = 0; i<N+2; i++)
 	{
 		Nu[i] = 0;
-		for(int j = 0; j<M+2; j++)
+		for(int j = 0; j<M; j++)
 		{
-			Nu[i] = Nu[i]+(y[j+1]-y[j])*(Q[j+1][i]+Q[j][i])/2
+			Nu[i] = Nu[i]+(y[j+1]-y[j])*Q[j][i];
 		}
 	}
 	

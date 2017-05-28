@@ -62,10 +62,15 @@
 \contentsline {section}{\numberline {9.3}Discretization}{49}{section.9.3}
 \contentsline {section}{\numberline {9.4}Boundary conditions}{50}{section.9.4}
 \contentsline {section}{\numberline {9.5}Nusselt number}{51}{section.9.5}
-\contentsline {part}{V\hspace {1em}Turbulence}{52}{part.5}
-\contentsline {chapter}{\numberline {10}Burgers' equation}{53}{chapter.10}
-\contentsline {section}{\numberline {10.1}Fourier space}{53}{section.10.1}
-\contentsline {section}{\numberline {10.2}Discretization}{55}{section.10.2}
-\contentsline {subsection}{\numberline {10.2.1}Large-Eddy Simulation}{56}{subsection.10.2.1}
-\contentsline {section}{\numberline {10.3}Results}{56}{section.10.3}
-\contentsline {chapter}{\numberline {11}Bibliography}{58}{chapter.11}
+\contentsline {section}{\numberline {9.6}Algorithm}{51}{section.9.6}
+\contentsline {section}{\numberline {9.7}Results}{53}{section.9.7}
+\contentsline {part}{V\hspace {1em}Turbulence}{56}{part.5}
+\contentsline {chapter}{\numberline {10}Burgers' equation}{57}{chapter.10}
+\contentsline {section}{\numberline {10.1}Burgulence}{58}{section.10.1}
+\contentsline {section}{\numberline {10.2}Fourier space}{58}{section.10.2}
+\contentsline {section}{\numberline {10.3}Discretization}{60}{section.10.3}
+\contentsline {subsection}{\numberline {10.3.1}Direct Numerical Simulation}{61}{subsection.10.3.1}
+\contentsline {subsection}{\numberline {10.3.2}Large-Eddy Simulation}{61}{subsection.10.3.2}
+\contentsline {section}{\numberline {10.4}Algorithm}{62}{section.10.4}
+\contentsline {section}{\numberline {10.5}Results}{63}{section.10.5}
+\contentsline {chapter}{\numberline {11}Bibliography}{64}{chapter.11}
