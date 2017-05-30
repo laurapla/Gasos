@@ -5,8 +5,8 @@
 using namespace std;
 
 // Numerical parameters
-const int N = 20;
-const int M = 20;
+const int N = 50;
+const int M = 50;
 
 typedef double matrix[M+2][N+2];
 typedef double staggx[M+2][N+1];
@@ -19,8 +19,7 @@ void initial_conditions(int N, int M, staggx& u0, staggx& Ru0, staggy& v0, stagg
 void constant_coefficients(int N, int M, double *x, double *y, double *Sv, double *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
 void temperature_coefficients(int N, int M, double dt, double* x, double* y, double* Sv, double* Sh, matrix V, staggx u, staggy v, matrix T0, matrix &aTe, matrix &aTw, matrix &aTn, matrix &aTs, matrix &aTp, matrix &bTp);
 double convective_term (double xf, double x2, double x3, double u2, double u3);
-void heat_flux(int N, int M, double* x, staggx u, matrix T, matrix Q);
-void intermediate_velocities (int N, int M, float Pr, int Ra, float delta, double dt, double* x, double* y, double *xvc, double* yvc, double* Sh, double* Sv, matrix V, matrix T0, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp);
+void intermediate_velocities (int N, int M, float Pr, int Ra, double dt, double* x, double* y, double *xvc, double* yvc, double* Sh, double* Sv, matrix V, matrix T0, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp);
 void bp_coefficient (int N, int M, double dt, double* Sh, double* Sv, staggx up, staggy vp, matrix bp);
 void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float fr, float delta, int N, int M, matrix& T);
 void velocities (int N, int M, double dt, double* x, double* y, matrix p, staggx up, staggy vp, staggx &u, staggy &v);
@@ -28,17 +27,20 @@ double min(double a, double b);
 double max(double a, double b);
 double time_step (double dtd, double* x, double* y, staggx u, staggy v);
 double error (int N, int M, staggx u, staggy v, staggx u0, staggy v0, matrix T, matrix T0);
-void Nusselt(int N, int M, double* x, double* y, matrix Q, double Nu[]);
-void output_files (int N, int M, float L, double* x, double* y, staggx u, staggy v, matrix T, double* Nu);
+void heat_flux(int N, int M, double* x, staggx u, matrix T, matrix Q);
+void Nusselt(int N, int M, double* x, double* yvc, matrix Q, double Nu[]);
+void maximum_planes (int N, int M, double* x, double* y, staggx u, staggy v);
+void vorticity(int N, int M, double* xvc, double* yvc, staggx u, staggy v, matrix vort);
+void output_files (int N, int M, float L, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v, matrix T, double* Nu);
 
 
 int main()
 {
 	float Pr = 0.71; // Prandtl number
-	int Ra = 1e3; // Rayleigh number
+	int Ra = 1e6; // Rayleigh number
 	float L = 1; // Length of the cavity
 	
-	float delta = 1e-4; // Precision of the simulation (as the Re increases it is recommended to use 5e-5, 1e-4, 2e-4...)
+	float delta = 1e-4; // Precision of the simulation
 	float fr = 1.2; // Relaxation factor
 	
 	cout<<"Program started"<<endl;
@@ -68,13 +70,14 @@ int main()
 	initial_conditions(N, M, u0, Ru0, v0, Rv0, T0);
 	
 	matrix aTe, aTw, aTn, aTs, aTp, bTp;
+	
 	// Calculation of the constant coefficients that are used to determine the pressure
 	matrix ae, aw, an, as, ap, bp;
 	constant_coefficients(N+2, M+2, x, y, Sv, Sh, ae, aw, an, as, ap);
 	
 	// Time step (CFL condition)
 	double resta = 1;
-	double dtd = 0.2*pow(x[2]-xvc[1],2)*Pr;
+	double dtd = 0.2*pow(x[2]-xvc[1],2)/Pr;
 	double dtc = 0.35*fabs(x[2]-xvc[1]);
 	double dt = min(dtd, dtc);
 	
@@ -86,7 +89,7 @@ int main()
 	while(resta>delta)
 	{
 		// STEP 1 !!! : INTERMEDIATE VELOCITY
-		intermediate_velocities (N, M, Pr, Ra, delta, dt, x, y, xvc, yvc, Sh, Sv, V, T0, u0, v0, Ru0, Rv0, Ru, Rv, up, vp);
+		intermediate_velocities (N, M, Pr, Ra, dt, x, y, xvc, yvc, Sh, Sv, V, T0, u0, v0, Ru0, Rv0, Ru, Rv, up, vp);
 
 		
 		// STEP 2 !!! : PRESSURE
@@ -138,9 +141,10 @@ int main()
 	
 	// Results
 	heat_flux(N, M, x, u, T, Q);
-	Nusselt(N, M, x, yvc, Q, Nu);
+	Nusselt(N, M, x, y, Q, Nu);
     cout<<endl<<"Creating some output files..."<<endl;
-    output_files (N, M, L, x, y, u, v, Q, Nu);
+    output_files (N, M, L, x, y, xvc, yvc, u, v, T, Nu);
+	maximum_planes (N, M, x, y, u, v);
 	
 	return 0;
 }
@@ -216,7 +220,7 @@ void initial_conditions(int N, int M, staggx& u0, staggx& Ru0, staggy& v0, stagg
 	{
 		for(int i = 0; i<N+2; i++)
 		{
-			if(i==N+1)
+			if(i==0)
 			{
 				T0[j][i] = 1;
 			}
@@ -342,7 +346,7 @@ void temperature_coefficients(int N, int M, double dt, double* x, double* y, dou
 				aTn[j][i] = 0;
 				aTs[j][i] = 0;
 				aTp[j][i] = 1;
-				bTp[j][i] = 0;
+				bTp[j][i] = 1;
 			}
 			else if(i==N+1)
 			{
@@ -351,7 +355,7 @@ void temperature_coefficients(int N, int M, double dt, double* x, double* y, dou
 				aTn[j][i] = 0;
 				aTs[j][i] = 0;
 				aTp[j][i] = 1;
-				bTp[j][i] = 1;
+				bTp[j][i] = 0;
 			}
 			else if(j==0 && i!=0 && i!=N+1)
 			{
@@ -385,26 +389,6 @@ void temperature_coefficients(int N, int M, double dt, double* x, double* y, dou
 }
 
 
-// Heat flux in the horizontal direction at any point in the cavity
-void heat_flux(int N, int M, double* x, staggx u, matrix T, matrix Q)
-{
-	for(int j = 0; j<M+2; j++)
-	{
-		for(int i = 0; i<N+2; i++)
-		{
-			if(i==N+1)
-			{
-				Q[j][i] = u[j][i]*T[j][i]-(T[j][i]-T[j][i-1])/fabs(x[i]-x[i-1]);
-			}
-			else
-			{
-				Q[j][i] = u[j][i]*T[j][i]+(T[j][i+1]-T[j][i])/fabs(x[i+1]-x[i]);
-			}
-		}
-	}
-}
-
-
 // Computation of the velocity in the convective term using CDS
 double convective_term (double xf, double x2, double x3, double u2, double u3)
 {
@@ -417,7 +401,7 @@ double convective_term (double xf, double x2, double x3, double u2, double u3)
 
 
 // Calculation of the intermediate velocities
-void intermediate_velocities (int N, int M, float Pr, int Ra, float delta, double dt, double* x, double* y, double *xvc, double* yvc, double* Sh, double* Sv, matrix V, matrix T0, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp)
+void intermediate_velocities (int N, int M, float Pr, int Ra, double dt, double* x, double* y, double *xvc, double* yvc, double* Sh, double* Sv, matrix V, matrix T0, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp)
 {
 	double mflowe, mfloww, mflown, mflows;
 	double ue, uw, un, us;
@@ -481,7 +465,7 @@ void intermediate_velocities (int N, int M, float Pr, int Ra, float delta, doubl
 			}
 			else
 			{
-				Rv[j][i] = (Pr*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+Pr*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-Pr*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-Pr*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mfloww*vw-mflows*vs))/V[j][i]-Pr*Ra*(T0[j][i]+T0[j+1][i])/2;
+				Rv[j][i] = (Pr*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+Pr*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-Pr*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-Pr*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mfloww*vw-mflows*vs))/V[j][i]+Pr*Ra*(T0[j][i]+T0[j+1][i])/2;
 			}
 			
 			// Intermediate velocity (vertical)
@@ -721,45 +705,130 @@ double error (int N, int M, staggx u, staggy v, staggx u0, staggy v0, matrix T, 
 }
 
 
-void Nusselt(int N, int M, double* x, double* y, matrix Q, double Nu[])
+// Heat flux in the horizontal direction at any point in the cavity
+void heat_flux(int N, int M, double* x, staggx u, matrix T, matrix Q)
 {
-	for(int i = 0; i<N+2; i++)
+	for(int j = 0; j<M+2; j++)
+	{
+		for(int i = 0; i<N+1; i++)
+		{
+			if(i==0)
+			{
+				Q[j][i] = u[j][i]*T[j][i]-(T[j][i+1]-T[j][i])/fabs(x[i+1]-x[i]);
+			}
+			else if(i==N)
+			{
+				Q[j][i] = Q[j][0];
+			}
+			else
+			{
+				Q[j][i] = 0.5*u[j][i]*(T[j][i]+T[j][i+1])-(T[j][i+1]-T[j][i])/fabs(x[i+1]-x[i]);
+			}
+		}
+	}
+}
+
+
+// Computation of the Nusselt numbers (average dóna més o menys bé. Tota la resta no.)
+void Nusselt(int N, int M, double* x, double* yvc, matrix Q, double Nu[])
+{
+	for(int i = 0; i<N+1; i++)
 	{
 		Nu[i] = 0;
-		for(int j = 0; j<M; j++)
+		for(int j = 0; j<M+1; j++)
 		{
-			Nu[i] = Nu[i]+(y[j+1]-y[j])*Q[j][i];
+			Nu[i] = Nu[i]+(yvc[j+1]-yvc[j])*Q[j][i];
 		}
+		
 	}
 	
 	double Numax = -100;
 	double Numin = 100;
 	double Nuavg = 0;
+	double Nu0 = Nu[0];
+	double Nu12 = (Nu[N/2+1]+Nu[N/2+2])/2;
+	int jmax, jmin;
 	
 	for(int i = 0; i<N+2; i++)
 	{
-		Nuavg = Nuavg+(x[i+1]-x[i])*(Nu[i+1]+Nu[i])/2;
-		Numax = max(Numax, Nu[i]);
-		Numin = min(Numin, Nu[i]);
+		Nuavg = Nuavg+(x[i+1]-x[i])*Nu[i];
+	}
+	for(int j = 0; j<M+2; j++)
+	{
+		if(Q[j][0]>Numax)
+		{
+			Numax = Q[j][0];
+			jmax = j;
+		}
+		if(Q[j][0]<Numin)
+		{
+			Numin = Q[j][0];
+			jmin = j;
+		}
 	}
 	cout<<endl<<endl;
 	cout<<"Nu average = "<<Nuavg<<endl;
-	cout<<"Nu max = "<<Numax<<endl;
-	cout<<"Nu min = "<<Numin<<endl;
+	cout<<"Nu0 = "<<Nu0<<endl;
+	cout<<"Nu1/2 = "<<Nu12<<endl;
+	cout<<"Nu max = "<<Numax<<" at y = "<<yvc[jmax]<<endl;
+	cout<<"Nu min = "<<Numin<<" at y = "<<yvc[jmin]<<endl;
+}
+
+
+// Maximum velocity at the central horizontal and vertical planes
+void maximum_planes (int N, int M, double* x, double* y, staggx u, staggy v)
+{
+	double umax = 0, vmax = 0;
+	int imax, jmax;
+	double uavg, vavg;
+	for(int j = 0; j<M+2; j++)
+	{
+		uavg = (u[j][N/2+1]+u[j][N/2])/2;
+		if(uavg>umax)
+		{
+			umax = uavg;
+			jmax = j;
+		}
+	}
+	for(int i = 0; i<N+2; i++)
+	{
+		vavg = (v[M/2+1][i]+v[M/2][i])/2;
+		if(vavg>vmax)
+		{
+			vmax = vavg;
+			imax = i;
+		}
+	}
+	
+	cout<<"u max = "<<umax<<" at y = "<<y[jmax]<<endl;
+	cout<<"v max = "<<vmax<<" at x = "<<x[imax]<<endl;
+}
+
+
+// Calculation of the vorticity (no funciona)
+void vorticity(int N, int M, double* xvc, double* yvc, staggx u, staggy v, matrix vort)
+{
+	for(int i = 0; i<N+2; i++)
+	{
+		for(int j = 0; j<M+2; j++)
+		{
+			vort[j][i] = (u[i]-u[i-1])/(yvc[j]-yvc[j-1])-(v[j]-v[j-1])/(xvc[i]-xvc[i-1]);
+		}
+	}
 }
 
 
 // Output of the results
-void output_files (int N, int M, float L, double* x, double* y, staggx u, staggy v, matrix T, double* Nu)
+void output_files (int N, int M, float L, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v, matrix T, double* Nu)
 {
 	// Horizontal velocities
 	ofstream resultats;
     resultats.open("Resultats.dat");
-	for(int j = M+1; j>=0; j--)
+	for(int i = 0; i<N+1; i++)
 	{
-		for(int i = 0; i<N+2; i++)
+		for(int j = 0; j<M+2; j++)
 		{
-			resultats<<x[i]<<"	"<<y[j]<<"	"<<u[j][i]<<endl;
+			resultats<<xvc[i]<<"	"<<y[j]<<"	"<<u[j][i]<<endl;
 		}
 		resultats<<endl;
 	}
@@ -768,11 +837,11 @@ void output_files (int N, int M, float L, double* x, double* y, staggx u, staggy
 	// Vertical velocities
 	ofstream resvltats;
     resvltats.open("Resvltats.dat");
-	for(int j = M+1; j>=0; j--)
+	for(int i = 0; i<N+2; i++)
 	{
-		for(int i = 0; i<N+2; i++)
+		for(int j = 0; j<M+1; j++)
 		{
-			resvltats<<x[i]<<"	"<<y[j]<<"	"<<v[j][i]<<endl;
+			resvltats<<x[i]<<"	"<<yvc[j]<<"	"<<v[j][i]<<endl;
 		}
 		resvltats<<endl;
 	}
@@ -781,7 +850,7 @@ void output_files (int N, int M, float L, double* x, double* y, staggx u, staggy
     
     // Temperature
     ofstream temperature;
-    temperature.open("Temper.dat");
+    temperature.open("Temperatura.dat");
     for(int i = 0; i<N+2; i++)
     {
     	for(int j = 0; j<M+2; j++)
@@ -795,9 +864,9 @@ void output_files (int N, int M, float L, double* x, double* y, staggx u, staggy
 	// Nusselt number
 	ofstream nuss;
 	nuss.open("Nusselt.dat");
-	for(int i = 0; i<N+2; i++)
+	for(int i = 0; i<N+1; i++)
 	{
-		nuss<<x[i]<<"	"<<Nu[i]<<endl;
+		nuss<<xvc[i]<<"	"<<Nu[i]<<endl;
 	}
 	nuss.close();
 }

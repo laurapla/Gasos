@@ -24,17 +24,21 @@ Adrian Bejan.
 \bibitem{CTTC}
 CTTC.
 \newblock {Introduction to the Fractional Step Method}.
-\newblock pages 1--10.
 
 \bibitem{CTTCa}
 CTTC.
 \newblock {Course on Numerical Methods in Heat Transfer and Fluid Dynamics Unit
   4: Fractional Step Method Part1: Staggered Meshes}.
 
+\bibitem{Haegland2007}
+H{\aa}kon H{\ae}gland.
+\newblock {Streamline calculations . Lecture note 1}, 2007.
+
 \bibitem{DeVahlDavis1983a}
 Graham {de Vahl Davis} and I.~P. Jones.
 \newblock {Natural convection in a square cavity: A comparison exercise}.
-\newblock 3(July 1982):227--248, 1983.
+\newblock {\em International Journal for Numerical Methods in Fluids}, 3(July
+  1982):227--248, 1983.
 
 \bibitem{DeVahlDavis1983}
 Graham {de Vahl Davis}.
@@ -66,11 +70,10 @@ Stephen~B. Pope.
 \bibitem{Johnson2016}
 Richard~W. Johnson.
 \newblock {\em {Handbook of Fluid Dynamics}}.
-\newblock Second edition, 2016.
+\newblock CRC Press, second edition, 2016.
 
 \bibitem{CTTC2014}
 CTTC.
-\newblock {Burgers' equation in Fourier space}.
-\newblock 4(4):1--8, 2014.
+\newblock {Burgers' equation in Fourier space}, 2014.
 
 \end{thebibliography}
