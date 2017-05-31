@@ -1,11 +1,16 @@
 10:
 plot '10ref.dat' title 'Reference', '10CDS.dat' title 'CDS', '10UDS.dat' title 'UDS', '10HDS.dat' title 'HDS', '10PLDS.dat' title 'PLDS', '10EDS.dat' title 'EDS'
+plot '10/10ref.dat' title 'Reference' with linespoints, 'CDS.dat' using 1:2 title 'CDS' with linespoints, 'UDS.dat' using 1:2 title 'UDS' with linespoints, 'HDS.dat' using 1:2 title 'HDS' with linespoints, 'PLDS.dat' using 1:2 title 'PLDS' with linespoints, 'EDS.dat' using 1:2 title 'EDS' with linespoints
+
 
 1000:
 plot '1000ref.dat' title 'Reference', '1000CDS.dat' title 'CDS', '1000UDS.dat' title 'UDS', '1000HDS.dat' title 'HDS', '1000PLDS.dat' title 'PLDS', '1000EDS.dat' title 'EDS'
+plot '1000/1000ref.dat' title 'Reference' with linespoints, 'CDS.dat' using 1:3 title 'CDS' with linespoints, 'UDS.dat' using 1:3 title 'UDS' with linespoints, 'HDS.dat' using 1:3 title 'HDS' with linespoints, 'PLDS.dat' using 1:3 title 'PLDS' with linespoints, 'EDS.dat' using 1:3 title 'EDS' with linespoints
 
 1000000:
 plot '1000000ref.dat' title 'Reference', '1000000CDS.dat' title 'CDS', '1000000UDS.dat' title 'UDS', '1000000HDS.dat' title 'HDS', '1000000PLDS.dat' title 'PLDS', '1000000EDS.dat' title 'EDS'
+plot '1000000/1000000ref.dat' title 'Reference' with linespoints, 'CDS.dat' using 1:4 title 'CDS' with linespoints, 'UDS.dat' using 1:4 title 'UDS' with linespoints, 'HDS.dat' using 1:4 title 'HDS' with linespoints, 'PLDS.dat' using 1:4 title 'PLDS' with linespoints, 'EDS.dat' using 1:4 title 'EDS' with linespoints
+plot '1000000/1000000ref.dat' title 'Reference', 'CDS.dat' using 1:4 title 'CDS', 'UDS.dat' using 1:4 title 'UDS', 'HDS.dat' using 1:4 title 'HDS', 'PLDS.dat' using 1:4 title 'PLDS', 'EDS.dat' using 1:4 title 'EDS'
 
 1000000 with lines and points:
 plot '1000000CDS.dat' title 'CDS' with linespoints ls 1, '1000000UDS.dat' title 'UDS' with linespoints ls 2, '1000000HDS.dat' title 'HDS' with linespoints ls 3, '1000000PLDS.dat' title 'PLDS' with linespoints ls 4, '1000000EDS.dat' title 'EDS' with linespoints ls 5

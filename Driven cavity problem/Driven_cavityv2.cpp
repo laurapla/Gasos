@@ -26,6 +26,7 @@ double min(double a, double b);
 double max(double a, double b);
 double time_step (double dtd, double* x, double* y, staggx u, staggy v);
 double error (int N, int M, staggx u, staggy v, staggx u0, staggy v0);
+void streamlines(int N, int M, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v, matrix& psi);
 void search_index (float point, double *x, int Number, int& ipoint, int& ip);
 double interpolation(float x, double T1, double T2, double x1, double x2);
 void output_files (int N, int M, float L, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v);
@@ -124,7 +125,21 @@ int main()
 	
 	// Results
     cout<<endl<<"Creating some output files..."<<endl;
+    matrix psi;
+	streamlines(N+2, M+2, x, y, xvc, yvc, u, v, psi);
     output_files (N, M, L, x, y, xvc, yvc, u, v);
+    
+    ofstream strea;
+    strea.open("streamlines.dat");
+	for(int j = M+1; j>=0; j--)
+	{
+		for(int i = 0; i<N+2; i++)
+		{
+			strea<<x[i]<<"	"<<y[j]<<"	"<<psi[j][i]<<endl;
+		}
+		strea<<endl;
+	}
+	strea.close();
 	
 	return 0;
 }
@@ -601,6 +616,39 @@ double error (int N, int M, staggx u, staggy v, staggx u0, staggy v0)
 }
 
 
+// Calculation of the streamlines
+void streamlines(int N, int M, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v, matrix& psi)
+{
+	double uavg, vavg;
+	for(int i = 0; i<N; i++)
+	{
+		for(int j = 0; j<M; j++)
+		{
+			uavg = convective_term (x[i], xvc[i-1], xvc[i], u[j][i-1], u[j][i]);
+			vavg = convective_term (y[j], yvc[j-1], yvc[j], v[j-1][i], v[j][i]);
+			if(i==0)
+			{
+				uavg = u[j][i];
+			}
+			else if(i==N-1)
+			{
+				uavg = u[j][i];
+			}
+			if(j==0)
+			{
+				vavg = v[j][i];
+			}
+			else if(j==M-1)
+			{
+				vavg = v[j][i];
+			}
+			
+			psi[j][i] = uavg*y[j]-vavg*x[i];
+		}
+	}
+}
+
+
 // Searching the index of the node closest to a given point (and the second closest)
 void search_index (float point, double *x, int Number, int& ipoint, int& ip)
 {
@@ -660,9 +708,9 @@ void output_files (int N, int M, float L, double* x, double* y, double* xvc, dou
     resultats.open("Resultats.dat");
 	for(int j = M+1; j>=0; j--)
 	{
-		for(int i = 0; i<N+2; i++)
+		for(int i = 0; i<N+1; i++)
 		{
-			resultats<<x[i]<<"	"<<y[j]<<"	"<<u[j][i]<<endl;
+			resultats<<xvc[i]<<"	"<<y[j]<<"	"<<u[j][i]<<endl;
 		}
 		resultats<<endl;
 	}
@@ -671,11 +719,11 @@ void output_files (int N, int M, float L, double* x, double* y, double* xvc, dou
 	// Vertical velocities
 	ofstream resvltats;
     resvltats.open("Resvltats.dat");
-	for(int j = M+1; j>=0; j--)
+	for(int j = M; j>=0; j--)
 	{
 		for(int i = 0; i<N+2; i++)
 		{
-			resvltats<<x[i]<<"	"<<y[j]<<"	"<<v[j][i]<<endl;
+			resvltats<<x[i]<<"	"<<yvc[j]<<"	"<<v[j][i]<<endl;
 		}
 		resvltats<<endl;
 	}

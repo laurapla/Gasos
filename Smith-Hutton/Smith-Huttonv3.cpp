@@ -5,8 +5,8 @@
 using namespace std;
 
 // Numerical parameters
-const int N = 200;
-const int M = 100;
+const int N = 100;
+const int M = 50;
 
 typedef double matrix[M+2][N+2];
 typedef double mface[M+1][N+1];
@@ -16,7 +16,7 @@ typedef double mface[M+1][N+1];
 void coordinates(float dx, int N, float xvc[], float x[]);
 void surface(float *yvc, int M, float Sv[]);
 void volume(float *xvc, float *yvc, int N, int M, matrix& V);
-void velocity(float *x, float *y, int N, int M, mface& u, mface& v);
+void velocity(float *x, float *y, int N, int M, matrix& u, matrix& v);
 void mass_flow(float rho, int N, int M, float *Sv, float *Sh, float *xvc, float *yvc, mface& mflowx, mface& mflowy);
 void phi_inlet_outlet(float *x, float alpha, int N, double phis[]);
 double max(double a, double b);
@@ -24,6 +24,7 @@ double Aperator(string method, double P);
 void constant_coefficients (int N, int M, string method, float rho0, float gamma, float dt, float Sp, float *x, float *y, float *Sh, float *Sv, matrix V, mface mflowx, mface mflowy, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
 void bp_coefficient (int N, int M, float rho0, float dt, float Sc, float *x, double phi_boundary, double *phis, matrix phi0, matrix V, matrix& bp);
 void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float fr, float delta, int N, int M, matrix& T);
+void streamlines(int N, int M, float* x, float* y, float* yvc, matrix u, matrix v, matrix& psi);
 void output_matrix(int N, int M, matrix mat);
 void output_file (float *x, float *y, matrix T, int N, int M);
 
@@ -130,11 +131,14 @@ int main(){
 		cout<<t;
 	}
 	
+	matrix u, v, psi;
+	velocity(x, y, N+2, M+2, u, v);
+	streamlines(N, M, x, y, yvc, u, v, psi);
 	
 	// SCREEN!!!!!!!!! :D
 	output_matrix(N+2, M+2, phi);
 		
-	output_file (x, y, phi, N+2, M+2);
+	output_file (x, y, psi, N+2, M+2);
     
     return 0;
 }
@@ -176,7 +180,7 @@ void volume(float *xvc, float *yvc, int N, int M, matrix& V)
 }
 
 
-void velocity(float *x, float *y, int N, int M, mface& u, mface& v)
+void velocity(float *x, float *y, int N, int M, matrix& u, matrix& v)
 {
 	for(int i = 0; i<N; i++)
 	{
@@ -466,6 +470,19 @@ void output_matrix(int N, int M, matrix mat)
 			cout<<mat[j][i]<<"	";
 		}
 		cout<<endl;
+	}
+}
+
+
+// Calculation of the streamlines
+void streamlines(int N, int M, float* x, float* y, float* yvc, matrix u, matrix v, matrix& psi)
+{
+	for(int i = 0; i<N; i++)
+	{
+		for(int j = 0; j<M; j++)
+		{
+			psi[j][i] = u[j][i]*y[j]-v[j][i]*x[i]+0.5*(v[j-1][i]-v[j+1][i])*x[i]*y[j]/fabs(yvc[j]-yvc[j+1]);
+		}
 	}
 }
 

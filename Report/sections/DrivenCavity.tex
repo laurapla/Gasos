@@ -68,3 +68,54 @@ And the prescribed velocities are:
 The simulation of the driven cavity problem ends when it reaches a steady state.
 
 \section{Results}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u100}}
+		\caption{$Re=100$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u400}}
+		\caption{$Re=400$}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u1000}}
+		\caption{$Re=1000$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u3200}}
+		\caption{$Re=3200$}
+	\end{subfigure}
+\end{figure}
+\begin{figure}\ContinuedFloat
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u5000}}
+		\caption{$Re=5000$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u7500}}
+		\caption{$Re=7500$}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\center
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u10000}}
+		\caption{$Re=10000$}
+	\end{subfigure}
+	\caption{Plots of the horizontal velocity}
+\end{figure}
+
+\subsection{Streamlines}
+In order to know the distribution of the velocity along the cavity, it i useful to plot the streamlines of the flow. They are defined by the stream function $\psi$:
+\begin{equation}
+\frac{\partial\psi}{\partial x}=-v
+\qquad\qquad
+\frac{\partial\psi}{\partial y}=u
+\end{equation}
+A streamline is a line everywhere tangent to the velocity vector at a given instant:
+\begin{equation}
+\frac{dx}{u}=\frac{dy}{v}
+\end{equation}
+Combining both expressions \cite{Haegland2007}:
+\begin{equation}
+\psi\left(x, y\right)=\int udy-\int vdx+\int\left(\int\frac{dv}{dy}dx\right)dy
+\end{equation}
