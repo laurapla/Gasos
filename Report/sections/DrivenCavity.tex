@@ -68,6 +68,9 @@ And the prescribed velocities are:
 The simulation of the driven cavity problem ends when it reaches a steady state.
 
 \section{Results}
+In order to study the behaviour of the driven cavity problem in different ranges of flow, the simulation has been tested for $Re=100$, $400$, $1000$, $3200$, $5000$, $7500$ and $10000$.
+
+In figures \ref{Drivenhorizontal} and \ref{Drivenvertical} the comparison between the obtained results and the reference ones for the velocities in the central planes can be seen. In both vertical and horizontal speed, the best results are obtained for $Re=1000$. For low Reynolds the difference is slightly higher, but the results are still accurate. However, as the Reynolds increases, the error increases as well. In the cases of $Re=7500$ and $Re=10000$, the results are very different from the expected ones. Since these are high Reynolds, they may have not reached a steady state because they are turbulent.
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{0.5\textwidth}
@@ -101,8 +104,47 @@ The simulation of the driven cavity problem ends when it reaches a steady state.
 		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u10000}}
 		\caption{$Re=10000$}
 	\end{subfigure}
-	\caption{Plots of the horizontal velocity}
+	\caption[Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric center of the cavity]{Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric center of the cavity \cite{Ghia1982}}
+	\label{Drivenhorizontal}
 \end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v100}}
+		\caption{$Re=100$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v400}}
+		\caption{$Re=400$}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v1000}}
+		\caption{$Re=1000$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v3200}}
+		\caption{$Re=3200$}
+	\end{subfigure}
+\end{figure}
+\begin{figure}\ContinuedFloat
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v5000}}
+		\caption{$Re=5000$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v7500}}
+		\caption{$Re=7500$}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\center
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v10000}}
+		\caption{$Re=10000$}
+	\end{subfigure}
+	\caption[Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric center of the cavity]{Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric center of the cavity \cite{Ghia1982}}
+	\label{Drivenvertical}
+\end{figure}
+
 
 \subsection{Streamlines}
 In order to know the distribution of the velocity along the cavity, it i useful to plot the streamlines of the flow. They are defined by the stream function $\psi$:
