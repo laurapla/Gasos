@@ -76,4 +76,9 @@
 \contentsline {section}{\numberline {10.5}Results}{69}{section.10.5}
 \contentsline {part}{VI\hspace {1em}External flow}{70}{part.6}
 \contentsline {chapter}{\numberline {11}Square cylinder}{71}{chapter.11}
-\contentsline {chapter}{\numberline {12}Bibliography}{72}{chapter.12}
+\contentsline {section}{\numberline {11.1}Discretization}{71}{section.11.1}
+\contentsline {section}{\numberline {11.2}Boundary conditions}{72}{section.11.2}
+\contentsline {subsection}{\numberline {11.2.1}Inlet conditions}{72}{subsection.11.2.1}
+\contentsline {subsection}{\numberline {11.2.2}Outlet conditions}{72}{subsection.11.2.2}
+\contentsline {subsection}{\numberline {11.2.3}Wall conditions}{72}{subsection.11.2.3}
+\contentsline {chapter}{\numberline {12}Bibliography}{74}{chapter.12}

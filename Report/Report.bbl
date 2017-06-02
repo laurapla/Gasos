@@ -82,4 +82,11 @@ Richard~W. Johnson.
 CTTC.
 \newblock {Burgers' equation in Fourier space}, 2014.
 
+\bibitem{Breuer2000}
+M.~Breuer, J.~Bernsdorf, T.~Zeiser, and F.~Durst.
+\newblock {Accurate computations of the laminar flow past a square cylinder
+  based on two different methods: Lattice-Boltzmann and finite-volume}.
+\newblock {\em International Journal of Heat and Fluid Flow}, 21(2):186--196,
+  2000.
+
 \end{thebibliography}
