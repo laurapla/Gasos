@@ -6,38 +6,39 @@
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Heat fluxes through the faces of a control volume\relax }}{13}{figure.caption.6}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces General scheme of the four materials problem\relax }}{17}{figure.caption.7}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Reference value: Instantaneous isotherms at $t=10000/2$ s\relax }}{21}{figure.caption.13}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Instantaneous isotherm at t=5000 s\relax }}{21}{figure.caption.14}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Reference value: Instantaneous isotherms at t=10000/2 s\relax }}{21}{figure.caption.13}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Instantaneous isotherms at t=5000 s\relax }}{21}{figure.caption.14}
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Instantaneous plot at t=10000 s\relax }}{22}{figure.caption.15}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Instantaneous plot at t=10000 s for a homogeneous material\relax }}{23}{figure.caption.16}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Instantaneous plot at t=10000 s for the homogeneous material $M_{2}$\relax }}{23}{figure.caption.16}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Instantaneous plot at t=10000 s for the homogeneous material $M_{3}$\relax }}{23}{figure.caption.17}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Mesh of the Smith-Hutton problem\relax }}{26}{figure.caption.17}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Mesh of the Smith-Hutton problem\relax }}{26}{figure.caption.18}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces General scheme of the Smith-Hutton problem\relax }}{30}{figure.caption.19}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Comparative of the different methods $\rho /\Gamma =10$\relax }}{33}{figure.caption.23}
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Comparative of the different methods $\rho /\Gamma =10^{3}$\relax }}{34}{figure.caption.24}
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Comparative of the different methods $\rho /\Gamma =10^{6}$\relax }}{34}{figure.caption.25}
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10$ (UDS)\relax }}{35}{figure.caption.26}
-\contentsline {figure}{\numberline {6.6}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10^{3}$ (UDS)\relax }}{35}{figure.caption.27}
-\contentsline {figure}{\numberline {6.7}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10^{6}$ (UDS)\relax }}{36}{figure.caption.28}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces General scheme of the Smith-Hutton problem\relax }}{30}{figure.caption.20}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Distribution of $\phi $ at the output for $\rho /\Gamma =10$\relax }}{33}{figure.caption.24}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Distribution of $\phi $ at the output for $\rho /\Gamma =10^{3}$\relax }}{34}{figure.caption.25}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Distribution of $\phi $ at the output for $\rho /\Gamma =10^{6}$\relax }}{34}{figure.caption.26}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10$ (UDS)\relax }}{35}{figure.caption.27}
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10^{3}$ (UDS)\relax }}{35}{figure.caption.28}
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10^{6}$ (UDS)\relax }}{36}{figure.caption.29}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Staggered meshes (2D)\relax }}{39}{figure.caption.29}
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Control volume of the horizontal velocity\relax }}{40}{figure.caption.30}
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Control volume of the vertical velocity\relax }}{40}{figure.caption.30}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Staggered meshes (2D)\relax }}{39}{figure.caption.30}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Control volume of the horizontal velocity\relax }}{40}{figure.caption.31}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Control volume of the vertical velocity\relax }}{40}{figure.caption.31}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {8.1}{\ignorespaces General scheme of the driven cavity problem}}{43}{figure.caption.31}
-\contentsline {figure}{\numberline {8.2}{\ignorespaces Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric center of the cavity}}{48}{figure.caption.36}
-\contentsline {figure}{\numberline {8.3}{\ignorespaces Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric center of the cavity}}{50}{figure.caption.38}
+\contentsline {figure}{\numberline {8.1}{\ignorespaces General scheme of the driven cavity problem}}{43}{figure.caption.32}
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric center of the cavity}}{48}{figure.caption.37}
+\contentsline {figure}{\numberline {8.3}{\ignorespaces Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric center of the cavity}}{50}{figure.caption.39}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {9.1}{\ignorespaces General scheme of the differentially heated problem}}{51}{figure.caption.39}
-\contentsline {figure}{\numberline {9.2}{\ignorespaces Contour plots of the temperature\relax }}{57}{figure.caption.43}
-\contentsline {figure}{\numberline {9.3}{\ignorespaces Contour plots of the horizontal velocity\relax }}{58}{figure.caption.44}
-\contentsline {figure}{\numberline {9.4}{\ignorespaces Contour plots of the vertical velocity\relax }}{59}{figure.caption.45}
+\contentsline {figure}{\numberline {9.1}{\ignorespaces General scheme of the differentially heated problem}}{51}{figure.caption.40}
+\contentsline {figure}{\numberline {9.2}{\ignorespaces Contour plots of the temperature\relax }}{57}{figure.caption.44}
+\contentsline {figure}{\numberline {9.3}{\ignorespaces Contour plots of the horizontal velocity\relax }}{58}{figure.caption.45}
+\contentsline {figure}{\numberline {9.4}{\ignorespaces Contour plots of the vertical velocity\relax }}{59}{figure.caption.46}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {10.1}{\ignorespaces Schematic diagram of the energy cascade as a function of the size of the eddies}}{64}{figure.caption.48}
-\contentsline {figure}{\numberline {10.2}{\ignorespaces Representation of all the possible interactions between the modes in the convective term}}{66}{figure.caption.49}
-\contentsline {figure}{\numberline {10.3}{\ignorespaces Energy spectrum of the steady-state solution of the Burgers' equation\relax }}{69}{figure.caption.51}
+\contentsline {figure}{\numberline {10.1}{\ignorespaces Schematic diagram of the energy cascade as a function of the size of the eddies}}{64}{figure.caption.49}
+\contentsline {figure}{\numberline {10.2}{\ignorespaces Representation of all the possible interactions between the modes in the convective term}}{66}{figure.caption.50}
+\contentsline {figure}{\numberline {10.3}{\ignorespaces Energy spectrum of the steady-state solution of the Burgers' equation\relax }}{69}{figure.caption.52}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {11.1}{\ignorespaces General scheme of the square cylinder problem}}{71}{figure.caption.52}
-\contentsline {figure}{\numberline {11.2}{\ignorespaces Fluxes conditions in the cylinder\relax }}{73}{figure.caption.53}
+\contentsline {figure}{\numberline {11.1}{\ignorespaces General scheme of the square cylinder problem}}{71}{figure.caption.53}
+\contentsline {figure}{\numberline {11.2}{\ignorespaces Fluxes conditions in the cylinder\relax }}{73}{figure.caption.54}
 \addvspace {10\p@ }

@@ -1,6 +1,6 @@
-\chapter{A Two-dimensional Transient Conduction Problem}
+\chapter{Four materials problem}
 The four materials problem is a two-dimensional transient conduction problem. It consists in a long rod composed of four different materials with different properties. The general scheme of the problem is represented in figure \ref{fourmaterials}, and the dimensions of the materials, their properties, and the boundary conditions are in the tables below.
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale = 0.6]{FourMaterials/Fourmaterials}
 	\caption{General scheme of the four materials problem}
@@ -41,25 +41,24 @@ The four materials problem is a two-dimensional transient conduction problem. It
 	\end{tabular}
 \caption{Boundary conditions}
 \end{table}
-
-The initial temperature field is $T=8.00 ^{\circ}C$.
+Since it is a transient problem, it is necessary to know the temperature at $t=0$. The initial temperature field is $T=8.00 ^{\circ}C$.
 
 \section{Discretization}
-The spatial discretization of the problem is that described in section \ref{SpatialDiscretizationConduction}. However, since there are different materials, each of them is discretized separately. The variable $M_{1}$ is the number of control volumes in the vertical direction from $Y=0$ to the point $p_{1}$, $M_{2}$ from $p_{1}$ to $p_{2}$ and $M_{3}$ form $p_{2}$ to $p_{3}$. In the horizontal direction, the variable $N_{1}$ is the number of control volumes from $X=0$ to the point $p_{1}$ and $N_{2}$ from $p_{1}$ to $p_{3}$.
+The spatial discretization of the problem is that described in section \ref{SpatialDiscretizationConduction}. However, since there are different materials, each of them is discretized separately. The variable $M_{1}$ is the number of control volumes in the vertical direction from $Y=0$ to the point $p_{1}$, $M_{2}$ from $p_{1}$ to $p_{2}$ and $M_{3}$ form $p_{2}$ to $p_{3}$. In the horizontal direction, the variable $N_{1}$ is the number of control volumes from $X=0$ to the point $p_{1}$ and $N_{2}$ from $p_{1}$ to $p_{3}$. The precision used in the convergence criterion is given by $\delta$.
 \begin{table}[h]
 	\centering
-	\begin{tabular}{ |c|c|c|c|c|c| }
+	\begin{tabular}{ |c|c|c|c|c|c|c| }
 		\hline
-		$M_{1}$ & $M_{2}$ & $M_{3}$ & $N_{1}$ & $N_{2}$ & $\delta$ \\ \hline
-		$40$ & $30$ & $10$ & $50$ & $60$ & $10^{-3}$ \\ \hline
+		$M_{1}$ & $M_{2}$ & $M_{3}$ & $N_{1}$ & $N_{2}$ & $\beta$ & $\delta$ \\ \hline
+		$40$ & $30$ & $10$ & $50$ & $60$ & $0.5$ & $10^{-3}$ \\ \hline
 	\end{tabular}
 	\caption{Numerical parameters of the four materials problem}
 \end{table}
 
 \section{Boundary conditions}
-The coefficients of the discretized equation in the inner nodes are the ones of the section \ref{DiscrCond}. The outer walls of the rod have special conditions, so each of them has to be studied in order to determine which coefficients of their boundary nodes are different.
+The coefficients of the discretized equation in the inner nodes are the ones of the section \ref{DiscrCond}. However, the outer walls of the rod have special conditions, so each of them has to be studied in order to determine which coefficients of their boundary nodes are different.
 
-In the left wall, there is convection with the fluid outside of the road. In order to fulfil this condition, some coefficients have to be recalculated:
+In the left wall, there is convection with the fluid outside of the road. To fulfil this condition, some coefficients have to be recalculated:
 \begin{equation}
 a_{W}=0
 \end{equation}
@@ -105,28 +104,28 @@ b_{P}=\frac{\rho_{P}V_{P}\bar{c}_{P}T_{P}^{n}}{\Delta t}+\beta\left(\dot{q}_{vP}
 \end{multline}
 
 \section{Algorithm}
-The algorithm used in this convection problem is represented below. In this case, some of the discretization coefficients are constant, but sometimes they are not. These would change slightly the algorithm used.
+The algorithm used in this convection problem is represented below. In this case, some of the discretization coefficients are constant, but they usually change over time. These would change slightly the algorithm used.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.154]{FourMaterials/algorithm}
 \end{figure}
 
 \section{Results}
-To verify the simulation, the results obtained are compared with some reference values for a time of 5000 s. As it can be seen in figures \ref{ref4M} and \ref{ref4M}, the results of the code are very similar to the reference values.
+To verify the simulation, the results obtained are compared with the reference values for a time of t=5000 s. As it can be seen in figures \ref{ref4M} and \ref{ref4M}, the results of the code are very similar to the reference values. The biggest differences are the isotherms of $23$ and $24^{\circ}$.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.55]{FourMaterials/reference}
-	\caption{Reference value: Instantaneous isotherms at $t=10000/2$ s}
+	\caption{Reference value: Instantaneous isotherms at t=10000/2 s}
 	\label{ref4M}
 \end{figure}
 \begin{figure}[h!]
 	\centering
 	\input{FourMaterials/Resultats5000}
-	\caption{Instantaneous isotherm at t=5000 s}
+	\caption{Instantaneous isotherms at t=5000 s}
 	\label{plot4M}
 \end{figure}
 
-The four materials problem is transitory. Since the temperature in the right wall changes over time, it never reaches a steady state. To obtain some results, the final time of the simulation has been chosen to be 10000 s, as in the results of the figure \ref{4Mfinal}.
+Since the temperature in the right wall changes over time, the four materials problem never reaches a steady state. However, to see the evolution of the temperature, the simulation has been  run for a final time of $t=10000 s$, obtaining the results of the figure \ref{4Mfinal}.
 \begin{figure}[h]
 	\centering
 	\input{FourMaterials/Resultats}
@@ -134,12 +133,22 @@ The four materials problem is transitory. Since the temperature in the right wal
 	\label{4Mfinal}
 \end{figure}
 
-Nevertheless, to analyse the results obtained, the same simulation has been run for a homogeneous material (figure \ref{HomoM2}). The geometrical parameters and the boundary conditions have been maintained, but the physical properties of the whole material are those of the section $M_{2}$ of the four materials problem.
+Comparing the solutions at 5000 s and at 10000 s, it can be seen that the whole rod has increased its temperature, but the gradient of temperature between the left and right walls has doubled. Another important difference is that hot temperatures move to the left as time passes.
+
+In addition, to further analyse the results obtained, the same simulation has been run for two rods of homogeneous material. The geometrical parameters and the boundary conditions have been maintained, but the physical properties of the whole material are those of the section $M_{2}$ (figure \ref{HomoM2}) and $M_{3}$ (figure \ref{HomoM3}) respectively of the four materials problem.
 \begin{figure}[h]
 	\centering
 	\input{FourMaterials/HomoM2}
-	\caption{Instantaneous plot at t=10000 s for a homogeneous material}
+	\caption{Instantaneous plot at t=10000 s for the homogeneous material $M_{2}$}
 	\label{HomoM2}
 \end{figure}
+\begin{figure}[h]
+	\centering
+	\input{FourMaterials/HomoM3}
+	\caption{Instantaneous plot at t=10000 s for the homogeneous material $M_{3}$}
+	\label{HomoM3}
+\end{figure}
 
-Comparing both graphs, it can be stated that the final result is very similar in both cases. The main visible difference is that in the four materials problem, the higher temperatures move further to the left. In the original problem, the upper right region is made of the material $M_{4}$, which has the same conductivity as the homogeneous material $M_{2}$, but a higher density and specific heat, making the first material more capable of conducting the heat.
+Comparing the graphs, it can be stated that the final result is very similar in all three cases. In the case of the $M_{2}$ material, the main visible difference is that in the four materials problem, higher temperatures move further to the left. In the original problem, the upper right region is made of the material $M_{4}$, which has the same conductivity as the homogeneous material $M_{2}$, but a higher density and specific heat.
+
+In the case of the homogeneous $M_{3}$ material, it can be seen that it is the material that has better conductivity, because hotter temperatures move slightly further to the left in the upper zone compared to the results of the original problem.

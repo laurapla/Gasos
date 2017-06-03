@@ -335,7 +335,7 @@ void constant_coefficients (int N, int M, string method, float rho0, float gamma
 			{
 				ae[j][i] = 0;
 				aw[j][i] = 0;
-				an[j][i] = 1;
+				an[j][i] = 0;
 				as[j][i] = 0;
 				ap[j][i] = 1;
 			}
@@ -343,7 +343,7 @@ void constant_coefficients (int N, int M, string method, float rho0, float gamma
 			{
 				ae[j][i] = 0;
 				aw[j][i] = 0;
-				an[j][i] = 1;
+				an[j][i] = 0;
 				as[j][i] = 0;
 				ap[j][i] = 1;
 			}
@@ -423,8 +423,7 @@ void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix
 	double resta = 1; // Difference between T and Tcalc
 		
 	while(MAX>delta)
-	{			
-		
+	{
 		// SOLVER: Gauss-Seidel
 		for(int i = 0; i<N; i++)
 		{
@@ -468,7 +467,6 @@ void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix
 				}
 			}
 		}
-		
 		// Comprovation
 		MAX = 0;
 		for(int i = 0; i<N; i++)
@@ -483,7 +481,6 @@ void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix
 				}
 			}
 		}
-	
 		// New assignation
 		for(int i = 0; i<N; i++)
 		{

@@ -28,7 +28,7 @@
 \BOOKMARK [2][-]{subsection.3.2.1}{Spatial discretization}{section.3.2}% 28
 \BOOKMARK [2][-]{subsection.3.2.2}{Temporal discretization}{section.3.2}% 29
 \BOOKMARK [1][-]{section.3.3}{Boundary conditions}{chapter.3}% 30
-\BOOKMARK [0][-]{chapter.4}{A Two-dimensional Transient Conduction Problem}{part.3}% 31
+\BOOKMARK [0][-]{chapter.4}{Four materials problem}{part.3}% 31
 \BOOKMARK [1][-]{section.4.1}{Discretization}{chapter.4}% 32
 \BOOKMARK [1][-]{section.4.2}{Boundary conditions}{chapter.4}% 33
 \BOOKMARK [1][-]{section.4.3}{Algorithm}{chapter.4}% 34
@@ -81,4 +81,5 @@
 \BOOKMARK [2][-]{subsection.11.2.1}{Inlet conditions}{section.11.2}% 81
 \BOOKMARK [2][-]{subsection.11.2.2}{Outlet conditions}{section.11.2}% 82
 \BOOKMARK [2][-]{subsection.11.2.3}{Wall conditions}{section.11.2}% 83
-\BOOKMARK [0][-]{chapter.12}{Bibliography}{part.6}% 84
+\BOOKMARK [-1][-]{part.7}{VII Results}{}% 84
+\BOOKMARK [0][-]{chapter.12}{Bibliography}{part.7}% 85

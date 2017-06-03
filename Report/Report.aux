@@ -35,6 +35,7 @@
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}Conservation equations}{6}{section.2.1}}
 \newlabel{ConservationEquations}{{2.1}{6}{Conservation equations}{section.2.1}{}}
+\newlabel{EnergyIncompNoVisc}{{2.4}{6}{Conservation equations}{equation.2.1.4}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Particular cases of the convection-diffusion equation\relax }}{7}{table.caption.3}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{convdifeq}{{2.1}{7}{Particular cases of the convection-diffusion equation\relax }{table.caption.3}{}}
@@ -49,9 +50,9 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Mesh}{8}{subsection.2.4.1}}
 \citation{Patankar1980,Ferziger2002}
 \@writefile{toc}{\contentsline {section}{\numberline {2.5}Time integration}{9}{section.2.5}}
-\newlabel{TimeIntegration}{{2.5}{9}{Time integration}{section.2.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.6}Interpolation schemes}{9}{section.2.6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.6.1}The central differencing scheme (CDS)}{9}{subsection.2.6.1}}
+\citation{Patankar1980}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.6.2}The upwind scheme (UDS)}{10}{subsection.2.6.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.6.3}The exponential scheme (EDS)}{10}{subsection.2.6.3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.6.4}The hybrid scheme (HDS) and the power-law scheme (PLDS)}{10}{subsection.2.6.4}}
@@ -74,7 +75,7 @@
 \newlabel{DiscrCond}{{3.2.2}{14}{Temporal discretization}{equation.3.2.17}{}}
 \citation{Bergman2011}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Boundary conditions}{15}{section.3.3}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}A Two-dimensional Transient Conduction Problem}{17}{chapter.4}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Four materials problem}{17}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces General scheme of the four materials problem\relax }}{17}{figure.caption.7}}
@@ -87,14 +88,16 @@
 \@writefile{toc}{\contentsline {section}{\numberline {4.2}Boundary conditions}{18}{section.4.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.3}Algorithm}{20}{section.4.3}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.4}Results}{21}{section.4.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Reference value: Instantaneous isotherms at $t=10000/2$ s\relax }}{21}{figure.caption.13}}
-\newlabel{ref4M}{{4.2}{21}{Reference value: Instantaneous isotherms at $t=10000/2$ s\relax }{figure.caption.13}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Instantaneous isotherm at t=5000 s\relax }}{21}{figure.caption.14}}
-\newlabel{plot4M}{{4.3}{21}{Instantaneous isotherm at t=5000 s\relax }{figure.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Reference value: Instantaneous isotherms at t=10000/2 s\relax }}{21}{figure.caption.13}}
+\newlabel{ref4M}{{4.2}{21}{Reference value: Instantaneous isotherms at t=10000/2 s\relax }{figure.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Instantaneous isotherms at t=5000 s\relax }}{21}{figure.caption.14}}
+\newlabel{plot4M}{{4.3}{21}{Instantaneous isotherms at t=5000 s\relax }{figure.caption.14}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Instantaneous plot at t=10000 s\relax }}{22}{figure.caption.15}}
 \newlabel{4Mfinal}{{4.4}{22}{Instantaneous plot at t=10000 s\relax }{figure.caption.15}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Instantaneous plot at t=10000 s for a homogeneous material\relax }}{23}{figure.caption.16}}
-\newlabel{HomoM2}{{4.5}{23}{Instantaneous plot at t=10000 s for a homogeneous material\relax }{figure.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Instantaneous plot at t=10000 s for the homogeneous material $M_{2}$\relax }}{23}{figure.caption.16}}
+\newlabel{HomoM2}{{4.5}{23}{Instantaneous plot at t=10000 s for the homogeneous material $M_{2}$\relax }{figure.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces Instantaneous plot at t=10000 s for the homogeneous material $M_{3}$\relax }}{23}{figure.caption.17}}
+\newlabel{HomoM3}{{4.6}{23}{Instantaneous plot at t=10000 s for the homogeneous material $M_{3}$\relax }{figure.caption.17}{}}
 \@writefile{toc}{\contentsline {part}{IV\hspace  {1em}Convection}{24}{part.4}}
 \citation{Bejan2013}
 \citation{Bergman2011}
@@ -105,16 +108,13 @@
 \newlabel{GCDE}{{5.1}{25}{The generic convection-diffusion equation}{equation.5.1.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5.2}Discretization}{25}{section.5.2}}
 \newlabel{DiscretizationSH}{{5.2}{25}{Discretization}{section.5.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Mesh of the Smith-Hutton problem\relax }}{26}{figure.caption.17}}
-\newlabel{SHmesh}{{5.1}{26}{Mesh of the Smith-Hutton problem\relax }{figure.caption.17}{}}
-\newlabel{massequation}{{5.2}{26}{Discretization}{equation.5.2.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Mesh of the Smith-Hutton problem\relax }}{26}{figure.caption.18}}
+\newlabel{SHmesh}{{5.1}{26}{Mesh of the Smith-Hutton problem\relax }{figure.caption.18}{}}
 \newlabel{Discretizedmasseq2D}{{5.5}{26}{Discretization}{equation.5.2.5}{}}
 \citation{Patankar1980}
 \newlabel{IntermGCDE}{{5.13}{27}{Discretization}{equation.5.2.13}{}}
 \newlabel{DiscretizedGCDE}{{5.14}{27}{Discretization}{equation.5.2.14}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5.3}Evaluation of the value in the faces}{27}{section.5.3}}
-\newlabel{fluxx}{{5.15}{27}{Evaluation of the value in the faces}{equation.5.3.15}{}}
-\newlabel{fluxy}{{5.16}{27}{Evaluation of the value in the faces}{equation.5.3.16}{}}
 \citation{Patankar1980}
 \citation{Patankar1980}
 \newlabel{FinalDiscrGCDE}{{5.17}{28}{Evaluation of the value in the faces}{equation.5.3.17}{}}
@@ -124,35 +124,33 @@
 \newlabel{FinalDiscretizationGCDE}{{5.3}{28}{Evaluation of the value in the faces}{equation.5.3.26}{}}
 \citation{Patankar1980}
 \citation{Patankar1980}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Function $A(|P|)$ for different schemes}}{29}{table.caption.18}}
-\newlabel{Patankarvalues}{{5.1}{29}{Function $A(|P|)$ for different schemes}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Function $A(|P|)$ for different schemes}}{29}{table.caption.19}}
+\newlabel{Patankarvalues}{{5.1}{29}{Function $A(|P|)$ for different schemes}{table.caption.19}{}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {6}Smith-Hutton problem}{30}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces General scheme of the Smith-Hutton problem\relax }}{30}{figure.caption.19}}
-\newlabel{SHscheme}{{6.1}{30}{General scheme of the Smith-Hutton problem\relax }{figure.caption.19}{}}
-\newlabel{SHuvel}{{6.1}{30}{Smith-Hutton problem}{equation.6.0.1}{}}
-\newlabel{SHvvel}{{6.2}{30}{Smith-Hutton problem}{equation.6.0.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces General scheme of the Smith-Hutton problem\relax }}{30}{figure.caption.20}}
+\newlabel{SHscheme}{{6.1}{30}{General scheme of the Smith-Hutton problem\relax }{figure.caption.20}{}}
 \newlabel{BoundCond}{{6.3}{30}{Smith-Hutton problem}{equation.6.0.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {6.1}Discretization}{31}{section.6.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Numerical parameters of the Smith-Hutton problem\relax }}{31}{table.caption.20}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Numerical parameters of the Smith-Hutton problem\relax }}{31}{table.caption.21}}
 \@writefile{toc}{\contentsline {section}{\numberline {6.2}Boundary conditions}{31}{section.6.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Discretization coefficients of the boundary points\relax }}{31}{table.caption.21}}
-\newlabel{BoundaryCondSH}{{6.2}{31}{Discretization coefficients of the boundary points\relax }{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Discretization coefficients of the boundary points\relax }}{31}{table.caption.22}}
+\newlabel{BoundaryCondSH}{{6.2}{31}{Discretization coefficients of the boundary points\relax }{table.caption.22}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {6.3}Algorithm}{31}{section.6.3}}
 \@writefile{toc}{\contentsline {section}{\numberline {6.4}Results}{33}{section.6.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Comparative of the different methods $\rho /\Gamma =10$\relax }}{33}{figure.caption.23}}
-\newlabel{ResSH10}{{6.2}{33}{Comparative of the different methods $\rho /\Gamma =10$\relax }{figure.caption.23}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Comparative of the different methods $\rho /\Gamma =10^{3}$\relax }}{34}{figure.caption.24}}
-\newlabel{ResSH1000}{{6.3}{34}{Comparative of the different methods $\rho /\Gamma =10^{3}$\relax }{figure.caption.24}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Comparative of the different methods $\rho /\Gamma =10^{6}$\relax }}{34}{figure.caption.25}}
-\newlabel{ResSH1000000}{{6.4}{34}{Comparative of the different methods $\rho /\Gamma =10^{6}$\relax }{figure.caption.25}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10$ (UDS)\relax }}{35}{figure.caption.26}}
-\newlabel{ResuSH10}{{6.5}{35}{Representation of the whole domain for $\rho /\Gamma =10$ (UDS)\relax }{figure.caption.26}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10^{3}$ (UDS)\relax }}{35}{figure.caption.27}}
-\newlabel{ResuSH1000}{{6.6}{35}{Representation of the whole domain for $\rho /\Gamma =10^{3}$ (UDS)\relax }{figure.caption.27}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10^{6}$ (UDS)\relax }}{36}{figure.caption.28}}
-\newlabel{ResuSH1000000}{{6.7}{36}{Representation of the whole domain for $\rho /\Gamma =10^{6}$ (UDS)\relax }{figure.caption.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Distribution of $\phi $ at the output for $\rho /\Gamma =10$\relax }}{33}{figure.caption.24}}
+\newlabel{ResSH10}{{6.2}{33}{Distribution of $\phi $ at the output for $\rho /\Gamma =10$\relax }{figure.caption.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Distribution of $\phi $ at the output for $\rho /\Gamma =10^{3}$\relax }}{34}{figure.caption.25}}
+\newlabel{ResSH1000}{{6.3}{34}{Distribution of $\phi $ at the output for $\rho /\Gamma =10^{3}$\relax }{figure.caption.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Distribution of $\phi $ at the output for $\rho /\Gamma =10^{6}$\relax }}{34}{figure.caption.26}}
+\newlabel{ResSH1000000}{{6.4}{34}{Distribution of $\phi $ at the output for $\rho /\Gamma =10^{6}$\relax }{figure.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10$ (UDS)\relax }}{35}{figure.caption.27}}
+\newlabel{ResuSH10}{{6.5}{35}{Representation of the whole domain for $\rho /\Gamma =10$ (UDS)\relax }{figure.caption.27}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10^{3}$ (UDS)\relax }}{35}{figure.caption.28}}
+\newlabel{ResuSH1000}{{6.6}{35}{Representation of the whole domain for $\rho /\Gamma =10^{3}$ (UDS)\relax }{figure.caption.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10^{6}$ (UDS)\relax }}{36}{figure.caption.29}}
+\newlabel{ResuSH1000000}{{6.7}{36}{Representation of the whole domain for $\rho /\Gamma =10^{6}$ (UDS)\relax }{figure.caption.29}{}}
 \citation{CTTC}
 \@writefile{toc}{\contentsline {chapter}{\numberline {7}Fractional Step Method}{37}{chapter.7}}
 \@writefile{lof}{\addvspace {10\p@ }}
@@ -167,12 +165,12 @@
 \@writefile{toc}{\contentsline {section}{\numberline {7.2}Discretization}{38}{section.7.2}}
 \newlabel{FSMDiscretization}{{7.2}{38}{Discretization}{section.7.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}Intermediate velocity discretization}{38}{subsection.7.2.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces Staggered meshes (2D)\relax }}{39}{figure.caption.29}}
-\newlabel{staggered}{{7.1}{39}{Staggered meshes (2D)\relax }{figure.caption.29}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Control volume of the horizontal velocity\relax }}{40}{figure.caption.30}}
-\newlabel{DCmflowx}{{7.2}{40}{Control volume of the horizontal velocity\relax }{figure.caption.30}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces Control volume of the vertical velocity\relax }}{40}{figure.caption.30}}
-\newlabel{DCmflowy}{{7.3}{40}{Control volume of the vertical velocity\relax }{figure.caption.30}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces Staggered meshes (2D)\relax }}{39}{figure.caption.30}}
+\newlabel{staggered}{{7.1}{39}{Staggered meshes (2D)\relax }{figure.caption.30}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces Control volume of the horizontal velocity\relax }}{40}{figure.caption.31}}
+\newlabel{DCmflowx}{{7.2}{40}{Control volume of the horizontal velocity\relax }{figure.caption.31}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces Control volume of the vertical velocity\relax }}{40}{figure.caption.31}}
+\newlabel{DCmflowy}{{7.3}{40}{Control volume of the vertical velocity\relax }{figure.caption.31}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.2.2}Pressure discretization}{40}{subsection.7.2.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.2.3}Velocity discretization}{41}{subsection.7.2.3}}
 \@writefile{toc}{\contentsline {section}{\numberline {7.3}Time step}{41}{section.7.3}}
@@ -181,13 +179,13 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {8}Driven cavity problem}{43}{chapter.8}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{lof}{\contentsline {figure}{\numberline {8.1}{\ignorespaces General scheme of the driven cavity problem}}{43}{figure.caption.31}}
-\newlabel{DrivenCavityImg}{{8.1}{43}{General scheme of the driven cavity problem}{figure.caption.31}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.1}{\ignorespaces General scheme of the driven cavity problem}}{43}{figure.caption.32}}
+\newlabel{DrivenCavityImg}{{8.1}{43}{General scheme of the driven cavity problem}{figure.caption.32}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {8.1}Discretization}{43}{section.8.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Numerical parameters of the driven cavity problem\relax }}{43}{table.caption.32}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Numerical parameters of the driven cavity problem\relax }}{43}{table.caption.33}}
 \@writefile{toc}{\contentsline {section}{\numberline {8.2}Boundary conditions}{44}{section.8.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {8.2}{\ignorespaces Discretization coefficients in the boundary\relax }}{44}{table.caption.33}}
-\newlabel{DCBoundaryCoefficients}{{8.2}{44}{Discretization coefficients in the boundary\relax }{table.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.2}{\ignorespaces Discretization coefficients in the boundary\relax }}{44}{table.caption.34}}
+\newlabel{DCBoundaryCoefficients}{{8.2}{44}{Discretization coefficients in the boundary\relax }{table.caption.34}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {8.3}Algorithm}{45}{section.8.3}}
 \citation{Ghia1982}
 \citation{Ghia1982}
@@ -196,10 +194,10 @@
 \citation{Haegland2007}
 \@writefile{toc}{\contentsline {section}{\numberline {8.4}Results}{46}{section.8.4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {8.4.1}Streamlines}{46}{subsection.8.4.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8.2}{\ignorespaces Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric center of the cavity}}{48}{figure.caption.36}}
-\newlabel{Drivenhorizontal}{{8.2}{48}{Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric center of the cavity}{figure.caption.36}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8.3}{\ignorespaces Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric center of the cavity}}{50}{figure.caption.38}}
-\newlabel{Drivenvertical}{{8.3}{50}{Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric center of the cavity}{figure.caption.38}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.2}{\ignorespaces Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric center of the cavity}}{48}{figure.caption.37}}
+\newlabel{Drivenhorizontal}{{8.2}{48}{Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric center of the cavity}{figure.caption.37}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.3}{\ignorespaces Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric center of the cavity}}{50}{figure.caption.39}}
+\newlabel{Drivenvertical}{{8.3}{50}{Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric center of the cavity}{figure.caption.39}{}}
 \citation{DeVahlDavis1983a,DeVahlDavis1983}
 \citation{Ferziger2002}
 \citation{Ferziger2002}
@@ -207,7 +205,7 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {9}Differentially heated cavity}{51}{chapter.9}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.1}{\ignorespaces General scheme of the differentially heated problem}}{51}{figure.caption.39}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.1}{\ignorespaces General scheme of the differentially heated problem}}{51}{figure.caption.40}}
 \@writefile{toc}{\contentsline {section}{\numberline {9.1}Natural convection}{51}{section.9.1}}
 \newlabel{NatConvContinuity}{{9.3}{52}{Natural convection}{equation.9.1.3}{}}
 \newlabel{NatConvMomentum}{{9.4}{52}{Natural convection}{equation.9.1.4}{}}
@@ -219,29 +217,29 @@
 \@writefile{toc}{\contentsline {section}{\numberline {9.4}Boundary conditions}{54}{section.9.4}}
 \citation{DeVahlDavis1983}
 \citation{Bergman2011}
-\@writefile{lot}{\contentsline {table}{\numberline {9.1}{\ignorespaces Discretization coefficients of the boundary temperature nodes\relax }}{55}{table.caption.40}}
-\newlabel{BoundTempDiffHeat}{{9.1}{55}{Discretization coefficients of the boundary temperature nodes\relax }{table.caption.40}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9.1}{\ignorespaces Discretization coefficients of the boundary temperature nodes\relax }}{55}{table.caption.41}}
+\newlabel{BoundTempDiffHeat}{{9.1}{55}{Discretization coefficients of the boundary temperature nodes\relax }{table.caption.41}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {9.5}Nusselt number}{55}{section.9.5}}
 \@writefile{toc}{\contentsline {section}{\numberline {9.6}Algorithm}{55}{section.9.6}}
 \@writefile{toc}{\contentsline {section}{\numberline {9.7}Results}{57}{section.9.7}}
-\@writefile{lot}{\contentsline {table}{\numberline {9.2}{\ignorespaces Numerical parameters of the differentially heated cavity problem\relax }}{57}{table.caption.42}}
-\newlabel{NumericalParamDiffHeated}{{9.2}{57}{Numerical parameters of the differentially heated cavity problem\relax }{table.caption.42}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.2}{\ignorespaces Contour plots of the temperature\relax }}{57}{figure.caption.43}}
-\newlabel{TemperatureDiffHeated}{{9.2}{57}{Contour plots of the temperature\relax }{figure.caption.43}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.3}{\ignorespaces Contour plots of the horizontal velocity\relax }}{58}{figure.caption.44}}
-\newlabel{uplotDiffHeated}{{9.3}{58}{Contour plots of the horizontal velocity\relax }{figure.caption.44}{}}
-\newlabel{vplotRa5}{{9.4c}{59}{$Ra=10^{5}$\relax }{figure.caption.45}{}}
-\newlabel{sub@vplotRa5}{{c}{59}{$Ra=10^{5}$\relax }{figure.caption.45}{}}
-\newlabel{vplotRa6}{{9.4d}{59}{$Ra=10^{6}$\relax }{figure.caption.45}{}}
-\newlabel{sub@vplotRa6}{{d}{59}{$Ra=10^{6}$\relax }{figure.caption.45}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9.4}{\ignorespaces Contour plots of the vertical velocity\relax }}{59}{figure.caption.45}}
-\newlabel{vplotDiffHeated}{{9.4}{59}{Contour plots of the vertical velocity\relax }{figure.caption.45}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9.2}{\ignorespaces Numerical parameters of the differentially heated cavity problem\relax }}{57}{table.caption.43}}
+\newlabel{NumericalParamDiffHeated}{{9.2}{57}{Numerical parameters of the differentially heated cavity problem\relax }{table.caption.43}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.2}{\ignorespaces Contour plots of the temperature\relax }}{57}{figure.caption.44}}
+\newlabel{TemperatureDiffHeated}{{9.2}{57}{Contour plots of the temperature\relax }{figure.caption.44}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.3}{\ignorespaces Contour plots of the horizontal velocity\relax }}{58}{figure.caption.45}}
+\newlabel{uplotDiffHeated}{{9.3}{58}{Contour plots of the horizontal velocity\relax }{figure.caption.45}{}}
+\newlabel{vplotRa5}{{9.4c}{59}{$Ra=10^{5}$\relax }{figure.caption.46}{}}
+\newlabel{sub@vplotRa5}{{c}{59}{$Ra=10^{5}$\relax }{figure.caption.46}{}}
+\newlabel{vplotRa6}{{9.4d}{59}{$Ra=10^{6}$\relax }{figure.caption.46}{}}
+\newlabel{sub@vplotRa6}{{d}{59}{$Ra=10^{6}$\relax }{figure.caption.46}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.4}{\ignorespaces Contour plots of the vertical velocity\relax }}{59}{figure.caption.46}}
+\newlabel{vplotDiffHeated}{{9.4}{59}{Contour plots of the vertical velocity\relax }{figure.caption.46}{}}
 \citation{DeVahlDavis1983}
 \citation{DeVahlDavis1983}
-\@writefile{lot}{\contentsline {table}{\numberline {9.3}{\ignorespaces Comparison between the benchmark solution and the calculated one}}{60}{table.caption.46}}
-\newlabel{ComparisonDiffHeated}{{9.3}{60}{Comparison between the benchmark solution and the calculated one}{table.caption.46}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {9.4}{\ignorespaces Percentage of error between the benchmark solution and the calculated one\relax }}{61}{table.caption.47}}
-\newlabel{ErrorDiffHeated}{{9.4}{61}{Percentage of error between the benchmark solution and the calculated one\relax }{table.caption.47}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9.3}{\ignorespaces Comparison between the benchmark solution and the calculated one}}{60}{table.caption.47}}
+\newlabel{ComparisonDiffHeated}{{9.3}{60}{Comparison between the benchmark solution and the calculated one}{table.caption.47}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9.4}{\ignorespaces Percentage of error between the benchmark solution and the calculated one\relax }}{61}{table.caption.48}}
+\newlabel{ErrorDiffHeated}{{9.4}{61}{Percentage of error between the benchmark solution and the calculated one\relax }{table.caption.48}{}}
 \@writefile{toc}{\contentsline {part}{V\hspace  {1em}Turbulence}{62}{part.5}}
 \citation{Versteeg2007}
 \citation{CTTCb}
@@ -252,16 +250,16 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {10}Burgers' equation}{63}{chapter.10}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{lof}{\contentsline {figure}{\numberline {10.1}{\ignorespaces Schematic diagram of the energy cascade as a function of the size of the eddies}}{64}{figure.caption.48}}
-\newlabel{energylength}{{10.1}{64}{Schematic diagram of the energy cascade as a function of the size of the eddies}{figure.caption.48}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10.1}{\ignorespaces Schematic diagram of the energy cascade as a function of the size of the eddies}}{64}{figure.caption.49}}
+\newlabel{energylength}{{10.1}{64}{Schematic diagram of the energy cascade as a function of the size of the eddies}{figure.caption.49}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {10.1}Burgulence}{64}{section.10.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {10.2}Fourier space}{64}{section.10.2}}
 \newlabel{TransientTerm}{{10.6}{65}{Fourier space}{equation.10.2.6}{}}
 \newlabel{ForcingTerm}{{10.7}{65}{Fourier space}{equation.10.2.7}{}}
 \citation{CTTC2014}
 \citation{CTTC2014}
-\@writefile{lof}{\contentsline {figure}{\numberline {10.2}{\ignorespaces Representation of all the possible interactions between the modes in the convective term}}{66}{figure.caption.49}}
-\newlabel{TriadicFigure}{{10.2}{66}{Representation of all the possible interactions between the modes in the convective term}{figure.caption.49}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10.2}{\ignorespaces Representation of all the possible interactions between the modes in the convective term}}{66}{figure.caption.50}}
+\newlabel{TriadicFigure}{{10.2}{66}{Representation of all the possible interactions between the modes in the convective term}{figure.caption.50}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {10.3}Discretization}{66}{section.10.3}}
 \newlabel{DiscretizedBurgers}{{10.12}{66}{Discretization}{equation.10.3.12}{}}
 \citation{CTTC2014}
@@ -269,27 +267,28 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {10.3.2}Large-Eddy Simulation}{67}{subsection.10.3.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {10.4}Algorithm}{68}{section.10.4}}
 \@writefile{toc}{\contentsline {section}{\numberline {10.5}Results}{69}{section.10.5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10.3}{\ignorespaces Energy spectrum of the steady-state solution of the Burgers' equation\relax }}{69}{figure.caption.51}}
-\newlabel{BurgersResults}{{10.3}{69}{Energy spectrum of the steady-state solution of the Burgers' equation\relax }{figure.caption.51}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10.3}{\ignorespaces Energy spectrum of the steady-state solution of the Burgers' equation\relax }}{69}{figure.caption.52}}
+\newlabel{BurgersResults}{{10.3}{69}{Energy spectrum of the steady-state solution of the Burgers' equation\relax }{figure.caption.52}{}}
 \@writefile{toc}{\contentsline {part}{VI\hspace  {1em}External flow}{70}{part.6}}
 \citation{Breuer2000}
 \citation{Breuer2000}
 \@writefile{toc}{\contentsline {chapter}{\numberline {11}Square cylinder}{71}{chapter.11}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{lof}{\contentsline {figure}{\numberline {11.1}{\ignorespaces General scheme of the square cylinder problem}}{71}{figure.caption.52}}
-\newlabel{SchemeSquareProblem}{{11.1}{71}{General scheme of the square cylinder problem}{figure.caption.52}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11.1}{\ignorespaces General scheme of the square cylinder problem}}{71}{figure.caption.53}}
+\newlabel{SchemeSquareProblem}{{11.1}{71}{General scheme of the square cylinder problem}{figure.caption.53}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {11.1}Discretization}{71}{section.11.1}}
 \citation{Ferziger2002}
-\bibstyle{unsrt}
-\bibdata{bib}
 \@writefile{toc}{\contentsline {section}{\numberline {11.2}Boundary conditions}{72}{section.11.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {11.2.1}Inlet conditions}{72}{subsection.11.2.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {11.2.2}Outlet conditions}{72}{subsection.11.2.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {11.2.3}Wall conditions}{72}{subsection.11.2.3}}
 \newlabel{noslip}{{11.4}{72}{Wall conditions}{equation.11.2.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11.2}{\ignorespaces Fluxes conditions in the cylinder\relax }}{73}{figure.caption.53}}
-\newlabel{FluxesCondCylinder}{{11.2}{73}{Fluxes conditions in the cylinder\relax }{figure.caption.53}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11.2}{\ignorespaces Fluxes conditions in the cylinder\relax }}{73}{figure.caption.54}}
+\newlabel{FluxesCondCylinder}{{11.2}{73}{Fluxes conditions in the cylinder\relax }{figure.caption.54}{}}
+\@writefile{toc}{\contentsline {part}{VII\hspace  {1em}Results}{74}{part.7}}
+\bibstyle{unsrt}
+\bibdata{bib}
 \bibcite{Ferziger2002}{1}
 \bibcite{Patankar1980}{2}
 \bibcite{Bergman2011}{3}
@@ -303,13 +302,13 @@
 \bibcite{Ghiaasiaan2011}{11}
 \bibcite{Versteeg2007}{12}
 \bibcite{CTTCb}{13}
-\@writefile{toc}{\contentsline {chapter}{\numberline {12}Bibliography}{74}{chapter.12}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {12}Bibliography}{75}{chapter.12}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibcite{Pope2000}{14}
 \bibcite{Johnson2016}{15}
 \bibcite{CTTC2014}{16}
 \bibcite{Breuer2000}{17}
-\newlabel{LastPage}{{}{75}{}{page.75}{}}
-\xdef\lastpage@lastpage{75}
-\xdef\lastpage@lastpageHy{75}
+\newlabel{LastPage}{{}{76}{}{page.76}{}}
+\xdef\lastpage@lastpage{76}
+\xdef\lastpage@lastpageHy{76}

@@ -1,6 +1,6 @@
 \chapter{Numerical methods}
 
-The laws governing the processes of heat transfer and fluid flow are usually expressed in terms of differential equations. Some of these equations are the momentum equation, the energy equation and the mass conservation equation, among others. However, these expressions usually don’t have an analytical solution except for some simple cases. To solve complex problems it is necessary to use numerical methods.
+The laws governing the processes of heat transfer and fluid flow are usually expressed in terms of differential equations. These equations are the momentum equation, the energy equation and the mass conservation equation, among others. However, these expressions don’t have an analytical solution except for some simple cases. To solve complex problems it is necessary to use numerical methods.
 
 \section{Conservation equations}
 \label{ConservationEquations}
@@ -18,13 +18,14 @@ The three most important conservation equations are the mass conservation equati
 For incompressible flows with no viscous dissipation, the energy conservation equation can be written as:
 \begin{equation}
 \rho c_{p}\left(\frac{\partial T}{\partial t}+\vec{v}\cdot\nabla T\right)=\nabla\cdot\left(\lambda\nabla T\right)
+\label{EnergyIncompNoVisc}
 \end{equation}
 
 All these equations can be seen as a particular case of the generic convection-diffusion equation:
 \begin{equation}
 \frac{\partial}{\partial t}\left(\rho\phi\right)+\nabla\cdot\left(\rho\vec{v}\phi\right)=\nabla\cdot\left(\Gamma\nabla\phi\right)+S_{phi}
 \end{equation}
-where $\rho$ is the density, $\vec{v}$ the velocity, $\Gamma$ the diffusion coefficient, $S_{\phi}$ the source term, and $\phi$ the general variable that is going to be studied. Some examples can be found in table \ref{convdifeq}.
+where $\rho$ is the density, $\vec{v}$ the velocity, $\Gamma$ the diffusion coefficient, $S_{\phi}$ the source term, and $\phi$ the general variable that is going to be studied. In table \ref{convdifeq} there are the values that these variables have to take in order to obtain the conservation equations previously mentioned.
 
 \begin{table}[h!]
 	\centering
@@ -42,18 +43,18 @@ where $\rho$ is the density, $\vec{v}$ the velocity, $\Gamma$ the diffusion coef
 
 \section{Numerical methods}
 Numerical methods are based in dividing the domain that is going to be studied in different pieces. Instead of calculating the unknowns in the whole domain, they are studied in the finite number of points defined by these pieces, the grid points. This process is called discretization.
-Once the domain is discretized, it is also necessary to discretize the equations. The relations between the grid points have to be established. It is assumed that the value $\phi$ of a grid point only influences the distribution of $\phi$ in its immediate neighbours. For this reason, as the number of grid points becomes larger, the numerical solution approaches the real solution of the problem.
-There are different methods of discretizing the equations, but the most common ones are exposed in the following lines.
+
+Once the domain is discretized, it is also necessary to discretize the equations. The relations between the grid points have to be established. It is assumed that the value $\phi$ of a grid point only influences the distribution of $\phi$ in its immediate neighbours. Consequently, as the number of grid points becomes larger, the numerical solution approaches the real solution of the problem.
 
 \section{Finite difference method}
-The finite difference method (FDM) is based in the Taylor-series expansion. It is used to approximate the derivatives in the differential equation. Taking the three successive points represented in figure \ref{3gridpoints}, the approximation of the values in the left point (west) and in the right point (east) is easily calculated with Taylor series:
+The finite difference method (FDM) is a discretization method based in the Taylor-series expansion. It is used to approximate the derivatives in the differential equation. Taking the three successive points represented in figure \ref{3gridpoints}, the approximation of the values in the left point (west) and in the right point (east) is easily calculated with Taylor series:
 \begin{equation}
 \phi_{W}=\phi_{P}-\Delta x\left(\frac{d\phi}{dx}\right)_{P}+\frac{1}{2}\left(\Delta x\right)^{2}\left(\frac{d^{2}\phi}{dx^{2}}\right)-\dots
 \end{equation}
 \begin{equation}
 \phi_{E}=\phi_{P}+\Delta x\left(\frac{d\phi}{dx}\right)_{P}+\frac{1}{2}\left(\Delta x\right)^{2}\left(\frac{d^{2}\phi}{dx^{2}}\right)+\dots
 \end{equation}
-Using a second order approximation and combining both expressions, it can be easily obtained:
+Using a second order approximation and combining both expressions:
 \begin{equation}
 \left(\frac{d\phi}{dx}\right)_{P}\approx\frac{\phi_{E}-\phi_{W}}{2\Delta x}
 \end{equation}
@@ -63,13 +64,13 @@ Using a second order approximation and combining both expressions, it can be eas
 These expressions are substituted in the differential equation to obtain the finite-differential equation. This approach is very simple, but it is not used in complex geometries. It also does not enforce the conservation, as it is simply a mathematical approach, which may lead to some problems.
 \begin{figure}
 	\centering
-	\includegraphics[]{StateArt/3gridpoints}
+	\includegraphics[scale=0.8]{StateArt/3gridpoints}
 	\caption{Three successive grid points}
 	\label{3gridpoints}
 \end{figure}
 
 \section{Finite volume method}
-The finite-volume method (FVM) is more used than the FDM. It consists in dividing the domain in different control volumes as the ones in figure \ref{controlvolume2d}, so that each control volume surrounds one grid point. Then, the differential equation is integrated over each control volume, ensuring that each of them satisfy the conservation.
+The finite-volume method (FVM) is another discretization method more used than the FDM. It consists in dividing the domain in different control volumes as the ones in figure \ref{controlvolume2d}, so that each control volume surrounds one grid point. Then, the differential equation is integrated over each control volume, ensuring that each of them satisfies the conservation principle. It is the method used in the present study.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.5]{StateArt/controlvolume2d}
@@ -78,15 +79,14 @@ The finite-volume method (FVM) is more used than the FDM. It consists in dividin
 \end{figure}
 
 \subsection{Mesh}
-There are different methods to divide discretize the domain for the FVM. These methods are listed below \cite{Ferziger2002}:
+There are different ways to discretize the domain for the FVM. These methods are listed below \cite{Ferziger2002}:
 \begin{itemize}
-	\item Structured (regular) mesh: The grid lines do not cross each other. The lines can be numbered consecutively, so as the position of any grid point can be easily identified by two (2D) or three (3D) indices. This is the simplest structure and easiest to work with, but it can only be used for geometrically simple domains.
-	\item Unstructured mesh: The control volumes may have any shape, and there is not a restriction on the number of neighbour nodes. It is the method used for very complex geometries, but the grid generation and the pre-processing are much difficult than on structured meshes.
+	\item Structured (regular) mesh: Grid lines do not cross each other. Lines can be numbered consecutively, so that the position of any grid point can be easily identified by two (2D) or three (3D) indices. It is equivalent to a Cartesian grid. This is the simplest structure and easiest to work with, but it can only be used for geometrically simple domains.
+	\item Unstructured mesh: The control volumes may have any shape, and there is not a restriction on the number of neighbour nodes. It is the method used for very complex geometries, but the grid generation and the pre-processing are more difficult than on structured meshes.
 \end{itemize}
 
 \section{Time integration}
-\label{TimeIntegration}
-Time is a one-way variable, which means that the unknowns only depend on the values in the previous instant of time, and do not depend on the values in the next instant of time. Taking this property into account, to obtain the results of an unsteady problem, the method is to discretize the time and calculate the values for each time step. When the unknowns of one time step are obtained, the calculation moves on to the next time step.
+Time is a one-way variable, which means that the unknowns only depend on the values in the previous instant of time, and do not depend on the values in the next instant of time. Knowing this property, to obtain the results of an unsteady problem, the method used is to discretize the time domain in time steps and calculate the values in each of them. When the unknowns of one time step are obtained, the calculation moves on to the next time step.
 
 Time integration can be done using different methods. The ones that are widely used are:
 \begin{itemize}
@@ -96,7 +96,7 @@ Time integration can be done using different methods. The ones that are widely u
 \end{itemize}
 
 \section{Interpolation schemes}
-In some cases, it is necessary to obtain the properties of the points that are not nodes. Usually, a term is evaluated in the faces, not in the nodes, so it is necessary to know the values in the faces of the control volume. There are different schemes to do so.  Some of the most common ones are listed below\cite{Patankar1980,Ferziger2002}.
+In some cases, it is necessary to obtain the properties of the points that are not nodes. Some terms are evaluated in the faces, not in the nodes, so it is necessary to calculate the values of the variables in the faces of the control volume. There are different schemes to do so.  Some of the most common ones are listed below\cite{Patankar1980,Ferziger2002}.
 
 \subsection{The central differencing scheme (CDS)}
 It is the most natural scheme. It is a linear interpolation between the two nearest nodes:
@@ -106,20 +106,20 @@ It is the most natural scheme. It is a linear interpolation between the two near
 However, CDS is only valid in cases with low Reynolds number. It is a second order approximation, but may produce oscillatory solutions.
 
 \subsection{The upwind scheme (UDS)}
-It assumes that the value of $\phi$ in the interface is equal to the value of $\phi$ at the node on the upwind side of the face.
+It assumes that the value of $\phi$ in the interface is equal to the value of $\phi$ at the node on the upwind side of the face:
 \begin{equation}
 \begin{aligned}
 \phi_ {e} &=\phi_{P},&&\text{if $\dot{m}_{e}>0$}\\    \phi_ {e} &=\phi_{E},&&\text{if $\dot{m}_{e}<0$}
 \end{aligned}
 \end{equation}
-The solutions of the UDS will always be physically realistic, but they may not be completely accurate because it is a first order approximation. However, this method is widely used because of its stability.
+The solutions of the UDS are always physically realistic, but they may not be completely accurate because it is a first order approximation. However, this method is widely used due to its stability.
 
 \subsection{The exponential scheme (EDS)}
-Taking the generic convection-diffusion equation and assuming a steady one-dimensional problem with a constant $\Gamma$ and no source term, the analytic solution of the equation is an exponential function:
+Taking the generic convection-diffusion equation and assuming a steady one-dimensional problem with constant $\Gamma$ and no source term, the analytic solution of the equation is an exponential function:
 \begin{equation}
 \frac{\phi-\phi_{0}}{\phi_{L}-\phi_{0}}=\frac{exp\left(Px/L\right)-1}{exp\left(P\right)-1}
 \end{equation}
-Where $\phi_{0}$ and $\phi_{L}$ are the values of the function at $x=0$ and $x=L$ respectively and P is the Péclet number, a non-dimensional number:
+where $\phi_{0}$ and $\phi_{L}$ are the values of the function at $x=0$ and $x=L$ respectively, and P is the Péclet number, a non-dimensional number:
 \begin{equation}
 P\equiv\frac{\rho uL}{\Gamma}
 \end{equation}
@@ -127,7 +127,7 @@ In the EDS, this analytic solution is used to determine the value on the faces, 
 \begin{equation}
 \phi_{e}-\phi_{P}=\frac{exp\left(P_{e}d_{Pe}/d_{PE}\right)-1}{exp\left(P_{e}\right)-1}\left(\phi_{E}-\phi_{P}\right)
 \end{equation}
-Though this solution is exact for the steady one-dimensional problem it is not for two or three-dimensional cases, unsteady problems… so it is not widely used.
+Though this solution is exact for the steady one-dimensional problem it is not for two or three-dimensional cases, unsteady problems and cases with source term, so it is not widely used.
 
 \subsection{The hybrid scheme (HDS) and the power-law scheme (PLDS)}
-Both methods are an approximation of the exponential function used in the EDS. Since exponentials are expensive to compute, the HDS and the PLDS are meant to provide a good result but with simpler functions. They divide the function given by the EDS in different parts and approximate the solution with simpler functions.
+Both methods are an approximation of the exponential function used in the EDS. Since exponentials are expensive to compute, the HDS and the PLDS are meant to provide a good result but with simpler functions. They divide the function given by the EDS in different parts and approximate the solution with simpler functions \cite{Patankar1980}.

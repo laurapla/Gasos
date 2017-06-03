@@ -28,7 +28,7 @@
 \contentsline {subsection}{\numberline {3.2.1}Spatial discretization}{13}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Temporal discretization}{14}{subsection.3.2.2}
 \contentsline {section}{\numberline {3.3}Boundary conditions}{15}{section.3.3}
-\contentsline {chapter}{\numberline {4}A Two-dimensional Transient Conduction Problem}{17}{chapter.4}
+\contentsline {chapter}{\numberline {4}Four materials problem}{17}{chapter.4}
 \contentsline {section}{\numberline {4.1}Discretization}{18}{section.4.1}
 \contentsline {section}{\numberline {4.2}Boundary conditions}{18}{section.4.2}
 \contentsline {section}{\numberline {4.3}Algorithm}{20}{section.4.3}
@@ -81,4 +81,5 @@
 \contentsline {subsection}{\numberline {11.2.1}Inlet conditions}{72}{subsection.11.2.1}
 \contentsline {subsection}{\numberline {11.2.2}Outlet conditions}{72}{subsection.11.2.2}
 \contentsline {subsection}{\numberline {11.2.3}Wall conditions}{72}{subsection.11.2.3}
-\contentsline {chapter}{\numberline {12}Bibliography}{74}{chapter.12}
+\contentsline {part}{VII\hspace {1em}Results}{74}{part.7}
+\contentsline {chapter}{\numberline {12}Bibliography}{75}{chapter.12}

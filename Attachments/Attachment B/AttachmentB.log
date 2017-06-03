@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  28 MAY 2017 18:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  3 JUN 2017 23:14
 entering extended mode
 **./AttachmentB.tex
 (AttachmentB.tex
@@ -1474,9 +1474,9 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 )
 \verbatim@out=\write3
-runsystem(echo t > "w18-test-20175281097.tex")...executed.
+runsystem(echo t > "w18-test-2017631394.tex")...executed.
 
-runsystem(del "w18-test-20175281097.tex")...executed.
+runsystem(del "w18-test-2017631394.tex")...executed.
 
 Package gnuplottex Info: Automatically converting gnuplot files. on input line 
 110.
@@ -2271,20 +2271,14 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 462.
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 508.
+Package pdftex.def Info: ./doc_config/image.png used on input line 506.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [28]
+ [28])
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 554.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [29])
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 72.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [30]
+ [29]
 Chapter 3.
 (Driven_cavityv2.cpp
 
@@ -2303,91 +2297,91 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 34.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [31
+ [30
 
 ]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 82.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [32]
+ [31]
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 133.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [33]
+ [32]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 181.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [34]
+ [33]
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 230.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [35]
+ [34]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 280.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [36]
+ [35]
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 328.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [37]
+ [36]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 370.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [38]
+ [37]
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 417.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [39]
+ [38]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 455.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [40]
+ [39]
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 502.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [41]
+ [40]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 552.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [42]
+ [41]
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 604.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [43]
+ [42]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 650.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [44]
+ [43]
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 699.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [45])
+ [44])
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 75.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [46]
+ [45]
 Chapter 4.
 (Burgulence.cpp
 
@@ -2406,26 +2400,26 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 40.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [47
+ [46
 
 ]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 90.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [48]
+ [47]
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 140.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [49]) 
+ [48]) 
 AED: lastpage setting LastPage
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 78.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [50]
+ [49]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 78.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 78.
  (AttachmentB.aux)
@@ -2436,8 +2430,8 @@ Package rerunfilecheck Info: File `AttachmentB.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 78.
  ) 
 Here is how much of TeX's memory you used:
- 34608 strings out of 493334
- 618906 string characters out of 3143122
+ 34604 strings out of 493334
+ 618850 string characters out of 3143122
  957142 words of memory out of 3000000
  35436 multiletter control sequences out of 15000+200000
  79615 words of font info for 77 fonts, out of 3000000 for 9000
@@ -2451,9 +2445,9 @@ e1/public/lm/lmss10.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pfb><C
 e1/public/lm/lmss9.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><
 C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmsso9.pfb><C:/Apps/MiKTeX 2.9/fonts/t
 ype1/public/lm/lmsy9.pfb>
-Output written on AttachmentB.pdf (52 pages, 565889 bytes).
+Output written on AttachmentB.pdf (51 pages, 564639 bytes).
 PDF statistics:
- 2821 PDF objects out of 2984 (max. 8388607)
- 2157 named destinations out of 2487 (max. 500000)
+ 2813 PDF objects out of 2984 (max. 8388607)
+ 2153 named destinations out of 2487 (max. 500000)
  38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

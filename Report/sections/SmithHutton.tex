@@ -1,5 +1,5 @@
 \chapter{Smith-Hutton problem}
-The Smith-Hutton problem is a two-dimensional steady convection-diffusion problem, represented in figure \ref{SHscheme}. In the problem, the density is constant, and the velocity field is known.
+The Smith-Hutton problem is a two-dimensional steady convection-diffusion problem, represented in figure \ref{SHscheme}. The density is constant, and the velocity field is known.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.65]{SmithHutton/SmithHutton}
@@ -7,16 +7,14 @@ The Smith-Hutton problem is a two-dimensional steady convection-diffusion proble
 	\label{SHscheme}
 \end{figure}
 
-The velocity is given by equations \ref{SHuvel} and \ref{SHvvel}:
+The prescribed velocity field is given by:
 \begin{equation}
 u\left(x,y\right)=2y\left(1-x^{2}\right)
-\label{SHuvel}
 \end{equation}
 \begin{equation}
 v\left(x,y\right)=-2x\left(1-y^{2}\right)
-\label{SHvvel}
 \end{equation}
-And the prescribed boundary conditions for the variable $\phi$ are described in equation \ref{BoundCond}:
+And the prescribed boundary conditions for the variable $\phi$ are:
 \begin{equation}
 \begin{aligned}
 \phi &=1+\tanh\left(\alpha\left(2x+1\right)\right),&&y=0; x\in\left(-1,0\right) \left(inlet\right) \\
@@ -69,44 +67,49 @@ The implementation of the boundary conditions in the problem is done with the di
 
 
 \section{Algorithm}
-The algorithm of resolution is very similar to that used in the four materials problem. The main difference is that in the Smith-Hutton problem the resolution ends when the variable $\phi$ reaches a steady state. The schematic resolution is displayed below:
+The algorithm of resolution is very similar to that used in the four materials problem. The main difference is that in the Smith-Hutton problem the resolution ends when the variable $\phi$ reaches a steady state. The schematic algorithm of resolution is displayed below:
 \begin{figure}[h!]
 	\includegraphics[scale=0.17]{SmithHutton/algorithm}
 \end{figure}
 
 \section{Results}
-Some of the results are plotted in the following section, but due to the amount of information, not all of them are in the report. To see more results refer to Attachment A.
+Since the velocity and the dimensions are constant, the parameter $\rho/\Gamma$ is somehow equivalent to the Péclet number. In order to study the results in different flows, the simulation has been run for three different values of $\rho/\Gamma$: $10$, $10^{3}$ and $10^{6}$.
 
-Since the velocity and the dimensions are constant, the parameter $\rho/\Gamma$ is somehow equivalent to the Péclet number. In figure \ref{ResSH10}, when the Péclet number is low, all the methods have similar results, and there is almost no error compared to the reference values. However, as the Péclet number increases, the error increases, as it can be seen in figure \ref{ResSH1000} and figure \ref{ResSH1000000}.
+To verify the accuracy of the calculations and the influence of the numerical scheme, the results have to be compared with some reference values. The following figures present the distribution of the variable $\phi$ in the outlet for all the schemes used and compare them with the benchmark values.
+
+In figure \ref{ResSH10}, when the Péclet number is low, all the methods produce similar results, and there is almost no error compared to the reference values. However, as the Péclet number increases, the error also increases. As it can be seen in figures \ref{ResSH1000} and \ref{ResSH1000000}, the reference solution displays a sharper distribution than the one obtained in the calculations. The influence of the numerical scheme used is also present in the case of $\rho/\Gamma=10^{3}$, when the schemes show slightly different results.
 
 \begin{figure}[h]
 	\centering
 	\input{SmithHutton/10}
-	\caption{Comparative of the different methods $\rho/\Gamma=10$}
+	\caption{Distribution of $\phi$ at the output for $\rho/\Gamma=10$}
 	\label{ResSH10}
 \end{figure}
 \begin{figure}[h]
 	\centering
 	\input{SmithHutton/1000}
-	\caption{Comparative of the different methods $\rho/\Gamma=10^{3}$}
+	\caption{Distribution of $\phi$ at the output for $\rho/\Gamma=10^{3}$}
 	\label{ResSH1000}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\input{SmithHutton/1000000}
-	\caption{Comparative of the different methods $\rho/\Gamma=10^{6}$}
+	\caption{Distribution of $\phi$ at the output for $\rho/\Gamma=10^{6}$}
 	\label{ResSH1000000}
 \end{figure}
-It is important to notice that in the cases in which $\rho/\Gamma=10^{3}$ and $\rho/\Gamma=10^{6}$ CDS diverges, and no results can be obtained with this method. It is not a surprise, because the central differencing scheme tends to diverge in some cases.
+It is important to notice that in the cases $\rho/\Gamma=10^{3}$ and $\rho/\Gamma=10^{6}$ CDS diverges, and no results are obtained with this method.
 
-It is also important to understand the variation of the variable $\phi$ in the whole domain. For a low Péclet number (figure \ref{ResuSH10}), the variation is very gradual. But as it increases (figures \ref{ResuSH1000} and \ref{ResuSH1000000}), the change is more abrupt, and there is almost no variation except for the centre bottom zone. The shape of the variation becomes more symmetrical as the Péclet number increases.
+Regarding the behaviour of $\phi$, for low Péclet numbers, its variation its almost linear, but for high Péclets, it becomes more abrupt, almost a vertical line.
+
+Finally, it is interesting to study the variation of the variable $\phi$ in the whole domain. As it is represented in figure \ref{ResuSH10}, for a low Péclet number, since the main transport method is diffusion the variable changes gradually over the domain. But as it increases (figures \ref{ResuSH1000} and \ref{ResuSH1000000}), the change is more abrupt, and there is almost no variation except for the centre bottom zone. The distribution of $\phi$ becomes more symmetrical as the Péclet number increases.
+
 \begin{figure}[h]
 	\centering
 	\input{SmithHutton/R10}
 	\caption{Representation of the whole domain for $\rho/\Gamma=10$ (UDS)}
 	\label{ResuSH10}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\input{SmithHutton/R1000}
 	\caption{Representation of the whole domain for $\rho/\Gamma=10^{3}$ (UDS)}
@@ -119,4 +122,6 @@ It is also important to understand the variation of the variable $\phi$ in the w
 	\label{ResuSH1000000}
 \end{figure}
 
-As a conclusion, it can be stated that when convergence dominates over diffusion (low Péclet numbers), velocity distributes the properties of the inlet to a great part of the domain. However, as diffusion becomes more important (the Péclet number increases), the influence of the inlet becomes less important.
+As a conclusion, it can be stated that for low Péclet numbers, diffusion dominates over advection, and it tends to uniformly distribute the properties of the inlet to the whole domain. However, as the Péclet number increases advection becomes more important, the influence of the inlet decreases and the velocity field is the one that determines the distribution of the variable $\phi$.
+
+Some of the results are plotted in this section, but due to the amount of information, not all of them are in the report. To see more results refer to Attachment A.
