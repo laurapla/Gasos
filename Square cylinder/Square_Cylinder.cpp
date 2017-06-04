@@ -5,10 +5,17 @@
 using namespace std;
 
 // Numerical parameters
-const int N = 100;
-const int M = 100;
+const int N1 = 40;
+const int N2 = 20;
+const int N3 = 40;
+const int N = N1+N2+N3;
 
-float D = 1;typedef double matrix[M+2][N+2];
+const int M1 = 6;
+const int M2 = 4;
+const int M3 = 6;
+const int M = M1+M2+M3;
+
+typedef double matrix[M+2][N+2];
 typedef double staggx[M+2][N+1];
 typedef double staggy[M+1][N+2];
 typedef double mtx[N+1][2];
@@ -31,7 +38,7 @@ double time_step (double dtd, double* x, double* y, staggx u, staggy v);
 double error (int N, int M, staggx u, staggy v, staggx u0, staggy v0);
 void search_index (float point, double *x, int Number, int& ipoint, int& ip);
 double interpolation(float x, double T1, double T2, double x1, double x2);
-void output_files (int N, int M, float L, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v);
+void output_files (int N, int M, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v);
 
 
 int main()
@@ -46,7 +53,7 @@ int main()
 	float mu = rho*umax*L/Re; // Viscosity
 	
 	float delta = 1e-4; // Precision of the simulation (as the Re increases it is recommended to use 5e-5, 1e-4, 2e-4...)
-	float fr = 1; // Relaxation factor
+	float fr = 1.2; // Relaxation factor
 	
 	cout<<"Program started"<<endl;
 	cout<<"Re="<<Re<<endl<<endl;
@@ -146,15 +153,7 @@ int main()
 	
 	// Results
     cout<<endl<<"Creating some output files..."<<endl;
-    output_files (N, M, L, x, y, xvc, yvc, u, v);
-    
-    ofstream strea;
-    strea.open("streamlines.dat");
-	for(int j = M+1; j>=0; j--)
-	{
-		strea<<y[j]<<"	"<<u0[j][0]<<endl;
-	}
-	strea.close();
+    output_files (N, M, x, y, xvc, yvc, u, v);
 	
 	return 0;
 }
@@ -298,7 +297,7 @@ void constant_coefficients(int N, int M, double *x, double *y, double *Sv, doubl
 			else if(i==N-1 && j==0)
 			{
 				ae[j][i] = 0;
-				aw[j][i] = 1;
+				aw[j][i] = 0;
 				an[j][i] = 1;
 				as[j][i] = 0;
 				ap[j][i] = 1;
@@ -306,7 +305,7 @@ void constant_coefficients(int N, int M, double *x, double *y, double *Sv, doubl
 			else if(i==N-1 && j==M-1)
 			{
 				ae[j][i] = 0;
-				aw[j][i] = 1;
+				aw[j][i] = 0;
 				an[j][i] = 0;
 				as[j][i] = 1;
 				ap[j][i] = 1;
@@ -314,7 +313,7 @@ void constant_coefficients(int N, int M, double *x, double *y, double *Sv, doubl
 			else if(i==N-1 && j!=0 && j!=M-1)
 			{
 				ae[j][i] = 0;
-				aw[j][i] = 1;
+				aw[j][i] = 0;
 				an[j][i] = 0;
 				as[j][i] = 0;
 				ap[j][i] = 1;
@@ -712,7 +711,7 @@ double interpolation(float x, double T1, double T2, double x1, double x2)
 
 
 // Output of the results
-void output_files (int N, int M, float L, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v)
+void output_files (int N, int M, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v)
 {
 	// Horizontal velocities
 	ofstream resultats;
@@ -739,28 +738,4 @@ void output_files (int N, int M, float L, double* x, double* y, double* xvc, dou
 		resvltats<<endl;
 	}
 	resvltats.close();
-	
-	
-	// Searching the indexes to interpolate
-	int ipoint, ip, jpoint, jp;
-	search_index (L/2, xvc, N+1, ipoint, ip);
-    search_index (L/2, yvc, M+1, jpoint, jp);
-	
-	// Horizontal velocity in the central vertical line
-	ofstream resultsu;
-    resultsu.open("u.dat");
-    for(int i = M+1; i>=0; i--)
-    {
-    	resultsu<<y[i]<<"	"<<interpolation(L/2, u[i][ipoint], u[i][ip], xvc[ipoint], xvc[ip])<<endl;
-	}
-    resultsu.close();
-	
-	// Vertical velocity in the central horizontal line
-	ofstream resultsv;
-    resultsv.open("v.dat");
-    for(int i = N+1; i>=0; i--)
-    {
-    	resultsv<<x[i]<<"	"<<interpolation(L/2, v[jpoint][i], u[jp][i], yvc[jpoint], yvc[jp])<<endl;
-	}
-    resultsv.close();
 }
