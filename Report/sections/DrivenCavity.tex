@@ -11,10 +11,10 @@ The driven cavity problem consists in a two-dimensional cavity with an incompres
 The domain is discretized, as explained in section \ref{FSMDiscretization}, using the staggered meshes. To do so, the volume is divided using a Cartesian grid, with the following characteristics:
 \begin{table}[]
 	\centering
-	\begin{tabular}{ |c|c|c|c|c|c|c| }
+	\begin{tabular}{ |c|c|c|c|c|c|c|c| }
 		\hline
-		$N$ & $M$ & $L$ & $\rho$ & $u_{ref}$ & $\mu$ & $\delta$ \\ \hline
-		$100$ & $100$ & $1$ & $1$ & $1$ & $\frac{1}{Re}$ & $10^{-5}$ \\ \hline
+		$N$ & $M$ & $L$ & $\rho$ & $u_{ref}$ & $\mu$ & $Numerical scheme$ & $\delta$ \\ \hline
+		$112$ & $112$ & $1$ & $1$ & $1$ & $\frac{1}{Re}$ & $CDS$ & $10^{-5}$ \\ \hline
 	\end{tabular}
 \caption{Numerical parameters of the driven cavity problem}
 \end{table}
@@ -68,9 +68,9 @@ And the prescribed velocities are:
 The simulation of the driven cavity problem ends when it reaches a steady state.
 
 \section{Results}
-In order to study the behaviour of the driven cavity problem in different ranges of flow, the simulation has been tested for $Re=100$, $400$, $1000$, $3200$, $5000$, $7500$ and $10000$.
+In order to study the behaviour of the driven cavity problem in different ranges of flow, the simulation has been tested for $Re=100$, $400$, $1000$, $3200$, $5000$, $7500$ and $10000$. However not all cases are in the report; to see more results refer to Attachment A.
 
-In figures \ref{Drivenhorizontal} and \ref{Drivenvertical} the comparison between the obtained results and the reference ones for the velocities in the central planes can be seen. In both vertical and horizontal speed, the best results are obtained for $Re=1000$. For low Reynolds the difference is slightly higher, but the results are still accurate. However, as the Reynolds increases, the error increases as well. In the cases of $Re=7500$ and $Re=10000$, the results are very different from the expected ones. Since these are high Reynolds, they may have not reached a steady state because they are turbulent.
+Figures \ref{Drivenhorizontal} and \ref{Drivenvertical} are a comparison between the obtained results and the reference ones for the velocities in the central planes. In both vertical and horizontal velocities, the best results are obtained for $Re=1000$. For low Reynolds the difference is slightly higher, but the results are still accurate. In the case of $Re=3200$ there is a point that presents a big error, but since it does not follow the distribution of the others it may be a typographical error. However, as the Reynolds increases, the error increases as well. In the cases of $Re\geq5000$, the results are rather different from the expected ones. Since these are high Reynolds, they may have not reached a steady state because they are turbulent.
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{0.5\textwidth}
@@ -78,33 +78,19 @@ In figures \ref{Drivenhorizontal} and \ref{Drivenvertical} the comparison betwee
 		\caption{$Re=100$}
 	\end{subfigure}%
 	\begin{subfigure}{0.5\textwidth}
-		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u400}}
-		\caption{$Re=400$}
-	\end{subfigure}
-	\begin{subfigure}{0.5\textwidth}
 		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u1000}}
 		\caption{$Re=1000$}
-	\end{subfigure}%
+	\end{subfigure}
 	\begin{subfigure}{0.5\textwidth}
 		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u3200}}
 		\caption{$Re=3200$}
-	\end{subfigure}
-\end{figure}
-\begin{figure}\ContinuedFloat
-	\begin{subfigure}{0.5\textwidth}
-		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u5000}}
-		\caption{$Re=5000$}
 	\end{subfigure}%
-	\begin{subfigure}{0.5\textwidth}
-		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u7500}}
-		\caption{$Re=7500$}
-	\end{subfigure}
 	\begin{subfigure}{0.5\textwidth}
 		\center
 		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u10000}}
 		\caption{$Re=10000$}
 	\end{subfigure}
-	\caption[Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric center of the cavity]{Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric center of the cavity \cite{Ghia1982}}
+	\caption[Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric center of the cavity]{Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric centre of the cavity \cite{Ghia1982}}
 	\label{Drivenhorizontal}
 \end{figure}
 
@@ -115,49 +101,88 @@ In figures \ref{Drivenhorizontal} and \ref{Drivenvertical} the comparison betwee
 		\caption{$Re=100$}
 	\end{subfigure}%
 	\begin{subfigure}{0.5\textwidth}
-		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v400}}
-		\caption{$Re=400$}
-	\end{subfigure}
-	\begin{subfigure}{0.5\textwidth}
 		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v1000}}
 		\caption{$Re=1000$}
-	\end{subfigure}%
+	\end{subfigure}
 	\begin{subfigure}{0.5\textwidth}
 		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v3200}}
 		\caption{$Re=3200$}
-	\end{subfigure}
-\end{figure}
-\begin{figure}\ContinuedFloat
-	\begin{subfigure}{0.5\textwidth}
-		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v5000}}
-		\caption{$Re=5000$}
 	\end{subfigure}%
-	\begin{subfigure}{0.5\textwidth}
-		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v7500}}
-		\caption{$Re=7500$}
-	\end{subfigure}
 	\begin{subfigure}{0.5\textwidth}
 		\center
 		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v10000}}
 		\caption{$Re=10000$}
 	\end{subfigure}
-	\caption[Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric center of the cavity]{Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric center of the cavity \cite{Ghia1982}}
+	\caption[Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric center of the cavity]{Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric centre of the cavity \cite{Ghia1982}}
 	\label{Drivenvertical}
 \end{figure}
 
+As for the distribution of velocities, it can be seen that as the Reynolds increases the variation becomes sharper, especially near the walls, where the gradient of velocities is higher. For the horizontal velocities, the shape of the curve is very different for lower and higher Reynolds.
 
-\subsection{Streamlines}
-In order to know the distribution of the velocity along the cavity, it i useful to plot the streamlines of the flow. They are defined by the stream function $\psi$:
-\begin{equation}
-\frac{\partial\psi}{\partial x}=-v
-\qquad\qquad
-\frac{\partial\psi}{\partial y}=u
-\end{equation}
-A streamline is a line everywhere tangent to the velocity vector at a given instant:
-\begin{equation}
-\frac{dx}{u}=\frac{dy}{v}
-\end{equation}
-Combining both expressions \cite{Haegland2007}:
-\begin{equation}
-\psi\left(x, y\right)=\int udy-\int vdx+\int\left(\int\frac{dv}{dy}dx\right)dy
-\end{equation}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/Ru100}}
+		\caption{$Re=100$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/Ru1000}}
+		\caption{$Re=1000$}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/Ru3200}}
+		\caption{$Re=3200$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\center
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/Ru10000}}
+		\caption{$Re=10000$}
+	\end{subfigure}
+	\caption{Horizontal velocity in the cavity}
+	\label{DrivenHorizontalDomain}
+\end{figure}
+
+Looking at the variation of the horizontal velocity in the whole domain (figure \ref{DrivenHorizontalDomain}), for lower Reynolds, there is only a small movement in the top of the cavity. But as the Re increases, more fluid becomes involved with the clockwise rotation, increasing its radius. For $Re=10000$, the distribution shows that only the outer radius of the cavity rotates. However, these results may not be realistic due to the error obtained at high Reynolds.
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/Rv100}}
+		\caption{$Re=100$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/Rv1000}}
+		\caption{$Re=1000$}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/Rv3200}}
+		\caption{$Re=3200$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\center
+		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/Rv10000}}
+		\caption{$Re=10000$}
+	\end{subfigure}
+	\caption{Vertical velocity in the cavity}
+	\label{DrivenVerticalDomain}
+\end{figure}
+
+For the vertical velocities (figure \ref{DrivenVerticalDomain}) the behaviour is similar to that of the horizontal velocities. For low Re, there is only velocity in the top of the vertical walls. However, as the Re increases, the region with vertical velocity also increases, showing again the distribution of a clockwise rotation. The gradient of velocities in the right wall is stronger for higher Reynolds numbers. In the case of $Re=10000$ the distribution shows that the region with vertical velocity stretches, but these results may not be accurate.
+
+As a conclusion, for lower Reynolds numbers, viscosity only allows a small movement in the upper region of the cavity. This is the case of $Re=100$. But for higher Re, inertial forces become more important and the behaviour of the flow is completely different. The fluid starts to rotate around the centre of the cavity. As the Re increases, the motion becomes more complex and other small vortices appear in the sides of the cavity.
+
+%\subsection{Streamlines}
+%In order to know the distribution of the velocity along the cavity, it i useful to plot the streamlines of the flow. They are defined by the stream function $\psi$:
+%\begin{equation}
+%\frac{\partial\psi}{\partial x}=-v
+%\qquad\qquad
+%\frac{\partial\psi}{\partial y}=u
+%\end{equation}
+%A streamline is a line everywhere tangent to the velocity vector at a given instant:
+%\begin{equation}
+%\frac{dx}{u}=\frac{dy}{v}
+%\end{equation}
+%Combining both expressions \cite{Haegland2007}:
+%\begin{equation}
+%\psi\left(x, y\right)=\int udy-\int vdx+\int\left(\int\frac{dv}{dy}dx\right)dy
+%\end{equation}

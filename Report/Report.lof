@@ -23,22 +23,24 @@
 \contentsline {figure}{\numberline {6.7}{\ignorespaces Representation of the whole domain for $\rho /\Gamma =10^{6}$ (UDS)\relax }}{36}{figure.caption.29}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {7.1}{\ignorespaces Staggered meshes (2D)\relax }}{39}{figure.caption.30}
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Control volume of the horizontal velocity\relax }}{40}{figure.caption.31}
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Control volume of the vertical velocity\relax }}{40}{figure.caption.31}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Control volume of the horizontal velocity\relax }}{41}{figure.caption.31}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Control volume of the vertical velocity\relax }}{41}{figure.caption.31}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {8.1}{\ignorespaces General scheme of the driven cavity problem}}{43}{figure.caption.32}
-\contentsline {figure}{\numberline {8.2}{\ignorespaces Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric center of the cavity}}{48}{figure.caption.37}
-\contentsline {figure}{\numberline {8.3}{\ignorespaces Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric center of the cavity}}{50}{figure.caption.39}
+\contentsline {figure}{\numberline {8.1}{\ignorespaces General scheme of the driven cavity problem}}{44}{figure.caption.32}
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric center of the cavity}}{48}{figure.caption.36}
+\contentsline {figure}{\numberline {8.3}{\ignorespaces Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric center of the cavity}}{49}{figure.caption.37}
+\contentsline {figure}{\numberline {8.4}{\ignorespaces Horizontal velocity in the cavity\relax }}{50}{figure.caption.38}
+\contentsline {figure}{\numberline {8.5}{\ignorespaces Vertical velocity in the cavity\relax }}{51}{figure.caption.39}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {9.1}{\ignorespaces General scheme of the differentially heated problem}}{51}{figure.caption.40}
-\contentsline {figure}{\numberline {9.2}{\ignorespaces Contour plots of the temperature\relax }}{57}{figure.caption.44}
-\contentsline {figure}{\numberline {9.3}{\ignorespaces Contour plots of the horizontal velocity\relax }}{58}{figure.caption.45}
-\contentsline {figure}{\numberline {9.4}{\ignorespaces Contour plots of the vertical velocity\relax }}{59}{figure.caption.46}
+\contentsline {figure}{\numberline {9.1}{\ignorespaces General scheme of the differentially heated problem}}{52}{figure.caption.40}
+\contentsline {figure}{\numberline {9.2}{\ignorespaces Contour plots of the temperature\relax }}{58}{figure.caption.44}
+\contentsline {figure}{\numberline {9.3}{\ignorespaces Contour plots of the horizontal velocity\relax }}{59}{figure.caption.45}
+\contentsline {figure}{\numberline {9.4}{\ignorespaces Contour plots of the vertical velocity\relax }}{60}{figure.caption.46}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {10.1}{\ignorespaces Schematic diagram of the energy cascade as a function of the size of the eddies}}{64}{figure.caption.49}
-\contentsline {figure}{\numberline {10.2}{\ignorespaces Representation of all the possible interactions between the modes in the convective term}}{66}{figure.caption.50}
-\contentsline {figure}{\numberline {10.3}{\ignorespaces Energy spectrum of the steady-state solution of the Burgers' equation\relax }}{69}{figure.caption.52}
+\contentsline {figure}{\numberline {10.1}{\ignorespaces Schematic diagram of the energy cascade as a function of the size of the eddies}}{65}{figure.caption.49}
+\contentsline {figure}{\numberline {10.2}{\ignorespaces Representation of all the possible interactions between the modes in the convective term}}{67}{figure.caption.50}
+\contentsline {figure}{\numberline {10.3}{\ignorespaces Energy spectrum of the steady-state solution of the Burgers' equation\relax }}{70}{figure.caption.52}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {11.1}{\ignorespaces General scheme of the square cylinder problem}}{71}{figure.caption.53}
-\contentsline {figure}{\numberline {11.2}{\ignorespaces Fluxes conditions in the cylinder\relax }}{73}{figure.caption.54}
+\contentsline {figure}{\numberline {11.1}{\ignorespaces General scheme of the square cylinder problem}}{72}{figure.caption.53}
+\contentsline {figure}{\numberline {11.2}{\ignorespaces Fluxes conditions in the cylinder\relax }}{74}{figure.caption.54}
 \addvspace {10\p@ }

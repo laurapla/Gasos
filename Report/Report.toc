@@ -44,42 +44,42 @@
 \contentsline {section}{\numberline {6.3}Algorithm}{31}{section.6.3}
 \contentsline {section}{\numberline {6.4}Results}{33}{section.6.4}
 \contentsline {chapter}{\numberline {7}Fractional Step Method}{37}{chapter.7}
-\contentsline {section}{\numberline {7.1}Fractional Step Method algorithm}{38}{section.7.1}
-\contentsline {section}{\numberline {7.2}Discretization}{38}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}Intermediate velocity discretization}{38}{subsection.7.2.1}
-\contentsline {subsection}{\numberline {7.2.2}Pressure discretization}{40}{subsection.7.2.2}
-\contentsline {subsection}{\numberline {7.2.3}Velocity discretization}{41}{subsection.7.2.3}
-\contentsline {section}{\numberline {7.3}Time step}{41}{section.7.3}
-\contentsline {chapter}{\numberline {8}Driven cavity problem}{43}{chapter.8}
-\contentsline {section}{\numberline {8.1}Discretization}{43}{section.8.1}
-\contentsline {section}{\numberline {8.2}Boundary conditions}{44}{section.8.2}
-\contentsline {section}{\numberline {8.3}Algorithm}{45}{section.8.3}
-\contentsline {section}{\numberline {8.4}Results}{46}{section.8.4}
-\contentsline {subsection}{\numberline {8.4.1}Streamlines}{46}{subsection.8.4.1}
-\contentsline {chapter}{\numberline {9}Differentially heated cavity}{51}{chapter.9}
-\contentsline {section}{\numberline {9.1}Natural convection}{51}{section.9.1}
-\contentsline {subsection}{\numberline {9.1.1}Non-dimensional equations}{52}{subsection.9.1.1}
-\contentsline {section}{\numberline {9.2}Application of the fractional step method}{53}{section.9.2}
-\contentsline {section}{\numberline {9.3}Discretization}{53}{section.9.3}
-\contentsline {section}{\numberline {9.4}Boundary conditions}{54}{section.9.4}
-\contentsline {section}{\numberline {9.5}Nusselt number}{55}{section.9.5}
-\contentsline {section}{\numberline {9.6}Algorithm}{55}{section.9.6}
-\contentsline {section}{\numberline {9.7}Results}{57}{section.9.7}
-\contentsline {part}{V\hspace {1em}Turbulence}{62}{part.5}
-\contentsline {chapter}{\numberline {10}Burgers' equation}{63}{chapter.10}
-\contentsline {section}{\numberline {10.1}Burgulence}{64}{section.10.1}
-\contentsline {section}{\numberline {10.2}Fourier space}{64}{section.10.2}
-\contentsline {section}{\numberline {10.3}Discretization}{66}{section.10.3}
-\contentsline {subsection}{\numberline {10.3.1}Direct Numerical Simulation}{67}{subsection.10.3.1}
-\contentsline {subsection}{\numberline {10.3.2}Large-Eddy Simulation}{67}{subsection.10.3.2}
-\contentsline {section}{\numberline {10.4}Algorithm}{68}{section.10.4}
-\contentsline {section}{\numberline {10.5}Results}{69}{section.10.5}
-\contentsline {part}{VI\hspace {1em}External flow}{70}{part.6}
-\contentsline {chapter}{\numberline {11}Square cylinder}{71}{chapter.11}
-\contentsline {section}{\numberline {11.1}Discretization}{71}{section.11.1}
-\contentsline {section}{\numberline {11.2}Boundary conditions}{72}{section.11.2}
-\contentsline {subsection}{\numberline {11.2.1}Inlet conditions}{72}{subsection.11.2.1}
-\contentsline {subsection}{\numberline {11.2.2}Outlet conditions}{72}{subsection.11.2.2}
-\contentsline {subsection}{\numberline {11.2.3}Wall conditions}{72}{subsection.11.2.3}
-\contentsline {part}{VII\hspace {1em}Results}{74}{part.7}
-\contentsline {chapter}{\numberline {12}Bibliography}{75}{chapter.12}
+\contentsline {section}{\numberline {7.1}The Helmholtz-Hodge decomposition theorem}{37}{section.7.1}
+\contentsline {section}{\numberline {7.2}Fractional Step Method algorithm}{38}{section.7.2}
+\contentsline {section}{\numberline {7.3}Discretization}{39}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Intermediate velocity discretization}{40}{subsection.7.3.1}
+\contentsline {subsection}{\numberline {7.3.2}Pressure discretization}{41}{subsection.7.3.2}
+\contentsline {subsection}{\numberline {7.3.3}Velocity discretization}{42}{subsection.7.3.3}
+\contentsline {section}{\numberline {7.4}Time step}{42}{section.7.4}
+\contentsline {chapter}{\numberline {8}Driven cavity problem}{44}{chapter.8}
+\contentsline {section}{\numberline {8.1}Discretization}{44}{section.8.1}
+\contentsline {section}{\numberline {8.2}Boundary conditions}{45}{section.8.2}
+\contentsline {section}{\numberline {8.3}Algorithm}{46}{section.8.3}
+\contentsline {section}{\numberline {8.4}Results}{47}{section.8.4}
+\contentsline {chapter}{\numberline {9}Differentially heated cavity}{52}{chapter.9}
+\contentsline {section}{\numberline {9.1}Natural convection}{52}{section.9.1}
+\contentsline {subsection}{\numberline {9.1.1}Non-dimensional equations}{53}{subsection.9.1.1}
+\contentsline {section}{\numberline {9.2}Application of the fractional step method}{54}{section.9.2}
+\contentsline {section}{\numberline {9.3}Discretization}{54}{section.9.3}
+\contentsline {section}{\numberline {9.4}Boundary conditions}{55}{section.9.4}
+\contentsline {section}{\numberline {9.5}Nusselt number}{56}{section.9.5}
+\contentsline {section}{\numberline {9.6}Algorithm}{56}{section.9.6}
+\contentsline {section}{\numberline {9.7}Results}{58}{section.9.7}
+\contentsline {part}{V\hspace {1em}Turbulence}{63}{part.5}
+\contentsline {chapter}{\numberline {10}Burgers' equation}{64}{chapter.10}
+\contentsline {section}{\numberline {10.1}Burgulence}{65}{section.10.1}
+\contentsline {section}{\numberline {10.2}Fourier space}{65}{section.10.2}
+\contentsline {section}{\numberline {10.3}Discretization}{67}{section.10.3}
+\contentsline {subsection}{\numberline {10.3.1}Direct Numerical Simulation}{68}{subsection.10.3.1}
+\contentsline {subsection}{\numberline {10.3.2}Large-Eddy Simulation}{68}{subsection.10.3.2}
+\contentsline {section}{\numberline {10.4}Algorithm}{69}{section.10.4}
+\contentsline {section}{\numberline {10.5}Results}{70}{section.10.5}
+\contentsline {part}{VI\hspace {1em}External flow}{71}{part.6}
+\contentsline {chapter}{\numberline {11}Square cylinder}{72}{chapter.11}
+\contentsline {section}{\numberline {11.1}Discretization}{72}{section.11.1}
+\contentsline {section}{\numberline {11.2}Boundary conditions}{73}{section.11.2}
+\contentsline {subsection}{\numberline {11.2.1}Inlet conditions}{73}{subsection.11.2.1}
+\contentsline {subsection}{\numberline {11.2.2}Outlet conditions}{73}{subsection.11.2.2}
+\contentsline {subsection}{\numberline {11.2.3}Wall conditions}{73}{subsection.11.2.3}
+\contentsline {part}{VII\hspace {1em}Results}{75}{part.7}
+\contentsline {chapter}{\numberline {12}Bibliography}{76}{chapter.12}

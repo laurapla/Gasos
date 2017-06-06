@@ -44,18 +44,18 @@
 \BOOKMARK [1][-]{section.6.3}{Algorithm}{chapter.6}% 44
 \BOOKMARK [1][-]{section.6.4}{Results}{chapter.6}% 45
 \BOOKMARK [0][-]{chapter.7}{Fractional Step Method}{part.4}% 46
-\BOOKMARK [1][-]{section.7.1}{Fractional Step Method algorithm}{chapter.7}% 47
-\BOOKMARK [1][-]{section.7.2}{Discretization}{chapter.7}% 48
-\BOOKMARK [2][-]{subsection.7.2.1}{Intermediate velocity discretization}{section.7.2}% 49
-\BOOKMARK [2][-]{subsection.7.2.2}{Pressure discretization}{section.7.2}% 50
-\BOOKMARK [2][-]{subsection.7.2.3}{Velocity discretization}{section.7.2}% 51
-\BOOKMARK [1][-]{section.7.3}{Time step}{chapter.7}% 52
-\BOOKMARK [0][-]{chapter.8}{Driven cavity problem}{part.4}% 53
-\BOOKMARK [1][-]{section.8.1}{Discretization}{chapter.8}% 54
-\BOOKMARK [1][-]{section.8.2}{Boundary conditions}{chapter.8}% 55
-\BOOKMARK [1][-]{section.8.3}{Algorithm}{chapter.8}% 56
-\BOOKMARK [1][-]{section.8.4}{Results}{chapter.8}% 57
-\BOOKMARK [2][-]{subsection.8.4.1}{Streamlines}{section.8.4}% 58
+\BOOKMARK [1][-]{section.7.1}{The Helmholtz-Hodge decomposition theorem}{chapter.7}% 47
+\BOOKMARK [1][-]{section.7.2}{Fractional Step Method algorithm}{chapter.7}% 48
+\BOOKMARK [1][-]{section.7.3}{Discretization}{chapter.7}% 49
+\BOOKMARK [2][-]{subsection.7.3.1}{Intermediate velocity discretization}{section.7.3}% 50
+\BOOKMARK [2][-]{subsection.7.3.2}{Pressure discretization}{section.7.3}% 51
+\BOOKMARK [2][-]{subsection.7.3.3}{Velocity discretization}{section.7.3}% 52
+\BOOKMARK [1][-]{section.7.4}{Time step}{chapter.7}% 53
+\BOOKMARK [0][-]{chapter.8}{Driven cavity problem}{part.4}% 54
+\BOOKMARK [1][-]{section.8.1}{Discretization}{chapter.8}% 55
+\BOOKMARK [1][-]{section.8.2}{Boundary conditions}{chapter.8}% 56
+\BOOKMARK [1][-]{section.8.3}{Algorithm}{chapter.8}% 57
+\BOOKMARK [1][-]{section.8.4}{Results}{chapter.8}% 58
 \BOOKMARK [0][-]{chapter.9}{Differentially heated cavity}{part.4}% 59
 \BOOKMARK [1][-]{section.9.1}{Natural convection}{chapter.9}% 60
 \BOOKMARK [2][-]{subsection.9.1.1}{Non-dimensional equations}{section.9.1}% 61

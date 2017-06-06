@@ -6,27 +6,56 @@ The equations to be solved are the conservation of mass and the conservation of 
 \nabla\cdot\vec{v}=0 \\
 \rho\frac{\partial\vec{v}}{\partial t}+\rho\left(\vec{v}\cdot\nabla\right)\vec{v}=-\nabla p+\mu\nabla^{2}\vec{v}
 \end{aligned}
+\label{MassandMomentum}
 \end{equation}
+
+\section{The Helmholtz-Hodge decomposition theorem}
 According to the Helmholtz-Hodge theorem, it is possible to decompose any vector in a divergence-free vector parallel to the boundary and a gradient field, and this decomposition is unique \cite{CTTC}.
 
-Assuming constant density and viscosity, the convective and viscosity terms can be grouped together in a single variable $R\left(\vec{v}\right)$, rewriting the Navier-Stokes equation as:
+The theorem starts with the definition of the projector operator $\Pi(\cdot)$, that projects any vector field onto a divergence-free space:
+\begin{equation}
+\nabla\cdot\Pi\left(\vec{a}\right)=0
+\label{HelmholtzHodge}
+\end{equation}
+Taking this operator and applying it to the momentum equation:
+\begin{equation}
+\Pi\left(\rho\frac{\partial\vec{v}}{\partial t}+\nabla p\right)=\Pi\left(-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}\right)
+\end{equation}
+Since the velocity field is incompressible, the transient term is already divergence-free and does not change. But the pressure gradient disappears, leading to the divergence-free vector:
+\begin{equation}
+\rho\frac{\partial\vec{v}}{\partial t}=\Pi\left(-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}\right)
+\end{equation}
+On the other hand, the gradient of the scalar field is obtained isolating the pressure from the momentum equation \ref{MassandMomentum}:
+\begin{equation}
+\nabla p=-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}-\Pi\left(-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}\right)
+\label{nablap}
+\end{equation}
+Finally, if the divergence operator is applied to equation \ref{nablap} taking into account the property given by \ref{HelmholtzHodge}, a Poisson equation is obtained for pressure:
+\begin{equation}
+\nabla^{2}p=\nabla\cdot\left(-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}\right)
+\end{equation}
+
+In conclusion, the Helmholtz-Hodge theorem decomposes the Navier-Stokes equation in two equations that allow the resolution of the pressure field and the velocity field separately.
+
+To apply the theorem, it is easier to rearrange the Navier-Stokes equation. Assuming constant density and viscosity, the convective and diffusive terms can be grouped together into the single variable $R\left(\vec{v}\right)=-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}$:
 \begin{equation}
 \rho\frac{\partial\vec{v}}{\partial t}=R\left(\vec{v}\right)-\nabla p
 \label{RNSFSM}
 \end{equation}
-where $R\left(\vec{v}\right)=-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}$.
-Integrating the equation \ref{RNSFSM} over time:
+
+In the numerical integration of equation \ref{RNSFSM} over time the pressure gradient is discretized using an implicit scheme, and the convective term using a central differencing scheme, leading to:
 \begin{equation}
 \rho\frac{\vec{v}^{n+1}-\vec{v}^{n}}{\Delta t}=R^{n+\frac{1}{2}}\left(\vec{v}\right)-\nabla p^{n+1}
 \end{equation}
-However, the term $R^{n+\frac{1}{2}}\left(\vec{v}\right)$ is not easy to evaluate. To do so, the Adams-Bashforth second-order scheme is used:
+where $t^{n+1/2}$ is the instant of time between $t^{n}$ and $t^{n+1}$. To evaluate the convection-diffusion term, the Adams-Bashforth second-order scheme is used:
 \begin{equation}
 R^{n+\frac{1}{2}}\left(\vec{v}\right)\approx\frac{3}{2}R\left(\vec{v^{n}}\right)-\frac{1}{2}R\left(\vec{v}^{n-1}\right)
 \label{AdamsBashforth}
 \end{equation}
-Applying the Helmholtz-Hodge Theorem, the intermediate velocity is easily obtained:
+
+As an application of the Helmholtz-Hodge theorem, the intermediate velocity is defined as the sum of a divergence-free vector and the gradient of a scalar field:
 \begin{equation}
-\vec{v}^{P}=\vec{v}^{n+1}+\frac{\Delta t}{\rho}\nabla p^{n+1}
+\vec{v}^{P}=\vec{v}^{n+1}+\nabla\tilde{p}=\vec{v}^{n+1}+\frac{\Delta t}{\rho}p^{n+1}
 \label{IntermediateVelocity}
 \end{equation}
 Introducing this expression to the integrated equation:
@@ -46,13 +75,13 @@ With all these expressions the fractional step method (FSM) can be finally imple
 	\item Evaluate $R^{n+\frac{1}{2}}\left(\vec{v}\right)$.
 	\item Calculate the intermediate velocity with equation \ref{IntermediatewithR}.
 	\item Calculate the pressure $p^{n+1}$ from the Poisson equation \ref{Poisson} using a linear solver.
-	\item Calculate the velocity at the next time step with equation \ref{IntermediateVelocity}.
+	\item Apply the pressure correction given by \ref{IntermediateVelocity} to calculate the velocity at the next time step.
 \end{enumerate}
-However, the FSM can be problematic if the mesh of the problem is not correctly implemented. To avoid having solutions with no physical sense, it is important to use staggered meshes or collocated meshes. The discretization of the domain as well as a further explanation of the described steps are going to be developed in the following sections.
+However, the FSM can be problematic if the mesh of the problem is not correctly implemented. To avoid having unrealistic solutions, it is important to use staggered meshes or collocated meshes. The discretization of the domain as well as a further explanation of the described steps are going to be developed in the following sections.
 
 \section{Discretization}
 \label{FSMDiscretization}
-To avoid convergence problems or incorrect solutions (checkerboard problem), the staggered meshes are used. As shown in figure \ref{staggered}, in a two-dimensional case there are 3 control volumes, one for each variable: $p_{P}$, $u_{P}$ and $v_{P}$. They are coloured in black, red and green respectively. The black dots are the nodes in which the pressure is calculated, the red arrows are the nodes of the horizontal velocity, and the green arrows are the nodes of the vertical velocity.
+To avoid convergence problems or incorrect solutions (checkerboard problem \cite{CTTCa}), staggered meshes are used. As shown in figure \ref{staggered}, in a two-dimensional case there are 3 control volumes, one for each variable: $p_{P}$, $u_{P}$ and $v_{P}$. They are coloured in black, red and green respectively. The black dots are the nodes in which the pressure is calculated, the red arrows are the nodes of the horizontal velocity, and the green arrows are the nodes of the vertical velocity.
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.65]{DrivenCavity/staggered}
@@ -61,19 +90,19 @@ To avoid convergence problems or incorrect solutions (checkerboard problem), the
 \end{figure}
 
 \subsection{Intermediate velocity discretization}
-First of all, it is necessary to discretize the expression of R of the equation \ref{RNSFSM}:
+First of all, it is necessary to discretize the expression of $R\left(\vec{v}\right)$ of the equation \ref{RNSFSM}:
 \begin{equation}
 R\left(\vec{v}\right)=-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}
 \end{equation}
-This variable is a vector. Integrating the expression over the control volume of the horizontal velocity staggered mesh in the horizontal direction:
+This variable is a vector, so it has to be discretized in two directions. Integrating the expression over the control volume of the horizontal velocity staggered mesh in the horizontal direction:
 \begin{equation}
 \int_{\Omega_{x}}R\left(u\right)d\Omega_{x}=-\int_{\Omega_{x}}\left(\rho\vec{v}\cdot\nabla\right)ud\Omega_{x}+\int_{\Omega_{x}}\mu\nabla^{2}ud\Omega_{x}
 \end{equation}
-Now, applying the Gauss Theorem:
+Applying the Gauss theorem:
 \begin{equation}
 R\left(u\right)V_{P}=-\int_{\partial\Omega_{x}}\left(\rho\vec{v}\right)u\cdot\vec{n}dS+\int_{\partial\Omega_{x}}\mu\nabla u\cdot\vec{n}dS
 \end{equation}
-The final integration of R in the horizontal direction results as:
+The final integration of $R\left(\vec{v}\right)$ in the horizontal direction results as:
 \begin{multline}
 R\left(u\right)V_{P}=\left[\mu_{e}\frac{u_{E}-u_{P}}{d_{EP}}A_{e}+\mu_{n}\frac{u_{N}-u_{P}}{d_{NP}}A_{n}-\mu_{w}\frac{u_{P}-u_{W}}{d_{WP}}A_{w}-\mu_{s}\frac{u_{P}-u_{S}}{d_{SP}}A_{s}\right] \\
 -\left[\left(\rho u\right)_{e}u_{e}A_{e}+\left(\rho v\right)_{n}u_{n}A_{n}-\left(\rho u\right)_{w}u_{w}A_{w}-\left(\rho v\right)_{s}u_{s}A_{s}\right]
@@ -130,13 +159,13 @@ The main problem of these expressions is the evaluation of the velocities and th
 	\left(\rho v\right)_{s}=\frac{\rho v_{P}+\rho v_{2}}{2}
 	\end{equation}
 \end{itemize}
-Once the value of R is calculated using the expressions developed above and the Adams-Bashforth scheme \ref{AdamsBashforth}, the intermediate velocity can be computed rearranging the equation \ref{IntermediatewithR}:
+Once the value of $R\left(\vec{v}\right)$ is calculated using the expressions developed above and the Adams-Bashforth scheme \ref{AdamsBashforth}, the intermediate velocity can be computed rearranging the equation \ref{IntermediatewithR}:
 \begin{equation}
 \vec{v}^{P}=\vec{v}^{n}+\frac{\Delta t}{\rho}R^{n+\frac{1}{2}}\left(\vec{v}\right)
 \end{equation}
 
 \subsection{Pressure discretization}
-The next step is to obtain the pressure in the next time step with the Poisson equation. Knowing the space discretization of the domain, the discretized Poisson equation can be calculated. Integrating the expression \ref{Poisson} over the domain and applying the divergence theorem, the following expression can be easily obtained:
+The next step is to obtain the pressure in the next time step with the Poisson equation. Knowing the space discretization of the domain, the discretized Poisson equation can be calculated. Integrating the expression \ref{Poisson} over the domain and applying the divergence theorem, the following expression is obtained:
 \begin{equation}
 \begin{aligned}
 \frac{p_{E}^{n+1}-p_{P}^{n+1}}{d_{EP}}A_{e}+\frac{p_{N}^{n+1}-p_{P}^{n+1}}{d_{NP}}A_{n}-\frac{p_{P}^{n+1}-p_{W}^{n+1}}{d_{WP}}A_{w}-\frac{p_{P}^{n+1}-p_{S}^{n+1}}{d_{SP}}A_{s}= \\
@@ -168,7 +197,7 @@ b_{P}=-\frac{1}{\Delta t}\left[\left(\rho u^{P}\right)_{e}A_{e}+\left(\rho v^{P}
 \end{equation}
 
 \subsection{Velocity discretization}
-With the equation \ref{IntermediateVelocity} the horizontal and vertical velocities at the next time step can be calculated:
+With equation \ref{IntermediateVelocity} the horizontal and vertical velocities at the next time step can be calculated:
 \begin{equation}
 u_{P}^{n+1}=u_{P}^{P}-\frac{\Delta t}{\rho}\frac{p_{e}^{n+1}-p_{w}^{n+1}}{d_{ew}}
 \end{equation}
@@ -184,7 +213,7 @@ The fractional step method is an explicit method. In order to obtain accuracy in
 \begin{equation}
 \Delta t_{d}=\min\left(0.20\frac{\rho\left(\Delta x\right)^{2}}{\mu}\right)
 \end{equation}
-If the mesh, the density and the viscosity are constant, the time step defined by the diffusive term is constant, so it only has to be calculated at the beginning of the simulation, as it depends on the velocity. But the time step given by the convective term changes with each iteration. The final time step that is going to be used is the smallest one:
+If the mesh, the density and the viscosity are constant, the time step defined by the diffusive term is constant, so it only has to be calculated at the beginning of the simulation, as it does not depend on the velocity. But the time step given by the convective term changes with each iteration. The final time step that is used is the smallest one:
 \begin{equation}
 \Delta t=\min\left(\Delta t_{c}, \Delta t_{d}\right)
 \end{equation}
