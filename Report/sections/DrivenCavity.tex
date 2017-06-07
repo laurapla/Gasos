@@ -86,7 +86,6 @@ Figures \ref{Drivenhorizontal} and \ref{Drivenvertical} are a comparison between
 		\caption{$Re=3200$}
 	\end{subfigure}%
 	\begin{subfigure}{0.5\textwidth}
-		\center
 		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/u10000}}
 		\caption{$Re=10000$}
 	\end{subfigure}
@@ -109,7 +108,6 @@ Figures \ref{Drivenhorizontal} and \ref{Drivenvertical} are a comparison between
 		\caption{$Re=3200$}
 	\end{subfigure}%
 	\begin{subfigure}{0.5\textwidth}
-		\center
 		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v10000}}
 		\caption{$Re=10000$}
 	\end{subfigure}
@@ -134,7 +132,6 @@ As for the distribution of velocities, it can be seen that as the Reynolds incre
 		\caption{$Re=3200$}
 	\end{subfigure}%
 	\begin{subfigure}{0.5\textwidth}
-		\center
 		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/Ru10000}}
 		\caption{$Re=10000$}
 	\end{subfigure}
@@ -159,7 +156,6 @@ Looking at the variation of the horizontal velocity in the whole domain (figure 
 		\caption{$Re=3200$}
 	\end{subfigure}%
 	\begin{subfigure}{0.5\textwidth}
-		\center
 		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/Rv10000}}
 		\caption{$Re=10000$}
 	\end{subfigure}
@@ -169,20 +165,26 @@ Looking at the variation of the horizontal velocity in the whole domain (figure 
 
 For the vertical velocities (figure \ref{DrivenVerticalDomain}) the behaviour is similar to that of the horizontal velocities. For low Re, there is only velocity in the top of the vertical walls. However, as the Re increases, the region with vertical velocity also increases, showing again the distribution of a clockwise rotation. The gradient of velocities in the right wall is stronger for higher Reynolds numbers. In the case of $Re=10000$ the distribution shows that the region with vertical velocity stretches, but these results may not be accurate.
 
-As a conclusion, for lower Reynolds numbers, viscosity only allows a small movement in the upper region of the cavity. This is the case of $Re=100$. But for higher Re, inertial forces become more important and the behaviour of the flow is completely different. The fluid starts to rotate around the centre of the cavity. As the Re increases, the motion becomes more complex and other small vortices appear in the sides of the cavity.
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[scale=0.61]{DrivenCavity/100}
+		\caption{$Re=100$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[scale=0.61]{DrivenCavity/1000}
+		\caption{$Re=1000$}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[scale=0.61]{DrivenCavity/3200}
+		\caption{$Re=3200$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[scale=0.61]{DrivenCavity/10000}
+		\caption{$Re=10000$}
+	\end{subfigure}
+	\caption{Streamlines of the flow inside the cavity}
+	\label{DrivenStreamlines}
+\end{figure}
 
-%\subsection{Streamlines}
-%In order to know the distribution of the velocity along the cavity, it i useful to plot the streamlines of the flow. They are defined by the stream function $\psi$:
-%\begin{equation}
-%\frac{\partial\psi}{\partial x}=-v
-%\qquad\qquad
-%\frac{\partial\psi}{\partial y}=u
-%\end{equation}
-%A streamline is a line everywhere tangent to the velocity vector at a given instant:
-%\begin{equation}
-%\frac{dx}{u}=\frac{dy}{v}
-%\end{equation}
-%Combining both expressions \cite{Haegland2007}:
-%\begin{equation}
-%\psi\left(x, y\right)=\int udy-\int vdx+\int\left(\int\frac{dv}{dy}dx\right)dy
-%\end{equation}
+As a conclusion, for lower Reynolds numbers, viscosity only allows a small movement in the upper region of the cavity. This is the case of $Re=100$. But for higher Re, inertial forces become more important and the behaviour of the flow is completely different. The fluid starts to rotate around the centre of the cavity. As the Re increases, the motion becomes more complex and other small vortices appear in the sides of the cavity, as it can be seen in figure \ref{DrivenStreamlines}.

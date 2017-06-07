@@ -173,10 +173,10 @@ The algorithm used to calculate this problem is very similar to that of the driv
 In order to provide different ranges of solutions, the code has been tested for different Rayleigh numbers. The parameters of the simulations are listed in table \ref{NumericalParamDiffHeated}.
 \begin{table}[H]
 	\centering
-	\begin{tabular}{ |c|c|c|c|c| }
+	\begin{tabular}{ |c|c|c|c|c|c| }
 		\hline
-		$N$ & $M$ & $L$ & $Pr$ & $\delta$ \\ \hline
-		$50$ & $50$ & $1$ & $0.71$ & $10^{-4}$ \\ \hline
+		$N$ & $M$ & $L$ & $H$ & $Pr$ & $\delta$ \\ \hline
+		$50$ & $50$ & $1$ & $1$ & $0.71$ & $10^{-4}$ \\ \hline
 	\end{tabular}
 \caption{Numerical parameters of the differentially heated cavity problem}
 \label{NumericalParamDiffHeated}
@@ -201,7 +201,7 @@ In order to provide different ranges of solutions, the code has been tested for 
 	\caption{Contour plots of the temperature}
 	\label{TemperatureDiffHeated}
 \end{figure}
-In the temperature distribution (figure \ref{TemperatureDiffHeated}), there is a curve of the hot fluid (left wall) to the right in the top, whereas in the bottom the temperature decreases faster. This behaviour is explained because a higher temperature means a lower density, so the hot fluid tends to go on top. At low Ra, the temperature distribution is almost linear, like in conduction. But as Ra increases, the mentioned curve becomes more pronounced, until the highest Rayleigh numbers in which practically the half top of the cavity is hot and the half bottom is cold. This increase in Ra is like an increase in the volumetric thermal expansion coefficient, which means that density varies more with temperature. In other words, at very low Ra, the heat transfer is mainly by conduction, but as the Rayleigh number increases the differences in density become more important and the heat transport is by convection.
+In the temperature distribution (figure \ref{TemperatureDiffHeated}), there is a curve of the hot fluid (left wall) to the right in the top, whereas in the bottom the temperature decreases faster. This is the expected behaviour because higher temperatures mean lower densities, so the hot fluid tends to go to the top. At low Ra, the temperature distribution is almost linear, like in conduction. But as Ra increases, the mentioned curve becomes more pronounced, until the highest Rayleigh numbers in which practically the half top of the cavity is hot and the half bottom is cold. This increase in Ra is like an increase in the volumetric thermal expansion coefficient, which means that density varies more with temperature. In other words, at very low Ra, the heat transfer is mainly by conduction, but as the Rayleigh number increases the differences in density become more important and the heat transport is by convection.
 
 \begin{figure}[h]
 	\begin{subfigure}{0.5\textwidth}
@@ -248,11 +248,33 @@ In the temperature distribution (figure \ref{TemperatureDiffHeated}), there is a
 
 Figure \ref{uplotDiffHeated} displays the horizontal velocity in the cavity for the studied Rayleigh numbers. In the case of the horizontal velocity, it can be seen that the hot fluid (in top) moves to the colder zone as expected, displacing the cold fluid (at the bottom) to the left. At low Rayleigh numbers, the maximum velocities, positive and negative, are in the top and bottom middle of the cavity; but at higher Ra, the maximum velocities move to the right and left corners respectively.
 
-For the vertical velocity (figures \ref{vplotDiffHeated}), the hot fluid (left) moves upwards, whereas the cold fluid (right), that has a higher density, moves downwards. However, the centre of the cavity does not move. When the Rayleigh number increases, the areas with important vertical velocities are stretched, increasing the velocity gradient in the walls. It is also important to notice that in figures \ref{vplotRa5} and \ref{vplotRa6} there is a some downwards movement in the left half of the cavity. This suggests that the fluid movement becomes more complex at higher Ra.
+Regarding the vertical velocity (figures \ref{vplotDiffHeated}), the highest values are obtained near the walls. The hot fluid (left) moves upwards, whereas the cold fluid (right), that has a higher density, moves downwards. In the centre of the cavity there is also vertical movement, but at lower velocities. When the Rayleigh number increases, the areas with high vertical velocities are stretched, increasing the velocity gradient in the walls. It is also important to notice that in figures \ref{vplotRa5} and \ref{vplotRa6} there is some downwards movement in the left half of the cavity and a weak upwards movement in the bottom right, suggesting that the motion of the fluid becomes more complex at higher Ra.
 
-As a conclusion, regarding the horizontal and vertical velocities, it can be said the the fluid moves in a clock-wise direction, but as the Rayleigh number increases, its rotation becomes more complex.
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[scale=0.61]{Buoyancy/3}
+		\caption{$Ra=10^{3}$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[scale=0.61]{Buoyancy/4}
+		\caption{$Ra=10^{4}$}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[scale=0.61]{Buoyancy/5}
+		\caption{$Ra=10^{5}$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[scale=0.61]{Buoyancy/6}
+		\caption{$Ra=10^{6}$}
+	\end{subfigure}
+	\caption{Streamlines of the flow in the heated cavity}
+	\label{HeatedStreamlines}
+\end{figure}
 
-Finally, it is important to verify the results. Table \ref{ComparisonDiffHeated} displays a comparison between the results and the reference values, and table \ref{ErrorDiffHeated} the error. The parameters studied are listed below:
+As a conclusion, regarding the horizontal and vertical velocities, it can be said the the fluid moves in a clock-wise direction, as it can be seen in figure \ref{HeatedStreamlines}. At lower Ra, when the heat transfer is mainly by conduction, the fluid rotates around the centre of the cavity. However, as the Rayleigh number increases and convection becomes more important, the rotation is more complex. The central vortex stretches until it divides in two vortices, changing the motion of the fluid.
+
+Finally, a verification of the results has to be done. Table \ref{ComparisonDiffHeated} displays a comparison between the results obtained with the code and the reference values \cite{DeVahlDavis1983}; and table \ref{ErrorDiffHeated} depicts their relative error. The parameters studied are listed below:
 \begin{itemize}
 	\item $u_{max}$: Maximum horizontal velocity on the vertical mid-plane of the cavity and its location.
 	\item $v_{max}$: Maximum vertical velocity on the horizontal mid-plane of the cavity and its location.

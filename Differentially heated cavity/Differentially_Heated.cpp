@@ -821,6 +821,24 @@ void vorticity(int N, int M, double* xvc, double* yvc, staggx u, staggy v, matri
 // Output of the results
 void output_files (int N, int M, float L, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v, matrix T, double* Nu)
 {
+	// Horizontal coordinates
+    ofstream xx;
+	xx.open("x.dat");
+    for(int i = 0; i<N+2; i++)
+    {
+    	xx<<x[i]<<endl;
+	}
+    xx.close();
+    
+    // Vertical coordinates
+	ofstream yy;
+    yy.open("y.dat");
+    for(int j = M+1; j>=0; j--)
+    {
+    	yy<<y[j]<<endl;
+	}
+    yy.close();
+	
 	// Horizontal velocities
 	ofstream resultats;
     resultats.open("Resultats.dat");
@@ -847,15 +865,55 @@ void output_files (int N, int M, float L, double* x, double* y, double* xvc, dou
 	}
 	resvltats.close();
     
+    // Matrix of horizontal velocities
+	ofstream result;
+    result.open("Matrixu.dat");
+	for(int j = M+1; j>=0; j--)
+	{
+		for(int i = 0; i<N+2; i++)
+		{
+			if(i==0 || i==N+1)
+			{
+				result<<u[j][i]<<"	";
+			}
+			else
+			{
+				result<<convective_term (x[i], xvc[i-1], xvc[i], u[j][i-1], u[j][i])<<"	";
+			}
+		}
+		result<<endl;
+	}
+	result.close();
+	
+	// Matrix of vertical velocities
+	ofstream resvlt;
+    resvlt.open("Matrixv.dat");
+	for(int j = M+1; j>=0; j--)
+	{
+		for(int i = 0; i<N+2; i++)
+		{
+			if(j==0 && j==M+1)
+			{
+				resvlt<<v[j][i]<<"	";
+			}
+			else
+			{
+				resvlt<<convective_term (y[j], yvc[j-1], yvc[j], v[j-1][i], v[j][i])<<"	";
+			}
+		}
+		resvlt<<endl;
+	}
+	resvlt.close();
+    
     
     // Temperature
     ofstream temperature;
     temperature.open("Temperatura.dat");
-    for(int i = 0; i<N+2; i++)
+    for(int j = M+1; j>=0; j--)
     {
-    	for(int j = 0; j<M+2; j++)
+    	for(int i = 0; i<N+2; i++)
     	{
-    		temperature<<x[i]<<"	"<<y[j]<<"	"<<T[j][i]<<endl;
+    		temperature<<T[j][i]<<"	";
 		}
 		temperature<<endl;
 	}

@@ -1,4 +1,4 @@
 
-plot 'u100.dat' using 2:1 with lines t 'Calculated', 'Reference/u100.dat' using 2:1 with linespoints t 'Reference'
+plot 'Resultats/10000/u10000.dat' using 2:1 with lines t 'Calculated', 'Reference/u10000.dat' using 2:1 with points t 'Reference'
 
 plot 'Resultats/10000/v10000.dat' with lines t 'Calculated', 'Reference/v10000.dat' with points t 'Reference'
