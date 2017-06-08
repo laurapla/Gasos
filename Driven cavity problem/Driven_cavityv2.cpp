@@ -709,7 +709,7 @@ void output_files (int N, int M, float L, double* x, double* y, double* xvc, dou
 		}
 		resvltats<<endl;
 	}
-	resvlt.close();
+	resvltats.close();
 	
 	// Matrix of horizontal velocities
 	ofstream result;
