@@ -55,7 +55,7 @@ staggy vp, Rv;
 
 int main()
 {
-	int Re = 1; // Reynolds number
+	int Re = 3; // Reynolds number
 	float D = 1; // Diameter of the cylinder
 	float L = 50*D; // Length of the channel
 	float H = 8*D; // Height of the channel
@@ -64,7 +64,7 @@ int main()
 	float umax = 1; // Maximum velocity of the inflow parabolic velocity profile
 	float mu = rho*umax*D/Re; // Viscosity
 	
-	float delta = 1e-4; // Precision of the simulation (as the Re increases it is recommended to use 5e-5, 1e-4, 2e-4...)
+	float delta = 1e-4; // Precision of the simulation
 	float fr = 1.2; // Relaxation factor
 	
 	cout<<"Program started"<<endl;
@@ -876,15 +876,15 @@ bool error (int N, int M, float delta, staggx u, staggy v, staggx u0, staggy v0)
 // Criteria to stop the simulation if the flow is past the critical Reynolds (Re>=60)
 bool stop(float D, float l, double* x, staggy v, staggy v0)
 {
-	double v, v0;
+	double vi, vi0;
 	int ipoint, ip;
 	search_index (9.5*D+l, x, N+2, ipoint, ip);
-	v = convective_term (9.5*D+l, x[ipoint], x[ip], v[M/2+1][ipoint], v[ip]);
-	v0 = convective_term (9.5*D+l, x[ipoint], x[ip], v0[M/2+1][ipoint], v0[ip]);
-	if(v>0 && v0<=0)
+	vi = convective_term (9.5*D+l, x[ipoint], x[ip], v[M/2+1][ipoint], v[M/2+1][ip]);
+	vi0 = convective_term (9.5*D+l, x[ipoint], x[ip], v0[M/2+1][ipoint], v0[M/2+1][ip]);
+	if(vi>0 && vi0<0)
 	{
 		return true;
-	
+	}
 	else
 	{
 		return false;
@@ -1102,7 +1102,14 @@ void output_files (int N, int M, double* x, double* y, double* xvc, double* yvc,
 	{
 		for(int i = 0; i<N+2; i++)
 		{
-			presultats<<x[i]<<"	"<<y[j]<<"	"<<p[j][i]<<endl;
+			if(i>N1 && i<=N1+N2 && j>M1 && j<=M1+M2)
+			{
+				presultats<<x[i]<<"	"<<y[j]<<"	"<<"nan"<<endl;
+			}
+			else
+			{
+				presultats<<x[i]<<"	"<<y[j]<<"	"<<p[j][i]<<endl;
+			}
 		}
 		presultats<<endl;
 	}
