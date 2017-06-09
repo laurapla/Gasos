@@ -5,95 +5,114 @@
 using namespace std;
 
 // Numerical parameters
-const int N = 112;
-const int M = 112;
+const int N1 = 90;
+const int N2 = 10;
+const int N3 = 300;
+const int N = N1+N2+N3;
+
+const int M1 = 30;
+const int M2 = 10;
+const int M3 = 30;
+const int M = M1+M2+M3;
 
 typedef double matrix[M+2][N+2];
 typedef double staggx[M+2][N+1];
 typedef double staggy[M+1][N+2];
+typedef double mtx[M+2][2];
+typedef double mty[M+1][2];
 
-void coordinates(float L, int N, double xvc[], double x[]);
+void coordinates(float D, float l, float L, int N1, int N2, int N3, double xvc[], double x[]);
 void surface(double *yvc, int M, double Sv[]);
 void volume(double *xvc, double *yvc, int N, int M, matrix& V);
-void initial_conditions(int N, int M, float uref, staggx& u0, staggx& Ru0, staggy& v0, staggy& Rv0);
-void constant_coefficients(int N, int M, double *x, double *y, double *Sv, double *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
+double parabolic(float umax, float H, double y);
+void initial_conditions(int N, int M, float umax, float H, double* y, staggx& u0, staggx& Ru0, staggy& v0, staggy& Rv0, mtx& u00, mty& v00);
+void constant_coefficients(int N, int M, double *x, double *y, double *xvc, double *yvc, double *Sv, double *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap);
 double convective_term (double xf, double x2, double x3, double u2, double u3);
-void intermediate_velocities (int N, int M, float rho, double mu, float delta, double dt, double* x, double* y, double *xvc, double* yvc, double* Sh, double* Sv, matrix V, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp);
+void intermediate_velocities (int N, int M, float rho, float mu, float delta, double dt, double* x, double* y, double *xvc, double* yvc, double* Sh, double* Sv, matrix V, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp);
 void bp_coefficient (int N, int M, float rho, double dt, double* Sh, double* Sv, staggx up, staggy vp, matrix bp);
 void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix bp, float fr, float delta, int N, int M, matrix& T);
-void velocities (int N, int M, float rho, double dt, float uref, double* x, double* y, matrix p, staggx up, staggy vp, staggx &u, staggy &v);
+void velocities (int N, int M, float rho, double dt, float umax, float H, double* x, double* y, matrix p, staggx up, staggy vp, staggx u0, staggy v0, mtx u00, mty v00, staggx &u, staggy &v);
 double min(double a, double b);
 double max(double a, double b);
 double time_step (double dtd, double* x, double* y, staggx u, staggy v);
-double error (int N, int M, staggx u, staggy v, staggx u0, staggy v0);
+bool error (int N, int M, float delta, staggx u, staggy v, staggx u0, staggy v0);
 void search_index (float point, double *x, int Number, int& ipoint, int& ip);
-double interpolation(float x, double T1, double T2, double x1, double x2);
-void output_files (int N, int M, float L, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v);
+void output_files (int N, int M, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v);
+
+double xvc[N+1], yvc[M+1], x[N+2], y[M+2];
+double Sh[N+2], Sv[M+2];
+matrix V;
+matrix p; // Values in the nodes (pressure)
+staggx u, u0, Ru0; // Values in the points given by the staggered meshes (velocities)
+staggy v, v0, Rv0;
+mtx u00;
+mty v00;
+staggx up, Ru; // Intermediate velocities
+staggy vp, Rv;
 
 
 int main()
 {
-	int Re = 10000; // Reynolds number
-	float L = 1; // Length of the cavity
+	int Re = 3; // Reynolds number
+	float D = 1; // Diameter of the cylinder
+	float L = 50*D; // Length of the channel
+	float H = 8*D; // Height of the channel
+	float l = L/4; // inflow length
 	float rho = 1; // Density
-	float uref = 1; // Reference velocity
-	double mu = rho*uref*L/Re; // Viscosity
+	float umax = 1; // Maximum velocity of the inflow parabolic velocity profile
+	float mu = rho*umax*D/Re; // Viscosity
 	
-	float delta = 2e-4; // Precision of the simulation (as the Re increases it is recommended to use 5e-5, 1e-4, 2e-4...)
+	float delta = 1e-4; // Precision of the simulation
 	float fr = 1.2; // Relaxation factor
 	
 	cout<<"Program started"<<endl;
 	cout<<"Re="<<Re<<endl<<endl;
 	
 	// Coordinates
-	double xvc[N+1], yvc[M+1], x[N+2], y[M+2];
-	coordinates(L, N, xvc, x);
-	coordinates(L, M, yvc, y);
+	coordinates(D, l, L, N1, N2, N3, xvc, x);
+	coordinates(D, H/2, H, M1, M2, M3, yvc, y);
 	
 	// Surfaces
-	double Sh[N+2], Sv[M+2];
-	matrix V;
+	
 	surface(xvc, N+2, Sh); // Horizontal surface
 	surface(yvc, M+2, Sv); // Vertical surface
 	volume(xvc, yvc, N+2, M+2, V); // Volume
 	
 	
 	// Properties that are going to be calculated
-	matrix p; // Values in the nodes (pressure)
-	staggx u, u0, Ru0; // Values in the points given by the staggered meshes (velocities)
-	staggy v, v0, Rv0;
+	
 	
 	// Inicialization
-	initial_conditions(N, M, uref, u0, Ru0, v0, Rv0);
+	initial_conditions(N, M, umax, H, y, u0, Ru0, v0, Rv0, u00, v00);
 	
 	// Calculation of the constant coefficients that are used to determine the pressure
 	matrix ae, aw, an, as, ap, bp;
-	constant_coefficients(N+2, M+2, x, y, Sv, Sh, ae, aw, an, as, ap);
+	constant_coefficients(N+2, M+2, x, y, xvc, yvc, Sv, Sh, ae, aw, an, as, ap);
 	
 	// Time step (CFL condition)
 	double resta = 1;
 	double dtd = 0.2*rho*pow(x[2]-xvc[1],2)/mu;
-	double dtc = 0.35*fabs(x[2]-xvc[1])/uref;
+	double dtc = 0.35*fabs(x[2]-xvc[1])/umax;
 	double dt = min(dtd, dtc);
 	
-	staggx up, Ru; // Intermediate velocities
-	staggy vp, Rv;
+	
 	
 	cout<<"Solving..."<<endl;
 	// Fractional Step Method
-	while(resta>delta)
+	bool steady = false;
+	while(!steady)
 	{
 		// STEP 1: INTERMEDIATE VELOCITY
 		intermediate_velocities (N, M, rho, mu, delta, dt, x, y, xvc, yvc, Sh, Sv, V, u0, v0, Ru0, Rv0, Ru, Rv, up, vp);
-		
+
 		
 		// STEP 2: PRESSURE
-		bp_coefficient (N+2, M+2, rho, dt, Sh, Sv, up, vp, bp);
+		bp_coefficient (N, M, rho, dt, Sh, Sv, up, vp, bp);
 		Gauss_Seidel (ap, aw, ae, as, an, bp, fr, delta, N+2, M+2, p);
 		
 		
 		// STEP 3: VELOCITY
-		velocities (N, M, rho, dt, uref, x, y, p, up, vp, u, v);
+		velocities (N, M, rho, dt, umax, H, x, y, p, up, vp, u0, v0, u00, v00, u, v);
 		
 		
 		// STEP 4: TIME STEP
@@ -101,7 +120,7 @@ int main()
 		
 		
 		// Comprovation
-		resta = error (N, M, u, v, u0, v0);
+		steady = error (N, M, delta, u, v, u0, v0);
 		
 		// New time step
 		for(int i = 0; i<N+1; i++)
@@ -120,28 +139,58 @@ int main()
 				Rv0[j][i] = Rv[j][i];
 			}
 		}
+		for(int i = 0; i<2; i++)
+		{
+			for(int j = 0; j<M+2; j++)
+			{
+				u00[j][i] = u0[j][i+N-1];
+			}
+		}
+		for(int j = 0; j<M+1; j++)
+		{
+			for(int i = 0; i<2; i++)
+			{
+				v00[j][i] = v0[j][i+N];
+			}
+		}
 	}
 	
 	// Results
     cout<<endl<<"Creating some output files..."<<endl;
-    output_files (N, M, L, x, y, xvc, yvc, u, v);
+    output_files (N, M, x, y, xvc, yvc, u, v);
+	
 	
 	return 0;
 }
 
 
 // Coordinates of the control volumes (x -> nodes, xvc -> faces)
-void coordinates(float L, int N, double xvc[], double x[])
+void coordinates(float D, float l, float L, int N1, int N2, int N3, double xvc[], double x[])
 {
-	double dx = L/N;
+	double dx;
+	double dx1 = (l-D/2)/N1;
+	double dx2 = D/N2;
+	double dx3 = (L-l-D/2)/N3;
 	xvc[0] = 0;
 	x[0] = 0;
-	for(int i = 0; i<N; i++)
+	for(int i = 0; i<N1+N2+N3; i++)
 	{
+		if(i<N1)
+		{
+			dx = dx1;
+		}
+		else if(i<N1+N2 && i>=N1)
+		{
+			dx = dx2;
+		}
+		else
+		{
+			dx = dx3;
+		}
 		xvc[i+1] = xvc[i]+dx;
-		x[i+1] = (xvc[i+1]+xvc[i])/2;
+		x[i+1] = (xvc[i]+xvc[i+1])/2;
 	}
-	x[N+1] = L;
+	x[N1+N2+N3+1] = L;
 }
 
 
@@ -150,7 +199,7 @@ void surface(double *yvc, int M, double Sv[])
 {
 	for(int j = 0; j<M-1; j++)
 	{
-		Sv[j+1] = fabs(yvc[j]-yvc[j+1]);
+		Sv[j+1] = fabs(yvc[j]-yvc[j+1]);	
 	}
 	Sv[0] = 0;
 	Sv[M-1] = 0;
@@ -164,7 +213,7 @@ void volume(double *xvc, double *yvc, int N, int M, matrix& V)
 	{
 		for(int j = 0; j<M; j++)
 		{
-			if(i==N-1 || j==M-1 || i==0 || j==0)
+			if(i==0 || i==N-1 || j==0 || j==M-1)
 			{
 				V[j][i] = 0;
 			}
@@ -177,16 +226,23 @@ void volume(double *xvc, double *yvc, int N, int M, matrix& V)
 }
 
 
+// Parabolic velocity profile in the input
+double parabolic(float umax, float H, double y)
+{
+	return 4*umax*(y/H-y*y/(H*H));
+}
+
+
 // Initial conditions of the problem
-void initial_conditions(int N, int M, float uref, staggx& u0, staggx& Ru0, staggy& v0, staggy& Rv0)
+void initial_conditions(int N, int M, float umax, float H, double* y, staggx& u0, staggx& Ru0, staggy& v0, staggy& Rv0, mtx& u00, mty& v00)
 {
 	for(int j = 0; j<M+2; j++)
 	{
 		for(int i = 0; i<N+1; i++)
 		{
-			if(j==M+1 && i!=0 && i!=N)
+			if(i==0)
 			{
-				u0[j][i] = uref; // Horizontal velocity at n
+				u0[j][i] = parabolic(umax, H, y[j]); // Horizontal velocity at n
 			}
 			else
 			{
@@ -203,16 +259,31 @@ void initial_conditions(int N, int M, float uref, staggx& u0, staggx& Ru0, stagg
 			Rv0[j][i] = 0; // R (vertical) at n-1
 		}
 	}
+	for(int i = 0; i<2; i++)
+	{
+		for(int j = 0; j<M+2; j++)
+		{
+			u00[j][i] = 0; // Horizontal velocity at n-1
+		}
+	}
+	for(int j = 0; j<M+1; j++)
+	{
+		for(int i = 0; i<2; i++)
+		{
+			v00[j][i] = 0; // Vertical velocity at n-1
+		}
+	}
 }
 
 
 // Calculation of the constant coefficients (ae, aw, an, as, ap) of the Poisson equation (pressure)
-void constant_coefficients(int N, int M, double *x, double *y, double *Sv, double *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap)
+void constant_coefficients(int N, int M, double *x, double *y, double *xvc, double *yvc, double *Sv, double *Sh, matrix& ae, matrix& aw, matrix& an, matrix& as, matrix& ap)
 {
 	for(int i = 0; i<N; i++)
 	{
 		for(int j = 0; j<M; j++)
 		{
+			// Coefficients in the channel walls, input and output
 			if(j==M-1 && i!=0 && i!=N-1)
 			{
 				ae[j][i] = 0;
@@ -248,7 +319,7 @@ void constant_coefficients(int N, int M, double *x, double *y, double *Sv, doubl
 			else if(i==N-1 && j==0)
 			{
 				ae[j][i] = 0;
-				aw[j][i] = 1;
+				aw[j][i] = 0;
 				an[j][i] = 1;
 				as[j][i] = 0;
 				ap[j][i] = 1;
@@ -256,7 +327,7 @@ void constant_coefficients(int N, int M, double *x, double *y, double *Sv, doubl
 			else if(i==N-1 && j==M-1)
 			{
 				ae[j][i] = 0;
-				aw[j][i] = 1;
+				aw[j][i] = 0;
 				an[j][i] = 0;
 				as[j][i] = 1;
 				ap[j][i] = 1;
@@ -264,7 +335,7 @@ void constant_coefficients(int N, int M, double *x, double *y, double *Sv, doubl
 			else if(i==N-1 && j!=0 && j!=M-1)
 			{
 				ae[j][i] = 0;
-				aw[j][i] = 1;
+				aw[j][i] = 0;
 				an[j][i] = 0;
 				as[j][i] = 0;
 				ap[j][i] = 1;
@@ -277,6 +348,49 @@ void constant_coefficients(int N, int M, double *x, double *y, double *Sv, doubl
 				as[j][i] = 0;
 				ap[j][i] = 1;
 			}
+			// Coefficients in the cylinder
+			else if(i>N1+1 && i<N1+N2 && j>M1+1 && j<M1+M2)
+			{
+				ae[j][i] = 0;
+				aw[j][i] = 0;
+				an[j][i] = 0;
+				as[j][i] = 0;
+				ap[j][i] = 1;
+			}
+			// Coefficients in the points near the cylinder
+			else if(i==N1 && j>M1 && j<M1+M2+1)
+			{
+				ae[j][i] = Sv[j]/fabs(xvc[i]-x[i]);
+				aw[j][i] = Sv[j]/fabs(x[i]-x[i-1]);
+				an[j][i] = Sh[i]/fabs(y[j+1]-y[j]);
+				as[j][i] = Sh[i]/fabs(y[j]-y[j-1]);
+				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i];
+			}
+			else if(i==N1+N2+1 && j>M1 && j<M1+M2+1)
+			{
+				ae[j][i] = Sv[j]/fabs(x[i+1]-x[i]);
+				aw[j][i] = Sv[j]/fabs(x[i]-xvc[i-1]);
+				an[j][i] = Sh[i]/fabs(y[j+1]-y[j]);
+				as[j][i] = Sh[i]/fabs(y[j]-y[j-1]);
+				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i];
+			}
+			else if(i>N1 && i<N1+N2+1 && j==M1)
+			{
+				ae[j][i] = Sv[j]/fabs(x[i+1]-x[i]);
+				aw[j][i] = Sv[j]/fabs(x[i]-x[i-1]);
+				an[j][i] = Sh[i]/fabs(yvc[j]-y[j]);
+				as[j][i] = Sh[i]/fabs(y[j]-y[j-1]);
+				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i];
+			}
+			else if(i>N1 && i<N1+N2+1 && j==M1+M2+1)
+			{
+				ae[j][i] = Sv[j]/fabs(x[i+1]-x[i]);
+				aw[j][i] = Sv[j]/fabs(x[i]-x[i-1]);
+				an[j][i] = Sh[i]/fabs(y[j+1]-y[j]);
+				as[j][i] = Sh[i]/fabs(y[j]-yvc[j-1]);
+				ap[j][i] = ae[j][i]+aw[j][i]+an[j][i]+as[j][i];
+			}
+			// Coefficients in the channel
 			else
 			{
 				ae[j][i] = Sv[j]/fabs(x[i+1]-x[i]);
@@ -301,12 +415,10 @@ double convective_term (double xf, double x2, double x3, double u2, double u3)
 }
 
 
-// Calculation of the intermediate velocities
-void intermediate_velocities (int N, int M, float rho, double mu, float delta, double dt, double* x, double* y, double *xvc, double* yvc, double* Sh, double* Sv, matrix V, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp)
+void intermediate_velocities (int N, int M, float rho, float mu, float delta, double dt, double* x, double* y, double *xvc, double* yvc, double* Sh, double* Sv, matrix V, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp)
 {
 	double mflowe, mfloww, mflown, mflows;
 	double ue, uw, un, us;
-	double De, Dw, Dn, Ds;
 	
 	for(int i = 0; i<N+1; i++)
 	{
@@ -325,19 +437,33 @@ void intermediate_velocities (int N, int M, float rho, double mu, float delta, d
 			un = convective_term (yvc[j], y[j], y[j+1], u0[j][i], u0[j+1][i]);
 			us = convective_term (yvc[j-1], y[j], y[j-1], u0[j][i], u0[j-1][i]);
 			
-			De = mu*Sv[j]/fabs(xvc[i+1]-xvc[i]);
-			Dw = mu*Sv[j]/fabs(xvc[i]-xvc[i-1]);
-			Dn = mu*Sh[i]/fabs(y[j+1]-y[j]);
-			Ds = mu*Sh[i]/fabs(y[j]-y[j-1]);
 			
 			// R (horizontal)
+			// Channel walls, input and output
 			if(i==0 || i==N || j==0 || j==M+1)
 			{
 				Ru[j][i] = 0;
 			}
+			// In the cylinder
+			else if(i>=N1 && i<=N1+N2 && j>M1 && j<M1+M2+1)
+			{
+				Ru[j][i] = 0;
+			}
+			// Points that surround the cylinder
+			else if(j==M1 && i>=N1 && i<=N1+N2)
+			{
+				un = 0;
+				Ru[j][i] = (mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(yvc[j]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mfloww*uw-mflows*us))/V[j][i];
+			}
+			else if(j==M1+M2+1 && i>=N1 && i<=N1+N2)
+			{
+				us = 0;
+				Ru[j][i] = (mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-yvc[j-1])-(mflowe*ue+mflown*un-mfloww*uw-mflows*us))/V[j][i];
+			}
+			// Channel
 			else
 			{
-				Ru[j][i] = (De*(u0[j][i+1]-u0[j][i])+Dn*(u0[j+1][i]-u0[j][i])-Dw*(u0[j][i]-u0[j][i-1])-Ds*(u0[j][i]-u0[j-1][i])-(mflowe*ue+mflown*un-mfloww*uw-mflows*us))/V[j][i];
+				Ru[j][i] = (mu*(u0[j][i+1]-u0[j][i])*Sv[j]/fabs(xvc[i+1]-xvc[i])+mu*(u0[j+1][i]-u0[j][i])*Sh[i]/fabs(y[j+1]-y[j])-mu*(u0[j][i]-u0[j][i-1])*Sv[j]/fabs(xvc[i]-xvc[i-1])-mu*(u0[j][i]-u0[j-1][i])*Sh[i]/fabs(y[j]-y[j-1])-(mflowe*ue+mflown*un-mfloww*uw-mflows*us))/V[j][i];
 			}
 			
 			// Intermediate velocity (horizontal)
@@ -364,19 +490,32 @@ void intermediate_velocities (int N, int M, float rho, double mu, float delta, d
 			vn = convective_term (y[j+1], yvc[j], yvc[j+1], v0[j][i], v0[j+1][i]);
 			vs = convective_term (y[j], yvc[j], yvc[j-1], v0[j][i], v0[j-1][i]);
 			
-			De = mu*Sv[j]/fabs(x[i+1]-x[i]);
-			Dw = mu*Sv[j]/fabs(x[i]-x[i-1]);
-			Dn = mu*Sh[i]/fabs(yvc[j+1]-yvc[j]);
-			Ds = mu*Sh[i]/fabs(yvc[j]-yvc[j-1]);
-			
 			// R (vertical)
+			// Channel walls, input and output
 			if(i==0 || i==N+1 || j==0 || j==M)
 			{
 				Rv[j][i] = 0;
 			}
+			// In the cylinder
+			else if(i>N1 && i<N1+N2+1 && j>=M1 && j<=M1+M2)
+			{
+				Rv[j][i] = 0;
+			}
+			// Points that surround the cylinder
+			else if(j>=M1 && j<=M1+M2 && i==N1)
+			{
+				ve = 0;
+				Rv[j][i] = (mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(xvc[i]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mfloww*vw-mflows*vs))/V[j][i];
+			}
+			else if(j>=M1 && j<=M1+M2 && i==N1+N2+1)
+			{
+				vw = 0;
+				Rv[j][i] = (mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-xvc[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mfloww*vw-mflows*vs))/V[j][i];
+			}
+			// Channel
 			else
 			{
-				Rv[j][i] = (De*(v0[j][i+1]-v0[j][i])+Dn*(v0[j+1][i]-v0[j][i])-Dw*(v0[j][i]-v0[j][i-1])-Ds*(v0[j][i]-v0[j-1][i])-(mflowe*ve+mflown*vn-mfloww*vw-mflows*vs))/V[j][i];
+				Rv[j][i] = (mu*(v0[j][i+1]-v0[j][i])*Sv[j]/fabs(x[i+1]-x[i])+mu*(v0[j+1][i]-v0[j][i])*Sh[i]/fabs(yvc[j+1]-yvc[j])-mu*(v0[j][i]-v0[j][i-1])*Sv[j]/fabs(x[i]-x[i-1])-mu*(v0[j][i]-v0[j-1][i])*Sh[i]/fabs(yvc[j]-yvc[j-1])-(mflowe*ve+mflown*vn-mfloww*vw-mflows*vs))/V[j][i];
 			}
 			
 			// Intermediate velocity (vertical)
@@ -389,14 +528,21 @@ void intermediate_velocities (int N, int M, float rho, double mu, float delta, d
 // Calculation of the bp coefficient of the Poisson equation (pressure)
 void bp_coefficient (int N, int M, float rho, double dt, double* Sh, double* Sv, staggx up, staggy vp, matrix bp)
 {
-	for(int i = 0; i<N; i++)
+	for(int i = 0; i<N+2; i++)
 	{
-		for(int j = 0; j<M; j++)
+		for(int j = 0; j<M+2; j++)
 		{
+			// Channel walls, input and output
 			if(i==0 || j==0 || i==N-1 || j==M-1)
 			{
 				bp[j][i] = 0;
 			}
+			// Cylinder
+			else if(i>N1 && i<N1+N2+1 && j>M1 && j<M1+M2+1)
+			{
+				bp[j][i] = 0;
+			}
+			// Channel
 			else
 			{
 				bp[j][i] = -(rho*up[j][i]*Sv[j]+rho*vp[j][i]*Sh[i]-rho*up[j][i-1]*Sv[j]-rho*vp[j-1][i]*Sh[i])/dt;
@@ -495,22 +641,35 @@ void Gauss_Seidel (matrix ap, matrix aw, matrix ae, matrix as, matrix an, matrix
 }
 
 
-// Calculation of the velocity with the correction of pressure
-void velocities (int N, int M, float rho, double dt, float uref, double* x, double* y, matrix p, staggx up, staggy vp, staggx &u, staggy &v)
+// Calculation of the velocity with the pressure correction
+void velocities (int N, int M, float rho, double dt, float umax, float H, double* x, double* y, matrix p, staggx up, staggy vp, staggx u0, staggy v0, mtx u00, mty v00, staggx &u, staggy &v)
 {
 	// Horizontal velocity at n+1
 	for(int i = 0; i<N+1; i++)
 	{
 		for(int j = 0; j<M+2; j++)
 		{
-			if(i==0 || i==N || j==0)
+			// Channel walls
+			if(j==0 || j==M+1)
 			{
 				u[j][i] = 0;
 			}
-			else if(j==M+1)
+			// Channel input
+			else if(i==0)
 			{
-				u[j][i] = uref;
+				u[j][i] = parabolic(umax, H, y[j]);
 			}
+			// Channel output
+			else if(i==N)
+			{
+				u[j][i] = u0[j][i]-dt*umax*(1.5*(u0[j][i]-u0[j][i-1])-0.5*(u00[j][2]-u00[j][1]))/(0.5*fabs(x[i]-x[i-1]));
+			}
+			// Cylinder
+			else if(i>=N1 && i<=N1+N2 && j>M1 && j<M1+M2+1)
+			{
+				u[j][i] = 0;
+			}
+			// Channel
 			else
 			{
 				u[j][i] = up[j][i]-dt*(p[j][i+1]-p[j][i])/(rho*fabs(x[i+1]-x[i]));
@@ -523,7 +682,18 @@ void velocities (int N, int M, float rho, double dt, float uref, double* x, doub
 	{
 		for(int j = 0; j<M+1; j++)
 		{
-			if(j==0 || j==M || i==0 || i==N+1)
+			// Channel walls and input
+			if(j==0 || j==M || i==0)
+			{
+				v[j][i] = 0;
+			}
+			// Channel output
+			else if(i==N+1)
+			{
+				v[j][i] = v0[j][i]-dt*umax*(1.5*(v0[j][i]-v0[j][i-1])-0.5*(v00[j][2]-v00[j][1]))/fabs(x[i]-x[i-1]);
+			}
+			// Cylinder
+			else if(i>N1 && i<N1+N2+1 && j>=M1 && j<=M1+M2)
 			{
 				v[j][i] = 0;
 			}
@@ -574,14 +744,24 @@ double time_step (double dtd, double* x, double* y, staggx u, staggy v)
 	{
 		for(int j = 1; j<M+1; j++)
 		{
-			dtc = min(dtc, 0.35*fabs(x[i+1]-x[i])/fabs(u[j][i]));
+			if(i>=N1 && i<=N1+N2 && j>M1 && j<M1+M2+1)
+			{}
+			else
+			{
+				dtc = min(dtc, 0.35*fabs(x[i+1]-x[i])/fabs(u[j][i]));
+			}
 		}
 	}
 	for(int i = 1; i<N+1; i++)
 	{
 		for(int j = 1; j<M; j++)
 		{
-			dtc = min(dtc, 0.35*fabs(y[j+1]-y[j])/fabs(v[j][i]));
+			if(i>N1 && i<N1+N2+1 && j>=M1 && j<=M1+M2)
+			{}
+			else
+			{
+				dtc = min(dtc, 0.35*fabs(y[j+1]-y[j])/fabs(v[j][i]));
+			}
 		}
 	}
 	dt = min(dtc, dtd);
@@ -590,7 +770,7 @@ double time_step (double dtd, double* x, double* y, staggx u, staggy v)
 
 
 // Difference between the previous and the actual time step
-double error (int N, int M, staggx u, staggy v, staggx u0, staggy v0)
+bool error (int N, int M, float delta, staggx u, staggy v, staggx u0, staggy v0)
 {
 	double resta = 0;
 	for(int i = 0; i<N+1; i++)
@@ -607,7 +787,15 @@ double error (int N, int M, staggx u, staggy v, staggx u0, staggy v0)
 			resta = max(resta, fabs(v[j][i]-v0[j][i]));
 		}
 	}
-	return resta;
+	cout<<resta<<endl;
+	if(resta>delta)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
 
@@ -653,17 +841,8 @@ void search_index (float point, double *x, int Number, int& ipoint, int& ip)
 }
 
 
-// Linear interpolation
-double interpolation(float x, double T1, double T2, double x1, double x2)
-{
-	double result;
-	result = T1+(T2-T1)*(x-x1)/(x2-x1);
-	return result;
-}
-
-
 // Output of the results
-void output_files (int N, int M, float L, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v)
+void output_files (int N, int M, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v)
 {
 	// Horizontal coordinates
     ofstream xx;
@@ -686,11 +865,26 @@ void output_files (int N, int M, float L, double* x, double* y, double* xvc, dou
 	// Horizontal velocities
 	ofstream resultats;
     resultats.open("Resultats.dat");
-	for(int i = 0; i<N+1; i++)
+	for(int j = M+1; j>=0; j--)
 	{
-		for(int j = 0; j<M+2; j++)
+		for(int i = 0; i<N+1; i++)
 		{
-			resultats<<xvc[i]<<"	"<<y[j]<<"	"<<u[j][i]<<endl;
+			if(i>N1 && i<N1+N2 && j>M1+1 && j<M1+M2)
+			{
+				resultats<<xvc[i]<<"	"<<y[j]<<"	"<<"nan"<<endl;
+			}
+			else if(i>N1 && i<N1+N2 && j==M1+1)
+			{
+				resultats<<xvc[i]<<"	"<<yvc[j-1]<<"	"<<0<<endl;
+			}
+			else if(i>N1 && i<N1+N2 && j==M1+M2)
+			{
+				resultats<<xvc[i]<<"	"<<yvc[j]<<"	"<<0<<endl;
+			}
+			else
+			{
+				resultats<<xvc[i]<<"	"<<y[j]<<"	"<<u[j][i]<<endl;
+			}
 		}
 		resultats<<endl;
 	}
@@ -699,15 +893,30 @@ void output_files (int N, int M, float L, double* x, double* y, double* xvc, dou
 	// Vertical velocities
 	ofstream resvltats;
     resvltats.open("Resvltats.dat");
-	for(int i = 0; i<N+2; i++)
+	for(int j = M; j>=0; j--)
 	{
-		for(int j = 0; j<M+1; j++)
+		for(int i = 0; i<N+2; i++)
 		{
-			resvltats<<x[i]<<"	"<<yvc[j]<<"	"<<v[j][i]<<endl;
+			if(i>N1+1 && i<N1+N2 && j>M1 && j<M1+M2)
+			{
+				resvltats<<x[i]<<"	"<<yvc[j]<<"	"<<"nan"<<endl;
+			}
+			else if(i==N1+1 && j>M1 && j<M1+M2)
+			{
+				resvltats<<xvc[i-1]<<"	"<<yvc[j]<<"	"<<0<<endl;
+			}
+			else if(i==N1+N2 && j>M1 && j<M1+M2)
+			{
+				resvltats<<xvc[i]<<"	"<<yvc[j]<<"	"<<0<<endl;
+			}
+			else
+			{
+				resvltats<<x[i]<<"	"<<yvc[j]<<"	"<<v[j][i]<<endl;
+			}
 		}
 		resvltats<<endl;
 	}
-	resvlt.close();
+	resvltats.close();
 	
 	// Matrix of horizontal velocities
 	ofstream result;
@@ -750,26 +959,36 @@ void output_files (int N, int M, float L, double* x, double* y, double* xvc, dou
 	resvlt.close();
 	
 	
-	// Searching the indexes to interpolate
-	int ipoint, ip, jpoint, jp;
-	search_index (L/2, xvc, N+1, ipoint, ip);
-    search_index (L/2, yvc, M+1, jpoint, jp);
-	
-	// Horizontal velocity in the central vertical line
-	ofstream resultsu;
-    resultsu.open("u.dat");
-    for(int i = M+1; i>=0; i--)
-    {
-    	resultsu<<y[i]<<"	"<<interpolation(L/2, u[i][ipoint], u[i][ip], xvc[ipoint], xvc[ip])<<endl;
+	// Pressure matrix
+	ofstream press;
+	press.open("Pressure.dat");
+	for(int j = M+1; j>=0; j--)
+	{
+		for(int i = 0; i<N+2; i++)
+		{
+			press<<p[j][i]<<"	";
+		}
+		press<<endl;
 	}
-    resultsu.close();
+	press.close();
 	
-	// Vertical velocity in the central horizontal line
-	ofstream resultsv;
-    resultsv.open("v.dat");
-    for(int i = N+1; i>=0; i--)
-    {
-    	resultsv<<x[i]<<"	"<<interpolation(L/2, v[jpoint][i], u[jp][i], yvc[jpoint], yvc[jp])<<endl;
+	// Pressure
+	ofstream presultats;
+	presultats.open("Presultats.dat");
+	for(int j = M+1; j>=0; j--)
+	{
+		for(int i = 0; i<N+2; i++)
+		{
+			if(i>N1 && i<=N1+N2 && j>M1 && j<=M1+M2)
+			{
+				presultats<<x[i]<<"	"<<y[j]<<"	"<<"nan"<<endl;
+			}
+			else
+			{
+				presultats<<x[i]<<"	"<<y[j]<<"	"<<p[j][i]<<endl;
+			}
+		}
+		presultats<<endl;
 	}
-    resultsv.close();
+	
 }

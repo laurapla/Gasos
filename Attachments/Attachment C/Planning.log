@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  9 JUN 2017 21:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  9 JUN 2017 20:50
 entering extended mode
-**./AttachmentB.tex
-(AttachmentB.tex
+**./Planning.tex
+(Planning.tex
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 (doc_config/doc_config.tex ("C:\Apps\MiKTeX 2.9\tex\latex\base\report.cls"
@@ -909,6 +909,11 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
+("C:\Apps\MiKTeX 2.9\tex\latex\hyphenat\hyphenat.sty"
+Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
+\langwohyphens=\language75
+LaTeX Info: Redefining \_ on input line 43.
+)
 ("C:\Apps\MiKTeX 2.9\tex\latex\caption\caption.sty"
 Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
 
@@ -1474,9 +1479,9 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 )
 \verbatim@out=\write3
-runsystem(echo t > "w18-test-2017691262.tex")...executed.
+runsystem(echo t > "w18-test-2017691250.tex")...executed.
 
-runsystem(del "w18-test-2017691262.tex")...executed.
+runsystem(del "w18-test-2017691250.tex")...executed.
 
 Package gnuplottex Info: Automatically converting gnuplot files. on input line 
 110.
@@ -1524,34 +1529,6 @@ Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less on input line 30.
 
 ) (doc_config/defined_stuff.tex)
-("C:\Apps\MiKTeX 2.9\tex\latex\listings\listings.sty"
-\lst@mode=\count348
-\lst@gtempboxa=\box67
-\lst@token=\toks52
-\lst@length=\count349
-\lst@currlwidth=\dimen310
-\lst@column=\count350
-\lst@pos=\count351
-\lst@lostspace=\dimen311
-\lst@width=\dimen312
-\lst@newlines=\count352
-\lst@lineno=\count353
-\lst@maxwidth=\dimen313
-
-("C:\Apps\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
-File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count354
-\lst@skipnumbers=\count355
-\lst@framebox=\box68
-)
-("C:\Apps\MiKTeX 2.9\tex\latex\listings\listings.cfg"
-File: listings.cfg 2015/06/04 1.6 listings configuration
-))
-Package: listings 2015/06/04 1.6 (Carsten Heinz)
-
-("C:\Apps\MiKTeX 2.9\tex\latex\ltxmisc\parskip.sty"
-Package: parskip 2001/04/09 non-zero parskip adjustments
-)
 ("C:\Apps\MiKTeX 2.9\tex\latex\epigraph\epigraph.sty"
 Package: epigraph 2009/09/02 v1.5c typesetting epigraphs
 \beforeepigraphskip=\skip89
@@ -1591,8 +1568,8 @@ Package tocloft Info: The document has chapter divisions on input line 44.
 \cftbeforefigskip=\skip119
 \cftfigindent=\skip120
 \cftfignumwidth=\skip121
-\c@lofdepth=\count356
-\c@lotdepth=\count357
+\c@lofdepth=\count348
+\c@lotdepth=\count349
 \cftbeforelottitleskip=\skip122
 \cftafterlottitleskip=\skip123
 \cftbeforetabskip=\skip124
@@ -1766,32 +1743,34 @@ LaTeX Font Info:    Redeclaring math symbol \ddagger on input line 48.
 )
 ("C:\Apps\MiKTeX 2.9\tex\latex\caption\subcaption.sty"
 Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
-\c@subfigure=\count358
-\c@subtable=\count359
+\c@subfigure=\count350
+\c@subtable=\count351
 )
 ("C:\Apps\MiKTeX 2.9\tex\latex\tools\multicol.sty"
 Package: multicol 2016/04/07 v1.8p multicolumn formatting (FMi)
-\c@tracingmulticols=\count360
-\mult@box=\box69
-\multicol@leftmargin=\dimen314
-\c@unbalance=\count361
-\c@collectmore=\count362
-\doublecol@number=\count363
-\multicoltolerance=\count364
-\multicolpretolerance=\count365
-\full@width=\dimen315
-\page@free=\dimen316
-\premulticols=\dimen317
-\postmulticols=\dimen318
+\c@tracingmulticols=\count352
+\mult@box=\box67
+\multicol@leftmargin=\dimen310
+\c@unbalance=\count353
+\c@collectmore=\count354
+\doublecol@number=\count355
+\multicoltolerance=\count356
+\multicolpretolerance=\count357
+\full@width=\dimen311
+\page@free=\dimen312
+\premulticols=\dimen313
+\postmulticols=\dimen314
 \multicolsep=\skip127
 \multicolbaselineskip=\skip128
-\partial@page=\box70
-\last@line=\box71
-\maxbalancingoverflow=\dimen319
-\mult@rightbox=\box72
-\mult@grightbox=\box73
-\mult@gfirstbox=\box74
-\mult@firstbox=\box75
+\partial@page=\box68
+\last@line=\box69
+\maxbalancingoverflow=\dimen315
+\mult@rightbox=\box70
+\mult@grightbox=\box71
+\mult@gfirstbox=\box72
+\mult@firstbox=\box73
+\@tempa=\box74
+\@tempa=\box75
 \@tempa=\box76
 \@tempa=\box77
 \@tempa=\box78
@@ -1807,16 +1786,14 @@ Package: multicol 2016/04/07 v1.8p multicolumn formatting (FMi)
 \@tempa=\box88
 \@tempa=\box89
 \@tempa=\box90
-\@tempa=\box91
-\@tempa=\box92
-\c@columnbadness=\count366
-\c@finalcolumnbadness=\count367
-\last@try=\dimen320
-\multicolovershoot=\dimen321
-\multicolundershoot=\dimen322
-\mult@nat@firstbox=\box93
-\colbreak@box=\box94
-\mc@col@check@num=\count368
+\c@columnbadness=\count358
+\c@finalcolumnbadness=\count359
+\last@try=\dimen316
+\multicolovershoot=\dimen317
+\multicolundershoot=\dimen318
+\mult@nat@firstbox=\box91
+\colbreak@box=\box92
+\mc@col@check@num=\count360
 )
 ("C:\Apps\MiKTeX 2.9\tex\latex\base\fontenc.sty"
 Package: fontenc 2016/06/19 v1.99m Standard LaTeX package
@@ -1824,66 +1801,57 @@ Package: fontenc 2016/06/19 v1.99m Standard LaTeX package
 ("C:\Apps\MiKTeX 2.9\tex\latex\base\t1enc.def"
 File: t1enc.def 2016/06/19 v1.99m Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
-))
-("C:\Apps\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
-("C:\Apps\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
-("C:\Apps\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
-File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-) (AttachmentB.aux)
-\openout1 = `AttachmentB.aux'.
+)) (Planning.aux)
+\openout1 = `Planning.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 46.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 24.
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 46.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 24.
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\lm\t1lmss.fd"
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 46.
+(lastpage)             ! on input line 24.
 .................................................
 . chemgreek info: "mapping-activated"
 . 
-. Activating mapping `default' on line 46.
+. Activating mapping `default' on line 24.
 .................................................
 
 ("C:\Apps\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count369
-\scratchdimen=\dimen323
-\scratchbox=\box95
-\nofMPsegments=\count370
-\nofMParguments=\count371
-\everyMPshowfont=\toks53
-\MPscratchCnt=\count372
-\MPscratchDim=\dimen324
-\MPnumerator=\count373
-\makeMPintoPDFobject=\count374
-\everyMPtoPDFconversion=\toks54
+\scratchcounter=\count361
+\scratchdimen=\dimen319
+\scratchbox=\box93
+\nofMPsegments=\count362
+\nofMParguments=\count363
+\everyMPshowfont=\toks52
+\MPscratchCnt=\count364
+\MPscratchDim=\dimen320
+\MPnumerator=\count365
+\makeMPintoPDFobject=\count366
+\everyMPtoPDFconversion=\toks53
 )
 ("C:\Apps\MiKTeX 2.9\tex\latex\beamer\base\translator\dicts\translator-basic-di
 ctionary\translator-basic-dictionary-English.dict"
@@ -1895,7 +1863,6 @@ File: siunitx-abbreviations.cfg 2016/09/02 v2.6s siunitx: Abbreviated units
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
-Package caption Info: listings package is loaded.
 Package caption Info: longtable package is loaded.
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\caption\ltcaption.sty"
@@ -1903,13 +1870,13 @@ Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 )
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box96
+\AtBeginShipoutBox=\box94
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty"
 Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-Package hyperref Info: Link coloring OFF on input line 46.
+Package hyperref Info: Link coloring OFF on input line 24.
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1917,15 +1884,15 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 ("C:\Apps\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count375
+\c@section@level=\count367
 )
-LaTeX Info: Redefining \ref on input line 46.
-LaTeX Info: Redefining \pageref on input line 46.
-LaTeX Info: Redefining \nameref on input line 46.
-
-(AttachmentB.out) (AttachmentB.out)
+LaTeX Info: Redefining \ref on input line 24.
+LaTeX Info: Redefining \pageref on input line 24.
+LaTeX Info: Redefining \nameref on input line 24.
+ (Planning.out)
+(Planning.out)
 \@outlinefile=\write4
-\openout4 = `AttachmentB.out'.
+\openout4 = `Planning.out'.
 
 
 *geometry* driver: auto-detecting
@@ -1962,64 +1929,63 @@ LaTeX Info: Redefining \nameref on input line 46.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count376
-\c__siunitx_mathsf_int=\count377
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 46.
+\c__siunitx_mathsf_int=\count368
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 24.
 ("C:\Apps\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 46.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 24.
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 46.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 24.
 
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 46.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 24.
 
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 46.
+(Font)              <10.95> on input line 24.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 46.
+(Font)              <8> on input line 24.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 46.
-LaTeX Font Info:    Try loading font information for U+msa on input line 46.
+(Font)              <6> on input line 24.
+LaTeX Font Info:    Try loading font information for U+msa on input line 24.
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 46.
+LaTeX Font Info:    Try loading font information for U+msb on input line 24.
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 46.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 24.
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for OT1+lmss on input line 46.
+LaTeX Font Info:    Try loading font information for OT1+lmss on input line 24.
 
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\lm\ot1lmss.fd"
 File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-\c__siunitx_mathtt_int=\count378
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 46.
+\c__siunitx_mathtt_int=\count369
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 24.
 
 
 ("C:\Apps\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd"
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) (doc_config/cover.tex
-<./doc_config/image.png, id=27, 640.3925pt x 170.6375pt>
+<./doc_config/image.png, id=11, 640.3925pt x 170.6375pt>
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
@@ -2047,474 +2013,32 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <.
-/doc_config/image.png>] (AttachmentB.toc)
+/doc_config/image.png>] (Planning.toc)
 \tf@toc=\write5
-\openout5 = `AttachmentB.toc'.
+\openout5 = `Planning.toc'.
 
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 57.
+less on input line 35.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 57.
+less on input line 35.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 57.
+less on input line 35.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 57.
+Package pdftex.def Info: ./doc_config/image.png used on input line 35.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [1]
-Chapter 1.
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 67.
-(Four_materialsv2.cpp
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <9> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 7.
-LaTeX Font Info:    Try loading font information for TS1+lmss on input line 21.
-
- ("C:\Apps\MiKTeX 2.9\tex\latex\lm\ts1lmss.fd"
-File: ts1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 30.
+ [1] (Planning.lot)
+\tf@lot=\write6
+\openout6 = `Planning.lot'.
 
 
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 30.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 30.
-
-File: ./doc_config/image.png Graphic file (type png)
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 30.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.30 void 
-          print_matrix (matrix T, int N, int M); [1
-
-]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 79.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 79.
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 80.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [2]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 127.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [3]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 174.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [4]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 218.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [5]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 267.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [6]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 316.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [7]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 361.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [8]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 399.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [9]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 444.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [10]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 487.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [11]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 527.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [12]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 547.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [13]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 578.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [14]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 618.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [15]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 665.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [16])
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 69.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [17]
-Chapter 2.
-(Smith-Huttonv5.cpp
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 34.
-
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 34.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 34.
-
-File: ./doc_config/image.png Graphic file (type png)
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 34.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [18
-
-]
-LaTeX Font Info:    Font shape `TS1/lmss/m/it' in size <9> not available
-(Font)              Font shape `TS1/lmss/m/sl' tried instead on input line 41.
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 85.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [19]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 131.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [20]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 180.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [21]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 229.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [22]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 277.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [23]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 325.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [24]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 375.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [25]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 422.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [26]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 462.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [27]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 506.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [28])
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 72.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [29]
-Chapter 3.
-(Driven_cavityv2.cpp
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 34.
-
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 34.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 34.
-
-File: ./doc_config/image.png Graphic file (type png)
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 34.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [30
-
-]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 82.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [31]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 133.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [32]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 181.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [33]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 230.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [34]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 280.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [35]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 328.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [36]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 376.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [37]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 421.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [38]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 461.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [39]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 506.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [40]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 556.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [41]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 606.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [42]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 656.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [43]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 703.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [44]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 753.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [45])
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 75.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [46]
-Chapter 4.
-(Differentially_Heated.cpp
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 32.
-
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 32.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 32.
-
-File: ./doc_config/image.png Graphic file (type png)
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 32.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [47
-
-]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 81.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [48]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 129.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [49]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 179.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [50]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 229.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [51]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 278.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [52]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 326.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [53]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 376.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [54]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 426.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [55]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 468.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [56]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 515.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [57]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 552.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [58]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 599.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [59]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 651.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [60]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 699.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [61]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 748.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [62]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 798.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [63]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 847.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [64]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 895.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [65])
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 78.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [66]
-Chapter 5.
-(Burgulence.cpp
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
 less on input line 40.
@@ -2531,190 +2055,58 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 40.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [67
+ [2]
+Chapter 1.
 
-]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 90.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [68]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 140.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [69])
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 81.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [70]
-Chapter 6.
-(Square_Cylinder.cpp
+AED: lastpage setting LastPage
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 34.
+less on input line 52.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 34.
+less on input line 52.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 34.
+less on input line 52.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 34.
+Package pdftex.def Info: ./doc_config/image.png used on input line 52.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [71
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.52 \end{document}
+                    [1
 
 ]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 85.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [72]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 132.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [73]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 182.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [74]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 232.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [75]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 281.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [76]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 330.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [77]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 380.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [78]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 428.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [79]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 467.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [80]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 512.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [81]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 552.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [82]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 596.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [83]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 637.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [84]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 685.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [85]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 734.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [86]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 784.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [87]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 832.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [88]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 882.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [89]
-File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 932.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [90]
-File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 980.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [91]) 
-AED: lastpage setting LastPage
-File: ./doc_config/image.png Graphic file (type png)
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 84.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [92]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 84.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 84.
- (AttachmentB.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 84.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 84.
-Package rerunfilecheck Info: File `AttachmentB.out' has not changed.
-(rerunfilecheck)             Checksum: A23A40FB0BA9F7C718172E3815694C8E;339.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 84.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 52.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 52.
+ (Planning.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 52.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 52.
+Package rerunfilecheck Info: File `Planning.out' has not changed.
+(rerunfilecheck)             Checksum: 67D57846953DFD660878AA536F21CBC3;95.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 52.
  ) 
 Here is how much of TeX's memory you used:
- 36729 strings out of 493334
- 651658 string characters out of 3143122
- 957142 words of memory out of 3000000
- 35530 multiletter control sequences out of 15000+200000
- 79615 words of font info for 77 fonts, out of 3000000 for 9000
+ 30136 strings out of 493334
+ 556379 string characters out of 3143122
+ 637740 words of memory out of 3000000
+ 33164 multiletter control sequences out of 15000+200000
+ 52600 words of font info for 53 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 47i,16n,97p,10491b,2305s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Apps/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Apps/MiKTeX 2.9/fonts/e
-nc/dvips/lm/lm-mathsy.enc}{C:/Apps/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/
-Apps/MiKTeX 2.9/fonts/type1/public/lm/lmcsc10.pfb><C:/Apps/MiKTeX 2.9/fonts/typ
-e1/public/lm/lmss10.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pfb><C
-:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmss8.pfb><C:/Apps/MiKTeX 2.9/fonts/typ
-e1/public/lm/lmss9.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><
-C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmsso9.pfb><C:/Apps/MiKTeX 2.9/fonts/t
-ype1/public/lm/lmsy9.pfb>
-Output written on AttachmentB.pdf (94 pages, 927669 bytes).
+ 44i,15n,50p,10488b,731s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Apps/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Apps/MiKTeX 2.9/fonts/ty
+pe1/public/lm/lmcsc10.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmss10.pfb>
+<C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pfb><C:/Apps/MiKTeX 2.9/fonts/
+type1/public/lm/lmssbx10.pfb>
+Output written on Planning.pdf (4 pages, 101503 bytes).
 PDF statistics:
- 5390 PDF objects out of 6186 (max. 8388607)
- 4178 named destinations out of 4296 (max. 500000)
- 54 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 53 PDF objects out of 1000 (max. 8388607)
+ 6 named destinations out of 1000 (max. 500000)
+ 22 words of extra memory for PDF output out of 10000 (max. 10000000)
 
