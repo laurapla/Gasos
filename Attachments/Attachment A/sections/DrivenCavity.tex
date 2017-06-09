@@ -36,7 +36,7 @@
 	\caption[Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric center of the cavity]{Comparison between the reference solution and the calculated one of the horizontal velocity along the vertical line in the geometric centre of the cavity \cite{Ghia1982}}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\begin{subfigure}{0.5\textwidth}
 		\resizebox{1.4\textwidth}{!}{\input{DrivenCavity/v100}}
@@ -71,6 +71,60 @@
 	\end{subfigure}
 	\caption[Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric center of the cavity]{Comparison between the reference solution and the calculated one of the vertical velocity along the horizontal line in the geometric centre of the cavity \cite{Ghia1982}}
 \end{figure}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|
+			>{\columncolor[HTML]{EFEFEF}}c |c|c|c|c|c|c|c|}
+		\hline
+		x      & \cellcolor[HTML]{EFEFEF}Re=100 & \cellcolor[HTML]{EFEFEF}Re=400 & \cellcolor[HTML]{EFEFEF}Re=1000 & \cellcolor[HTML]{EFEFEF}Re=3200 & \cellcolor[HTML]{EFEFEF}Re=5000 & \cellcolor[HTML]{EFEFEF}Re=7500 & \cellcolor[HTML]{EFEFEF}Re=10000 \\ \hline
+		1      & 0.00\%                         & 0.00\%                         & 0.00\%                          & 0.00\%                          & 0.00\%                          & 0.00\%                          & 0.00\%                           \\ \hline
+		0.9766 & 0.53\%                         & 0.41\%                         & 1.07\%                          & 5.91\%                          & 7.13\%                          & 15.08\%                         & 28.11\%                          \\ \hline
+		0.9688 & 0.72\%                         & 0.49\%                         & 1.14\%                          & 6.57\%                          & 8.95\%                          & 17.61\%                         & 32.03\%                          \\ \hline
+		0.9609 & 1.04\%                         & 0.77\%                         & 1.69\%                          & 7.74\%                          & 10.25\%                         & 18.46\%                         & 33.60\%                          \\ \hline
+		0.9531 & 1.32\%                         & 1.06\%                         & 2.40\%                          & 8.22\%                          & 10.50\%                         & 18.68\%                         & 34.58\%                          \\ \hline
+		0.8516 & 11.04\%                        & 2.76\%                         & 3.10\%                          & 8.88\%                          & 15.28\%                         & 32.24\%                         & 52.58\%                          \\ \hline
+		0.7344 & 1020.07\%                      & 2.66\%                         & 2.01\%                          & 10.68\%                         & 24.81\%                         & 50.19\%                         & 73.70\%                          \\ \hline
+		0.6172 & -15.41\%                       & 25.44\%                        & 3.47\%                          & 10.85\%                         & 31.55\%                         & 61.89\%                         & 73.63\%                          \\ \hline
+		0.5    & 3.19\%                         & -7.42\%                        & -4.01\%                         & 18.68\%                         & 30.72\%                         & 74.06\%                         & 34.89\%                          \\ \hline
+		0.4531 & 7.98\%                         & -5.56\%                        & -1.91\%                         & 91.66\%                         & 30.59\%                         & 64.80\%                         & 112.56\%                         \\ \hline
+		0.2813 & 19.18\%                        & 2.53\%                         & 1.24\%                          & 12.55\%                         & 21.26\%                         & 46.49\%                         & 55.93\%                          \\ \hline
+		0.1719 & 21.37\%                        & 9.01\%                         & 3.10\%                          & 8.44\%                          & 14.73\%                         & 29.52\%                         & 49.33\%                          \\ \hline
+		0.1016 & 20.90\%                        & 12.06\%                        & 5.98\%                          & 5.22\%                          & 8.95\%                          & 17.16\%                         & 36.85\%                          \\ \hline
+		0.0703 & 22.33\%                        & 13.08\%                        & 7.10\%                          & 1.78\%                          & 10.75\%                         & 14.22\%                         & 25.13\%                          \\ \hline
+		0.0625 & 20.17\%                        & 13.27\%                        & 7.29\%                          & 0.43\%                          & 11.22\%                         & 14.20\%                         & 22.76\%                          \\ \hline
+		0.0547 & 19.93\%                        & 13.41\%                        & 7.39\%                          & -1.15\%                         & 11.26\%                         & 13.84\%                         & 20.37\%                          \\ \hline
+		0      & 0.00\%                         & 0.00\%                         & 0.00\%                          & 0.00\%                          & 0.00\%                          & 0.00\%                          & 0.00\%                           \\ \hline
+	\end{tabular}
+	\caption{Error of the horizontal velocities in the vertical central plane}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|
+			>{\columncolor[HTML]{EFEFEF}}c |c|c|c|c|c|c|c|}
+		\hline
+		y      & \cellcolor[HTML]{EFEFEF}Re=100 & \cellcolor[HTML]{EFEFEF}Re=400 & \cellcolor[HTML]{EFEFEF}Re=1000 & \cellcolor[HTML]{EFEFEF}Re=3200 & \cellcolor[HTML]{EFEFEF}Re=5000 & \cellcolor[HTML]{EFEFEF}Re=7500 & \cellcolor[HTML]{EFEFEF}Re=10000 \\ \hline
+		1      & 0.00\%                         & 0.00\%                         & 0.00\%                          & 0.00\%                          & 0.00\%                          & 0.00\%                          & 0.00\%                           \\ \hline
+		0.9688 & 7.43\%                         & 2.41\%                         & -1.00\%                         & -1.16\%                         & 11.69\%                         & 17.15\%                         & 20.24\%                          \\ \hline
+		0.9609 & 7.29\%                         & 2.02\%                         & -0.95\%                         & 0.95\%                          & 10.81\%                         & 14.42\%                         & 17.89\%                          \\ \hline
+		0.9531 & 7.43\%                         & 1.98\%                         & -0.68\%                         & 2.17\%                          & 9.08\%                          & 11.53\%                         & 16.78\%                          \\ \hline
+		0.9453 & 7.52\%                         & 1.87\%                         & -0.57\%                         & 3.11\%                          & 7.55\%                          & 10.48\%                         & 18.96\%                          \\ \hline
+		0.9063 & 8.21\%                         & -57.88\%                       & 1.57\%                          & 5.68\%                          & 8.89\%                          & 18.94\%                         & 37.44\%                          \\ \hline
+		0.8594 & 9.09\%                         & 1.84\%                         & 2.81\%                          & 7.39\%                          & 12.11\%                         & 26.30\%                         & 47.77\%                          \\ \hline
+		0.8047 & 10.32\%                        & 1.77\%                         & 3.34\%                          & 9.04\%                          & 16.06\%                         & 35.75\%                         & 53.28\%                          \\ \hline
+		0.5    & -6.69\%                        & -14.99\%                       & -10.95\%                        & -40.59\%                        & 3.41\%                          & 61.67\%                         & 331.52\%                         \\ \hline
+		0.2344 & 15.90\%                        & 3.89\%                         & 1.56\%                          & 8.54\%                          & 18.07\%                         & 39.01\%                         & 46.30\%                          \\ \hline
+		0.2266 & 16.04\%                        & 4.24\%                         & 1.74\%                          & 8.44\%                          & 17.50\%                         & 37.78\%                         & 45.79\%                          \\ \hline
+		0.1563 & 16.84\%                        & 6.79\%                         & 3.61\%                          & 6.87\%                          & 12.28\%                         & 26.49\%                         & 44.39\%                          \\ \hline
+		0.0938 & 17.15\%                        & 8.22\%                         & 4.96\%                          & 7.54\%                          & 9.99\%                          & 16.36\%                         & 32.74\%                          \\ \hline
+		0.0781 & 17.29\%                        & 8.58\%                         & 5.25\%                          & 8.26\%                          & 10.81\%                         & 15.88\%                         & 29.86\%                          \\ \hline
+		0.0703 & 17.31\%                        & 8.73\%                         & 5.40\%                          & 8.62\%                          & 11.32\%                         & 16.21\%                         & 29.30\%                          \\ \hline
+		0.0625 & 17.29\%                        & 8.82\%                         & 5.51\%                          & 8.93\%                          & 11.70\%                         & 16.66\%                         & 29.23\%                          \\ \hline
+		0      & 0.00\%                         & 0.00\%                         & 0.00\%                          & 0.00\%                          & 0.00\%                          & 0.00\%                          & 0.00\%                           \\ \hline
+	\end{tabular}
+\caption{Error of the vertical velocities in the horizontal central plane}
+\end{table}
 
 
 \begin{figure}[h]

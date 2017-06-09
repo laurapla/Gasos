@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  7 JUN 2017 16:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  9 JUN 2017 02:59
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -1479,9 +1479,9 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 )
 \verbatim@out=\write3
-runsystem(echo t > "w18-test-201767996.tex")...executed.
+runsystem(echo t > "w18-test-201769179.tex")...executed.
 
-runsystem(del "w18-test-201767996.tex")...executed.
+runsystem(del "w18-test-201769179.tex")...executed.
 
 Package gnuplottex Info: Automatically converting gnuplot files. on input line 
 110.
@@ -1985,7 +1985,7 @@ LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 24.
 ("C:\Apps\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd"
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) (doc_config/cover.tex
-<./doc_config/image.png, id=359, 640.3925pt x 170.6375pt>
+<./doc_config/image.png, id=367, 640.3925pt x 170.6375pt>
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
@@ -2013,7 +2013,7 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <.
-/doc_config/image.png>] (Report.toc
+/doc_config/image.png>] (sections/Abstract.tex [1]) (Report.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <12> on input line 3.
 
@@ -2033,9 +2033,15 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 27.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [1]
+pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.27 ...line {3.2}Discretization}{12}{section.3.2}
+                                                   [1]
 File: ./doc_config/image.png Graphic file (type png)
- <use ./doc_config/image.png>
+
+<use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 62.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [2])
@@ -2043,30 +2049,28 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 62.
 \openout5 = `Report.toc'.
 
 File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 35.
+ <use ./doc_config/image.png>
+Package pdftex.def Info: ./doc_config/image.png used on input line 37.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [3] (Report.lot)
 \tf@lot=\write6
 \openout6 = `Report.lot'.
 
 
+Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
+less on input line 42.
+
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 40.
-
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 40.
+less on input line 42.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 40.
+less on input line 42.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 40.
+Package pdftex.def Info: ./doc_config/image.png used on input line 42.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [4] (Report.lof
 
@@ -2091,30 +2095,30 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 37.
 
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 48.
+Package pdftex.def Info: ./doc_config/image.png used on input line 50.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [6]
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 54.
+less on input line 56.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 54.
+less on input line 56.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 54.
+less on input line 56.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 54.
+Package pdftex.def Info: ./doc_config/image.png used on input line 56.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.54 \part{Introduction}
+l.56 \part{Introduction}
                          [1
 
 ] (sections/Introduction.tex
@@ -2158,35 +2162,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 35--39
  []
 
 )
-Underfull \hbox (badness 10000) in paragraph at lines 41--56
+Underfull \hbox (badness 10000) in paragraph at lines 41--58
 
  []
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 56.
+Package pdftex.def Info: ./doc_config/image.png used on input line 58.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [3]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 57.
+Package pdftex.def Info: ./doc_config/image.png used on input line 59.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [4]
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 57.
+less on input line 59.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 57.
+less on input line 59.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 57.
+less on input line 59.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 57.
+Package pdftex.def Info: ./doc_config/image.png used on input line 59.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [5
 
@@ -2214,7 +2218,7 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 46.
  [6
 
 ]
-<sections/StateArt/3gridpoints.png, id=626, 372.64218pt x 92.59593pt>
+<sections/StateArt/3gridpoints.png, id=645, 372.64218pt x 92.59593pt>
 File: sections/StateArt/3gridpoints.png Graphic file (type png)
 
 <use sections/StateArt/3gridpoints.png>
@@ -2222,7 +2226,7 @@ Package pdftex.def Info: sections/StateArt/3gridpoints.png used on input line 6
 7.
 (pdftex.def)             Requested size: 298.11414pt x 74.07683pt.
 
-<sections/StateArt/controlvolume2d.png, id=628, 274.02374pt x 270.25969pt>
+<sections/StateArt/controlvolume2d.png, id=647, 274.02374pt x 270.25969pt>
 File: sections/StateArt/controlvolume2d.png Graphic file (type png)
 
 <use sections/StateArt/controlvolume2d.png>
@@ -2249,31 +2253,31 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 114.
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 60.
+Package pdftex.def Info: ./doc_config/image.png used on input line 62.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [10]
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 60.
+less on input line 62.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 60.
+less on input line 62.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 60.
+less on input line 62.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 60.
+Package pdftex.def Info: ./doc_config/image.png used on input line 62.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [11
 
 ] (sections/Conduction.tex
 Chapter 3.
 
-<sections/FourMaterials/controlvolume2d.png, id=668, 274.02374pt x 270.25969pt>
+<sections/FourMaterials/controlvolume2d.png, id=688, 274.02374pt x 270.25969pt>
 File: sections/FourMaterials/controlvolume2d.png Graphic file (type png)
 <use sections/FourMaterials/controlvolume2d.png>
 Package pdftex.def Info: sections/FourMaterials/controlvolume2d.png used on inp
@@ -2322,7 +2326,7 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 1.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [16]
 Chapter 4.
-<sections/FourMaterials/Fourmaterials.png, id=729, 545.03625pt x 397.485pt>
+<sections/FourMaterials/Fourmaterials.png, id=748, 545.03625pt x 397.485pt>
 File: sections/FourMaterials/Fourmaterials.png Graphic file (type png)
 
 <use sections/FourMaterials/Fourmaterials.png>
@@ -2372,7 +2376,7 @@ Overfull \hbox (5.25569pt too wide) detected at line 104
  []$[] \OT1/lmr/m/n/10.95 + [] [][]$ []  
  []
 
-<sections/FourMaterials/algorithm.png, id=743, 2489.3pt x 3521.155pt>
+<sections/FourMaterials/algorithm.png, id=762, 2489.3pt x 3521.155pt>
 File: sections/FourMaterials/algorithm.png Graphic file (type png)
 
 <use sections/FourMaterials/algorithm.png>
@@ -2390,7 +2394,7 @@ File: ./doc_config/image.png Graphic file (type png)
 Package pdftex.def Info: ./doc_config/image.png used on input line 113.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [20 <./sections/FourMaterials/algorithm.png>] <sections/FourMaterials/referenc
-e.png, id=765, 545.78906pt x 416.30531pt>
+e.png, id=784, 545.78906pt x 416.30531pt>
 File: sections/FourMaterials/reference.png Graphic file (type png)
 
 <use sections/FourMaterials/reference.png>
@@ -2414,7 +2418,7 @@ ltats5000-eps-converted-to.pdf sections/FourMaterials/Resultats5000.eps>
 (epstopdf)             \includegraphics on input line 9348.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/FourMaterials/Resultats5000-eps-converted-to.pdf, id=766, 361.35pt x 
+<sections/FourMaterials/Resultats5000-eps-converted-to.pdf, id=785, 361.35pt x 
 252.945pt>
 File: sections/FourMaterials/Resultats5000-eps-converted-to.pdf Graphic file (t
 ype pdf)
@@ -2436,7 +2440,7 @@ ltats-eps-converted-to.pdf sections/FourMaterials/Resultats.eps>
 (epstopdf)             \includegraphics on input line 112.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/FourMaterials/Resultats-eps-converted-to.pdf, id=768, 361.35pt x 252.
+<sections/FourMaterials/Resultats-eps-converted-to.pdf, id=787, 361.35pt x 252.
 945pt>
 File: sections/FourMaterials/Resultats-eps-converted-to.pdf Graphic file (type 
 pdf)
@@ -2465,7 +2469,7 @@ M2-eps-converted-to.pdf sections/FourMaterials/HomoM2.eps>
 (epstopdf)             \includegraphics on input line 113.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/FourMaterials/HomoM2-eps-converted-to.pdf, id=777, 361.35pt x 252.945
+<sections/FourMaterials/HomoM2-eps-converted-to.pdf, id=796, 361.35pt x 252.945
 pt>
 File: sections/FourMaterials/HomoM2-eps-converted-to.pdf Graphic file (type pdf
 )
@@ -2490,7 +2494,7 @@ M3-eps-converted-to.pdf sections/FourMaterials/HomoM3.eps>
 (epstopdf)             \includegraphics on input line 112.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/FourMaterials/HomoM3-eps-converted-to.pdf, id=778, 361.35pt x 252.945
+<sections/FourMaterials/HomoM3-eps-converted-to.pdf, id=797, 361.35pt x 252.945
 pt>
 File: sections/FourMaterials/HomoM3-eps-converted-to.pdf Graphic file (type pdf
 )
@@ -2508,36 +2512,36 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 )
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 64.
+Package pdftex.def Info: ./doc_config/image.png used on input line 66.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [22 <./sections/FourMaterials/Resultats-eps-converted-to.pdf>]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 64.
+Package pdftex.def Info: ./doc_config/image.png used on input line 66.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [23 <./sections/FourMaterials/HomoM2-eps-converted-to.pdf> <./sections/FourMat
 erials/HomoM3-eps-converted-to.pdf>]
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 64.
+less on input line 66.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 64.
+less on input line 66.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 64.
+less on input line 66.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 64.
+Package pdftex.def Info: ./doc_config/image.png used on input line 66.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [24
 
 ] (sections/NSEquations.tex
 Chapter 5.
-<sections/SmithHutton/mesh.png, id=805, 361.35pt x 340.27126pt>
+<sections/SmithHutton/mesh.png, id=824, 361.35pt x 340.27126pt>
 File: sections/SmithHutton/mesh.png Graphic file (type png)
 
 <use sections/SmithHutton/mesh.png>
@@ -2586,7 +2590,7 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 1.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [29]
 Chapter 6.
-<sections/SmithHutton/SmithHutton.png, id=880, 560.8453pt x 343.2825pt>
+<sections/SmithHutton/SmithHutton.png, id=900, 560.8453pt x 343.2825pt>
 File: sections/SmithHutton/SmithHutton.png Graphic file (type png)
 
 <use sections/SmithHutton/SmithHutton.png>
@@ -2618,7 +2622,7 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 39.
  [30
 
  <./sections/SmithHutton/SmithHutton.png>]
-<sections/SmithHutton/algorithm.png, id=892, 2489.3pt x 3521.155pt>
+<sections/SmithHutton/algorithm.png, id=911, 2489.3pt x 3521.155pt>
 File: sections/SmithHutton/algorithm.png Graphic file (type png)
 
 <use sections/SmithHutton/algorithm.png>
@@ -2649,7 +2653,7 @@ df>
 (epstopdf)             \includegraphics on input line 121.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/SmithHutton/10-eps-converted-to.pdf, id=908, 361.35pt x 252.945pt>
+<sections/SmithHutton/10-eps-converted-to.pdf, id=927, 361.35pt x 252.945pt>
 File: sections/SmithHutton/10-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/SmithHutton/10-eps-converted-to.pdf>
@@ -2670,7 +2674,7 @@ ps-converted-to.pdf sections/SmithHutton/1000.eps>
 (epstopdf)             \includegraphics on input line 115.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/SmithHutton/1000-eps-converted-to.pdf, id=909, 361.35pt x 252.945pt>
+<sections/SmithHutton/1000-eps-converted-to.pdf, id=928, 361.35pt x 252.945pt>
 File: sections/SmithHutton/1000-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/SmithHutton/1000-eps-converted-to.pdf>
@@ -2694,7 +2698,7 @@ Package epstopdf Info: Source file: <sections/SmithHutton/1000000.eps>
 (epstopdf)             \includegraphics on input line 115.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/SmithHutton/1000000-eps-converted-to.pdf, id=910, 361.35pt x 252.945p
+<sections/SmithHutton/1000000-eps-converted-to.pdf, id=929, 361.35pt x 252.945p
 t>
 File: sections/SmithHutton/1000000-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -2724,7 +2728,7 @@ s-converted-to.pdf sections/SmithHutton/R10.eps>
 (epstopdf)             \includegraphics on input line 110.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/SmithHutton/R10-eps-converted-to.pdf, id=920, 361.35pt x 252.945pt>
+<sections/SmithHutton/R10-eps-converted-to.pdf, id=939, 361.35pt x 252.945pt>
 File: sections/SmithHutton/R10-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/SmithHutton/R10-eps-converted-to.pdf>
@@ -2748,7 +2752,7 @@ eps-converted-to.pdf sections/SmithHutton/R1000.eps>
 (epstopdf)             \includegraphics on input line 110.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/SmithHutton/R1000-eps-converted-to.pdf, id=921, 361.35pt x 252.945pt>
+<sections/SmithHutton/R1000-eps-converted-to.pdf, id=940, 361.35pt x 252.945pt>
 File: sections/SmithHutton/R1000-eps-converted-to.pdf Graphic file (type pdf)
 <use sections/SmithHutton/R1000-eps-converted-to.pdf>
 Package pdftex.def Info: sections/SmithHutton/R1000-eps-converted-to.pdf used o
@@ -2771,7 +2775,7 @@ d-to.pdf>
 (epstopdf)             \includegraphics on input line 110.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/SmithHutton/R1000000-eps-converted-to.pdf, id=922, 361.35pt x 252.945
+<sections/SmithHutton/R1000000-eps-converted-to.pdf, id=941, 361.35pt x 252.945
 pt>
 File: sections/SmithHutton/R1000000-eps-converted-to.pdf Graphic file (type pdf
 )
@@ -2826,7 +2830,7 @@ File: ./doc_config/image.png Graphic file (type png)
 Package pdftex.def Info: ./doc_config/image.png used on input line 81.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [38]
-<sections/DrivenCavity/staggered.png, id=980, 405.01312pt x 394.47375pt>
+<sections/DrivenCavity/staggered.png, id=999, 405.01312pt x 394.47375pt>
 File: sections/DrivenCavity/staggered.png Graphic file (type png)
 
 <use sections/DrivenCavity/staggered.png>
@@ -2838,7 +2842,7 @@ File: ./doc_config/image.png Graphic file (type png)
 Package pdftex.def Info: ./doc_config/image.png used on input line 96.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [39 <./sections/DrivenCavity/staggered.png>]
-<sections/DrivenCavity/mflowx3.png, id=989, 259.7203pt x 248.42813pt>
+<sections/DrivenCavity/mflowx3.png, id=1008, 259.7203pt x 248.42813pt>
 File: sections/DrivenCavity/mflowx3.png Graphic file (type png)
 
 <use sections/DrivenCavity/mflowx3.png>
@@ -2846,7 +2850,7 @@ Package pdftex.def Info: sections/DrivenCavity/mflowx3.png used on input line 1
 21.
 (pdftex.def)             Requested size: 181.80296pt x 173.8985pt.
 
-<sections/DrivenCavity/mflowy3.png, id=990, 249.18094pt x 255.20343pt>
+<sections/DrivenCavity/mflowy3.png, id=1009, 249.18094pt x 255.20343pt>
 File: sections/DrivenCavity/mflowy3.png Graphic file (type png)
 
 <use sections/DrivenCavity/mflowy3.png>
@@ -2881,7 +2885,7 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 1.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [43]
 Chapter 8.
-<sections/DrivenCavity/DrivenCavity.png, id=1042, 735.49782pt x 450.9347pt>
+<sections/DrivenCavity/DrivenCavity.png, id=1061, 735.49782pt x 450.9347pt>
 File: sections/DrivenCavity/DrivenCavity.png Graphic file (type png)
 
 <use sections/DrivenCavity/DrivenCavity.png>
@@ -2912,22 +2916,22 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 23.
  [44
 
  <./sections/DrivenCavity/DrivenCavity.png>]
-<sections/DrivenCavity/algorithm.png, id=1053, 2489.3pt x 3521.155pt>
+<sections/DrivenCavity/algorithm.png, id=1072, 2489.3pt x 3521.155pt>
 File: sections/DrivenCavity/algorithm.png Graphic file (type png)
 
 <use sections/DrivenCavity/algorithm.png>
 Package pdftex.def Info: sections/DrivenCavity/algorithm.png used on input line
- 66.
+ 67.
 (pdftex.def)             Requested size: 420.70647pt x 595.0961pt.
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 68.
+Package pdftex.def Info: ./doc_config/image.png used on input line 69.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [45]
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 70.
+Package pdftex.def Info: ./doc_config/image.png used on input line 71.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [46 <./sections/DrivenCavity/algorithm.png>]
 (sections/DrivenCavity/u100.tex
@@ -2943,7 +2947,7 @@ eps-converted-to.pdf sections/DrivenCavity/u100.eps>
 (epstopdf)             \includegraphics on input line 110.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/u100-eps-converted-to.pdf, id=1068, 361.35pt x 252.945pt
+<sections/DrivenCavity/u100-eps-converted-to.pdf, id=1087, 361.35pt x 252.945pt
 >
 File: sections/DrivenCavity/u100-eps-converted-to.pdf Graphic file (type pdf)
  <use sections/DrivenCavity/u100-eps-converted-to.pdf>
@@ -2951,14 +2955,14 @@ Package pdftex.def Info: sections/DrivenCavity/u100-eps-converted-to.pdf used o
 n input line 110.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 77--78
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 78--79
 [][] 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 78.
+(Font)              <10> on input line 79.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 78.
+(Font)              <7> on input line 79.
 (sections/DrivenCavity/u1000.tex
 Package epstopdf Info: Source file: <sections/DrivenCavity/u1000.eps>
 (epstopdf)                    date: 2017-06-06 17:02:38
@@ -2972,7 +2976,7 @@ to.pdf>
 (epstopdf)             \includegraphics on input line 110.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/u1000-eps-converted-to.pdf, id=1069, 361.35pt x 252.945p
+<sections/DrivenCavity/u1000-eps-converted-to.pdf, id=1088, 361.35pt x 252.945p
 t>
 File: sections/DrivenCavity/u1000-eps-converted-to.pdf Graphic file (type pdf)
  <use sections/DrivenCavity/u1000-eps-converted-to.pdf>
@@ -2980,7 +2984,7 @@ Package pdftex.def Info: sections/DrivenCavity/u1000-eps-converted-to.pdf used
 on input line 110.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 81--82
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 82--83
 [][] 
  []
 
@@ -2997,7 +3001,7 @@ to.pdf>
 (epstopdf)             \includegraphics on input line 113.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/u3200-eps-converted-to.pdf, id=1070, 361.35pt x 252.945p
+<sections/DrivenCavity/u3200-eps-converted-to.pdf, id=1089, 361.35pt x 252.945p
 t>
 File: sections/DrivenCavity/u3200-eps-converted-to.pdf Graphic file (type pdf)
  <use sections/DrivenCavity/u3200-eps-converted-to.pdf>
@@ -3005,7 +3009,7 @@ Package pdftex.def Info: sections/DrivenCavity/u3200-eps-converted-to.pdf used
 on input line 113.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 85--86
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 86--87
 [][] 
  []
 
@@ -3022,7 +3026,7 @@ Package epstopdf Info: Source file: <sections/DrivenCavity/u10000.eps>
 (epstopdf)             \includegraphics on input line 111.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/u10000-eps-converted-to.pdf, id=1071, 361.35pt x 252.945
+<sections/DrivenCavity/u10000-eps-converted-to.pdf, id=1090, 361.35pt x 252.945
 pt>
 File: sections/DrivenCavity/u10000-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -3031,7 +3035,7 @@ Package pdftex.def Info: sections/DrivenCavity/u10000-eps-converted-to.pdf used
  on input line 111.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 89--90
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 90--91
 [][] 
  []
 
@@ -3051,7 +3055,7 @@ eps-converted-to.pdf sections/DrivenCavity/v100.eps>
 (epstopdf)             \includegraphics on input line 112.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/v100-eps-converted-to.pdf, id=1074, 361.35pt x 252.945pt
+<sections/DrivenCavity/v100-eps-converted-to.pdf, id=1093, 361.35pt x 252.945pt
 >
 File: sections/DrivenCavity/v100-eps-converted-to.pdf Graphic file (type pdf)
  <use sections/DrivenCavity/v100-eps-converted-to.pdf>
@@ -3059,7 +3063,7 @@ Package pdftex.def Info: sections/DrivenCavity/v100-eps-converted-to.pdf used o
 n input line 112.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 99--100
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 100--101
 [][] 
  []
 
@@ -3076,7 +3080,7 @@ to.pdf>
 (epstopdf)             \includegraphics on input line 113.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/v1000-eps-converted-to.pdf, id=1075, 361.35pt x 252.945p
+<sections/DrivenCavity/v1000-eps-converted-to.pdf, id=1094, 361.35pt x 252.945p
 t>
 File: sections/DrivenCavity/v1000-eps-converted-to.pdf Graphic file (type pdf)
  <use sections/DrivenCavity/v1000-eps-converted-to.pdf>
@@ -3084,7 +3088,7 @@ Package pdftex.def Info: sections/DrivenCavity/v1000-eps-converted-to.pdf used
 on input line 113.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 103--104
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 104--105
 [][] 
  []
 
@@ -3101,7 +3105,7 @@ to.pdf>
 (epstopdf)             \includegraphics on input line 114.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/v3200-eps-converted-to.pdf, id=1076, 361.35pt x 252.945p
+<sections/DrivenCavity/v3200-eps-converted-to.pdf, id=1095, 361.35pt x 252.945p
 t>
 File: sections/DrivenCavity/v3200-eps-converted-to.pdf Graphic file (type pdf)
  <use sections/DrivenCavity/v3200-eps-converted-to.pdf>
@@ -3109,7 +3113,7 @@ Package pdftex.def Info: sections/DrivenCavity/v3200-eps-converted-to.pdf used
 on input line 114.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 107--108
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 108--109
 [][] 
  []
 
@@ -3126,7 +3130,7 @@ Package epstopdf Info: Source file: <sections/DrivenCavity/v10000.eps>
 (epstopdf)             \includegraphics on input line 114.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/v10000-eps-converted-to.pdf, id=1077, 361.35pt x 252.945
+<sections/DrivenCavity/v10000-eps-converted-to.pdf, id=1096, 361.35pt x 252.945
 pt>
 File: sections/DrivenCavity/v10000-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -3135,7 +3139,7 @@ Package pdftex.def Info: sections/DrivenCavity/v10000-eps-converted-to.pdf used
  on input line 114.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 111--112
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 112--113
 [][] 
  []
 
@@ -3155,7 +3159,7 @@ to.pdf>
 (epstopdf)             \includegraphics on input line 108.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/Ru100-eps-converted-to.pdf, id=1080, 361.35pt x 252.945p
+<sections/DrivenCavity/Ru100-eps-converted-to.pdf, id=1099, 361.35pt x 252.945p
 t>
 File: sections/DrivenCavity/Ru100-eps-converted-to.pdf Graphic file (type pdf)
  <use sections/DrivenCavity/Ru100-eps-converted-to.pdf>
@@ -3163,7 +3167,7 @@ Package pdftex.def Info: sections/DrivenCavity/Ru100-eps-converted-to.pdf used
 on input line 108.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 123--124
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 124--125
 [][] 
  []
 
@@ -3180,7 +3184,7 @@ Package epstopdf Info: Source file: <sections/DrivenCavity/Ru1000.eps>
 (epstopdf)             \includegraphics on input line 108.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/Ru1000-eps-converted-to.pdf, id=1081, 361.35pt x 252.945
+<sections/DrivenCavity/Ru1000-eps-converted-to.pdf, id=1100, 361.35pt x 252.945
 pt>
 File: sections/DrivenCavity/Ru1000-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -3189,7 +3193,7 @@ Package pdftex.def Info: sections/DrivenCavity/Ru1000-eps-converted-to.pdf used
  on input line 108.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 127--128
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 128--129
 [][] 
  []
 
@@ -3206,7 +3210,7 @@ Package epstopdf Info: Source file: <sections/DrivenCavity/Ru3200.eps>
 (epstopdf)             \includegraphics on input line 109.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/Ru3200-eps-converted-to.pdf, id=1082, 361.35pt x 252.945
+<sections/DrivenCavity/Ru3200-eps-converted-to.pdf, id=1101, 361.35pt x 252.945
 pt>
 File: sections/DrivenCavity/Ru3200-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -3215,7 +3219,7 @@ Package pdftex.def Info: sections/DrivenCavity/Ru3200-eps-converted-to.pdf used
  on input line 109.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 131--132
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 132--133
 [][] 
  []
 
@@ -3232,7 +3236,7 @@ d-to.pdf>
 (epstopdf)             \includegraphics on input line 108.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/Ru10000-eps-converted-to.pdf, id=1083, 361.35pt x 252.94
+<sections/DrivenCavity/Ru10000-eps-converted-to.pdf, id=1102, 361.35pt x 252.94
 5pt>
 File: sections/DrivenCavity/Ru10000-eps-converted-to.pdf Graphic file (type pdf
 )
@@ -3241,7 +3245,7 @@ Package pdftex.def Info: sections/DrivenCavity/Ru10000-eps-converted-to.pdf use
 d on input line 108.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 135--136
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 136--137
 [][] 
  []
 
@@ -3261,7 +3265,7 @@ to.pdf>
 (epstopdf)             \includegraphics on input line 111.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/Rv100-eps-converted-to.pdf, id=1085, 361.35pt x 252.945p
+<sections/DrivenCavity/Rv100-eps-converted-to.pdf, id=1104, 361.35pt x 252.945p
 t>
 File: sections/DrivenCavity/Rv100-eps-converted-to.pdf Graphic file (type pdf)
  <use sections/DrivenCavity/Rv100-eps-converted-to.pdf>
@@ -3269,7 +3273,7 @@ Package pdftex.def Info: sections/DrivenCavity/Rv100-eps-converted-to.pdf used
 on input line 111.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 147--148
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 148--149
 [][] 
  []
 
@@ -3286,7 +3290,7 @@ Package epstopdf Info: Source file: <sections/DrivenCavity/Rv1000.eps>
 (epstopdf)             \includegraphics on input line 107.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/Rv1000-eps-converted-to.pdf, id=1086, 361.35pt x 252.945
+<sections/DrivenCavity/Rv1000-eps-converted-to.pdf, id=1105, 361.35pt x 252.945
 pt>
 File: sections/DrivenCavity/Rv1000-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -3295,7 +3299,7 @@ Package pdftex.def Info: sections/DrivenCavity/Rv1000-eps-converted-to.pdf used
  on input line 107.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 151--152
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 152--153
 [][] 
  []
 
@@ -3312,7 +3316,7 @@ Package epstopdf Info: Source file: <sections/DrivenCavity/Rv3200.eps>
 (epstopdf)             \includegraphics on input line 108.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/Rv3200-eps-converted-to.pdf, id=1087, 361.35pt x 252.945
+<sections/DrivenCavity/Rv3200-eps-converted-to.pdf, id=1106, 361.35pt x 252.945
 pt>
 File: sections/DrivenCavity/Rv3200-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -3321,7 +3325,7 @@ Package pdftex.def Info: sections/DrivenCavity/Rv3200-eps-converted-to.pdf used
  on input line 108.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 155--156
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 156--157
 [][] 
  []
 
@@ -3338,7 +3342,7 @@ d-to.pdf>
 (epstopdf)             \includegraphics on input line 107.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/Rv10000-eps-converted-to.pdf, id=1088, 361.35pt x 252.94
+<sections/DrivenCavity/Rv10000-eps-converted-to.pdf, id=1107, 361.35pt x 252.94
 5pt>
 File: sections/DrivenCavity/Rv10000-eps-converted-to.pdf Graphic file (type pdf
 )
@@ -3347,7 +3351,7 @@ Package pdftex.def Info: sections/DrivenCavity/Rv10000-eps-converted-to.pdf use
 d on input line 107.
 (pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
 )
-Overfull \hbox (85.37613pt too wide) in paragraph at lines 159--160
+Overfull \hbox (85.37613pt too wide) in paragraph at lines 160--161
 [][] 
  []
 
@@ -3363,18 +3367,18 @@ Package epstopdf Info: Source file: <sections/DrivenCavity/100.eps>
 (epstopdf)                    size: 251138 bytes
 (epstopdf)             Command: <epstopdf --outfile=sections/DrivenCavity/100-e
 ps-converted-to.pdf sections/DrivenCavity/100.eps>
-(epstopdf)             \includegraphics on input line 171.
+(epstopdf)             \includegraphics on input line 172.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/100-eps-converted-to.pdf, id=1090, 421.575pt x 316.18124
+<sections/DrivenCavity/100-eps-converted-to.pdf, id=1109, 421.575pt x 316.18124
 pt>
 File: sections/DrivenCavity/100-eps-converted-to.pdf Graphic file (type pdf)
  <use sections/DrivenCavity/100-eps-converted-to.pdf>
 Package pdftex.def Info: sections/DrivenCavity/100-eps-converted-to.pdf used on
- input line 171.
+ input line 172.
 (pdftex.def)             Requested size: 257.16037pt x 192.87027pt.
 
-Overfull \hbox (43.7647pt too wide) in paragraph at lines 171--172
+Overfull \hbox (43.7647pt too wide) in paragraph at lines 172--173
 [][] 
  []
 
@@ -3387,18 +3391,18 @@ o.pdf>
 (epstopdf)                    size: 210988 bytes
 (epstopdf)             Command: <epstopdf --outfile=sections/DrivenCavity/1000-
 eps-converted-to.pdf sections/DrivenCavity/1000.eps>
-(epstopdf)             \includegraphics on input line 175.
+(epstopdf)             \includegraphics on input line 176.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/1000-eps-converted-to.pdf, id=1091, 421.575pt x 316.1812
+<sections/DrivenCavity/1000-eps-converted-to.pdf, id=1110, 421.575pt x 316.1812
 4pt>
 File: sections/DrivenCavity/1000-eps-converted-to.pdf Graphic file (type pdf)
  <use sections/DrivenCavity/1000-eps-converted-to.pdf>
 Package pdftex.def Info: sections/DrivenCavity/1000-eps-converted-to.pdf used o
-n input line 175.
+n input line 176.
 (pdftex.def)             Requested size: 257.16037pt x 192.87027pt.
 
-Overfull \hbox (43.7647pt too wide) in paragraph at lines 175--176
+Overfull \hbox (43.7647pt too wide) in paragraph at lines 176--177
 [][] 
  []
 
@@ -3411,18 +3415,18 @@ o.pdf>
 (epstopdf)                    size: 210587 bytes
 (epstopdf)             Command: <epstopdf --outfile=sections/DrivenCavity/3200-
 eps-converted-to.pdf sections/DrivenCavity/3200.eps>
-(epstopdf)             \includegraphics on input line 179.
+(epstopdf)             \includegraphics on input line 180.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/3200-eps-converted-to.pdf, id=1092, 421.575pt x 316.1812
+<sections/DrivenCavity/3200-eps-converted-to.pdf, id=1111, 421.575pt x 316.1812
 4pt>
 File: sections/DrivenCavity/3200-eps-converted-to.pdf Graphic file (type pdf)
  <use sections/DrivenCavity/3200-eps-converted-to.pdf>
 Package pdftex.def Info: sections/DrivenCavity/3200-eps-converted-to.pdf used o
-n input line 179.
+n input line 180.
 (pdftex.def)             Requested size: 257.16037pt x 192.87027pt.
 
-Overfull \hbox (43.7647pt too wide) in paragraph at lines 179--180
+Overfull \hbox (43.7647pt too wide) in paragraph at lines 180--181
 [][] 
  []
 
@@ -3435,18 +3439,18 @@ to.pdf>
 (epstopdf)                    size: 192203 bytes
 (epstopdf)             Command: <epstopdf --outfile=sections/DrivenCavity/10000
 -eps-converted-to.pdf sections/DrivenCavity/10000.eps>
-(epstopdf)             \includegraphics on input line 183.
+(epstopdf)             \includegraphics on input line 184.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/DrivenCavity/10000-eps-converted-to.pdf, id=1093, 421.575pt x 316.181
+<sections/DrivenCavity/10000-eps-converted-to.pdf, id=1112, 421.575pt x 316.181
 24pt>
 File: sections/DrivenCavity/10000-eps-converted-to.pdf Graphic file (type pdf)
  <use sections/DrivenCavity/10000-eps-converted-to.pdf>
 Package pdftex.def Info: sections/DrivenCavity/10000-eps-converted-to.pdf used 
-on input line 183.
+on input line 184.
 (pdftex.def)             Requested size: 257.16037pt x 192.87027pt.
 
-Overfull \hbox (43.7647pt too wide) in paragraph at lines 183--184
+Overfull \hbox (43.7647pt too wide) in paragraph at lines 184--185
 [][] 
  []
 
@@ -3497,7 +3501,7 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 1.
 /1000-eps-converted-to.pdf> <./sections/DrivenCavity/3200-eps-converted-to.pdf>
  <./sections/DrivenCavity/10000-eps-converted-to.pdf>]
 Chapter 9.
-<sections/Buoyancy/BuoyancyDriven.png, id=1167, 493.0922pt x 425.33907pt>
+<sections/Buoyancy/BuoyancyDriven.png, id=1186, 493.0922pt x 425.33907pt>
 File: sections/Buoyancy/BuoyancyDriven.png Graphic file (type png)
 
 <use sections/Buoyancy/BuoyancyDriven.png>
@@ -3541,7 +3545,7 @@ File: ./doc_config/image.png Graphic file (type png)
 Package pdftex.def Info: ./doc_config/image.png used on input line 135.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [56]
-<sections/Buoyancy/Doc4.png, id=1225, 2489.3pt x 3521.155pt>
+<sections/Buoyancy/Doc4.png, id=1244, 2489.3pt x 3521.155pt>
 File: sections/Buoyancy/Doc4.png Graphic file (type png)
 
 <use sections/Buoyancy/Doc4.png>
@@ -3578,7 +3582,7 @@ nverted-to.pdf sections/Buoyancy/T3.eps>
 (epstopdf)             \includegraphics on input line 106.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/Buoyancy/T3-eps-converted-to.pdf, id=1242, 361.35pt x 252.945pt>
+<sections/Buoyancy/T3-eps-converted-to.pdf, id=1261, 361.35pt x 252.945pt>
 File: sections/Buoyancy/T3-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/T3-eps-converted-to.pdf>
@@ -3603,7 +3607,7 @@ nverted-to.pdf sections/Buoyancy/T4.eps>
 (epstopdf)             \includegraphics on input line 106.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/Buoyancy/T4-eps-converted-to.pdf, id=1243, 361.35pt x 252.945pt>
+<sections/Buoyancy/T4-eps-converted-to.pdf, id=1262, 361.35pt x 252.945pt>
 File: sections/Buoyancy/T4-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/T4-eps-converted-to.pdf>
@@ -3628,7 +3632,7 @@ nverted-to.pdf sections/Buoyancy/T5.eps>
 (epstopdf)             \includegraphics on input line 106.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/Buoyancy/T5-eps-converted-to.pdf, id=1244, 361.35pt x 252.945pt>
+<sections/Buoyancy/T5-eps-converted-to.pdf, id=1263, 361.35pt x 252.945pt>
 File: sections/Buoyancy/T5-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/T5-eps-converted-to.pdf>
@@ -3653,7 +3657,7 @@ nverted-to.pdf sections/Buoyancy/T6.eps>
 (epstopdf)             \includegraphics on input line 106.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/Buoyancy/T6-eps-converted-to.pdf, id=1245, 361.35pt x 252.945pt>
+<sections/Buoyancy/T6-eps-converted-to.pdf, id=1264, 361.35pt x 252.945pt>
 File: sections/Buoyancy/T6-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/T6-eps-converted-to.pdf>
@@ -3685,7 +3689,7 @@ nverted-to.pdf sections/Buoyancy/u3.eps>
 (epstopdf)             \includegraphics on input line 109.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/Buoyancy/u3-eps-converted-to.pdf, id=1260, 361.35pt x 252.945pt>
+<sections/Buoyancy/u3-eps-converted-to.pdf, id=1280, 361.35pt x 252.945pt>
 File: sections/Buoyancy/u3-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/u3-eps-converted-to.pdf>
@@ -3710,7 +3714,7 @@ nverted-to.pdf sections/Buoyancy/u4.eps>
 (epstopdf)             \includegraphics on input line 109.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/Buoyancy/u4-eps-converted-to.pdf, id=1261, 361.35pt x 252.945pt>
+<sections/Buoyancy/u4-eps-converted-to.pdf, id=1281, 361.35pt x 252.945pt>
 File: sections/Buoyancy/u4-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/u4-eps-converted-to.pdf>
@@ -3735,7 +3739,7 @@ nverted-to.pdf sections/Buoyancy/u5.eps>
 (epstopdf)             \includegraphics on input line 111.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/Buoyancy/u5-eps-converted-to.pdf, id=1262, 361.35pt x 252.945pt>
+<sections/Buoyancy/u5-eps-converted-to.pdf, id=1282, 361.35pt x 252.945pt>
 File: sections/Buoyancy/u5-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/u5-eps-converted-to.pdf>
@@ -3760,7 +3764,7 @@ nverted-to.pdf sections/Buoyancy/u6.eps>
 (epstopdf)             \includegraphics on input line 107.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/Buoyancy/u6-eps-converted-to.pdf, id=1263, 361.35pt x 252.945pt>
+<sections/Buoyancy/u6-eps-converted-to.pdf, id=1283, 361.35pt x 252.945pt>
 File: sections/Buoyancy/u6-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/u6-eps-converted-to.pdf>
@@ -3785,7 +3789,7 @@ nverted-to.pdf sections/Buoyancy/v3.eps>
 (epstopdf)             \includegraphics on input line 109.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/Buoyancy/v3-eps-converted-to.pdf, id=1264, 361.35pt x 252.945pt>
+<sections/Buoyancy/v3-eps-converted-to.pdf, id=1284, 361.35pt x 252.945pt>
 File: sections/Buoyancy/v3-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/v3-eps-converted-to.pdf>
@@ -3810,7 +3814,7 @@ nverted-to.pdf sections/Buoyancy/v4.eps>
 (epstopdf)             \includegraphics on input line 109.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/Buoyancy/v4-eps-converted-to.pdf, id=1265, 361.35pt x 252.945pt>
+<sections/Buoyancy/v4-eps-converted-to.pdf, id=1285, 361.35pt x 252.945pt>
 File: sections/Buoyancy/v4-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/v4-eps-converted-to.pdf>
@@ -3835,7 +3839,7 @@ nverted-to.pdf sections/Buoyancy/v5.eps>
 (epstopdf)             \includegraphics on input line 109.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/Buoyancy/v5-eps-converted-to.pdf, id=1266, 361.35pt x 252.945pt>
+<sections/Buoyancy/v5-eps-converted-to.pdf, id=1286, 361.35pt x 252.945pt>
 File: sections/Buoyancy/v5-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/v5-eps-converted-to.pdf>
@@ -3860,7 +3864,7 @@ nverted-to.pdf sections/Buoyancy/v6.eps>
 (epstopdf)             \includegraphics on input line 111.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/Buoyancy/v6-eps-converted-to.pdf, id=1267, 361.35pt x 252.945pt>
+<sections/Buoyancy/v6-eps-converted-to.pdf, id=1287, 361.35pt x 252.945pt>
 File: sections/Buoyancy/v6-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/v6-eps-converted-to.pdf>
@@ -3901,7 +3905,7 @@ verted-to.pdf sections/Buoyancy/3.eps>
 (epstopdf)             \includegraphics on input line 256.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/Buoyancy/3-eps-converted-to.pdf, id=1297, 421.575pt x 316.18124pt>
+<sections/Buoyancy/3-eps-converted-to.pdf, id=1316, 421.575pt x 316.18124pt>
 File: sections/Buoyancy/3-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/3-eps-converted-to.pdf>
@@ -3923,7 +3927,7 @@ Package epstopdf Info: Source file: <sections/Buoyancy/4.eps>
 verted-to.pdf sections/Buoyancy/4.eps>
 (epstopdf)             \includegraphics on input line 260.
 Package epstopdf Info: Output file is already uptodate.
-<sections/Buoyancy/4-eps-converted-to.pdf, id=1298, 421.575pt x 316.18124pt>
+<sections/Buoyancy/4-eps-converted-to.pdf, id=1317, 421.575pt x 316.18124pt>
 File: sections/Buoyancy/4-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/4-eps-converted-to.pdf>
@@ -3945,7 +3949,7 @@ Package epstopdf Info: Source file: <sections/Buoyancy/5.eps>
 verted-to.pdf sections/Buoyancy/5.eps>
 (epstopdf)             \includegraphics on input line 264.
 Package epstopdf Info: Output file is already uptodate.
-<sections/Buoyancy/5-eps-converted-to.pdf, id=1299, 421.575pt x 316.18124pt>
+<sections/Buoyancy/5-eps-converted-to.pdf, id=1318, 421.575pt x 316.18124pt>
 File: sections/Buoyancy/5-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/5-eps-converted-to.pdf>
@@ -3967,7 +3971,7 @@ Package epstopdf Info: Source file: <sections/Buoyancy/6.eps>
 verted-to.pdf sections/Buoyancy/6.eps>
 (epstopdf)             \includegraphics on input line 268.
 Package epstopdf Info: Output file is already uptodate.
-<sections/Buoyancy/6-eps-converted-to.pdf, id=1300, 421.575pt x 316.18124pt>
+<sections/Buoyancy/6-eps-converted-to.pdf, id=1319, 421.575pt x 316.18124pt>
 File: sections/Buoyancy/6-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Buoyancy/6-eps-converted-to.pdf>
@@ -3996,35 +4000,35 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 )
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 71.
+Package pdftex.def Info: ./doc_config/image.png used on input line 73.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [63]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 71.
+Package pdftex.def Info: ./doc_config/image.png used on input line 73.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [64]
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 71.
+less on input line 73.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 71.
+less on input line 73.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 71.
+less on input line 73.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 71.
+Package pdftex.def Info: ./doc_config/image.png used on input line 73.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [65
 
 ] (sections/Burgers.tex
 Chapter 10.
-<sections/Burgers/energylength.png, id=1339, 649.67719pt x 262.73157pt>
+<sections/Burgers/energylength.png, id=1359, 649.67719pt x 262.73157pt>
 File: sections/Burgers/energylength.png Graphic file (type png)
 
 <use sections/Burgers/energylength.png>
@@ -4130,7 +4134,7 @@ File: ./doc_config/image.png Graphic file (type png)
 Package pdftex.def Info: ./doc_config/image.png used on input line 76.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [68]
-<sections/Burgers/Burger.png, id=1373, 424.58624pt x 346.29375pt>
+<sections/Burgers/Burger.png, id=1392, 424.58624pt x 346.29375pt>
 File: sections/Burgers/Burger.png Graphic file (type png)
 
 <use sections/Burgers/Burger.png>
@@ -4172,7 +4176,7 @@ LaTeX Warning: Command \^ invalid in math mode on input line 98.
 
 LaTeX Warning: Command \^ invalid in math mode on input line 102.
 
-<sections/Burgers/Doc5.png, id=1386, 2489.3pt x 3521.155pt>
+<sections/Burgers/Doc5.png, id=1405, 2489.3pt x 3521.155pt>
 File: sections/Burgers/Doc5.png Graphic file (type png)
 
 <use sections/Burgers/Doc5.png>
@@ -4204,7 +4208,7 @@ s-converted-to.pdf sections/Burgers/Burgers.eps>
 (epstopdf)             \includegraphics on input line 119.
 Package epstopdf Info: Output file is already uptodate.
 
-<sections/Burgers/Burgers-eps-converted-to.pdf, id=1406, 361.35pt x 252.945pt>
+<sections/Burgers/Burgers-eps-converted-to.pdf, id=1426, 361.35pt x 252.945pt>
 File: sections/Burgers/Burgers-eps-converted-to.pdf Graphic file (type pdf)
 
 <use sections/Burgers/Burgers-eps-converted-to.pdf>
@@ -4215,30 +4219,30 @@ input line 119.
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 74.
+Package pdftex.def Info: ./doc_config/image.png used on input line 76.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [72 <./sections/Burgers/Burgers-eps-converted-to.pdf>]
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 74.
+less on input line 76.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 74.
+less on input line 76.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 74.
+less on input line 76.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 74.
+Package pdftex.def Info: ./doc_config/image.png used on input line 76.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [73
 
 ] (sections/Square.tex
 Chapter 11.
-<sections/Square/Definition.png, id=1420, 565.36218pt x 325.215pt>
+<sections/Square/Definition.png, id=1439, 565.36218pt x 325.215pt>
 File: sections/Square/Definition.png Graphic file (type png)
 
 <use sections/Square/Definition.png>
@@ -4246,59 +4250,516 @@ Package pdftex.def Info: sections/Square/Definition.png used on input line 5.
 (pdftex.def)             Requested size: 282.68039pt x 162.6071pt.
 
 
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 21.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 21.
+less on input line 31.
+
+
+Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
+less on input line 31.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 21.
+less on input line 31.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 21.
+Package pdftex.def Info: ./doc_config/image.png used on input line 31.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [74
 
  <./sections/Square/Definition.png>]
-<sections/Square/Fluxes.png, id=1430, 240.14719pt x 222.8325pt>
-File: sections/Square/Fluxes.png Graphic file (type png)
+File: ./doc_config/image.png Graphic file (type png)
 
-<use sections/Square/Fluxes.png>
-Package pdftex.def Info: sections/Square/Fluxes.png used on input line 56.
-(pdftex.def)             Requested size: 144.0894pt x 133.70053pt.
+<use ./doc_config/image.png>
+Package pdftex.def Info: ./doc_config/image.png used on input line 62.
+(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
+ [75] (sections/Square/u1.tex
+Package epstopdf Info: Source file: <sections/Square/u1.eps>
+(epstopdf)                    date: 2017-06-09 02:25:22
+(epstopdf)                    size: 2311476 bytes
+(epstopdf)             Output file: <sections/Square/u1-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:43:48
+(epstopdf)                    size: 1344102 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/u1-eps-conv
+erted-to.pdf sections/Square/u1.eps>
+(epstopdf)             \includegraphics on input line 112.
+Package epstopdf Info: Output file is already uptodate.
+
+<sections/Square/u1-eps-converted-to.pdf, id=1461, 361.35pt x 252.945pt>
+File: sections/Square/u1-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/u1-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/u1-eps-converted-to.pdf used on input 
+line 112.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+)
+Overfull \hbox (21.34651pt too wide) in paragraph at lines 72--73
+[][] 
+ []
+
+(sections/Square/u3.tex
+Package epstopdf Info: Source file: <sections/Square/u3.eps>
+(epstopdf)                    date: 2017-06-09 02:27:29
+(epstopdf)                    size: 2311572 bytes
+(epstopdf)             Output file: <sections/Square/u3-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:43:53
+(epstopdf)                    size: 1358443 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/u3-eps-conv
+erted-to.pdf sections/Square/u3.eps>
+(epstopdf)             \includegraphics on input line 112.
+Package epstopdf Info: Output file is already uptodate.
+
+<sections/Square/u3-eps-converted-to.pdf, id=1462, 361.35pt x 252.945pt>
+File: sections/Square/u3-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/u3-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/u3-eps-converted-to.pdf used on input 
+line 112.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+)
+Overfull \hbox (21.34651pt too wide) in paragraph at lines 76--77
+[][] 
+ []
+
+(sections/Square/u5.tex
+Package epstopdf Info: Source file: <sections/Square/u5.eps>
+(epstopdf)                    date: 2017-06-09 02:29:00
+(epstopdf)                    size: 2311249 bytes
+(epstopdf)             Output file: <sections/Square/u5-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:43:59
+(epstopdf)                    size: 1372654 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/u5-eps-conv
+erted-to.pdf sections/Square/u5.eps>
+(epstopdf)             \includegraphics on input line 112.
+Package epstopdf Info: Output file is already uptodate.
+
+<sections/Square/u5-eps-converted-to.pdf, id=1463, 361.35pt x 252.945pt>
+File: sections/Square/u5-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/u5-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/u5-eps-converted-to.pdf used on input 
+line 112.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+)
+Overfull \hbox (21.34651pt too wide) in paragraph at lines 80--81
+[][] 
+ []
+
+(sections/Square/u10.tex
+Package epstopdf Info: Source file: <sections/Square/u10.eps>
+(epstopdf)                    date: 2017-06-09 02:30:54
+(epstopdf)                    size: 2311199 bytes
+(epstopdf)             Output file: <sections/Square/u10-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:44:04
+(epstopdf)                    size: 1375929 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/u10-eps-con
+verted-to.pdf sections/Square/u10.eps>
+(epstopdf)             \includegraphics on input line 111.
+Package epstopdf Info: Output file is already uptodate.
+
+<sections/Square/u10-eps-converted-to.pdf, id=1464, 361.35pt x 252.945pt>
+File: sections/Square/u10-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/u10-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/u10-eps-converted-to.pdf used on input
+ line 111.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+)
+Overfull \hbox (21.34651pt too wide) in paragraph at lines 84--85
+[][] 
+ []
+
+(sections/Square/u30.tex
+Package epstopdf Info: Source file: <sections/Square/u30.eps>
+(epstopdf)                    date: 2017-06-09 02:32:53
+(epstopdf)                    size: 2335416 bytes
+(epstopdf)             Output file: <sections/Square/u30-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:44:09
+(epstopdf)                    size: 1375667 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/u30-eps-con
+verted-to.pdf sections/Square/u30.eps>
+(epstopdf)             \includegraphics on input line 112.
+Package epstopdf Info: Output file is already uptodate.
+
+<sections/Square/u30-eps-converted-to.pdf, id=1465, 361.35pt x 252.945pt>
+File: sections/Square/u30-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/u30-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/u30-eps-converted-to.pdf used on input
+ line 112.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+)
+Overfull \hbox (21.34651pt too wide) in paragraph at lines 88--89
+[][] 
+ []
+
+(sections/Square/u50.tex
+Package epstopdf Info: Source file: <sections/Square/u50.eps>
+(epstopdf)                    date: 2017-06-09 02:34:34
+(epstopdf)                    size: 2335593 bytes
+(epstopdf)             Output file: <sections/Square/u50-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:44:14
+(epstopdf)                    size: 1388274 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/u50-eps-con
+verted-to.pdf sections/Square/u50.eps>
+(epstopdf)             \includegraphics on input line 112.
+Package epstopdf Info: Output file is already uptodate.
+
+<sections/Square/u50-eps-converted-to.pdf, id=1466, 361.35pt x 252.945pt>
+File: sections/Square/u50-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/u50-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/u50-eps-converted-to.pdf used on input
+ line 112.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+)
+Overfull \hbox (21.34651pt too wide) in paragraph at lines 92--93
+[][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(sections/Square/v1.tex
+Package epstopdf Info: Source file: <sections/Square/v1.eps>
+(epstopdf)                    date: 2017-06-09 02:26:27
+(epstopdf)                    size: 2280243 bytes
+(epstopdf)             Output file: <sections/Square/v1-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:51:25
+(epstopdf)                    size: 1402397 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/v1-eps-conv
+erted-to.pdf sections/Square/v1.eps>
+(epstopdf)             \includegraphics on input line 112.
+Package epstopdf Info: Output file is already uptodate.
+
+<sections/Square/v1-eps-converted-to.pdf, id=1467, 361.35pt x 252.945pt>
+File: sections/Square/v1-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/v1-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/v1-eps-converted-to.pdf used on input 
+line 112.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+)
+Overfull \hbox (21.34651pt too wide) in paragraph at lines 102--103
+[][] 
+ []
+
+(sections/Square/v3.tex
+Package epstopdf Info: Source file: <sections/Square/v3.eps>
+(epstopdf)                    date: 2017-06-09 02:28:13
+(epstopdf)                    size: 2280622 bytes
+(epstopdf)             Output file: <sections/Square/v3-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:51:30
+(epstopdf)                    size: 1399372 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/v3-eps-conv
+erted-to.pdf sections/Square/v3.eps>
+(epstopdf)             \includegraphics on input line 112.
+Package epstopdf Info: Output file is already uptodate.
+
+<sections/Square/v3-eps-converted-to.pdf, id=1468, 361.35pt x 252.945pt>
+File: sections/Square/v3-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/v3-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/v3-eps-converted-to.pdf used on input 
+line 112.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+)
+Overfull \hbox (21.34651pt too wide) in paragraph at lines 106--107
+[][] 
+ []
+
+(sections/Square/v5.tex
+Package epstopdf Info: Source file: <sections/Square/v5.eps>
+(epstopdf)                    date: 2017-06-09 02:29:42
+(epstopdf)                    size: 2280633 bytes
+(epstopdf)             Output file: <sections/Square/v5-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:51:35
+(epstopdf)                    size: 1362302 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/v5-eps-conv
+erted-to.pdf sections/Square/v5.eps>
+(epstopdf)             \includegraphics on input line 114.
+Package epstopdf Info: Output file is already uptodate.
+
+<sections/Square/v5-eps-converted-to.pdf, id=1469, 361.35pt x 252.945pt>
+File: sections/Square/v5-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/v5-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/v5-eps-converted-to.pdf used on input 
+line 114.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+)
+Overfull \hbox (21.34651pt too wide) in paragraph at lines 110--111
+[][] 
+ []
+
+(sections/Square/v10.tex
+Package epstopdf Info: Source file: <sections/Square/v10.eps>
+(epstopdf)                    date: 2017-06-09 02:32:03
+(epstopdf)                    size: 2304551 bytes
+(epstopdf)             Output file: <sections/Square/v10-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:51:40
+(epstopdf)                    size: 1355753 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/v10-eps-con
+verted-to.pdf sections/Square/v10.eps>
+(epstopdf)             \includegraphics on input line 114.
+Package epstopdf Info: Output file is already uptodate.
+
+<sections/Square/v10-eps-converted-to.pdf, id=1470, 361.35pt x 252.945pt>
+File: sections/Square/v10-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/v10-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/v10-eps-converted-to.pdf used on input
+ line 114.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+)
+Overfull \hbox (21.34651pt too wide) in paragraph at lines 114--115
+[][] 
+ []
+
+(sections/Square/v30.tex
+Package epstopdf Info: Source file: <sections/Square/v30.eps>
+(epstopdf)                    date: 2017-06-09 02:33:47
+(epstopdf)                    size: 2304127 bytes
+(epstopdf)             Output file: <sections/Square/v30-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:51:45
+(epstopdf)                    size: 1288762 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/v30-eps-con
+verted-to.pdf sections/Square/v30.eps>
+(epstopdf)             \includegraphics on input line 112.
+Package epstopdf Info: Output file is already uptodate.
+
+<sections/Square/v30-eps-converted-to.pdf, id=1471, 361.35pt x 252.945pt>
+File: sections/Square/v30-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/v30-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/v30-eps-converted-to.pdf used on input
+ line 112.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+)
+Overfull \hbox (21.34651pt too wide) in paragraph at lines 118--119
+[][] 
+ []
+
+(sections/Square/v50.tex
+Package epstopdf Info: Source file: <sections/Square/v50.eps>
+(epstopdf)                    date: 2017-06-09 02:35:31
+(epstopdf)                    size: 2304736 bytes
+(epstopdf)             Output file: <sections/Square/v50-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:51:50
+(epstopdf)                    size: 1198094 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/v50-eps-con
+verted-to.pdf sections/Square/v50.eps>
+(epstopdf)             \includegraphics on input line 113.
+Package epstopdf Info: Output file is already uptodate.
+
+<sections/Square/v50-eps-converted-to.pdf, id=1472, 361.35pt x 252.945pt>
+File: sections/Square/v50-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/v50-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/v50-eps-converted-to.pdf used on input
+ line 113.
+(pdftex.def)             Requested size: 361.34912pt x 252.94438pt.
+)
+Overfull \hbox (21.34651pt too wide) in paragraph at lines 122--123
+[][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+Package epstopdf Info: Source file: <sections/Square/1.eps>
+(epstopdf)                    date: 2017-06-09 02:59:18
+(epstopdf)                    size: 541189 bytes
+(epstopdf)             Output file: <sections/Square/1-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:55:54
+(epstopdf)                    size: 39033 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/1-eps-conve
+rted-to.pdf sections/Square/1.eps>
+(epstopdf)             \includegraphics on input line 132.
+runsystem(epstopdf --outfile=sections/Square/1-eps-converted-to.pdf sections/Sq
+uare/1.eps)...executed.
+
+Package epstopdf Info: Result file: <sections/Square/1-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:59:32
+(epstopdf)                    size: 168151 bytes.
+<sections/Square/1-eps-converted-to.pdf, id=1473, 421.575pt x 316.18124pt>
+File: sections/Square/1-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/1-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/1-eps-converted-to.pdf used on input l
+ine 132.
+(pdftex.def)             Requested size: 257.16037pt x 192.87027pt.
+
+Overfull \hbox (43.7647pt too wide) in paragraph at lines 132--133
+[][] 
+ []
+
+Package epstopdf Info: Source file: <sections/Square/3.eps>
+(epstopdf)                    date: 2017-06-09 01:48:02
+(epstopdf)                    size: 544213 bytes
+(epstopdf)             Output file: <sections/Square/3-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:55:57
+(epstopdf)                    size: 170573 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/3-eps-conve
+rted-to.pdf sections/Square/3.eps>
+(epstopdf)             \includegraphics on input line 136.
+Package epstopdf Info: Output file is already uptodate.
+<sections/Square/3-eps-converted-to.pdf, id=1474, 421.575pt x 316.18124pt>
+File: sections/Square/3-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/3-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/3-eps-converted-to.pdf used on input l
+ine 136.
+(pdftex.def)             Requested size: 257.16037pt x 192.87027pt.
+
+Overfull \hbox (43.7647pt too wide) in paragraph at lines 136--137
+[][] 
+ []
+
+Package epstopdf Info: Source file: <sections/Square/5.eps>
+(epstopdf)                    date: 2017-06-09 01:21:25
+(epstopdf)                    size: 569995 bytes
+(epstopdf)             Output file: <sections/Square/5-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:56:01
+(epstopdf)                    size: 180182 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/5-eps-conve
+rted-to.pdf sections/Square/5.eps>
+(epstopdf)             \includegraphics on input line 140.
+Package epstopdf Info: Output file is already uptodate.
+<sections/Square/5-eps-converted-to.pdf, id=1475, 421.575pt x 316.18124pt>
+File: sections/Square/5-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/5-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/5-eps-converted-to.pdf used on input l
+ine 140.
+(pdftex.def)             Requested size: 257.16037pt x 192.87027pt.
+
+Overfull \hbox (43.7647pt too wide) in paragraph at lines 140--141
+[][] 
+ []
+
+Package epstopdf Info: Source file: <sections/Square/10.eps>
+(epstopdf)                    date: 2017-06-09 01:17:36
+(epstopdf)                    size: 588514 bytes
+(epstopdf)             Output file: <sections/Square/10-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:56:04
+(epstopdf)                    size: 182711 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/10-eps-conv
+erted-to.pdf sections/Square/10.eps>
+(epstopdf)             \includegraphics on input line 144.
+Package epstopdf Info: Output file is already uptodate.
+<sections/Square/10-eps-converted-to.pdf, id=1476, 421.575pt x 316.18124pt>
+File: sections/Square/10-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/10-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/10-eps-converted-to.pdf used on input 
+line 144.
+(pdftex.def)             Requested size: 257.16037pt x 192.87027pt.
+
+Overfull \hbox (43.7647pt too wide) in paragraph at lines 144--145
+[][] 
+ []
+
+Package epstopdf Info: Source file: <sections/Square/30.eps>
+(epstopdf)                    date: 2017-06-08 13:44:07
+(epstopdf)                    size: 655480 bytes
+(epstopdf)             Output file: <sections/Square/30-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:56:07
+(epstopdf)                    size: 204231 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/30-eps-conv
+erted-to.pdf sections/Square/30.eps>
+(epstopdf)             \includegraphics on input line 148.
+Package epstopdf Info: Output file is already uptodate.
+<sections/Square/30-eps-converted-to.pdf, id=1477, 421.575pt x 316.18124pt>
+File: sections/Square/30-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/30-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/30-eps-converted-to.pdf used on input 
+line 148.
+(pdftex.def)             Requested size: 257.16037pt x 192.87027pt.
+
+Overfull \hbox (43.7647pt too wide) in paragraph at lines 148--149
+[][] 
+ []
+
+Package epstopdf Info: Source file: <sections/Square/50.eps>
+(epstopdf)                    date: 2017-06-09 01:17:47
+(epstopdf)                    size: 665938 bytes
+(epstopdf)             Output file: <sections/Square/50-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-06-09 02:56:11
+(epstopdf)                    size: 206047 bytes
+(epstopdf)             Command: <epstopdf --outfile=sections/Square/50-eps-conv
+erted-to.pdf sections/Square/50.eps>
+(epstopdf)             \includegraphics on input line 152.
+Package epstopdf Info: Output file is already uptodate.
+<sections/Square/50-eps-converted-to.pdf, id=1478, 421.575pt x 316.18124pt>
+File: sections/Square/50-eps-converted-to.pdf Graphic file (type pdf)
+
+<use sections/Square/50-eps-converted-to.pdf>
+Package pdftex.def Info: sections/Square/50-eps-converted-to.pdf used on input 
+line 152.
+(pdftex.def)             Requested size: 257.16037pt x 192.87027pt.
+
+Overfull \hbox (43.7647pt too wide) in paragraph at lines 152--153
+[][] 
+ []
+
+
+LaTeX Warning: Float too large for page by 12.66046pt on input line 157.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 )
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 76.
+Package pdftex.def Info: ./doc_config/image.png used on input line 79.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [75]
+ [76]
 File: ./doc_config/image.png Graphic file (type png)
-
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 77.
+ <use ./doc_config/image.png>
+Package pdftex.def Info: ./doc_config/image.png used on input line 79.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [76 <./sections/Square/Fluxes.png>]
+ [77 <./sections/Square/u1-eps-converted-to.pdf> <./sections/Square/u3-eps-conv
+erted-to.pdf> <./sections/Square/u5-eps-converted-to.pdf> <./sections/Square/u1
+0-eps-converted-to.pdf> <./sections/Square/u30-eps-converted-to.pdf> <./section
+s/Square/u50-eps-converted-to.pdf>]
+File: ./doc_config/image.png Graphic file (type png)
+ <use ./doc_config/image.png>
+Package pdftex.def Info: ./doc_config/image.png used on input line 79.
+(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
+ [78 <./sections/Square/v1-eps-converted-to.pdf> <./sections/Square/v3-eps-conv
+erted-to.pdf> <./sections/Square/v5-eps-converted-to.pdf> <./sections/Square/v1
+0-eps-converted-to.pdf> <./sections/Square/v30-eps-converted-to.pdf> <./section
+s/Square/v50-eps-converted-to.pdf>]
+File: ./doc_config/image.png Graphic file (type png)
+ <use ./doc_config/image.png>
+Package pdftex.def Info: ./doc_config/image.png used on input line 79.
+(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
+ [79 <./sections/Square/1-eps-converted-to.pdf> <./sections/Square/3-eps-conver
+ted-to.pdf> <./sections/Square/5-eps-converted-to.pdf> <./sections/Square/10-ep
+s-converted-to.pdf> <./sections/Square/30-eps-converted-to.pdf> <./sections/Squ
+are/50-eps-converted-to.pdf>]
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 77.
+less on input line 79.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 77.
+less on input line 79.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 77.
+less on input line 79.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 77.
+Package pdftex.def Info: ./doc_config/image.png used on input line 79.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [77
+ [80
 
 ] (sections/Results.tex
 Chapter 12.
@@ -4306,61 +4767,61 @@ LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
 (Font)              Font shape `T1/lmss/m/sl' tried instead on input line 5.
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 11.
+less on input line 12.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 11.
+less on input line 12.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 11.
+less on input line 12.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 11.
+Package pdftex.def Info: ./doc_config/image.png used on input line 12.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [78
+ [81
 
 ]
 Chapter 13.
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 14.
+less on input line 15.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 14.
+less on input line 15.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 14.
+less on input line 15.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 14.
+Package pdftex.def Info: ./doc_config/image.png used on input line 15.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [79
+ [82
 
 ]
 Chapter 14.
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 17.
+less on input line 18.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 17.
+less on input line 18.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 17.
+less on input line 18.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 17.
+Package pdftex.def Info: ./doc_config/image.png used on input line 18.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [80
+ [83
 
 ]
 Chapter 15.
@@ -4381,7 +4842,7 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 1.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [81
+ [84
 
 ]
 Chapter 16.
@@ -4401,29 +4862,29 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 72.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [82
+ [85
 
 ]) 
 AED: lastpage setting LastPage
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 95.
+Package pdftex.def Info: ./doc_config/image.png used on input line 97.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [83]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 95.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 95.
+ [86]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 97.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 97.
  (Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 95.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 95.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 97.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 97.
 Package rerunfilecheck Info: File `Report.out' has not changed.
-(rerunfilecheck)             Checksum: FF41D40F72FEDF8B880DD5F8612329ED;5813.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
+(rerunfilecheck)             Checksum: 8C3B62AB21D8EFABA52036A32868C0B6;5929.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 97.
  ) 
 Here is how much of TeX's memory you used:
- 31411 strings out of 493334
- 583501 string characters out of 3143122
- 1895689 words of memory out of 3000000
- 33763 multiletter control sequences out of 15000+200000
+ 31532 strings out of 493334
+ 587443 string characters out of 3143122
+ 1895966 words of memory out of 3000000
+ 33838 multiletter control sequences out of 15000+200000
  112935 words of font info for 107 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,16n,84p,10486b,881s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -4445,9 +4906,9 @@ TeX 2.9/fonts/type1/public/lm/lmsso10.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmsy10.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Apps/Mi
 KTeX 2.9/fonts/type1/public/lm/lmsy9.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public
 /amsfonts/symbols/msbm10.pfb>
-Output written on Report.pdf (90 pages, 31625686 bytes).
+Output written on Report.pdf (94 pages, 48931571 bytes).
 PDF statistics:
- 1639 PDF objects out of 1728 (max. 8388607)
- 444 named destinations out of 1000 (max. 500000)
- 1058 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1735 PDF objects out of 2073 (max. 8388607)
+ 453 named destinations out of 1000 (max. 500000)
+ 1159 words of extra memory for PDF output out of 10000 (max. 10000000)
 

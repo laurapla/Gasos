@@ -10,7 +10,17 @@ The square cylinder problem studies the two-dimensional laminar flow around a sq
 \section{Discretization}
 In this kind of problem, the region near the cylinder has an important pressure and velocity gradient whereas in the rest of the channel flow they are smoother. So, near the cylinder a finer mesh is needed, but not in the whole domain of the problem. Using a very fine mesh in all the channel would be computationally expensive and inefficient, but a coarser mesh would lead to inaccurate results, especially in the cylinder.
 
-The domain is divided in three parts, vertically and horizontally. The mesh that contains the obstacle is a uniform mesh of very high precision, whereas the other meshes stretch in the region near the cylinder but become coarser as they draw away.
+The domain is divided in three parts, vertically and horizontally. The mesh that contains the obstacle is a uniform mesh of very high precision, whereas the other meshes are also uniform but coarser. The details of the discretization are in table \ref{NumericalCylinder}.
+\begin{table}[h]
+	\centering
+	\begin{tabular}{ |c|c|c|c|c|c|c|c|c|c|c|c|c| }
+		\hline
+		$N_{1}$ & $N_{2}$ & $N_{3}$ & $M_{1}$ & $M_{2}$ & $M_{3}$ & $D$ & $H$ & $L$ & $l$ & $\rho$ & $u_{max}$ & $\delta$ \\ \hline
+		$90$ & $10$ & $300$ & $30$ & $10$ & $30$ & $1$ & $8D$ & $50D$ & $L/4$ & $1$ & $1$ & $10^{-4}$ \\ \hline
+	\end{tabular}
+\caption{Numerical parameters of the square cylinder problem}
+\label{NumericalCylinder}
+\end{table}
 
 
 \section{Boundary conditions}
@@ -33,12 +43,12 @@ In order to have a developed flow in the outlet, it is important to have a dista
 \begin{equation}
 \frac{\partial u}{\partial t}+u_{conv}\frac{\partial u}{\partial x}=0
 \end{equation}
-where $u_{conv}$ is equal to the maximum velocity $u_{max}$ of the parabolic inflow velocity profile.
+where $u_{conv}$ is equal to the maximum velocity $u_{max}$ of the parabolic inflow velocity profile. The integration over time of this condition is done using an Adams-Bashforth scheme.
 
-The integration over time of this condition is done using an Adams-Bashforth scheme:
-
-
-In the outlet, as opposite to the inlet, a Dirichlet condition is used to determine the pressure.
+In the outlet, as opposite to the inlet, a Dirichlet condition is used to determine the pressure:
+\begin{equation}
+p=0
+\end{equation}
 
 \subsection{Wall conditions}
 In the channel walls the no-slip condition is applied:
@@ -50,10 +60,98 @@ As well as the boundary layer condition, in which the pressure gradient normal t
 
 In the convection problems studied in the previous sections the flow was developing inside a cavity with no other obstacles than the walls. In this problem, the fluid flows around a square cylinder, so the boundary conditions have to be also implemented for the cylinder. Since it is a solid object and it does not allow air to flow through it, it is treated as a wall \cite{Ferziger2002}. Consequently the velocity in its boundary is also given by equation \ref{noslip}.
 
-This condition can also be interpreted using flow fluxes. To define the cylinder, it is determined that there are no flow fluxes through it. In the control volumes of the left wall, $F_{e}=0$, in the CVs of the right wall $F_{w}=0$, in the top wall $F_{n}=0$, and at the bottom $F_{s}=0$.
+\section{Algorithm}
+The algorithm used in the resolution of this problem is the same used in the calculation of the driven cavity problem (section \ref{AlgorithmDriven}).
+
+\section{Results}
+Depending on the Reynolds number the wake of the cylinder is completely different. In order to present the results, the fluid is only studied for $1\leq Re<60$, the steady regime. For $Re\geq60$ the fluid does not reach a steady state and the results would not be accurate.
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.6]{Square/Fluxes}
-	\caption{Fluxes conditions in the cylinder}
-	\label{FluxesCondCylinder}
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.1\textwidth}{!}{\input{Square/u1}}
+		\caption{$Re=1$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.1\textwidth}{!}{\input{Square/u3}}
+		\caption{$Re=3$}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.1\textwidth}{!}{\input{Square/u5}}
+		\caption{$Re=5$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.1\textwidth}{!}{\input{Square/u10}}
+		\caption{$Re=10$}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.1\textwidth}{!}{\input{Square/u30}}
+		\caption{$Re=30$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.1\textwidth}{!}{\input{Square/u50}}
+		\caption{$Re=50$}
+	\end{subfigure}
+\caption{Horizontal velocity near the cylinder}
+\label{HorizontalCylinder}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.1\textwidth}{!}{\input{Square/v1}}
+		\caption{$Re=1$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.1\textwidth}{!}{\input{Square/v3}}
+		\caption{$Re=3$}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.1\textwidth}{!}{\input{Square/v5}}
+		\caption{$Re=5$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.1\textwidth}{!}{\input{Square/v10}}
+		\caption{$Re=10$}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.1\textwidth}{!}{\input{Square/v30}}
+		\caption{$Re=30$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\resizebox{1.1\textwidth}{!}{\input{Square/v50}}
+		\caption{$Re=50$}
+	\end{subfigure}
+	\caption{Vertical velocity near the cylinder}
+	\label{VerticalCylinder}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[scale=0.61]{Square/1}
+		\caption{$Re=1$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[scale=0.61]{Square/3}
+		\caption{$Re=3$}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[scale=0.61]{Square/5}
+		\caption{$Re=5$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[scale=0.61]{Square/10}
+		\caption{$Re=10$}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[scale=0.61]{Square/30}
+		\caption{$Re=30$}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\includegraphics[scale=0.61]{Square/50}
+		\caption{$Re=50$}
+	\end{subfigure}
+	\caption{Vertical velocity near the cylinder}
+	\label{StreamlinesCylinder}
 \end{figure}

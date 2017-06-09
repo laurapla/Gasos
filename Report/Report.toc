@@ -81,9 +81,11 @@
 \contentsline {subsection}{\numberline {11.2.1}Inlet conditions}{75}{subsection.11.2.1}
 \contentsline {subsection}{\numberline {11.2.2}Outlet conditions}{75}{subsection.11.2.2}
 \contentsline {subsection}{\numberline {11.2.3}Wall conditions}{75}{subsection.11.2.3}
-\contentsline {part}{VII\hspace {1em}Results}{77}{part.7}
-\contentsline {chapter}{\numberline {12}Budget}{78}{chapter.12}
-\contentsline {chapter}{\numberline {13}Environmental impact}{79}{chapter.13}
-\contentsline {chapter}{\numberline {14}Planning}{80}{chapter.14}
-\contentsline {chapter}{\numberline {15}Conclusions}{81}{chapter.15}
-\contentsline {chapter}{\numberline {16}Bibliography}{82}{chapter.16}
+\contentsline {section}{\numberline {11.3}Algorithm}{76}{section.11.3}
+\contentsline {section}{\numberline {11.4}Results}{76}{section.11.4}
+\contentsline {part}{VII\hspace {1em}Results}{80}{part.7}
+\contentsline {chapter}{\numberline {12}Budget}{81}{chapter.12}
+\contentsline {chapter}{\numberline {13}Environmental impact}{82}{chapter.13}
+\contentsline {chapter}{\numberline {14}Planning}{83}{chapter.14}
+\contentsline {chapter}{\numberline {15}Conclusions}{84}{chapter.15}
+\contentsline {chapter}{\numberline {16}Bibliography}{85}{chapter.16}
