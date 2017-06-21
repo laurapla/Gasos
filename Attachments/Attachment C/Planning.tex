@@ -33,13 +33,6 @@
 \tableofcontents
 \pagebreak
 
-%\mbox{}\newpage
-\renewcommand{\cfttabnumwidth}{4em}
-\listoftables
-\pagebreak
-
-% DOCUMENT SECTIONS
-
 \newpage
 \pagenumbering{arabic}
 
@@ -47,6 +40,30 @@
 \setlength{\parskip}{1em}
 
 \chapter{Planning}
+According to the project charter the study was divided in five cases: one on conduction, one on convection,  one on radiation, another one on the combination of these heat transfer mechanisms and a practical case. However, instead of radiation, the study has focused in more cases regarding convection, which were more related to the application studied.
 
+\section{Tasks}
+\begin{longtable}{ | p{1.3cm} | p{3cm} | p{11cm} |}
+	\hline
+	\textbf{ID} & \textbf{Work package} & \textbf{Brief task description list} \\ \hline
+	1 & State of the art & Research of the current computational methods used in the resolution of the conservation equations. \\ \hline
+	2 & Conduction & Study of a numerical method to solve the energy equation and its application in the resolution of a conduction problem. \\ \hline
+	3 & Convection & Study of a numerical method to solve the generic convection-diffusion equation and its application in the resolution of a problem. \\ \hline
+	4 & Convection 2 & Study of a numerical method to solve the momentum equation and its application in the resolution of a problem. \\ \hline
+	5 & Combination & Resolution of a problem that combines the momentum and the energy equations. \\ \hline
+	6 & Practical application & Application of the studied computational methods to a case of study. \\ \hline
+	7 & Conclusions & Writing of the conclusions of the study. \\ \hline
+	\caption{Tasks of the study}
+\end{longtable}
+
+\pagebreak
+\section{Gantt chart}
+The dependencies among the tasks and their time estimation are represented in the Gantt chart \ref{Gantt}. The global calendar of the study is also represented.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{Calendariv2}
+	\caption{Gantt chart}
+	\label{Gantt}
+\end{figure}
 
 \end{document}

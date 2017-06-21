@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  9 JUN 2017 20:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  10 JUN 2017 23:09
 entering extended mode
 **./Planning.tex
 (Planning.tex
@@ -1479,9 +1479,9 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 )
 \verbatim@out=\write3
-runsystem(echo t > "w18-test-2017691250.tex")...executed.
+runsystem(echo t > "w18-test-20176101389.tex")...executed.
 
-runsystem(del "w18-test-2017691250.tex")...executed.
+runsystem(del "w18-test-20176101389.tex")...executed.
 
 Package gnuplottex Info: Automatically converting gnuplot files. on input line 
 110.
@@ -1985,7 +1985,7 @@ LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 24.
 ("C:\Apps\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd"
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) (doc_config/cover.tex
-<./doc_config/image.png, id=11, 640.3925pt x 170.6375pt>
+<./doc_config/image.png, id=15, 640.3925pt x 170.6375pt>
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
@@ -2034,79 +2034,88 @@ File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 35.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [1] (Planning.lot)
-\tf@lot=\write6
-\openout6 = `Planning.lot'.
-
-
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 40.
-
-
-Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 40.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 40.
-
-File: ./doc_config/image.png Graphic file (type png)
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 40.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [2]
+ [1]
 Chapter 1.
 
-AED: lastpage setting LastPage
+Underfull \hbox (badness 10000) in paragraph at lines 54--54
+[]|\T1/lmss/m/n/10.95 Practical
+ []
+
+
+Overfull \hbox (46.13585pt too wide) in alignment at lines 46--57
+ [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 57
+ []
+
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 52.
+less on input line 60.
 
 
 Package Fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less on input line 52.
+less on input line 60.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 52.
+less on input line 60.
 
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 52.
+Package pdftex.def Info: ./doc_config/image.png used on input line 60.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.52 \end{document}
-                    [1
+l.60 \section
+             {Gantt chart} [1
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 52.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 52.
+<Calendariv2.png, id=40, 893.58844pt x 712.91344pt>
+File: Calendariv2.png Graphic file (type png)
+ <use Calendariv2.png>
+Package pdftex.def Info: Calendariv2.png used on input line 64.
+(pdftex.def)             Requested size: 446.79312pt x 356.45584pt.
+
+Overfull \hbox (20.00177pt too wide) in paragraph at lines 64--65
+ [][] 
+ []
+
+
+AED: lastpage setting LastPage
+File: ./doc_config/image.png Graphic file (type png)
+<use ./doc_config/image.png>
+Package pdftex.def Info: ./doc_config/image.png used on input line 69.
+(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
+ [2 <./Calendariv2.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 69.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 69.
  (Planning.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 52.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 52.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 69.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 69.
 Package rerunfilecheck Info: File `Planning.out' has not changed.
-(rerunfilecheck)             Checksum: 67D57846953DFD660878AA536F21CBC3;95.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 52.
+(rerunfilecheck)             Checksum: 81773548EF5C9299EDC6C607B55EB93E;154.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 69.
  ) 
 Here is how much of TeX's memory you used:
- 30136 strings out of 493334
- 556379 string characters out of 3143122
- 637740 words of memory out of 3000000
- 33164 multiletter control sequences out of 15000+200000
- 52600 words of font info for 53 fonts, out of 3000000 for 9000
+ 30169 strings out of 493334
+ 556839 string characters out of 3143122
+ 646740 words of memory out of 3000000
+ 33195 multiletter control sequences out of 15000+200000
+ 58145 words of font info for 55 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,15n,50p,10488b,731s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,15n,87p,10488b,735s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Apps/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Apps/MiKTeX 2.9/fonts/ty
 pe1/public/lm/lmcsc10.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmss10.pfb>
 <C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pfb><C:/Apps/MiKTeX 2.9/fonts/
-type1/public/lm/lmssbx10.pfb>
-Output written on Planning.pdf (4 pages, 101503 bytes).
+type1/public/lm/lmss9.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pf
+b>
+Output written on Planning.pdf (4 pages, 188156 bytes).
 PDF statistics:
- 53 PDF objects out of 1000 (max. 8388607)
- 6 named destinations out of 1000 (max. 500000)
- 22 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 68 PDF objects out of 1000 (max. 8388607)
+ 9 named destinations out of 1000 (max. 500000)
+ 35 words of extra memory for PDF output out of 10000 (max. 10000000)
 

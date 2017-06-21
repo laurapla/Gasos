@@ -1,2 +1,3 @@
-\contentsline {chapter}{List of Tables}{ii}{section*.1}
 \contentsline {chapter}{\numberline {1}Planning}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Tasks}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Gantt chart}{2}{section.1.2}
