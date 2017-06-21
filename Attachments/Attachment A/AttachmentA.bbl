@@ -6,4 +6,18 @@ U.~Ghia, K.~N. Ghia, and C.~T. Shin.
   equations and a multigrid method}.
 \newblock {\em Journal of Computational Physics}, 48:387--411, 1982.
 
+\bibitem{DeVahlDavis1983}
+G.~{de Vahl Davis}.
+\newblock {Natural convection of air in square cavity : A benchmark numerical
+  solution}.
+\newblock {\em International Journal for Numerical methods in Fluids}, 3(July
+  1982):249--264, 1983.
+
+\bibitem{Breuer2000}
+M.~Breuer, J.~Bernsdorf, T.~Zeiser, and F.~Durst.
+\newblock {Accurate computations of the laminar flow past a square cylinder
+  based on two different methods: Lattice-Boltzmann and finite-volume}.
+\newblock {\em International Journal of Heat and Fluid Flow}, 21(2):186--196,
+  2000.
+
 \end{thebibliography}

@@ -1,0 +1,42 @@
+\chapter{Buoyancy}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c|c|}
+		\cline{2-9}
+		\multicolumn{1}{l|}{}       & \multicolumn{2}{c|}{$Ra=10^{3}$} & \multicolumn{2}{c|}{$Ra=10^{4}$} & \multicolumn{2}{c|}{$Ra=10^{5}$} & \multicolumn{2}{c|}{$Ra=10^{6}$} \\ \cline{2-9} 
+		\multicolumn{1}{l|}{}       & Calculated                & Bench                & Calculated                & Bench                & Calculated                & Bench                & Calculated                & Bench                \\ \hline
+		\multicolumn{1}{|c|}{$u_{max}$}  & 3.708                   & 3.649                & 16.198                   & 16.178               & 34.508                   & 34.73                & 66.192                   & 64.63                \\ \hline
+		\multicolumn{1}{|c|}{$y$}     & 0.81                      & 0.813                & 0.83                      & 0.823                & 0.85                      & 0.855                & 0.85                      & 0.85                 \\ \hline
+		\multicolumn{1}{|c|}{$v_{max}$}  & 3.908                    & 3.697                & 19.648                   & 19.617               & 68.663                    & 68.59                & 220.23                    & 219.36               \\ \hline
+		\multicolumn{1}{|c|}{$x$}     & 0.17                      & 0.178                & 0.11                      & 0.119                & 0.07                      & 0.066                & 0.03                      & 0.038               \\ \hline
+		\multicolumn{1}{|c|}{$\bar{Nu}$} & 1.122                     & 1.118                & 2.244                   & 2.243                & 4.535                   & 4.519                & 9.031                   & 8.8                  \\ \hline
+		\multicolumn{1}{|c|}{$Nu_{1/2}$}  & 1.095                   & 1.118                & 2.228                   & 2.243                & 4.536                   & 4.519                & 9.110                   & 8.799                \\ \hline
+		\multicolumn{1}{|c|}{$Nu_{0}$}   & 1.367                   & 1.117                & 2.331                   & 2.238                & 4.669                   & 4.509                & 9.419                   & 8.817                \\ \hline
+		\multicolumn{1}{|c|}{$Nu_{max}$} & 1.795                    & 1.505                & 3.626                   & 3.528                & 8.045                   & 7.717                & 20.019                   & 17.925               \\ \hline
+		\multicolumn{1}{|c|}{$y$}     & 0.09                      & 0.092                & 0.15                      & 0.143                & 0.07                      & 0.081                & 0.03                      & 0.038               \\ \hline
+		\multicolumn{1}{|c|}{$Nu_{min}$} & 0.873                  & 0.692                & 0.616                  & 0.586                & 0.764                  & 0.729                & 1.062                   & 0.989                \\ \hline
+		\multicolumn{1}{|c|}{$y$}     & 1                         & 1                    & 1                         & 1                    & 1                         & 1                    & 1                         & 1                    \\ \hline
+	\end{tabular}
+	\caption[Comparison between the benchmark solution and the calculated one]{Comparison between the benchmark solution and the calculated one \cite{DeVahlDavis1983}}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c|c|c|c|c|}
+		\cline{2-5}
+		\multicolumn{1}{l|}{}       & $Ra=10^{3}$ & $Ra=10^{4}$ & $Ra=10^{5}$ & $Ra=10^{6}$ \\ \hline
+		\multicolumn{1}{|c|}{$u_{max}$}  & -1.627\%                    & -0.126\%                    & 0.640\%                     & -2.417\%                    \\ \hline
+		\multicolumn{1}{|c|}{$y$}     & 0.369\%                     & -0.851\%                    & 0.585\%                     & 0.000\%                     \\ \hline
+		\multicolumn{1}{|c|}{$v_{max}$}  & -5.715\%                    & -0.159\%                    & -0.106\%                    & -0.397\%                    \\ \hline
+		\multicolumn{1}{|c|}{$x$}     & 4.494\%                     & 7.563\%                     & -6.061\%                    & 20.844\%                    \\ \hline
+		\multicolumn{1}{|c|}{$\bar{Nu}$} & -0.358\%                    & -0.046\%                    & -0.355\%                    & -2.620\%                    \\ \hline
+		\multicolumn{1}{|c|}{$Nu_{1/2}$}  & 2.049\%                     & 0.654\%                     & -0.375\%                    & -3.540\%                    \\ \hline
+		\multicolumn{1}{|c|}{$Nu_{0}$}   & -22.343\%                   & -4.158\%                    & -3.547\%                    & -6.830\%                    \\ \hline
+		\multicolumn{1}{|c|}{$Nu_{max}$} & -19.282\%                   & -2.787\%                    & -4.251\%                    & -11.681\%                   \\ \hline
+		\multicolumn{1}{|c|}{$y$}     & 2.174\%                     & -4.895\%                    & 13.580\%                    & 20.635\%                    \\ \hline
+		\multicolumn{1}{|c|}{$Nu_{min}$} & -26.116\%                   & -5.128\%                    & -4.742\%                    & -7.386\%                    \\ \hline
+		\multicolumn{1}{|c|}{$y$}     & 0.000\%                     & 0.000\%                     & 0.000\%                     & 0.000\%                     \\ \hline
+	\end{tabular}
+	\caption{Percentage of error between the benchmark solution and the calculated one}
+\end{table}
