@@ -64,9 +64,17 @@ In the convection problems studied in the previous sections the flow was develop
 The algorithm used in the resolution of this problem is the same used in the calculation of the driven cavity problem (section \ref{AlgorithmDriven}).
 
 \section{Results}
-Depending on the Reynolds number the wake of the cylinder is completely different. In order to present the results, the fluid is only studied for $1\leq Re<60$, the steady regime. For $Re\geq60$ the fluid does not reach a steady state and the results would not be accurate.
+Depending on the Reynolds number the wake of the cylinder is completely different. In the following results, the fluid is only studied for $1\leq Re<60$, the steady regime. For $Re\geq60$ the fluid changes completely its behaviour and never reaches a steady state. It is called the unsteady regime.
 
-\begin{figure}[h]
+Figure \ref{HorizontalCylinder} shows the distribution of the horizontal velocity as a function of the Reynolds number. When the fluid reaches the cylinder it slows down, but when it is passing it the flow accelerates. In the rear side of the cylinder there is a zone with negative velocity. As the Re increases the accelerated area and the zone with reverse flow increase as well. Regarding the general distribution of velocities, for low Re it is almost symmetric, but as the Re increases it stretches to the right.
+
+Regarding the vertical velocity (figure \ref{VerticalCylinder}), in order to avoid the cylinder, the flow moves up near its upper edge and down near the lower edge. In the rear side of the cylinder the movement is completely the opposite. Again, for low Re the distribution is more or less symmetric, but as the Re increases it stretches to the right and the gradient of velocities in the frontal edges of the cylinder increases as well.
+
+Finally, the fluid flow is completely defined by the streamlines of figure \ref{StreamlinesCylinder}. At $Re=1$ the flow passes the cylinder without separation. But passed $Re\approx5$, two symmetric vortices appear in the rear side of the cylinder. The length of these vortices increases with the Reynolds number.
+
+In conclusion, for low Re, viscosity avoids the separation of the laminar boundary layers. But as the Re increases and convection becomes more important there is a separation of the boundary layer in the rear side of the cylinder that generates the obtained symmetrical vortices.
+
+\begin{figure}[h!]
 	\centering
 	\begin{subfigure}{0.5\textwidth}
 		\resizebox{1.1\textwidth}{!}{\input{Square/u1}}
@@ -96,7 +104,7 @@ Depending on the Reynolds number the wake of the cylinder is completely differen
 \label{HorizontalCylinder}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\begin{subfigure}{0.5\textwidth}
 		\resizebox{1.1\textwidth}{!}{\input{Square/v1}}
@@ -126,26 +134,27 @@ Depending on the Reynolds number the wake of the cylinder is completely differen
 	\label{VerticalCylinder}
 \end{figure}
 
-\begin{figure}[h]
+\pagebreak
+\begin{figure}[H]
 	\centering
 	\begin{subfigure}{0.5\textwidth}
-		\includegraphics[scale=0.61]{Square/1}
+		\includegraphics[scale=0.6]{Square/1}
 		\caption{$Re=1$}
 	\end{subfigure}%
 	\begin{subfigure}{0.5\textwidth}
-		\includegraphics[scale=0.61]{Square/3}
+		\includegraphics[scale=0.6]{Square/3}
 		\caption{$Re=3$}
 	\end{subfigure}
 	\begin{subfigure}{0.5\textwidth}
-		\includegraphics[scale=0.61]{Square/5}
+		\includegraphics[scale=0.6]{Square/5}
 		\caption{$Re=5$}
 	\end{subfigure}%
 	\begin{subfigure}{0.5\textwidth}
-		\includegraphics[scale=0.61]{Square/10}
+		\includegraphics[scale=0.6]{Square/10}
 		\caption{$Re=10$}
 	\end{subfigure}
 	\begin{subfigure}{0.5\textwidth}
-		\includegraphics[scale=0.61]{Square/30}
+		\includegraphics[scale=0.6]{Square/30}
 		\caption{$Re=30$}
 	\end{subfigure}%
 	\begin{subfigure}{0.5\textwidth}
@@ -154,4 +163,20 @@ Depending on the Reynolds number the wake of the cylinder is completely differen
 	\end{subfigure}
 	\caption{Vertical velocity near the cylinder}
 	\label{StreamlinesCylinder}
+\end{figure}
+
+\pagebreak
+An important parameter of the problems that study the flow around an object is the length of the closed wake behind the cylinder. According to \cite{Breuer2000}, the recirculation length has a linear dependence on the Reynolds number:
+\begin{equation}
+L_{r}/D=-0.065+0.0554Re \quad \textrm{for} \quad 5<Re<60
+\end{equation}
+
+The recirculation length is obtained comparing the horizontal velocities of the central horizontal plane. In the wake the velocity is negative, but in the external flow the velocity is positive. The recirculation length is the distance between the rear side of the cylinder and the point in which the velocity changes from negative to positive.
+
+Figure \ref{RecirculationReynolds} compares the calculated results with the reference ones as a function of the Reynolds number. The results are very similar, but at low Re the error is quite high. It could be due to the mesh. At low Re the recirculation length is very small, so it can only be accurately measured with a very fine mesh.
+\begin{figure}[H]
+	\centering
+	\input{Square/Recirculation}
+	\caption{Recirculation length vs. Reynolds number}
+	\label{RecirculationReynolds}
 \end{figure}

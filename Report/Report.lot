@@ -1,31 +1,29 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces Particular cases of the convection-diffusion equation\relax }}{7}{table.caption.3}
+\contentsline {table}{\numberline {2.1}{\ignorespaces Particular cases of the convection-diffusion equation\relax }}{5}{table.caption.3}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Problem coordinates\relax }}{17}{table.caption.8}
-\contentsline {table}{\numberline {4.2}{\ignorespaces Physical properties of the materials\relax }}{18}{table.caption.9}
-\contentsline {table}{\numberline {4.3}{\ignorespaces Boundary conditions\relax }}{18}{table.caption.10}
-\contentsline {table}{\numberline {4.4}{\ignorespaces Numerical parameters of the four materials problem\relax }}{18}{table.caption.11}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Problem coordinates\relax }}{13}{table.caption.8}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Physical properties of the materials\relax }}{14}{table.caption.9}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Boundary conditions\relax }}{14}{table.caption.10}
+\contentsline {table}{\numberline {4.4}{\ignorespaces Numerical parameters of the four materials problem\relax }}{14}{table.caption.11}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Function $A(|P|)$ for different schemes}}{29}{table.caption.19}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Function $A(|P|)$ for different schemes}}{24}{table.caption.19}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces Numerical parameters of the Smith-Hutton problem\relax }}{31}{table.caption.21}
-\contentsline {table}{\numberline {6.2}{\ignorespaces Discretization coefficients of the boundary points\relax }}{31}{table.caption.22}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {8.1}{\ignorespaces Numerical parameters of the driven cavity problem\relax }}{44}{table.caption.33}
-\contentsline {table}{\numberline {8.2}{\ignorespaces Discretization coefficients in the boundary\relax }}{45}{table.caption.34}
-\addvspace {10\p@ }
-\contentsline {table}{\numberline {9.1}{\ignorespaces Discretization coefficients of the boundary temperature nodes\relax }}{57}{table.caption.42}
-\contentsline {table}{\numberline {9.2}{\ignorespaces Numerical parameters of the differentially heated cavity problem\relax }}{59}{table.caption.44}
-\contentsline {table}{\numberline {9.3}{\ignorespaces Comparison between the benchmark solution and the calculated one}}{63}{table.caption.49}
-\contentsline {table}{\numberline {9.4}{\ignorespaces Percentage of error between the benchmark solution and the calculated one\relax }}{64}{table.caption.50}
+\contentsline {table}{\numberline {6.1}{\ignorespaces Numerical parameters of the Smith-Hutton problem\relax }}{26}{table.caption.21}
+\contentsline {table}{\numberline {6.2}{\ignorespaces Discretization coefficients of the boundary points\relax }}{26}{table.caption.22}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {11.1}{\ignorespaces Numerical parameters of the square cylinder problem\relax }}{75}{table.caption.56}
+\contentsline {table}{\numberline {8.1}{\ignorespaces Numerical parameters of the driven cavity problem\relax }}{38}{table.caption.33}
+\contentsline {table}{\numberline {8.2}{\ignorespaces Discretization coefficients in the boundary\relax }}{39}{table.caption.34}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {9.1}{\ignorespaces Discretization coefficients of the boundary temperature nodes\relax }}{51}{table.caption.42}
+\contentsline {table}{\numberline {9.2}{\ignorespaces Numerical parameters of the differentially heated cavity problem\relax }}{53}{table.caption.44}
+\contentsline {table}{\numberline {9.3}{\ignorespaces Comparison between the benchmark solution and the calculated one}}{57}{table.caption.49}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {11.1}{\ignorespaces Numerical parameters of the square cylinder problem\relax }}{66}{table.caption.55}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {13.1}{\ignorespaces Total cost of the study\relax }}{74}{table.caption.60}
 \addvspace {10\p@ }

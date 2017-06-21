@@ -1,4 +1,4 @@
-\chapter{Numerical methods}
+\chapter{State of the art}
 
 The laws governing the processes of heat transfer and fluid flow are usually expressed in terms of differential equations. These equations are the momentum equation, the energy equation and the mass conservation equation, among others. However, these expressions don’t have an analytical solution except for some simple cases. To solve complex problems it is necessary to use numerical methods.
 
@@ -15,7 +15,7 @@ The three most important conservation equations are the mass conservation equati
 \frac{\partial}{\partial t}(\rho u)+\nabla\cdot\left(\rho\vec{v}u\right)=-\nabla\cdot\vec{\dot{q}}-p\nabla\cdot\vec{v}+\vec{\tau}:\nabla\vec{v}+\Phi^{e}
 \end{equation}
 
-For incompressible flows with no viscous dissipation, the energy conservation equation can be written as:
+These equations can be simplified depending on the case that is being studied. For example, for incompressible flows with no viscous dissipation, the energy conservation equation can be written as:
 \begin{equation}
 \rho c_{p}\left(\frac{\partial T}{\partial t}+\vec{v}\cdot\nabla T\right)=\nabla\cdot\left(\lambda\nabla T\right)
 \label{EnergyIncompNoVisc}
@@ -25,7 +25,7 @@ All these equations can be seen as a particular case of the generic convection-d
 \begin{equation}
 \frac{\partial}{\partial t}\left(\rho\phi\right)+\nabla\cdot\left(\rho\vec{v}\phi\right)=\nabla\cdot\left(\Gamma\nabla\phi\right)+S_{phi}
 \end{equation}
-where $\rho$ is the density, $\vec{v}$ the velocity, $\Gamma$ the diffusion coefficient, $S_{\phi}$ the source term, and $\phi$ the general variable that is going to be studied. In table \ref{convdifeq} there are the values that these variables have to take in order to obtain the conservation equations previously mentioned.
+where $\rho$ is the density, $\vec{v}$ the velocity, $\Gamma$ the diffusion coefficient, $S_{\phi}$ the source term, and $\phi$ the general variable that is going to be studied. Table \ref{convdifeq} lists the values that these variables have to take in order to obtain the conservation equations previously mentioned.
 
 \begin{table}[h!]
 	\centering
@@ -42,7 +42,7 @@ where $\rho$ is the density, $\vec{v}$ the velocity, $\Gamma$ the diffusion coef
 \end{table}
 
 \section{Numerical methods}
-Numerical methods are based in dividing the domain that is going to be studied in different pieces. Instead of calculating the unknowns in the whole domain, they are studied in the finite number of points defined by these pieces, the grid points. This process is called discretization.
+Numerical methods are based in dividing the domain that is going to be studied in different pieces. Instead of calculating the unknowns in the whole domain, they are studied in the finite number of points defined by these pieces: the grid points. This process is called discretization.
 
 Once the domain is discretized, it is also necessary to discretize the equations. The relations between the grid points have to be established. It is assumed that the value $\phi$ of a grid point only influences the distribution of $\phi$ in its immediate neighbours. Consequently, as the number of grid points becomes larger, the numerical solution approaches the real solution of the problem.
 
@@ -61,7 +61,7 @@ Using a second order approximation and combining both expressions:
 \begin{equation}
 \left(\frac{d^{2}\phi}{dx^{2}}\right)_{P}\approx\frac{\phi_{W}+\phi_{E}-2\phi_{P}}{\left(\Delta x\right)^{2}}
 \end{equation}
-These expressions are substituted in the differential equation to obtain the finite-differential equation. This approach is very simple, but it is not used in complex geometries. It also does not enforce the conservation, as it is simply a mathematical approach, which may lead to some problems.
+These expressions are substituted in the differential equation to obtain the finite-differential equation. This approach is very simple, but it is not used in complex geometries. It also does not enforce conservation, as it is simply a mathematical approach.
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.8]{StateArt/3gridpoints}
@@ -70,7 +70,7 @@ These expressions are substituted in the differential equation to obtain the fin
 \end{figure}
 
 \section{Finite volume method}
-The finite-volume method (FVM) is another discretization method more used than the FDM. It consists in dividing the domain in different control volumes as the ones in figure \ref{controlvolume2d}, so that each control volume surrounds one grid point. Then, the differential equation is integrated over each control volume, ensuring that each of them satisfies the conservation principle. It is the method used in the present study.
+The finite-volume method (FVM) is another discretization method more used than the FDM. It consists in dividing the domain in different control volumes as the ones in figure \ref{controlvolume2d}, so that each control volume surrounds one grid point. The differential equation is integrated over each control volume, ensuring that each of them satisfies the conservation principle. It is the method used in the present study.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.5]{StateArt/controlvolume2d}
@@ -79,19 +79,19 @@ The finite-volume method (FVM) is another discretization method more used than t
 \end{figure}
 
 \subsection{Mesh}
-There are different ways to discretize the domain for the FVM. These methods are listed below \cite{Ferziger2002}:
+There are different ways to discretize the domain for the FVM. Some of these methods are listed below \cite{Ferziger2002}:
 \begin{itemize}
 	\item Structured (regular) mesh: Grid lines do not cross each other. Lines can be numbered consecutively, so that the position of any grid point can be easily identified by two (2D) or three (3D) indices. It is equivalent to a Cartesian grid. This is the simplest structure and easiest to work with, but it can only be used for geometrically simple domains.
 	\item Unstructured mesh: The control volumes may have any shape, and there is not a restriction on the number of neighbour nodes. It is the method used for very complex geometries, but the grid generation and the pre-processing are more difficult than on structured meshes.
 \end{itemize}
 
 \section{Time integration}
-Time is a one-way variable, which means that the unknowns only depend on the values in the previous instant of time, and do not depend on the values in the next instant of time. Knowing this property, to obtain the results of an unsteady problem, the method used is to discretize the time domain in time steps and calculate the values in each of them. When the unknowns of one time step are obtained, the calculation moves on to the next time step.
+Time is a one-way variable, which means that the unknowns only depend on the values in the previous instant of time, and do not depend on the values in the next instant of time. Knowing this property, to obtain the results of an unsteady problem, it is only necessary to discretize the time domain in time steps and calculate the values in each of them. When the unknowns of one time step are obtained, the calculation moves on to the next time step.
 
 Time integration can be done using different methods. The ones that are widely used are:
 \begin{itemize}
-	\item Explicit method: The simplest method. All the terms are evaluated using the known values of the previous time step $t^{n}$. It is a first order approximation and easy to compute, but it requires very small time steps in order to achieve convergence.
-	\item Implicit method: It is a very stable first order approximation, useful in problems with large time steps. The terms are evaluated with the values in the next instant of time $t^{n+1}$.
+	\item Explicit method: The simplest method. The terms are evaluated using the known values of the previous time step $t^{n}$. It is a first order approximation and easy to compute, but it requires very small time steps in order to achieve convergence.
+	\item Implicit method: It is a very stable first order approximation, which makes it useful in problems with large time steps. The terms are evaluated with the values in the next instant of time $t^{n+1}$.
 	\item Crank-Nicholson: It is a second order approximation. The terms are evaluated using the values of the previous and the next time step.
 \end{itemize}
 

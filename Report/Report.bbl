@@ -1,23 +1,22 @@
 \begin{thebibliography}{10}
 
 \bibitem{Ferziger2002}
-Joel~H. Ferziger and Milovan Peric.
+J.~H. Ferziger and M.~Peric.
 \newblock {\em {Computational Methods for Fluid Dynamics}}.
 \newblock Springer, Berlin, 3rd edition, 2002.
 
 \bibitem{Patankar1980}
-Suhas~V. Patankar.
+S.~V. Patankar.
 \newblock {\em {Numerical Heat Transfer and Fluid Flow}}.
 \newblock McGraw-Hill, New York, 1980.
 
 \bibitem{Bergman2011}
-Theodore~L. Bergman, Adrienne~S. Lavine, Frank~P. Incropera, and David~P.
-  DeWitt.
+T.~L. Bergman, A.~S. Lavine, F.~P. Incropera, and D.~P. DeWitt.
 \newblock {\em {Fundamentals of Heat and Mass Transfer}}.
 \newblock John Wiley {\&} Sons, 7th edition, 2011.
 
 \bibitem{Bejan2013}
-Adrian Bejan.
+A.~Bejan.
 \newblock {\em {Convection Heat Transfer}}.
 \newblock John Wiley {\&} Sons, Hoboken, 4th edition, 2013.
 
@@ -37,42 +36,42 @@ U.~Ghia, K.~N. Ghia, and C.~T. Shin.
 \newblock {\em Journal of Computational Physics}, 48:387--411, 1982.
 
 \bibitem{DeVahlDavis1983a}
-Graham {de Vahl Davis} and I.~P. Jones.
+G.~{de Vahl Davis} and I.~P. Jones.
 \newblock {Natural convection in a square cavity: A comparison exercise}.
 \newblock {\em International Journal for Numerical Methods in Fluids}, 3(July
   1982):227--248, 1983.
 
 \bibitem{DeVahlDavis1983}
-Graham {de Vahl Davis}.
+G.~{de Vahl Davis}.
 \newblock {Natural convection of air in square cavity : A benchmark numerical
   solution}.
 \newblock {\em International Journal for Numerical methods in Fluids}, 3(July
   1982):249--264, 1983.
 
 \bibitem{Ghiaasiaan2011}
-Seyed~Mostafa Ghiaasiaan.
+S.~M. Ghiaasiaan.
 \newblock {\em {Convective Heat and Mass Transfer}}.
 \newblock Cambridge University Press, New York, 2011.
 
 \bibitem{Versteeg2007}
-H.K. Versteeg and W.~Malalasekera.
+H.~K. Versteeg and W.~Malalasekera.
 \newblock {\em {An Introduction to Computational Fluid Dynamics: The Finite
   Volume Method}}.
-\newblock Pearson Education Limited, Harlow, second edition, 2007.
+\newblock Pearson Education Limited, Harlow, 2nd edition, 2007.
 
 \bibitem{CTTCb}
 CTTC.
 \newblock {Turbulence Modelling from RANS to DNS and LES}.
 
 \bibitem{Pope2000}
-Stephen~B. Pope.
+S.~B. Pope.
 \newblock {\em {Turbulent Flows}}, volume~1.
 \newblock Cambridge University Press, 2000.
 
 \bibitem{Johnson2016}
-Richard~W. Johnson.
+R.~W. Johnson.
 \newblock {\em {Handbook of Fluid Dynamics}}.
-\newblock CRC Press, second edition, 2016.
+\newblock CRC Press, 2nd edition, 2016.
 
 \bibitem{CTTC2014}
 CTTC.

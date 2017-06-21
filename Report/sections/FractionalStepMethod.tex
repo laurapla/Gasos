@@ -12,31 +12,6 @@ The equations to be solved are the conservation of mass and the conservation of 
 \section{The Helmholtz-Hodge decomposition theorem}
 According to the Helmholtz-Hodge theorem, it is possible to decompose any vector in a divergence-free vector parallel to the boundary and a gradient field, and this decomposition is unique \cite{CTTC}.
 
-The theorem starts with the definition of the projector operator $\Pi(\cdot)$, that projects any vector field onto a divergence-free space:
-\begin{equation}
-\nabla\cdot\Pi\left(\vec{a}\right)=0
-\label{HelmholtzHodge}
-\end{equation}
-Taking this operator and applying it to the momentum equation:
-\begin{equation}
-\Pi\left(\rho\frac{\partial\vec{v}}{\partial t}+\nabla p\right)=\Pi\left(-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}\right)
-\end{equation}
-Since the velocity field is incompressible, the transient term is already divergence-free and does not change. But the pressure gradient disappears, leading to the divergence-free vector:
-\begin{equation}
-\rho\frac{\partial\vec{v}}{\partial t}=\Pi\left(-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}\right)
-\end{equation}
-On the other hand, the gradient of the scalar field is obtained isolating the pressure from the momentum equation \ref{MassandMomentum}:
-\begin{equation}
-\nabla p=-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}-\Pi\left(-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}\right)
-\label{nablap}
-\end{equation}
-Finally, if the divergence operator is applied to equation \ref{nablap} taking into account the property given by \ref{HelmholtzHodge}, a Poisson equation is obtained for pressure:
-\begin{equation}
-\nabla^{2}p=\nabla\cdot\left(-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}\right)
-\end{equation}
-
-In conclusion, the Helmholtz-Hodge theorem decomposes the Navier-Stokes equation in two equations that allow the resolution of the pressure field and the velocity field separately.
-
 To apply the theorem, it is easier to rearrange the Navier-Stokes equation. Assuming constant density and viscosity, the convective and diffusive terms can be grouped together into the single variable $R\left(\vec{v}\right)=-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}$:
 \begin{equation}
 \rho\frac{\partial\vec{v}}{\partial t}=R\left(\vec{v}\right)-\nabla p
@@ -53,7 +28,7 @@ R^{n+\frac{1}{2}}\left(\vec{v}\right)\approx\frac{3}{2}R\left(\vec{v^{n}}\right)
 \label{AdamsBashforth}
 \end{equation}
 
-As an application of the Helmholtz-Hodge theorem, the intermediate velocity is defined as the sum of a divergence-free vector and the gradient of a scalar field:
+As an application of the Helmholtz-Hodge theorem, the intermediate velocity is defined as the sum of a divergence-free vector, the velocity, and the gradient of a scalar field, the pressure:
 \begin{equation}
 \vec{v}^{P}=\vec{v}^{n+1}+\nabla\tilde{p}=\vec{v}^{n+1}+\frac{\Delta t}{\rho}p^{n+1}
 \label{IntermediateVelocity}
@@ -94,7 +69,7 @@ First of all, it is necessary to discretize the expression of $R\left(\vec{v}\ri
 \begin{equation}
 R\left(\vec{v}\right)=-\rho\left(\vec{v}\cdot\nabla\right)\vec{v}+\mu\nabla^{2}\vec{v}
 \end{equation}
-This variable is a vector, so it has to be discretized in two directions. Integrating the expression over the control volume of the horizontal velocity staggered mesh in the horizontal direction:
+This variable is a vector, so it has to be discretized in two directions: one for the horizontal velocity $u$ and another one for the vertical velocity $v$. Integrating the expression over the control volume of the horizontal velocity staggered mesh in the horizontal direction:
 \begin{equation}
 \int_{\Omega_{x}}R\left(u\right)d\Omega_{x}=-\int_{\Omega_{x}}\left(\rho\vec{v}\cdot\nabla\right)ud\Omega_{x}+\int_{\Omega_{x}}\mu\nabla^{2}ud\Omega_{x}
 \end{equation}

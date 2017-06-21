@@ -1,0 +1,22 @@
+\chapter{Conclusions}
+This study was first proposed in order to improve the knowledge in the computational resolution of the conservation equations. To do so, a previous research on the state of the art of this field has been done. Then, some numerical methods have been studied, and in order to completely understand them they have been applied to different cases. All this, taking into account all the requirements.
+
+The study of computational methods began with the concept of discretization and its application to differential equations. The simplest case, conduction, has served as an introduction to numerical solutions and unsteady problems. Secondly, the Smith-Hutton problem, has introduced the use of interpolation schemes. In the driven cavity problem, the fractional step method has been proposed. Then, the differentially heated cavity problem, that required the resolution of the momentum and energy equations, has served as an introduction to problems that combine the resolution of both equations. Finally, as a brief introduction to turbulence, spectral methods have been introduced to solve the Burgers' equation.
+
+Concerning the results obtained with the simulations, they are realistic and similar to the reference values. There are some differences between the calculated values and the reference ones, but the error is not high. These discrepancies may appear due to the numerical methods used to solve the problem or the mesh refinement, among other causes.
+
+Finally, all the knowledge acquired in this first part of the study has led to the resolution of a practical case: the flow around a square cylinder inside a channel. This case is more similar to an aerodynamics problem, which is one of the main disciplines of aerospace engineering, because it studies the behaviour of the external flow around an object.
+
+In general, the simulation of the application case gave correct results, but it has only been implemented for low Reynolds number flows with steady solutions. The results obtained were accurate enough, with some discrepancies for very low Re flows.
+
+Other remarkable achievement of this study is the acknowledgement of the importance of mesh refinement and code structuring. An appropriate mesh can be the difference between a simulation that does or does not work. On the other hand, a structured code is easier to understand and facilitates the detection of errors.
+
+\section{Future work}
+\label{FutureWork}
+To continue this study, the next step would be the adaptation of the actual code that calculates the external flow around a square cylinder to the resolution of higher Reynolds numbers. This would allow obtaining unsteady solutions, which would lead to the study of the von Kármán vortex streets.
+
+Another major improvement that could be done to this program is the calculation of the aerodynamic coefficients of drag and lift in order to understand their dependence on the Reynolds number.
+
+Other general improvements are the study of the most appropriate mesh for each case and the improvement of the codes to increase the overall efficiency of the simulations.
+
+Finally, the next step in this study would be the development of a code to study the turbulence phenomenon.

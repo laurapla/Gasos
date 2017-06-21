@@ -1,22 +1,42 @@
-\chapter{Economical and environmental considerations}
+\chapter{Economical, environmental and temporal considerations}
 
 \section{Budget}
-The economical cost of this study is divided in four sections:
+The economical cost of this study is divided in three sections:
 \begin{itemize}
-	\item Human resources: The study was developed by an aerospace engineering student during 300 hours.
-	\item Software:It refers to the programs used to develop the study: \textit{TeXstudio 2.12.4}, \textit{Dev-C++ 5.11}, \textit{Matlab}, \textit{Microsoft Excel 2010} and \textit{Mendeley Desktop 1.17.9}.
+	\item Human resources: The study was developed by an aerospace engineering student during 300 hours. The human resources are the hours invested in the making of the study.
+	\item Software: It refers to the programs used to develop the study: \textit{TeXstudio 2.12.4}, \textit{Dev-C++ 5.11}, \textit{gnuplot 5.0}, \textit{Matlab R2015a}, \textit{Microsoft Excel 2010} and \textit{Mendeley Desktop 1.17.9}.
 	\item Hardware: One of the requirements of the study was that the developed codes had to be able to be executed in a normal computer. The hardware refers to the laptop used in the development of this study.
-	\item Power consumption: It refers to the electricity used by the computer in the development of the paper.
 \end{itemize}
-To see more details refer to the Budget document.
+The total costs are summarized in table \ref{TotalCost}. To see more details refer to the Budget document.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ccc|c|}
+		\hline
+		\multicolumn{1}{|c|}{Concept}         & \multicolumn{1}{c|}{Price}         & Units    & Total               \\ \hline
+		\multicolumn{1}{|c|}{Human resources} & \multicolumn{1}{c|}{15 €/hour}     & 300 h    & 4,500 €             \\ \hline
+		\multicolumn{1}{|c|}{Software}        & \multicolumn{1}{c|}{148 €}         & 1        & 148 €               \\ \hline
+		\multicolumn{1}{|c|}{Hardware}        & \multicolumn{1}{c|}{26 €/month} & 4 months & 104 €            \\ \hline
+		&                                    &          & \textbf{4,752 €} \\ \cline{4-4} 
+	\end{tabular}
+	\caption{Total cost of the study}
+	\label{TotalCost}
+\end{table}
 
 
 \section{Environmental impact}
-In the making of this paper different cases were studied: conduction through a wall, the movement of a fluid inside a cavity, natural convection... With the use of computational methods these studies only required a computer to be done. As a consequence, it avoided an experimental release of the problems and the use of an appropriate installation to perform them. This aspect reduces considerably the environmental impact that the study could have had.
+In the making of this paper different cases were studied: conduction through a wall, the movement of a fluid inside a cavity, natural convection... With the use of computational methods these studies only required a computer to be conducted. As a consequence, it avoided an experimental release of the problems and the use of an appropriate installation to perform them. This aspect reduces considerably the environmental impact that the study could have had.
 
-As for the resources used, the main tool was a computer and the electricity needed for its operation. However, these resources in the making of this paper do not generate an additional environmental impact, because they are commonly used in a student's everyday life.
+As for the resources used, the main tool was a computer and the electricity needed for its operation. However, in the making of this paper, these resources do not generate an additional environmental impact, because they are commonly used in a student's everyday life.
 
 In short, the environmental impact of this study was minimum.
 
 \section{Planning}
-To see the planning refer to Annex C.
+The planning of the tasks has had some modifications with respect to the proposal of the project charter. The main difference is that instead of including the study of radiation, the paper has focused on the resolution of convection, which was more related to the final case of study. For more information refer to Attachment C.
+
+Regarding the future work proposed in section \ref{FutureWork} the time estimation of the tasks is the following:
+\begin{itemize}
+	\item Unsteady solutions of the square cylinder problem: 2 to 3 weeks
+	\item Calculation of the aerodynamic coefficients: 1 week
+	\item Mesh refinement and improvement of the codes: 4 weeks
+	\item Development of a code to study the turbulence phenomenon: 7 to 8 weeks
+\end{itemize}
