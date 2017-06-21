@@ -326,18 +326,6 @@ void temperature_coefficients(int N, int M, double dt, double* x, double* y, dou
 	{
 		for(int i = 0; i<N+2; i++)
 		{
-			// Mass flow terms (v*S)
-			Fe = u[j][i]*Sv[j];
-			Fw = u[j][i-1]*Sv[j];
-			Fn = v[j][i]*Sh[i];
-			Fs = v[j-1][i]*Sh[i];
-			
-			// Areas and distances
-			De = Sv[j]/fabs(x[i+1]-x[i]);
-			Dw = Sv[j]/fabs(x[i]-x[i-1]);
-			Dn = Sh[i]/fabs(y[j+1]-y[j]);
-			Ds = Sh[i]/fabs(y[j+1]-y[j]);
-			
 			if(i==0)
 			{
 				aTe[j][i] = 0;
@@ -376,6 +364,18 @@ void temperature_coefficients(int N, int M, double dt, double* x, double* y, dou
 			}
 			else
 			{
+				// Mass flow terms (v*S)
+				Fe = u[j][i]*Sv[j];
+				Fw = u[j][i-1]*Sv[j];
+				Fn = v[j][i]*Sh[i];
+				Fs = v[j-1][i]*Sh[i];
+				
+				// Areas and distances
+				De = Sv[j]/fabs(x[i+1]-x[i]);
+				Dw = Sv[j]/fabs(x[i]-x[i-1]);
+				Dn = Sh[i]/fabs(y[j+1]-y[j]);
+				Ds = Sh[i]/fabs(y[j+1]-y[j]);
+			
 				aTe[j][i] = De-0.5*Fe;
 				aTw[j][i] = Dw+0.5*Fw;
 				aTn[j][i] = Dn-0.5*Fn;

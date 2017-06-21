@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  9 JUN 2017 21:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  10 JUN 2017 23:08
 entering extended mode
 **./AttachmentB.tex
 (AttachmentB.tex
@@ -1474,9 +1474,9 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 )
 \verbatim@out=\write3
-runsystem(echo t > "w18-test-2017691262.tex")...executed.
+runsystem(echo t > "w18-test-20176101388.tex")...executed.
 
-runsystem(del "w18-test-2017691262.tex")...executed.
+runsystem(del "w18-test-20176101388.tex")...executed.
 
 Package gnuplottex Info: Automatically converting gnuplot files. on input line 
 110.
@@ -2573,7 +2573,7 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 34.
 ]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 85.
+Package pdftex.def Info: ./doc_config/image.png used on input line 84.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [72]
 File: ./doc_config/image.png Graphic file (type png)
@@ -2595,7 +2595,7 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 232.
  [75]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 281.
+Package pdftex.def Info: ./doc_config/image.png used on input line 280.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [76]
 File: ./doc_config/image.png Graphic file (type png)
@@ -2661,32 +2661,27 @@ Package pdftex.def Info: ./doc_config/image.png used on input line 784.
  [87]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 832.
+Package pdftex.def Info: ./doc_config/image.png used on input line 834.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [88]
 File: ./doc_config/image.png Graphic file (type png)
 
 <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 882.
+Package pdftex.def Info: ./doc_config/image.png used on input line 884.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
  [89]
 File: ./doc_config/image.png Graphic file (type png)
  <use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 932.
+Package pdftex.def Info: ./doc_config/image.png used on input line 933.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [90]
-File: ./doc_config/image.png Graphic file (type png)
+ [90])
 
-<use ./doc_config/image.png>
-Package pdftex.def Info: ./doc_config/image.png used on input line 980.
-(pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [91]) 
 AED: lastpage setting LastPage
 File: ./doc_config/image.png Graphic file (type png)
 <use ./doc_config/image.png>
 Package pdftex.def Info: ./doc_config/image.png used on input line 84.
 (pdftex.def)             Requested size: 93.81703pt x 25.0pt.
- [92]
+ [91]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 84.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 84.
  (AttachmentB.aux)
@@ -2697,8 +2692,8 @@ Package rerunfilecheck Info: File `AttachmentB.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 84.
  ) 
 Here is how much of TeX's memory you used:
- 36729 strings out of 493334
- 651658 string characters out of 3143122
+ 36686 strings out of 493334
+ 650980 string characters out of 3143122
  957142 words of memory out of 3000000
  35530 multiletter control sequences out of 15000+200000
  79615 words of font info for 77 fonts, out of 3000000 for 9000
@@ -2712,9 +2707,9 @@ e1/public/lm/lmss10.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pfb><C
 e1/public/lm/lmss9.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><
 C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmsso9.pfb><C:/Apps/MiKTeX 2.9/fonts/t
 ype1/public/lm/lmsy9.pfb>
-Output written on AttachmentB.pdf (94 pages, 927669 bytes).
+Output written on AttachmentB.pdf (93 pages, 920261 bytes).
 PDF statistics:
- 5390 PDF objects out of 6186 (max. 8388607)
- 4178 named destinations out of 4296 (max. 500000)
+ 5335 PDF objects out of 6186 (max. 8388607)
+ 4135 named destinations out of 4296 (max. 500000)
  54 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -36,7 +36,6 @@ double min(double a, double b);
 double max(double a, double b);
 double time_step (double dtd, double* x, double* y, staggx u, staggy v);
 bool error (int N, int M, float delta, staggx u, staggy v, staggx u0, staggy v0);
-void search_index (float point, double *x, int Number, int& ipoint, int& ip);
 void output_files (int N, int M, double* x, double* y, double* xvc, double* yvc, staggx u, staggy v);
 
 double xvc[N+1], yvc[M+1], x[N+2], y[M+2];
@@ -349,7 +348,7 @@ void constant_coefficients(int N, int M, double *x, double *y, double *xvc, doub
 				ap[j][i] = 1;
 			}
 			// Coefficients in the cylinder
-			else if(i>N1+1 && i<N1+N2 && j>M1+1 && j<M1+M2)
+			else if(i>=N1+1 && i<=N1+N2 && j>=M1+1 && j<=M1+M2)
 			{
 				ae[j][i] = 0;
 				aw[j][i] = 0;
@@ -415,6 +414,7 @@ double convective_term (double xf, double x2, double x3, double u2, double u3)
 }
 
 
+// Calculation of the intermediate velocities
 void intermediate_velocities (int N, int M, float rho, float mu, float delta, double dt, double* x, double* y, double *xvc, double* yvc, double* Sh, double* Sv, matrix V, staggx u0, staggy v0, staggx Ru0, staggy Rv0, staggx &Ru, staggy &Rv, staggx &up, staggy &vp)
 {
 	double mflowe, mfloww, mflown, mflows;
@@ -787,7 +787,7 @@ bool error (int N, int M, float delta, staggx u, staggy v, staggx u0, staggy v0)
 			resta = max(resta, fabs(v[j][i]-v0[j][i]));
 		}
 	}
-	cout<<resta<<endl;
+	
 	if(resta>delta)
 	{
 		return false;
@@ -796,48 +796,6 @@ bool error (int N, int M, float delta, staggx u, staggy v, staggx u0, staggy v0)
 	{
 		return true;
 	}
-}
-
-
-// Searching the index of the node closest to a given point (and the second closest)
-void search_index (float point, double *x, int Number, int& ipoint, int& ip)
-{
-	for(int i = 0; i<Number-1; i++)
-    {
-    	if(x[i+1]-x[i]>0)
-    	{
-    		if(x[i]<=point && x[i+1]>point)
-    		{
-    			if(point-x[i]<x[i+1]-point)
-				{
-					ipoint = i; //ipoint is the index of the node closest to the point we want
-					ip = i+1; //ip is the second node closest to it (used in interpolation)
-				}
-				else
-				{
-					ipoint = i+1;
-					ip = i;
-				}
-			}    		
-		}
-		else
-		{
-			if(x[i]>point && x[i+1]<=point)
-    		{
-    			if(point-x[i+1]<x[i]-point)
-    			{
-    				ipoint = i;
-    				ip = i+1;
-				}
-				else
-				{
-					ipoint = i+1;
-					ip = i;
-				}
-			}
-		}
-	}
-	
 }
 
 
