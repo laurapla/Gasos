@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  10 JUN 2017 23:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.1)  4 JUL 2017 19:15
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -1479,9 +1479,9 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 )
 \verbatim@out=\write3
-runsystem(echo t > "w18-test-20176101387.tex")...executed.
+runsystem(echo t > "w18-test-2017741155.tex")...executed.
 
-runsystem(del "w18-test-20176101387.tex")...executed.
+runsystem(del "w18-test-2017741155.tex")...executed.
 
 Package gnuplottex Info: Automatically converting gnuplot files. on input line 
 110.
@@ -4693,8 +4693,8 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 94.
  ) 
 Here is how much of TeX's memory you used:
  31506 strings out of 493334
- 587471 string characters out of 3143122
- 1895799 words of memory out of 3000000
+ 587470 string characters out of 3143122
+ 1895793 words of memory out of 3000000
  33830 multiletter control sequences out of 15000+200000
  114720 words of font info for 102 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -4717,7 +4717,7 @@ TeX 2.9/fonts/type1/public/lm/lmsso10.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmsy10.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Apps/Mi
 KTeX 2.9/fonts/type1/public/lm/lmsy9.pfb><C:/Apps/MiKTeX 2.9/fonts/type1/public
 /amsfonts/symbols/msbm10.pfb>
-Output written on Report.pdf (84 pages, 48926344 bytes).
+Output written on Report.pdf (84 pages, 48926348 bytes).
 PDF statistics:
  1669 PDF objects out of 1728 (max. 8388607)
  433 named destinations out of 1000 (max. 500000)
